@@ -19,9 +19,9 @@ const ALLEGRO_COLOR BACKGROUND_COLOR = al_map_rgb(0, 0, 0);  // Background color
 int main(){
 
     // Basic Allegro pointers:
-    ALLEGRO_DISPLAY *display = NULL;
-    ALLEGRO_EVENT_QUEUE *eventQueue = NULL;
-    ALLEGRO_TIMER *timer = NULL;
+    ALLEGRO_DISPLAY *display = nullptr;
+    ALLEGRO_EVENT_QUEUE *eventQueue = nullptr;
+    ALLEGRO_TIMER *timer = nullptr;
     
     // Initializations:
     if(!initialize_allegro()) return 1;

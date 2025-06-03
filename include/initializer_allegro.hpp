@@ -26,7 +26,7 @@ bool initialize_allegro() {
     return true;
 }
 // Create an event queue to handle events
-bool initialize_event_queue(ALLEGRO_EVENT_QUEUE *ev){
+bool initialize_event_queue(ALLEGRO_EVENT_QUEUE *&ev){
     ev = al_create_event_queue();
     if (!ev) {
         cout << "ERROR:" << "failed to create event_queue" << endl;
@@ -36,7 +36,7 @@ bool initialize_event_queue(ALLEGRO_EVENT_QUEUE *ev){
 }
 
 // Initialize display window and timer 
-bool initialize_display_and_timer(ALLEGRO_DISPLAY *display,int w, int h, ALLEGRO_TIMER *t, float fps){
+bool initialize_display_and_timer(ALLEGRO_DISPLAY *&display,int w, int h, ALLEGRO_TIMER *&t, float fps){
     display = al_create_display(w, h);
     if (!display) {
         cout << "ERROR:" << "failed to create display" << endl;
