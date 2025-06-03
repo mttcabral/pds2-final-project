@@ -33,3 +33,10 @@ void BasicPlayer::updateSpeed() {
 void BasicPlayer::jump() {
     this->addSpeedY(-50);
 }
+
+void BasicPlayer::draw() {
+    al_draw_filled_rectangle(this->getPosX()-this->lengthSize/2, this->getPosY()-this->lengthSize/2,
+                            this->getPosX()+this->lengthSize/2, this->getPosY()+this->lengthSize/2,
+                            al_map_rgb(50,100,200)
+                            );
+}

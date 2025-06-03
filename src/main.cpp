@@ -1,7 +1,82 @@
-#include "PLACE_HOLDER_1.hpp"
+#include "game_object.hpp"
+#include "hitbox.hpp"
+#include "entity.hpp"
+#include "initializer_allegro.hpp"
+#include <iostream>
+#include <string>
 
-int main()
-{
-    print();
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_primitives.h>
+
+using namespace std;
+
+// Game constants:
+const float FPS = 30;                                        // Frames per second
+const int SCREEN_W = 800;                                    // Screen width in pixels
+const int SCREEN_H = 600;                                    // Screen height in pixels
+const ALLEGRO_COLOR BACKGROUND_COLOR = al_map_rgb(0, 0, 0);  // Background color (black)
+
+int main(){
+
+    // Basic Allegro pointers:
+    ALLEGRO_DISPLAY *display = NULL;
+    ALLEGRO_EVENT_QUEUE *eventQueue = NULL;
+    ALLEGRO_TIMER *timer = NULL;
+    
+    // Initializations:
+    if(!initialize_allegro()) return 1;
+
+    if(!initialize_event_queue(eventQueue)) return 1;
+
+    if(!initialize_display_and_timer(display,SCREEN_W,SCREEN_H,timer,FPS)) return 1;
+
+    // Register event sources for the event queue
+    al_register_event_source(eventQueue, al_get_display_event_source(display));
+    al_register_event_source(eventQueue, al_get_timer_event_source(timer));
+    al_register_event_source(eventQueue, al_get_keyboard_event_source());
+
+    // Start the timer to control game speed
+    al_start_timer(timer);
+
+    // Game is being played control
+    bool gameActive = true;
+
+    // Basic player object for testing
+    BasicPlayer squareGuy;
+
+    while (gameActive) {
+        
+        ALLEGRO_EVENT event;
+
+        al_wait_for_event(eventQueue, &event);
+
+        switch (event.type) {
+            case ALLEGRO_EVENT_TIMER:
+                //refresh display
+                al_clear_to_color(al_map_rgba_f(1,1,1,1)); //white color 
+
+                squareGuy.updateSpeed();
+                squareGuy.updatePosition();
+                
+                squareGuy.draw();
+
+                al_flip_display(); //updates the display with the new frame 
+
+            break;
+            case ALLEGRO_EVENT_KEY_DOWN:
+                switch (event.keyboard.keycode){
+                    case ALLEGRO_KEY_SPACE: case ALLEGRO_KEY_UP:
+                        squareGuy.jump();
+                }
+
+            break;
+            case ALLEGRO_EVENT_DISPLAY_CLOSE:
+                gameActive = false;
+            break;
+        }
+    }
+    al_destroy_display(display);
+    al_destroy_event_queue(eventQueue);
+    al_destroy_timer(timer);
     return 0;
 }

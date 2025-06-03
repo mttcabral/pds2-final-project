@@ -27,6 +27,8 @@ class BasicPlayer: public Entity {
 
         void jump();
 
+        void draw() override;
+        
         ~BasicPlayer();
 };
 
