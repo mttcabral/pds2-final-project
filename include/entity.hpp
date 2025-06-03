@@ -4,7 +4,8 @@
 #include "game_object.hpp"
 #include "hitbox.hpp"
 
-
+const double BASE_GRAVITY = 10;
+const double BASE_X_MOVEMENT = 20;
 
 class Entity: public Drawable {
     protected:
@@ -21,9 +22,11 @@ class BasicPlayer: public Entity {
     public:
         BasicPlayer();
 
-        void updatePosition();
-        void updateVelocity();
+        bool updatePosition() override;
+        void updateVelocity() override;
 
+        void jump();
+        
         ~BasicPlayer();
 };
 
