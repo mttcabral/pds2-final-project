@@ -35,7 +35,7 @@ class Drawable : public GameObject {
 
     public:
         virtual void draw() = 0;
-        virtual void updateVelocity() = 0;
+        virtual void updateSpeed() = 0;
 
         void addSpeedX(double x);
         void addSpeedY(double y);

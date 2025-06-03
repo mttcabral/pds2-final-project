@@ -15,7 +15,8 @@ BasicPlayer::~BasicPlayer() {
 }
 
 bool BasicPlayer::updatePosition() {
-    this->setPosX(this->getPosX() + this->getSpeedX());
+    if (this->getPosX() != this->xAxis)
+        this->setPosX(this->getPosX() + this->getSpeedX());
     this->setPosY(this->getPosY() + this->getSpeedY());
     return true;
 }
