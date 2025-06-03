@@ -51,19 +51,19 @@
 - Cases
   - camelCase: variáveis
   - PascalCase: classes, construtores, arquivos "`.cpp`" (exceto `main`) e "`.hpp`"
+  - kebab-case: branches
 - Mensagens de commit
   - Prefixos
-    - feat: nova funcionalidade.
-    - fix: correção de bug.
-    - docs: alterações na documentação.
-    - style: mudanças de formatação e estilo do código, sem alterações de lógica.
-    - refactor: refatoração do código.
-    - test: adição ou alteração de testes.
-    - chore: tarefas auxiliares
+    - `feat`: nova funcionalidade.
+    - `fix`: correção de bug.
+    - `docs`: alterações na documentação.
+    - `refactor`: refatoração do código.
+    - `test`: adição ou alteração de testes.
+    - `chore`: tarefas auxiliares diversas que não afetam a lógica ou funcionalidade do jogo
   - Mensagem
-    - `<tipo>: <resumo breve>` (até 50 caracteres)
+    - `<prefixo>: <resumo breve>` (até 50 caracteres)
       - Caso o resumo ultrapasse 50 caracteres.
-        - `<tipo>: <resumo breve>`
+        - `<prefixo>: <resumo breve>`
           - `<descrição detalhada>`
     - Utilize verbos no infinito e no presente.
       - add, update etc.
@@ -72,3 +72,17 @@
     - `feat: add hitbox implementation for obstacles`
     - `fix: leaderboard counting logic`
       - `'Leaderboard was counting the score twice...'`
+- Branches
+  - Prefixos
+    `feature/`: novas funcionalidades
+    `bugfix/`: correções de bugs
+    `docs/`: atualizações na documentação
+    `refactor/`: refatoração de código sem mudar comportamento
+    `test/`: branches voltadas para testes ou experimentos
+    `chore/`: tarefas técnicas que não afetam o código final
+  - Nomes
+    - `<prefixo>/<descrição-curta>`
+    - Exemplos
+      - `feature/login-page`
+      - `bugfix/crash-on-save`
+      - `chore/update-dependencies`
