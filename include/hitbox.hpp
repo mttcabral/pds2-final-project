@@ -11,24 +11,27 @@ enum class hitboxType {
 class Hitbox: public GameObject{
     private:
         hitboxType type;
+        Drawable* target;
     public: 
         Hitbox(double pX, double pY, hitboxType t = hitboxType::Negative); 
 
         void invertType();
-        void updatePosition(double pX, double pY);
+        bool updatePosition() override;
+        
+        void setTarget(Drawable *target);
 
         virtual bool checkColision() = 0;
-};
-
-class RectangleHitbox: public Hitbox {
-    private:
+    };
+    
+    class RectangleHitbox: public Hitbox {
+        private:
         double width, height;
-    public: 
+        public: 
         RectangleHitbox(double pX, double pY, double w, double h, hitboxType t = hitboxType::Negative);
         
         bool checkColision() override;
+        
 
-        void updatePosition() override;
         //rotateHitbox();
 };
 

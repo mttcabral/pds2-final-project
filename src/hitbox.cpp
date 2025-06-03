@@ -8,9 +8,12 @@ void Hitbox::invertType() {
     else hitboxType::Positive;
 }
 
-void Hitbox::updatePosition(double x, double y) {
-    this->setPosX(x);
-    this->setPosY(y);
+bool Hitbox::updatePosition() {
+    if (!this->target) return false;
+    
+    this->setPosX(target->getPosX());
+    this->setPosY(target->getPosY());
+    return true;
 }
 
 RectangleHitbox::RectangleHitbox(double pX, double pY,

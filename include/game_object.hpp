@@ -18,7 +18,7 @@ class GameObject {
         double getPosX();
         double getPosY();
 
-        virtual void updatePosition() = 0;
+        virtual bool updatePosition() = 0;
         
 };
 
