@@ -5,7 +5,7 @@ Entity::Entity(double x, double y, double sX, double sY):
 Entity::Entity(double x, double y):
     Entity::Entity(x,y,0,0) {}
 
-BasicPlayer::BasicPlayer(): Entity::Entity(xAxis,400,0,10) {
+BasicPlayer::BasicPlayer(): Entity::Entity(X_AXIS,400,0,10) {
     hb = new RectangleHitbox(xAxis,400,lengthSize,lengthSize, hitboxType::Positive);
     hb->setTarget(this);
 }

@@ -1,11 +1,13 @@
 #include "hitbox.hpp"
 
-Hitbox::Hitbox(double pX, double pY, hitboxType t = hitboxType::Negative):
+Hitbox::Hitbox(double pX, double pY, hitboxType t):
     GameObject::GameObject(pX,pY), type(t) {}
+
+Hitbox::~Hitbox() {}
 
 void Hitbox::invertType() {
     if (this->type == hitboxType::Positive) this->type = hitboxType::Negative;
-    else hitboxType::Positive;
+    else this->type = hitboxType::Positive;
 }
 
 bool Hitbox::updatePosition() {
@@ -16,8 +18,10 @@ bool Hitbox::updatePosition() {
     return true;
 }
 
+void Hitbox::setTarget(Drawable *d) {this->target = d;}
+
 RectangleHitbox::RectangleHitbox(double pX, double pY,
-                                double w, double h, hitboxType t = hitboxType::Negative):
+                                double w, double h, hitboxType t):
     Hitbox::Hitbox(pX,pY,t), width(w), height(h) {}
 
 bool RectangleHitbox::checkColision() {
@@ -25,5 +29,5 @@ bool RectangleHitbox::checkColision() {
 } //placeholder
 
 CircleHitbox::CircleHitbox(double pX, double pY, 
-                                double r, hitboxType t = hitboxType::Negative):
+                                double r, hitboxType t):
     Hitbox::Hitbox(pX,pY,t), radius(r) {}

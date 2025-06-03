@@ -21,6 +21,8 @@ class Hitbox: public GameObject{
         void setTarget(Drawable *target);
 
         virtual bool checkColision() = 0;
+
+        virtual ~Hitbox();
     };
     
     class RectangleHitbox: public Hitbox {

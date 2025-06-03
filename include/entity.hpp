@@ -6,6 +6,7 @@
 
 const double BASE_GRAVITY = 10;
 const double BASE_X_MOVEMENT = 20;
+const double X_AXIS = 200;
 
 class Entity: public Drawable {
     protected:
@@ -17,7 +18,7 @@ class Entity: public Drawable {
 
 class BasicPlayer: public Entity {
     private:
-        double xAxis = 200;
+        double xAxis = X_AXIS;
         double lengthSize = 100;
     public:
         BasicPlayer();
