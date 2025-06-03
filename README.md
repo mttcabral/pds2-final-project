@@ -59,6 +59,7 @@
     - style: mudanças de formatação e estilo do código, sem alterações de lógica.
     - refactor: refatoração do código.
     - test: adição ou alteração de testes.
+    - chore: tarefas auxiliares
   - Mensagem
     - `<tipo>: <resumo breve>` (até 50 caracteres)
       - Caso o resumo ultrapasse 50 caracteres.
