@@ -28,6 +28,9 @@ bool RectangleHitbox::checkColision() {
     return false;
 } //placeholder
 
+double RectangleHitbox::getWidth() {return this->width;}
+double RectangleHitbox::getHeight() {return this->height;}
+
 CircleHitbox::CircleHitbox(double pX, double pY, 
                                 double r, hitboxType t):
     Hitbox::Hitbox(pX,pY,t), radius(r) {}

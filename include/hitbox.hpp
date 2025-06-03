@@ -23,15 +23,19 @@ class Hitbox: public GameObject{
         virtual bool checkColision() = 0;
 
         virtual ~Hitbox();
-    };
+};
     
-    class RectangleHitbox: public Hitbox {
-        private:
+class RectangleHitbox: public Hitbox {
+    private:
         double width, height;
-        public: 
+        double xEdges[2], yEdges[2];
+    public: 
         RectangleHitbox(double pX, double pY, double w, double h, hitboxType t = hitboxType::Negative);
         
         bool checkColision() override;
+        
+        double getWidth();
+        double getHeight();
         
 
         //rotateHitbox();

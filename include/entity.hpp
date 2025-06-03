@@ -14,6 +14,8 @@ class Entity: public Drawable {
     public: 
         Entity(double x, double y, double sX, double sY);
         Entity(double x, double y);
+
+        Hitbox *getHitbox();
 };
 
 class BasicPlayer: public Entity {
@@ -22,6 +24,8 @@ class BasicPlayer: public Entity {
         double lengthSize = 100;
     public:
         BasicPlayer();
+
+        RectangleHitbox *getHitboxAABB();
 
         bool updatePosition() override;
         void updateSpeed() override;

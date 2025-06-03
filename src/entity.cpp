@@ -5,6 +5,8 @@ Entity::Entity(double x, double y, double sX, double sY):
 Entity::Entity(double x, double y):
     Entity::Entity(x,y,0,0) {}
 
+Hitbox * Entity::getHitbox() {return this->hb;}
+
 BasicPlayer::BasicPlayer(): Entity::Entity(X_AXIS,400,0,10) {
     hb = new RectangleHitbox(xAxis,400,lengthSize,lengthSize, hitboxType::Positive);
     hb->setTarget(this);
@@ -13,6 +15,8 @@ BasicPlayer::BasicPlayer(): Entity::Entity(X_AXIS,400,0,10) {
 BasicPlayer::~BasicPlayer() {
     delete hb;
 }
+
+RectangleHitbox *BasicPlayer::getHitboxAABB() {return (RectangleHitbox*) this->getHitbox();}
 
 bool BasicPlayer::updatePosition() {
     if (this->getPosX() != this->xAxis)
