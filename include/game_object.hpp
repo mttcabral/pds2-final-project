@@ -7,32 +7,41 @@
 class GameObject {
     private:
         double posX, posY;
-        double speedX, speedY;
+        
     protected:
-        GameObject(double pX, double pY, double sX, double sY);
         GameObject(double pX, double pY);
 
         void setPosX(double x);
         void setPosY(double y);
-        void setSpeedX(double x);
-        void setSpeedY(double y);
+        
     public:
-        void addSpeedX(double x);
-        void addSpeedY(double y);
-
         double getPosX();
         double getPosY();
-        double getSpeedX();
-        double getSpeedY();
 
         virtual void updatePosition() = 0;
-        virtual void updateVelocity() = 0;
+        
 };
 
 
 class Drawable : public GameObject {
+    private:
+        double speedX, speedY;
+    protected:
+        Drawable(double x, double y, double sX, double sY);
+        Drawable(double x, double y);
+
+        void setSpeedX(double x);
+        void setSpeedY(double y);
+
     public:
         virtual void draw() = 0;
+        virtual void updateVelocity() = 0;
+
+        void addSpeedX(double x);
+        void addSpeedY(double y);
+
+        double getSpeedX();
+        double getSpeedY();
 };
 
 
