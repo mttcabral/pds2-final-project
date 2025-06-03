@@ -11,6 +11,18 @@ class ActiveObject: public Drawable {
         Hitbox * hb;
 };
 
+class basicPlayer: public ActiveObject {
+    private:
+        double xAxis = 200;
+        double lengthSize = 100;
+    public:
+        basicPlayer();
+
+        void updatePosition();
+        void updateVelocity();
+
+        ~basicPlayer();
+};
 
 
 
