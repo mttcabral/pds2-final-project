@@ -26,6 +26,9 @@ class RectangleHitbox: public Hitbox {
     public: 
         RectangleHitbox(double pX, double pY, double w, double h, hitboxType t = hitboxType::Negative);
         
+        bool checkColision() override;
+
+        void updatePosition() override;
         //rotateHitbox();
 };
 

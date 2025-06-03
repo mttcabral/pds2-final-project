@@ -1,27 +1,30 @@
-#ifndef ACTIVE_H
-#define ACTIVE_H
+#ifndef ENTITY_H
+#define ENTITY_H
 
 #include "game_object.hpp"
 #include "hitbox.hpp"
 
 
 
-class ActiveObject: public Drawable {
+class Entity: public Drawable {
     protected:
         Hitbox * hb;
+    public: 
+        Entity(double x, double y, double sX, double sY);
+        Entity(double x, double y);
 };
 
-class basicPlayer: public ActiveObject {
+class BasicPlayer: public Entity {
     private:
         double xAxis = 200;
         double lengthSize = 100;
     public:
-        basicPlayer();
+        BasicPlayer();
 
         void updatePosition();
         void updateVelocity();
 
-        ~basicPlayer();
+        ~BasicPlayer();
 };
 
 
