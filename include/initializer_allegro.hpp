@@ -23,6 +23,7 @@ bool initialize_allegro() {
         cout << "ERROR:" << "failed to initialize keyboard" << endl;
         return false;
     }
+    return true;
 }
 // Create an event queue to handle events
 bool initialize_event_queue(ALLEGRO_EVENT_QUEUE *ev){
