@@ -20,7 +20,7 @@ bool BasicPlayer::updatePosition() {
     return true;
 }
 
-void BasicPlayer::updateVelocity() {
+void BasicPlayer::updateSpeed() {
     if (this->getSpeedX() < 0) this->setSpeedX(0);
     else if (this->getSpeedX() >= 0) this->addSpeedX(-5);
 

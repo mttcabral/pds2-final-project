@@ -23,10 +23,10 @@ class BasicPlayer: public Entity {
         BasicPlayer();
 
         bool updatePosition() override;
-        void updateVelocity() override;
+        void updateSpeed() override;
 
         void jump();
-        
+
         ~BasicPlayer();
 };
 
