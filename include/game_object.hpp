@@ -29,35 +29,12 @@ class GameObject {
         virtual void updateVelocity() = 0;
 };
 
-enum class hitboxType {
-    Positive,
-    Negative
-};
-
-class Hitbox: public GameObject{
-    private:
-        hitboxType type;
-    public:
-        Hitbox(double pX, double pY, double sX, double sY, hitboxType t = hitboxType::Negative); 
-        Hitbox(double pX, double pY, hitboxType t = hitboxType::Negative); 
-
-        void invertType();
-        virtual bool checkColision() = 0;
-};
-
-class RectangleHitbox: public Hitbox {};
-
-class CircleHitbox: public Hitbox {};
 
 class Drawable : public GameObject {
     public:
         virtual void draw() = 0;
 };
 
-class ActiveObject: public Drawable {
-    protected:
-        Hitbox * hb;
-};
 
 
 
