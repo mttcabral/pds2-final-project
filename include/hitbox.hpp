@@ -6,7 +6,7 @@
 enum class hitboxType {
     Positive,
     Negative
-};
+}; //maybe overload the operator'!' to invert values (?)
 
 class Hitbox: public GameObject{
     private:
@@ -20,9 +20,21 @@ class Hitbox: public GameObject{
         virtual bool checkColision() = 0;
 };
 
-class RectangleHitbox: public Hitbox {};
+class RectangleHitbox: public Hitbox {
+    private:
+        double width, height;
+    public: 
+        RectangleHitbox(double pX, double pY, double w, double h, hitboxType t = hitboxType::Negative);
+        
+        //rotateHitbox();
+};
 
-class CircleHitbox: public Hitbox {};
+class CircleHitbox: public Hitbox {
+    private:
+        double radius;
+    public:
+        CircleHitbox(double pX, double pY, double r, hitboxType t = hitboxType::Negative);
+};
 
 
 
