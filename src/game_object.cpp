@@ -1,14 +1,15 @@
 #include "game_object.hpp"
 
 GameObject::GameObject(double pX, double pY): 
-    posX(pX), posY(pY) {}
+    pos(pX,pY) {}
 
 
-void GameObject::setPosX(double x) {this->posX = x;}
-void GameObject::setPosY(double y) {this->posY = y;}
+void GameObject::setPosX(double x) {this->pos.x = x;}
+void GameObject::setPosY(double y) {this->pos.y = y;}
 
-double GameObject::getPosX() {return this->posX;}
-double GameObject::getPosY() {return this->posY;}
+Point GameObject::getPos() {return this->pos;}
+double GameObject::getPosX() {return this->pos.x;}
+double GameObject::getPosY() {return this->pos.y;}
 
 Drawable::Drawable(double x, double y, double sX, double sY):
     GameObject::GameObject(x,y), speedX(sX), speedY(sY) {}

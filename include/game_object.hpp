@@ -4,9 +4,16 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
 
+struct Point{
+    double x,y;
+
+    Point(double x, double y): x(x), y(y) {}
+    Point(): x(0), y(0) {}
+};
+
 class GameObject {
     private:
-        double posX, posY;
+        Point pos;
         
     protected:
         GameObject(double pX, double pY);
@@ -15,6 +22,7 @@ class GameObject {
         void setPosY(double y);
         
     public:
+        Point getPos();
         double getPosX();
         double getPosY();
 
