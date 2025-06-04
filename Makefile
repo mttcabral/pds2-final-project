@@ -8,7 +8,8 @@ OBJ_DIR = obj
 BIN_DIR = bin
 
 # Sources
-SOURCES = main PLACE_HOLDER_1 #PLACE_HOLDER_2 PLACE_HOLDER_3 PLACE_HOLDER_4 PLACE_HOLDER_5 PLACE_HOLDER_6 PLACE_HOLDER_7 PLACE_HOLDER_8 PLACE_HOLDER_9
+# To track a new ".cpp" file in Makefile, write it next to the last entry in SOURCES
+SOURCES = main
 OBJECTS = $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SOURCES)))
 
 all: $(BIN_DIR)/main
