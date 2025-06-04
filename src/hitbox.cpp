@@ -22,7 +22,11 @@ void Hitbox::setTarget(Drawable *d) {this->target = d;}
 
 RectangleHitbox::RectangleHitbox(double pX, double pY,
                                 double w, double h, hitboxType t):
-    Hitbox::Hitbox(pX,pY,t), width(w), height(h) {}
+    Hitbox::Hitbox(pX,pY,t), width(w), height(h) {
+    
+    vertex[0] = {this->getPosX() - width/2, this->getPosY() - height/2};
+    vertex[1] = {this->getPosX() + width/2, this->getPosY() + height/2};
+    }
 
 bool RectangleHitbox::checkColision() {
     return false;
@@ -30,6 +34,8 @@ bool RectangleHitbox::checkColision() {
 
 double RectangleHitbox::getWidth() {return this->width;}
 double RectangleHitbox::getHeight() {return this->height;}
+Point RectangleHitbox::getVertex0() {return this->vertex[0];}
+Point RectangleHitbox::getVertex1() {return this->vertex[1];}
 
 CircleHitbox::CircleHitbox(double pX, double pY, 
                                 double r, hitboxType t):

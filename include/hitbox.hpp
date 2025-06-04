@@ -28,7 +28,7 @@ class Hitbox: public GameObject{
 class RectangleHitbox: public Hitbox {
     private:
         double width, height;
-        double xEdges[2], yEdges[2];
+        Point vertex[2];
     public: 
         RectangleHitbox(double pX, double pY, double w, double h, hitboxType t = hitboxType::Negative);
         
@@ -36,6 +36,8 @@ class RectangleHitbox: public Hitbox {
         
         double getWidth();
         double getHeight();
+        Point getVertex0();
+        Point getVertex1();
         
 
         //rotateHitbox();

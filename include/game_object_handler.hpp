@@ -10,14 +10,16 @@ using namespace std;
 
 class Handler {
     private:
-        list<Drawable*> goodObjects;
+        list<Entity*> goodObjects;
         
-        list<Drawable*> badObjects;
+        list<Entity*> badObjects;
     public: 
-        void addGoodObject(Drawable * good);
-        void addBadObject(Drawable * bad);
+        void addGoodObject(Entity * good);
+        void addBadObject(Entity * bad);
 
-        Drawable* checkBadColisionAABB(RectangleHitbox *&target);
+        Entity* checkBadColisionAABB(RectangleHitbox *&target);
+
+        static bool isColidingAABB(RectangleHitbox *&a, RectangleHitbox *&b);
         ~Handler();
 };
 
