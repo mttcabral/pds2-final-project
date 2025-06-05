@@ -54,6 +54,7 @@ int main(){
     if (sprite == nullptr) cout << "error in loading sprite \n";
     else cout << "YAAAAY \n";
 
+    /*
     const int num_points = 4;
     float points[] = {
         100.0f, 100.0f,  // Point 1 (x, y)
@@ -61,6 +62,7 @@ int main(){
         500.0f, 500.0f,  // Point 3
         500.0f, 100.0f   // Point 4
     };
+    */
 
     while (gameActive) {
         
@@ -106,6 +108,6 @@ int main(){
 
     al_destroy_bitmap(sprite);
     sprite = nullptr;
-    
+
     return 0;
 }

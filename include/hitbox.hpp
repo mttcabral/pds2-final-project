@@ -13,7 +13,7 @@ class Hitbox: public GameObject{
         hitboxType type;
         Drawable* target;
     public: 
-        Hitbox(float pX, float pY, hitboxType t = hitboxType::Negative); 
+        Hitbox(const Point& center, hitboxType t = hitboxType::Negative); 
 
         void invertType();
         bool updatePosition() override;
@@ -24,33 +24,37 @@ class Hitbox: public GameObject{
 
         virtual ~Hitbox();
 };
-    
-class RectangleHitbox: public Hitbox {
-    private:
+
+class RectangleHitbox : public Hitbox {
+    private: 
         float width, height;
-        Point vertex[2];
+        Rectangle rectangle;
     public: 
-        RectangleHitbox(float pX, float pY, float w, float h, hitboxType t = hitboxType::Negative);
-        
+        RectangleHitbox(const Point &center,float w, float h, hitboxType t = hitboxType::Negative);
+
         bool checkColision() override;
-        
+
         float getWidth();
         float getHeight();
-        Point getVertex0();
-        Point getVertex1();
-        
 
-        //rotateHitbox();
+        float *getVertices();
+
 };
 
-class CircleHitbox: public Hitbox {
+class PolygonHitbox : public Hitbox {
     private:
-        float radius;
+        int sides;
+        RegularPolygon polygon;
     public:
-        CircleHitbox(float pX, float pY, float r, hitboxType t = hitboxType::Negative);
+        PolygonHitbox(const Point&center,int n, float EdgeLength, hitboxType t = hitboxType::Negative);
+
+        bool checkColision() override;
+
+        int getSideCount();
+        float getEdgeLength();
+
+        float *getVertices();
 };
-
-
 
 
 

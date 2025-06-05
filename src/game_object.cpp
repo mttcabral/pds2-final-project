@@ -1,7 +1,8 @@
 #include "game_object.hpp"
 
+GameObject::GameObject(const Point &position): pos(position) {}
 GameObject::GameObject(float pX, float pY): 
-    pos(pX,pY) {}
+    pos(Point(pX,pY)) {}
 
 
 void GameObject::setPosX(float x) {this->pos.x = x;}

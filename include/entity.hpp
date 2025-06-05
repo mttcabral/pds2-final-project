@@ -37,14 +37,7 @@ class BasicPlayer: public Entity {
         ~BasicPlayer();
 };
 
-class BasicObstacle: public Entity {
-    public:
-        BasicObstacle(float x, float y);
-
-        void draw() override;
-        bool updatePosition() override;
-        void updateSpeed() override;
-};
+//implement entities with PolygonHitbox now
 
 
 

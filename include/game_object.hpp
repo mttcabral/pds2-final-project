@@ -11,6 +11,7 @@ class GameObject {
         Point pos;
         
     protected:
+        GameObject(const Point& position);
         GameObject(float pX, float pY);
 
         void setPosX(float x);
