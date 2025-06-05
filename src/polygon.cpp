@@ -22,3 +22,4 @@ bool isColidingSAT(const Polygon &a, const Polygon &b) {
 //checks for all projection Axes, if none have gaps between both polygon projections, then it colides
 //if at least one comparison between polygon projections contains a gap (not(overlap(pA,pB)))
 //Then the objects do not colide
+
