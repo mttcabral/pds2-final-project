@@ -1,9 +1,10 @@
 #include "polygon.hpp"
 
+using namespace std;
 
 bool isColidingSAT(const Polygon &a, const Polygon &b) {
     
-    std::set<Point> axes;
+    set<Point> axes;
 
     for (auto n : a.edgeNormals) axes.insert(n);
     for (auto n : b.edgeNormals) axes.insert(n);
@@ -23,3 +24,9 @@ bool isColidingSAT(const Polygon &a, const Polygon &b) {
 //if at least one comparison between polygon projections contains a gap (not(overlap(pA,pB)))
 //Then the objects do not colide
 
+vector<Point> calculateRectangle(const Point &center, float w, float h) {
+    Point aux1(w/2,h/2);
+    Point aux2(w/2,-h/2);
+    return {center - aux1, center + aux1, 
+            center - aux2, center + aux2};
+}

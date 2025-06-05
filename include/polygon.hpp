@@ -49,6 +49,17 @@ struct Polygon{
             edgeNormals.insert(edge.getNormalVector());
         }
     }
+    Polygon(const std::vector<Point> &vert): vertices(vert) {
+        vertexCount = vertices.size();
+
+        for (int i = 0; i < vertexCount; i++) {
+            Point nextVertex = vertices[i+1 == vertexCount ? 0 : i+1];
+            Point edge = Point::getEdgeVector(vertices[i],nextVertex);
+
+            edgeVectors.insert(edge);
+            edgeNormals.insert(edge.getNormalVector());
+        }
+    }
 };
 
 struct PolygonProjection{
@@ -75,3 +86,14 @@ struct PolygonProjection{
 };
 
 bool isColidingSAT(const Polygon &a, const Polygon &b);
+
+struct Rectangle : Polygon {
+    float width, height;
+    Point center;
+
+    Rectangle(const Point &center, float w, float h): Polygon(calculateRectangle(center,w,h)),
+                                                        width(w), height(h), center(center){}
+    
+};
+
+std::vector<Point> calculateRectangle(const Point &center, float w, float h);
