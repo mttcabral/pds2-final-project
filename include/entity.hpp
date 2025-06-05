@@ -12,8 +12,8 @@ class Entity: public Drawable {
     protected:
         Hitbox * hb;
     public: 
-        Entity(float x, float y, float sX, float sY);
-        Entity(float x, float y);
+        Entity(const Point&pos, const Point&spd);
+        Entity(const Point&pos);
 
         Hitbox *getHitbox();
 };

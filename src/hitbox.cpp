@@ -1,14 +1,11 @@
 #include "hitbox.hpp"
 
-Hitbox::Hitbox(const Point& center, hitboxType t):
-    GameObject::GameObject(center), type(t) {}
+Hitbox::Hitbox(const Point& center):
+    GameObject::GameObject(center){}
 
 Hitbox::~Hitbox() {}
 
-void Hitbox::invertType() {
-    if (this->type == hitboxType::Positive) this->type = hitboxType::Negative;
-    else this->type = hitboxType::Positive;
-}
+
 
 bool Hitbox::updatePosition() {
     if (!this->target) return false;
@@ -21,8 +18,8 @@ bool Hitbox::updatePosition() {
 void Hitbox::setTarget(Drawable *d) {this->target = d;}
 
 
-RectangleHitbox::RectangleHitbox(const Point& center,float w, float h, hitboxType t): width(w),
-                                height(h), Hitbox::Hitbox(center,t), rectangle(center,w,h) {}
+RectangleHitbox::RectangleHitbox(const Point& center,float w, float h): width(w),
+                                height(h), Hitbox::Hitbox(center), rectangle(center,w,h) {}
 
 bool RectangleHitbox::checkColision() {
     return false;
@@ -34,8 +31,8 @@ float RectangleHitbox::getHeight() {return this->height;}
 float *RectangleHitbox::getVertices() {return this->rectangle.getPointArray();}
 
 
-PolygonHitbox::PolygonHitbox(const Point&center,int n, float EdgeLength, hitboxType t): 
-                            sides(n), Hitbox::Hitbox(center,t), polygon(center,n,EdgeLength) {}
+PolygonHitbox::PolygonHitbox(const Point&center,int n, float EdgeLength): 
+                            sides(n), Hitbox::Hitbox(center), polygon(center,n,EdgeLength) {}
 
 int PolygonHitbox::getSideCount() {return sides;}
 float PolygonHitbox::getEdgeLength() {return this->polygon.edgeLength;}

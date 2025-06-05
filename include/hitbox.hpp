@@ -3,19 +3,19 @@
 
 #include "game_object.hpp"
 
+/*
 enum class hitboxType {
     Positive,
     Negative
 }; //maybe overload the operator'!' to invert values (?)
+*/
 
 class Hitbox: public GameObject{
     private:
-        hitboxType type;
         Drawable* target;
     public: 
-        Hitbox(const Point& center, hitboxType t = hitboxType::Negative); 
+        Hitbox(const Point& center); 
 
-        void invertType();
         bool updatePosition() override;
         
         void setTarget(Drawable *target);
@@ -30,7 +30,7 @@ class RectangleHitbox : public Hitbox {
         float width, height;
         Rectangle rectangle;
     public: 
-        RectangleHitbox(const Point &center,float w, float h, hitboxType t = hitboxType::Negative);
+        RectangleHitbox(const Point &center,float w, float h);
 
         bool checkColision() override;
 
@@ -46,7 +46,7 @@ class PolygonHitbox : public Hitbox {
         int sides;
         RegularPolygon polygon;
     public:
-        PolygonHitbox(const Point&center,int n, float EdgeLength, hitboxType t = hitboxType::Negative);
+        PolygonHitbox(const Point&center,int n, float EdgeLength);
 
         bool checkColision() override;
 

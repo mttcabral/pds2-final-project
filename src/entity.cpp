@@ -1,14 +1,14 @@
 #include "entity.hpp"
 
-Entity::Entity(float x, float y, float sX, float sY):
-    Drawable::Drawable(x,y,sX,sY) {}
-Entity::Entity(float x, float y):
-    Entity::Entity(x,y,0,0) {}
+Entity::Entity(const Point&pos,const Point&spd):
+    Drawable::Drawable(pos,spd) {}
+Entity::Entity(const Point&pos):
+    Entity::Entity(pos,{0,0}) {}
 
 Hitbox * Entity::getHitbox() {return this->hb;}
 
-BasicPlayer::BasicPlayer(): Entity::Entity(X_AXIS,400,0,10) {
-    hb = new RectangleHitbox({xAxis,400},lengthSize,lengthSize, hitboxType::Positive);
+BasicPlayer::BasicPlayer(): Entity::Entity({X_AXIS,400},{0,10}) {
+    hb = new RectangleHitbox({xAxis,400},lengthSize,lengthSize);
     hb->setTarget(this);
 }
 
