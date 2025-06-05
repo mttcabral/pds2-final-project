@@ -2,6 +2,8 @@
 #include <vector>
 #include <set>
 
+const float PI = acos(-1.0); // PI calculated with arccos(-1)
+
 struct Point{
     float x,y;
 
@@ -60,6 +62,12 @@ struct Polygon{
             edgeNormals.insert(edge.getNormalVector());
         }
     }
+    float *getPointArray();
+    //recalculate vectors
+
+    //rotate
+
+    //virtual update vertices
 };
 
 struct PolygonProjection{
@@ -91,9 +99,20 @@ struct Rectangle : Polygon {
     float width, height;
     Point center;
 
-    Rectangle(const Point &center, float w, float h): Polygon(calculateRectangle(center,w,h)),
-                                                        width(w), height(h), center(center){}
+    Rectangle(const Point &center, float w, float h);
     
 };
 
+struct RegularPolygon : Polygon {
+    int EdgeCount;
+    float edgeLength;
+    Point center;
+
+    RegularPolygon(const Point &center,int n, float length);
+};
+
 std::vector<Point> calculateRectangle(const Point &center, float w, float h);
+
+std::vector<Point> calculateRegularPolygon(const Point &center,int n, float edge);
+
+float* vectorToFloatArray(const std::vector<Point>& points); 

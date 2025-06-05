@@ -47,7 +47,16 @@ int main(){
 
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(1,1,1,1);
 
-    float Tvertices[5][2] = {{100,100},{200,200},{100,0},{0,100},{300,150}};
+    //RegularPolygon hexagon(Point(200,400),6,100);
+    //float * vertexList = hexagon.getPointArray();
+    
+    const int num_points = 4;
+    float points[] = {
+        100.0f, 100.0f,  // Point 1 (x, y)
+        100.0f, 500.0f,   // Point 2
+        500.0f, 500.0f,  // Point 3
+        500.0f, 100.0f   // Point 4
+    };
 
     while (gameActive) {
         
@@ -63,8 +72,11 @@ int main(){
                 squareGuy.updateSpeed();
                 squareGuy.updatePosition();
                 
+                
+                //al_draw_filled_rectangle(100,100,500,500,al_map_rgb(255,0,0));
+                al_draw_filled_polygon(points, num_points, al_map_rgb(255, 0, 0));
+                //al_draw_filled_polygon(vertexList, 5, al_map_rgb(255, 0, 0));
                 squareGuy.draw();
-                al_draw_filled_polygon(&Tvertices[0][0], 5, al_map_rgb(255, 0, 0));
 
                 al_flip_display(); //updates the display with the new frame 
 
@@ -84,5 +96,8 @@ int main(){
     al_destroy_display(display);
     al_destroy_event_queue(eventQueue);
     al_destroy_timer(timer);
+    
+    //delete[] vertexList;
+
     return 0;
 }
