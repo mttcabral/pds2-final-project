@@ -50,6 +50,10 @@ int main(){
     //RegularPolygon hexagon(Point(200,400),6,100);
     //float * vertexList = hexagon.getPointArray();
     
+    ALLEGRO_BITMAP * sprite = al_load_bitmap("assets/sprite.png");
+    if (sprite == nullptr) cout << "error in loading sprite \n";
+    else cout << "YAAAAY \n";
+
     const int num_points = 4;
     float points[] = {
         100.0f, 100.0f,  // Point 1 (x, y)
@@ -74,9 +78,10 @@ int main(){
                 
                 
                 //al_draw_filled_rectangle(100,100,500,500,al_map_rgb(255,0,0));
-                al_draw_filled_polygon(points, num_points, al_map_rgb(255, 0, 0));
+                //al_draw_filled_polygon(points, num_points, al_map_rgb(255, 0, 0));
                 //al_draw_filled_polygon(vertexList, 5, al_map_rgb(255, 0, 0));
                 squareGuy.draw();
+                al_draw_bitmap(sprite,200,200,0);
 
                 al_flip_display(); //updates the display with the new frame 
 
@@ -99,5 +104,8 @@ int main(){
     
     //delete[] vertexList;
 
+    al_destroy_bitmap(sprite);
+    sprite = nullptr;
+    
     return 0;
 }

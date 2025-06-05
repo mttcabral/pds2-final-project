@@ -2,6 +2,7 @@
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_image.h>
 
 using namespace std;
 
@@ -21,6 +22,10 @@ bool initialize_allegro() {
     // Install keyboard input support
     if (!al_install_keyboard()) {
         cout << "ERROR:" << "failed to initialize keyboard" << endl;
+        return false;
+    }
+    if (!al_init_image_addon()) {
+        cout << "ERROR:" << "failed to initialize allegro image" << endl;
         return false;
     }
     return true;
