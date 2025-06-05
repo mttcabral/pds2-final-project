@@ -29,21 +29,24 @@ class GameObject {
 
 class Drawable : public GameObject {
     private:
-        float speedX, speedY;
+        Point speed;
     protected:
-        Drawable(float x, float y, float sX, float sY);
-        Drawable(float x, float y);
+        Drawable(const Point &pos, const Point &spd);
+        Drawable(const Point &pos);
 
         void setSpeedX(float x);
         void setSpeedY(float y);
+        void setSpeed(const Point &pos);
 
     public:
         virtual void draw() = 0;
         virtual void updateSpeed() = 0;
 
+        void addSpeedVector(const Point &spd);
         void addSpeedX(float x);
         void addSpeedY(float y);
 
+        Point getSpeed();
         float getSpeedX();
         float getSpeedY();
 };

@@ -12,20 +12,25 @@ Point GameObject::getPos() {return this->pos;}
 float GameObject::getPosX() {return this->pos.x;}
 float GameObject::getPosY() {return this->pos.y;}
 
-Drawable::Drawable(float x, float y, float sX, float sY):
-    GameObject::GameObject(x,y), speedX(sX), speedY(sY) {}
-Drawable::Drawable(float x, float y):
-    Drawable::Drawable(x,y,0,0) {}
+Drawable::Drawable(const Point&pos,const Point&spd):
+    GameObject::GameObject(pos), speed(spd) {}
+Drawable::Drawable(const Point&pos):
+    Drawable::Drawable(pos,{0,0}) {}
 
-float Drawable::getSpeedX() {return this->speedX;}
-float Drawable::getSpeedY() {return this->speedY;}
+float Drawable::getSpeedX() {return this->speed.x;}
+float Drawable::getSpeedY() {return this->speed.x;}
+Point Drawable::getSpeed()  {return this->speed;}
 
-void Drawable::setSpeedX(float x) {this->speedX = x;}
-void Drawable::setSpeedY(float y) {this->speedY = y;}
+void Drawable::setSpeedX(float x) {this->speed.x = x;}
+void Drawable::setSpeedY(float y) {this->speed.y = y;}
+void Drawable::setSpeed(const Point&spd) {this->speed = spd;}
 
 void Drawable::addSpeedX(float x) {
-    this->speedX += x;
+    this->speed.x += x;
 }
 void Drawable::addSpeedY(float y) {
-    this->speedY += y;
+    this->speed.x += y;
+}
+void Drawable::addSpeedVector(const Point&spd){
+    this->speed = this->speed + spd;
 }
