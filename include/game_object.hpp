@@ -3,28 +3,23 @@
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
+#include "polygon.hpp"
 
-struct Point{
-    double x,y;
-
-    Point(double x, double y): x(x), y(y) {}
-    Point(): x(0), y(0) {}
-};
 
 class GameObject {
     private:
         Point pos;
         
     protected:
-        GameObject(double pX, double pY);
+        GameObject(float pX, float pY);
 
-        void setPosX(double x);
-        void setPosY(double y);
+        void setPosX(float x);
+        void setPosY(float y);
         
     public:
         Point getPos();
-        double getPosX();
-        double getPosY();
+        float getPosX();
+        float getPosY();
 
         virtual bool updatePosition() = 0;
         
@@ -33,23 +28,23 @@ class GameObject {
 
 class Drawable : public GameObject {
     private:
-        double speedX, speedY;
+        float speedX, speedY;
     protected:
-        Drawable(double x, double y, double sX, double sY);
-        Drawable(double x, double y);
+        Drawable(float x, float y, float sX, float sY);
+        Drawable(float x, float y);
 
-        void setSpeedX(double x);
-        void setSpeedY(double y);
+        void setSpeedX(float x);
+        void setSpeedY(float y);
 
     public:
         virtual void draw() = 0;
         virtual void updateSpeed() = 0;
 
-        void addSpeedX(double x);
-        void addSpeedY(double y);
+        void addSpeedX(float x);
+        void addSpeedY(float y);
 
-        double getSpeedX();
-        double getSpeedY();
+        float getSpeedX();
+        float getSpeedY();
 };
 
 

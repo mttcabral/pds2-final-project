@@ -34,3 +34,8 @@ Entity* Handler::checkBadColisionAABB(RectangleHitbox *&target) {
     }
     return nullptr;
 }
+
+void Handler::drawAll() {
+    for (auto good : this->goodObjects) good->draw();
+    for (auto bad : this->badObjects) bad->draw();
+}

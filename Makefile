@@ -15,7 +15,7 @@ LDFLAGS = $(shell pkg-config --libs $(PKG_CONFIG_LIBS))
 
 
 # Sources
-SOURCES = main game_object hitbox entity #PLACE_HOLDER_2 PLACE_HOLDER_3 PLACE_HOLDER_4 PLACE_HOLDER_5 PLACE_HOLDER_6 PLACE_HOLDER_7 PLACE_HOLDER_8 PLACE_HOLDER_9
+SOURCES = main game_object hitbox entity game_object_handler #PLACE_HOLDER_2 PLACE_HOLDER_3 PLACE_HOLDER_4 PLACE_HOLDER_5 PLACE_HOLDER_6 PLACE_HOLDER_7 PLACE_HOLDER_8 PLACE_HOLDER_9
 OBJECTS = $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SOURCES)))
 
 all: $(BIN_DIR)/main

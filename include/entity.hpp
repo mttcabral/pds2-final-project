@@ -4,24 +4,24 @@
 #include "game_object.hpp"
 #include "hitbox.hpp"
 
-const double BASE_GRAVITY = 10;
-const double BASE_X_MOVEMENT = 20;
-const double X_AXIS = 200;
+const float BASE_GRAVITY = 10;
+const float BASE_X_MOVEMENT = 20;
+const float X_AXIS = 200;
 
 class Entity: public Drawable {
     protected:
         Hitbox * hb;
     public: 
-        Entity(double x, double y, double sX, double sY);
-        Entity(double x, double y);
+        Entity(float x, float y, float sX, float sY);
+        Entity(float x, float y);
 
         Hitbox *getHitbox();
 };
 
 class BasicPlayer: public Entity {
     private:
-        double xAxis = X_AXIS;
-        double lengthSize = 100;
+        float xAxis = X_AXIS;
+        float lengthSize = 100;
     public:
         BasicPlayer();
 
@@ -37,6 +37,14 @@ class BasicPlayer: public Entity {
         ~BasicPlayer();
 };
 
+class BasicObstacle: public Entity {
+    public:
+        BasicObstacle(float x, float y);
+
+        void draw() override;
+        bool updatePosition() override;
+        void updateSpeed() override;
+};
 
 
 

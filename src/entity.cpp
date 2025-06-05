@@ -1,8 +1,8 @@
 #include "entity.hpp"
 
-Entity::Entity(double x, double y, double sX, double sY):
+Entity::Entity(float x, float y, float sX, float sY):
     Drawable::Drawable(x,y,sX,sY) {}
-Entity::Entity(double x, double y):
+Entity::Entity(float x, float y):
     Entity::Entity(x,y,0,0) {}
 
 Hitbox * Entity::getHitbox() {return this->hb;}
@@ -22,7 +22,11 @@ bool BasicPlayer::updatePosition() {
     if (this->getPosX() != this->xAxis)
         this->setPosX(this->getPosX() + this->getSpeedX());
     this->setPosY(this->getPosY() + this->getSpeedY());
+    
+    this->hb->updatePosition();
+
     return true;
+
 }
 
 void BasicPlayer::updateSpeed() {
@@ -35,7 +39,7 @@ void BasicPlayer::updateSpeed() {
 }
 
 void BasicPlayer::jump() {
-    this->addSpeedY(-50);
+    this->setSpeedY(-40);
 }
 
 void BasicPlayer::draw() {
@@ -44,3 +48,18 @@ void BasicPlayer::draw() {
                             al_map_rgb(50,100,200)
                             );
 }
+
+BasicObstacle::BasicObstacle(float x, float y): Entity::Entity(x,y,0,0) {
+    hb = new RectangleHitbox(x,y,100,100);
+    hb->setTarget(this);
+}
+
+void BasicObstacle::draw(){
+    al_draw_filled_rectangle(this->getPosX()-100/2, this->getPosY()-100/2,
+                            this->getPosX()+100/2, this->getPosY()+100/2,
+                            al_map_rgb(90,50,50)
+                            );
+}
+
+bool BasicObstacle::updatePosition() {return true;} //placeholder
+void BasicObstacle::updateSpeed() {return;} //placeholder

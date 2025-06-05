@@ -20,6 +20,8 @@ class Handler {
         Entity* checkBadColisionAABB(RectangleHitbox *&target);
 
         static bool isColidingAABB(RectangleHitbox *&a, RectangleHitbox *&b);
+
+        void drawAll();
         ~Handler();
 };
 

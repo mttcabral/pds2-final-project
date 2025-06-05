@@ -2,6 +2,7 @@
 #include "hitbox.hpp"
 #include "entity.hpp"
 #include "initializer_allegro.hpp"
+#include "game_object_handler.hpp"
 #include <iostream>
 #include <string>
 
@@ -44,6 +45,10 @@ int main(){
     // Basic player object for testing
     BasicPlayer squareGuy;
 
+    ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(1,1,1,1);
+
+    float Tvertices[5][2] = {{100,100},{200,200},{100,0},{0,100},{300,150}};
+
     while (gameActive) {
         
         ALLEGRO_EVENT event;
@@ -53,12 +58,13 @@ int main(){
         switch (event.type) {
             case ALLEGRO_EVENT_TIMER:
                 //refresh display
-                al_clear_to_color(al_map_rgba_f(1,1,1,1)); //white color 
+                al_clear_to_color(baseBackgroundColor); //white color 
 
                 squareGuy.updateSpeed();
                 squareGuy.updatePosition();
                 
                 squareGuy.draw();
+                al_draw_filled_polygon(&Tvertices[0][0], 5, al_map_rgb(255, 0, 0));
 
                 al_flip_display(); //updates the display with the new frame 
 
