@@ -25,6 +25,11 @@ int main(){
     ALLEGRO_TIMER *timer = nullptr;
     
     // Initializations:
+
+    //V-Sync:
+    //tries to solve frame-skipping bug, still not solved !!!
+    al_set_new_display_option(ALLEGRO_VSYNC, 1, ALLEGRO_SUGGEST);
+
     if(!initialize_allegro()) return 1;
 
     if(!initialize_event_queue(eventQueue)) return 1;
@@ -41,6 +46,11 @@ int main(){
 
     // Game is being played control
     bool gameActive = true;
+    
+    //Redraw condition, so that the game is rendered separately from other events in queue
+    bool redraw = false;
+
+    ALLEGRO_COLOR colisionIndicatorColor = al_map_rgb(20,140,20);
 
     // Basic player object for testing
     //BasicPlayer squareguy;
@@ -51,21 +61,8 @@ int main(){
     //Pipe obstacle(Point(200,600),128,128);
     obstacle.loadSprite("assets/pipe.png");
 
-    ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(1,1,1,1);
-
-    //RegularPolygon hexagon(Point(200,400),6,100);
-    //float * vertexList = hexagon.getPointArray();
+    ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
     
-
-    /*
-    const int num_points = 4;
-    float points[] = {
-        100.0f, 100.0f,  // Point 1 (x, y)
-        100.0f, 500.0f,   // Point 2
-        500.0f, 500.0f,  // Point 3
-        500.0f, 100.0f   // Point 4
-    };
-    */
 
     while (gameActive) {
         
@@ -75,44 +72,49 @@ int main(){
 
         switch (event.type) {
             case ALLEGRO_EVENT_TIMER:
-                //refresh display
-                al_clear_to_color(baseBackgroundColor); //white color 
 
                 guy.updateSpeed();
                 guy.updatePosition();
                 obstacle.updateSpeed();
-                //cout << obstacle.getPosX() << '\n';
                 obstacle.updatePosition();
                 
                 if (isColidingSAT(guy.getHitbox()->getPolygon(),obstacle.getHitbox()->getPolygon())){
-                    //baseBackgroundColor = al_map_rgba_f(0.5,0.5,0.5,1);
-                    //cout << "AAAAA";
-                    al_draw_filled_circle(800,400,30,al_map_rgb(140,20,20));
+                    colisionIndicatorColor = al_map_rgb(140,20,20);
                 }else {
-                    al_draw_filled_circle(800,400,30,al_map_rgb(20,140,20));
-                }//cout << "...";
-                //al_draw_filled_rectangle(100,100,500,500,al_map_rgb(255,0,0));
-                //al_draw_filled_polygon(points, num_points, al_map_rgb(255, 0, 0));
-                //al_draw_filled_polygon(vertexList, 5, al_map_rgb(255, 0, 0));
-                guy.draw();
-                obstacle.draw();
+                    colisionIndicatorColor = al_map_rgb(20,140,20);
+                } //placeholder colision detection and visualization
                 
-
-                al_flip_display(); //updates the display with the new frame 
+                redraw = true;
 
             break;
             case ALLEGRO_EVENT_KEY_DOWN:
                 switch (event.keyboard.keycode){
                     case ALLEGRO_KEY_SPACE: case ALLEGRO_KEY_UP:
                         guy.jump();
-                        //squareguy.jump();
-                        cout << "Jump\n";
-                }
-
+                        //cout << "Jump\n";
+                        break;
+                    }
             break;
             case ALLEGRO_EVENT_DISPLAY_CLOSE:
                 gameActive = false;
             break;
+        }
+
+        //redraw frame
+        if (redraw && al_is_event_queue_empty(eventQueue)) {
+            //refresh display
+            al_clear_to_color(baseBackgroundColor);
+
+            //objects
+            guy.draw();
+            obstacle.draw();
+
+            //colision
+            al_draw_filled_circle(800,400,30,colisionIndicatorColor); 
+
+            al_flip_display(); //updates the display with the new frame 
+
+            redraw = false;
         }
     }
     al_destroy_display(display);
