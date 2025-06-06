@@ -1,7 +1,11 @@
+#ifndef POLYGON_H
+#define POLYGON_H
 #include <cmath>
 #include <vector>
 #include <set>
+#include <iostream>
 
+using namespace std;
 const float PI = acos(-1.0); // PI calculated with arccos(-1)
 
 struct Point{
@@ -33,6 +37,8 @@ struct Point{
         return (len != 0) ? Point(x / len, y / len) : Point(0, 0);
     }
 };
+
+
 
 struct Polygon{
     std::vector<Point> vertices;
@@ -67,7 +73,7 @@ struct Polygon{
 
     //rotate
 
-    //virtual update vertices
+    void updateVertices(const Point& delta);
 };
 
 struct PolygonProjection{
@@ -104,9 +110,9 @@ struct Rectangle : Polygon {
 };
 
 struct RegularPolygon : Polygon {
+    Point center;
     int EdgeCount;
     float edgeLength;
-    Point center;
 
     RegularPolygon(const Point &center,int n, float length);
 };
@@ -116,3 +122,7 @@ std::vector<Point> calculateRectangle(const Point &center, float w, float h);
 std::vector<Point> calculateRegularPolygon(const Point &center,int n, float edge);
 
 float* vectorToFloatArray(const std::vector<Point>& points); 
+
+
+
+#endif

@@ -1,5 +1,6 @@
 #include "game_object_handler.hpp"
 
+/*
 Handler::~Handler() {
     for (auto obj : this->goodObjects) delete obj;
     for (auto obj : this->badObjects) delete obj;
@@ -39,3 +40,4 @@ void Handler::drawAll() {
     for (auto good : this->goodObjects) good->draw();
     for (auto bad : this->badObjects) bad->draw();
 }
+*/

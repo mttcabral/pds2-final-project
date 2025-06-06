@@ -20,7 +20,9 @@ class Hitbox: public GameObject{
         
         void setTarget(Drawable *target);
 
-        virtual bool checkColision() = 0;
+        virtual Polygon getPolygon() = 0;
+
+        //virtual bool checkColision(); //to remove soon, wont be needed
 
         virtual ~Hitbox();
 };
@@ -32,10 +34,11 @@ class RectangleHitbox : public Hitbox {
     public: 
         RectangleHitbox(const Point &center,float w, float h);
 
-        bool checkColision() override;
+        //bool checkColision() override;
 
         float getWidth();
         float getHeight();
+        Polygon getPolygon() override;
 
         float *getVertices();
 
@@ -48,10 +51,11 @@ class PolygonHitbox : public Hitbox {
     public:
         PolygonHitbox(const Point&center,int n, float EdgeLength);
 
-        bool checkColision() override;
-
         int getSideCount();
         float getEdgeLength();
+        Polygon getPolygon() override;
+
+        bool updatePosition() override;
 
         float *getVertices();
 };

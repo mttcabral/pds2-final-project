@@ -2,6 +2,8 @@
 
 using namespace std;
 
+//ostream& operator << (ostream& os, const Point& p) {return os << "[" << p.x << "," << p.y << "]";}
+
 bool isColidingSAT(const Polygon &a, const Polygon &b) {
     
     set<Point> axes;
@@ -54,6 +56,12 @@ vector<Point> calculateRegularPolygon(const Point &center,int n, float edge){
     }
 
     return vertices;
+}
+/**/
+void Polygon::updateVertices(const Point& delta) {
+    for (int i = 0; i < vertexCount; i++){
+        vertices[i] = vertices[i] + delta;
+    }
 }
 
 RegularPolygon::RegularPolygon(const Point &center,int n, float length): Polygon(calculateRegularPolygon(

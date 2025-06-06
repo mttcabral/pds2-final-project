@@ -16,6 +16,7 @@ class GameObject {
 
         void setPosX(float x);
         void setPosY(float y);
+        void setPos(const Point&p);
         
     public:
         Point getPos();

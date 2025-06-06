@@ -13,8 +13,8 @@ using namespace std;
 
 // Game constants:
 const float FPS = 30;                                        // Frames per second
-const int SCREEN_W = 800;                                    // Screen width in pixels
-const int SCREEN_H = 600;                                    // Screen height in pixels
+const int SCREEN_W = 1000;                                    // Screen width in pixels
+const int SCREEN_H = 800;                                    // Screen height in pixels
 const ALLEGRO_COLOR BACKGROUND_COLOR = al_map_rgb(0, 0, 0);  // Background color (black)
 
 int main(){
@@ -43,16 +43,19 @@ int main(){
     bool gameActive = true;
 
     // Basic player object for testing
-    BasicPlayer squareGuy;
+    //BasicPlayer squareguy;
+    Player guy;
+    guy.loadSprite("assets/guy.png");
+    // Basic obstacle object for testing
+    Pipe obstacle(Point(200,600),10,10);
+    //Pipe obstacle(Point(200,600),128,128);
+    obstacle.loadSprite("assets/pipe.png");
 
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(1,1,1,1);
 
     //RegularPolygon hexagon(Point(200,400),6,100);
     //float * vertexList = hexagon.getPointArray();
     
-    ALLEGRO_BITMAP * sprite = al_load_bitmap("assets/sprite.png");
-    if (sprite == nullptr) cout << "error in loading sprite \n";
-    else cout << "YAAAAY \n";
 
     /*
     const int num_points = 4;
@@ -75,15 +78,25 @@ int main(){
                 //refresh display
                 al_clear_to_color(baseBackgroundColor); //white color 
 
-                squareGuy.updateSpeed();
-                squareGuy.updatePosition();
+                guy.updateSpeed();
+                guy.updatePosition();
+                obstacle.updateSpeed();
+                //cout << obstacle.getPosX() << '\n';
+                obstacle.updatePosition();
                 
-                
+                if (isColidingSAT(guy.getHitbox()->getPolygon(),obstacle.getHitbox()->getPolygon())){
+                    //baseBackgroundColor = al_map_rgba_f(0.5,0.5,0.5,1);
+                    //cout << "AAAAA";
+                    al_draw_filled_circle(800,400,30,al_map_rgb(140,20,20));
+                }else {
+                    al_draw_filled_circle(800,400,30,al_map_rgb(20,140,20));
+                }//cout << "...";
                 //al_draw_filled_rectangle(100,100,500,500,al_map_rgb(255,0,0));
                 //al_draw_filled_polygon(points, num_points, al_map_rgb(255, 0, 0));
                 //al_draw_filled_polygon(vertexList, 5, al_map_rgb(255, 0, 0));
-                squareGuy.draw();
-                al_draw_bitmap(sprite,200,200,0);
+                guy.draw();
+                obstacle.draw();
+                
 
                 al_flip_display(); //updates the display with the new frame 
 
@@ -91,7 +104,9 @@ int main(){
             case ALLEGRO_EVENT_KEY_DOWN:
                 switch (event.keyboard.keycode){
                     case ALLEGRO_KEY_SPACE: case ALLEGRO_KEY_UP:
-                        squareGuy.jump();
+                        guy.jump();
+                        //squareguy.jump();
+                        cout << "Jump\n";
                 }
 
             break;
@@ -106,8 +121,6 @@ int main(){
     
     //delete[] vertexList;
 
-    al_destroy_bitmap(sprite);
-    sprite = nullptr;
 
     return 0;
 }

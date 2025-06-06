@@ -7,7 +7,7 @@
 #include "entity.hpp"
 
 using namespace std;
-
+/*
 class Handler {
     private:
         list<Entity*> goodObjects;
@@ -23,7 +23,8 @@ class Handler {
 
         void drawAll();
         ~Handler();
-};
+    };
+*/
 
 
 

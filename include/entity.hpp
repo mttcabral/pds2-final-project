@@ -3,6 +3,7 @@
 
 #include "game_object.hpp"
 #include "hitbox.hpp"
+#include <string>
 
 const float BASE_GRAVITY = 10;
 const float BASE_X_MOVEMENT = 20;
@@ -35,6 +36,43 @@ class BasicPlayer: public Entity {
         void draw() override;
         
         ~BasicPlayer();
+};
+
+const float PLAYER_SIZE = 1;
+
+class Player: public Entity {
+    private: 
+        ALLEGRO_BITMAP * playerSprite = nullptr;
+    public: 
+        Player();
+
+        bool updatePosition() override;
+        void updateSpeed() override;
+
+        void jump();
+
+        void draw() override;
+
+        bool loadSprite(const char* dir);
+
+        ~Player();
+
+};
+
+class Pipe: public Entity {
+    private:
+        ALLEGRO_BITMAP * pipeSprite = nullptr;
+    public:
+        Pipe(const Point&pos,float w, float h);
+
+        bool updatePosition() override;
+        void updateSpeed() override;
+
+        bool loadSprite(const char* dir);
+
+        void draw() override;
+
+        ~Pipe();
 };
 
 //implement entities with PolygonHitbox now
