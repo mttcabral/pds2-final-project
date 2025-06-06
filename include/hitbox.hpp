@@ -40,6 +40,8 @@ class RectangleHitbox : public Hitbox {
         float getHeight();
         Polygon getPolygon() override;
 
+        bool updatePosition() override;
+
         float *getVertices();
 
 };

@@ -29,6 +29,17 @@ Polygon RectangleHitbox::getPolygon() {return this->rectangle;}
 
 float *RectangleHitbox::getVertices() {return this->rectangle.getPointArray();}
 
+bool RectangleHitbox::updatePosition() {
+    Point previous = this->getPos();
+    
+    Hitbox::updatePosition();
+
+    Point deltaMovement = this->getPos() - previous;
+
+    this->rectangle.updateVertices(deltaMovement);
+
+    return true;
+}
 
 PolygonHitbox::PolygonHitbox(const Point&center,int n, float EdgeLength): Hitbox::Hitbox(center),
                             sides(n), polygon(center,n,EdgeLength) {}

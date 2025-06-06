@@ -47,7 +47,7 @@ int main(){
     Player guy;
     guy.loadSprite("assets/guy.png");
     // Basic obstacle object for testing
-    Pipe obstacle(Point(200,600),10,10);
+    Pipe obstacle(Point(1000,400),128,128);
     //Pipe obstacle(Point(200,600),128,128);
     obstacle.loadSprite("assets/pipe.png");
 

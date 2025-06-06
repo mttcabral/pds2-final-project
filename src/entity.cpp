@@ -111,7 +111,7 @@ Player::~Player() {
     playerSprite = nullptr;
 }
 
-Pipe::Pipe(const Point&pos,float w, float h): Entity(pos,Point(0,0)) { //(-2,0)
+Pipe::Pipe(const Point&pos,float w, float h): Entity(pos,Point(PIPE_X_SPEED,0)) { //(-2,0)
     this->hb = new RectangleHitbox(pos,w,h);
     this->hb->setTarget(this);
 }
@@ -125,11 +125,12 @@ bool Pipe::updatePosition() {
 
     //this->setPos(this->getSpeed() + this->getPos());
     this->setPosX(this->getSpeedX() + this->getPosX());
+    if (this->getPosX() < -200) this->setPosX(1000); // placeholder !!!!!
     this->hb->updatePosition();
     return true;
 }
 void Pipe::updateSpeed() {
-    return;
+    return; //this basic pipe shoudn't accelerate 
 }
 
 bool Pipe::loadSprite(const char* dir){

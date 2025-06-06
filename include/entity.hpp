@@ -38,7 +38,7 @@ class BasicPlayer: public Entity {
         ~BasicPlayer();
 };
 
-const float PLAYER_SIZE = 1;
+const float PLAYER_SIZE = 20;
 
 class Player: public Entity {
     private: 
@@ -58,6 +58,8 @@ class Player: public Entity {
         ~Player();
 
 };
+
+const float PIPE_X_SPEED = -15;
 
 class Pipe: public Entity {
     private:
