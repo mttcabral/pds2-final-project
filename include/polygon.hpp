@@ -36,6 +36,7 @@ struct Point{
         double len = std::sqrt(x * x + y * y);
         return (len != 0) ? Point(x / len, y / len) : Point(0, 0);
     }
+    Point rotatePoint(const Point&rotationCenter, float angle);
 };
 
 
@@ -54,7 +55,7 @@ struct Polygon{
             Point edge = Point::getEdgeVector(vertices[i],nextVertex);
 
             edgeVectors.insert(edge);
-            edgeNormals.insert(edge.getNormalVector());
+            edgeNormals.insert(edge.getNormalVector().normalizeVector());
         }
     }
     Polygon(const std::vector<Point> &vert): vertices(vert) {
@@ -81,13 +82,13 @@ struct PolygonProjection{
     float maxProj;
 
     PolygonProjection(const Polygon &poly, const Point & projAxis) {
-        Point normAxis = projAxis.normalizeVector();
+        //Point normAxis = projAxis.normalizeVector();
 
-        minProj = poly.vertices[0].dotProduct(normAxis);
+        minProj = poly.vertices[0].dotProduct(projAxis);
         maxProj = minProj;
 
         for (int i = 1; i < poly.vertexCount; i++) {
-            float testedProj = poly.vertices[i].dotProduct(normAxis);
+            float testedProj = poly.vertices[i].dotProduct(projAxis);
 
             if (testedProj < minProj) minProj = testedProj;
             if (testedProj > maxProj) maxProj = testedProj;
