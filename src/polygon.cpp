@@ -26,6 +26,39 @@ bool isColidingSAT(const Polygon &a, const Polygon &b) {
 //if at least one comparison between polygon projections contains a gap (not(overlap(pA,pB)))
 //Then the objects do not colide
 
+Point Point::rotateVector(float angle) {
+    float cosA = cos(angle);
+    float sinA = sin(angle);
+    return Point(this->x * cosA - this->y * sinA,
+                 this->x * sinA + this->y * cosA);
+}
+Point Point::rotateVector(float cosA, float sinA) {
+    return Point(this->x * cosA - this->y * sinA,
+                 this->x * sinA + this->y * cosA);
+}
+
+Point Point::rotatePoint(const Point& rotationCenter, float angle) {
+    float cosA = cos(angle);
+    float sinA = sin(angle);
+    
+    Point dPoint = *this - rotationCenter;
+
+    return Point(dPoint.x * cosA - dPoint.y * sinA + rotationCenter.x,
+                 dPoint.x * sinA + dPoint.y * cosA + rotationCenter.y);
+
+}
+Point Point::rotatePoint(const Point& rotationCenter, float cosA, float sinA) {
+    Point dPoint = *this - rotationCenter;
+    return Point(dPoint.x * cosA - dPoint.y * sinA + rotationCenter.x,
+                 dPoint.x * sinA + dPoint.y * cosA + rotationCenter.y);
+
+}
+//WARNING : 
+//It is important that switching to double precision be considered in this, to avoid rouding errors
+//Avoid repeated rotations :
+//Maybe keep a value "rotatedAngle" in polygon so that this is changed in every loop
+//And then calculate the actual rotated points/vectors from 0 and not from stacked rotations
+
 vector<Point> calculateRectangle(const Point &center, float w, float h) {
     Point aux1(w/2,h/2);
     Point aux2(w/2,-h/2);

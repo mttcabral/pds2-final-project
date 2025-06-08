@@ -36,7 +36,10 @@ struct Point{
         double len = std::sqrt(x * x + y * y);
         return (len != 0) ? Point(x / len, y / len) : Point(0, 0);
     }
+    Point rotateVector(float angle);
+    Point rotateVector(float cosA, float sinA);
     Point rotatePoint(const Point&rotationCenter, float angle);
+    Point rotatePoint(const Point&rotationCenter, float cosA, float sinA);
 };
 
 
