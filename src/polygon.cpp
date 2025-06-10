@@ -2,7 +2,10 @@
 
 using namespace std;
 
-//ostream& operator << (ostream& os, const Point& p) {return os << "[" << p.x << "," << p.y << "]";}
+std::ostream& operator<<(std::ostream& os, const Point& p) {
+    os << "(" << p.x << ", " << p.y << ")";
+    return os;
+}
 
 bool isColidingSAT(const Polygon &a, const Polygon &b) {
     
@@ -25,6 +28,12 @@ bool isColidingSAT(const Polygon &a, const Polygon &b) {
 //checks for all projection Axes, if none have gaps between both polygon projections, then it colides
 //if at least one comparison between polygon projections contains a gap (not(overlap(pA,pB)))
 //Then the objects do not colide
+
+void Polygon::addAngle(float radians) {
+    float output = radians + this->angle;
+    if (isAlmostEqual(output,0)) this->angle = 0;
+    else this->angle = output;
+}
 
 Point Point::rotateVector(float angle) {
     float cosA = cos(angle);
@@ -58,6 +67,60 @@ Point Point::rotatePoint(const Point& rotationCenter, float cosA, float sinA) {
 //Avoid repeated rotations :
 //Maybe keep a value "rotatedAngle" in polygon so that this is changed in every loop
 //And then calculate the actual rotated points/vectors from 0 and not from stacked rotations
+
+
+vector<Point> Polygon::getRotatedVertices(const Point &center){
+    if (angle == 0) return vertices;
+    else {
+        vector<Point> out;
+        float cosine = cos(angle);
+        float sine = sin(angle);
+        for (auto p : this->vertices) 
+            out.push_back(p.rotatePoint(center,cosine,sine));
+        return out;
+    }
+}
+// write 'overrides' to simplify center adding
+vector<Point> Rectangle::getVertices() {
+    return this->getRotatedVertices(this->center);
+}
+vector<Point> RegularPolygon::getVertices() {
+    return this->getRotatedVertices(this->center);
+}
+
+set<Point> Polygon::getEdgeVectors() {
+    if (angle == 0) return edgeVectors;
+    else {
+        float cosine = cos(angle);
+        float sine = sin(angle);
+        set<Point> out;
+        for (auto vector : edgeVectors) out.insert(vector.rotateVector(cosine,sine));
+        return out;
+    }
+}
+set<Point> Polygon::getEdgeNormals(){
+    if (angle == 0) return edgeNormals;
+    else {
+        float cosine = cos(angle);
+        float sine = sin(angle);
+        set<Point> out;
+        for (Point vector : edgeNormals) out.insert(vector.rotateVector(cosine,sine));
+        return out;
+    }
+}
+
+bool isAlmostEqual(float a, float b, float epsilon) {
+    return abs(a-b) <= epsilon;
+}
+
+Polygon Polygon::getPolygon(){
+    if (angle == 0) return *this;
+    else {
+        // placeholder, will do this later
+        // polygon needs to have a copy constructor in order to do this well
+        // after is done, replace instances of 'const Polygon&' parameters with this funcion
+    }
+}
 
 vector<Point> calculateRectangle(const Point &center, float w, float h) {
     Point aux1(w/2,h/2);

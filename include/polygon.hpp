@@ -42,15 +42,23 @@ struct Point{
     Point rotatePoint(const Point&rotationCenter, float cosA, float sinA);
 };
 
-
+ostream& operator<<(std::ostream& os, const Point& p);
 
 struct Polygon{
-    std::vector<Point> vertices;
+    vector<Point> vertices;
     int vertexCount;
-    std::set<Point> edgeVectors;
-    std::set<Point> edgeNormals;
+    float angle = 0;
+    set<Point> edgeVectors;
+    set<Point> edgeNormals;
 
-    Polygon(std::initializer_list<Point> vert): vertices(vert) {
+    //these functions take into account possible polygon rotation
+    vector<Point> getRotatedVertices(const Point& center); 
+    set<Point> getEdgeVectors();
+    set<Point> getEdgeNormals();
+    //get possibly modified polygon
+    Polygon getPolygon();
+
+    Polygon(initializer_list<Point> vert): vertices(vert) {
         vertexCount = vertices.size();
 
         for (int i = 0; i < vertexCount; i++) {
@@ -73,12 +81,15 @@ struct Polygon{
         }
     }
     float *getPointArray();
-    //recalculate vectors
 
-    //rotate
+    void addAngle(float radians);
 
     void updateVertices(const Point& delta);
 };
+
+// for rouding errors in calculations
+const float EPSILON = 1e-5;
+bool isAlmostEqual(float a, float b, float epsilon = EPSILON);
 
 struct PolygonProjection{
     float minProj;
@@ -110,6 +121,10 @@ struct Rectangle : Polygon {
     Point center;
 
     Rectangle(const Point &center, float w, float h);
+
+    //autmatically gets vertices even if rotated in some way, centered in center
+    //Use normal getRotatedVertices() if rotation center != polygon center of mass
+    vector<Point> getVertices();
     
 };
 
@@ -119,6 +134,9 @@ struct RegularPolygon : Polygon {
     float edgeLength;
 
     RegularPolygon(const Point &center,int n, float length);
+
+    //see notes in Rectangle struct
+    vector<Point> getVertices();
 };
 
 std::vector<Point> calculateRectangle(const Point &center, float w, float h);

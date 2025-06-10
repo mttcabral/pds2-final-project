@@ -74,7 +74,7 @@ int main(){
             case ALLEGRO_EVENT_TIMER:
 
                 guy.updateSpeed();
-                guy.updatePosition();
+                guy.updatePosition(); 
                 obstacle.updateSpeed();
                 obstacle.updatePosition();
                 
