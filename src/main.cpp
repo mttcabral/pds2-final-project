@@ -3,6 +3,7 @@
 #include "entity.hpp"
 #include "initializer_allegro.hpp"
 #include "game_object_handler.hpp"
+#include "cooldown.hpp"
 #include <iostream>
 #include <string>
 
@@ -12,10 +13,10 @@
 using namespace std;
 
 // Game constants:
-const float FPS = 30;                                        // Frames per second
+// const float FPS = 30;                                      // Frames per second (in cooldown.hpp)
 const int SCREEN_W = 1000;                                    // Screen width in pixels
-const int SCREEN_H = 800;                                    // Screen height in pixels
-const ALLEGRO_COLOR BACKGROUND_COLOR = al_map_rgb(0, 0, 0);  // Background color (black)
+const int SCREEN_H = 800;                                     // Screen height in pixels
+const ALLEGRO_COLOR BACKGROUND_COLOR = al_map_rgb(0, 0, 0);   // Background color (black)
 
 int main(){
 

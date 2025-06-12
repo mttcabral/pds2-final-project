@@ -16,7 +16,7 @@ LDFLAGS = $(shell pkg-config --libs $(PKG_CONFIG_LIBS))
 
 
 # Sources
-SOURCES = main polygon game_object hitbox entity game_object_handler 
+SOURCES = main polygon game_object hitbox entity game_object_handler cooldown
 OBJECTS = $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SOURCES)))
 
 all: $(BIN_DIR)/main
