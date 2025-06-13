@@ -26,7 +26,7 @@ struct Point{
     static Point getEdgeVector(const Point &p1, const Point &p2){
         return p1-p2;
     }
-    Point getNormalVector() {
+    Point getNormalVector() const {
         return Point(-y,x);
     }
     float dotProduct(const Point &p2) const {
@@ -36,10 +36,10 @@ struct Point{
         double len = std::sqrt(x * x + y * y);
         return (len != 0) ? Point(x / len, y / len) : Point(0, 0);
     }
-    Point rotateVector(float angle);
-    Point rotateVector(float cosA, float sinA);
-    Point rotatePoint(const Point&rotationCenter, float angle);
-    Point rotatePoint(const Point&rotationCenter, float cosA, float sinA);
+    Point rotateVector(float angle) const;
+    Point rotateVector(float cosA, float sinA) const;
+    Point rotatePoint(const Point&rotationCenter, float angle) const;
+    Point rotatePoint(const Point&rotationCenter, float cosA, float sinA) const;
 };
 
 ostream& operator<<(std::ostream& os, const Point& p);
@@ -56,7 +56,7 @@ struct Polygon{
     set<Point> getEdgeVectors();
     set<Point> getEdgeNormals();
     //get possibly modified polygon
-    Polygon getPolygon();
+    virtual Polygon getPolygon(const Point &center = Point(0,0));
 
     Polygon(initializer_list<Point> vert): vertices(vert) {
         vertexCount = vertices.size();
@@ -79,6 +79,20 @@ struct Polygon{
             edgeVectors.insert(edge);
             edgeNormals.insert(edge.getNormalVector());
         }
+    }
+    Polygon(vector<Point>vert, int n , set<Point>vect, set<Point>normals): 
+            vertices(vert), vertexCount(n), angle(0), edgeVectors(vect), edgeNormals(normals) {}
+
+    Polygon(const Polygon &copy): vertices(copy.vertices), vertexCount(copy.vertexCount),
+                                angle(copy.angle), edgeVectors(copy.edgeVectors), 
+                                edgeNormals(copy.edgeNormals) {}
+
+    void operator=(const Polygon &copy) {
+        this->vertices = copy.vertices;
+        this->vertexCount = copy.vertexCount;
+        this->angle = copy.angle;
+        this->edgeVectors = copy.edgeVectors;
+        this->edgeNormals = copy.edgeNormals;
     }
     float *getPointArray();
 
@@ -114,6 +128,8 @@ struct PolygonProjection{
     }
 };
 
+//checks if two polygons colides using Separated Axes Theorem
+//remember to always pass as parameters p.getPolygon()!!!!!!!!!!!!!
 bool isColidingSAT(const Polygon &a, const Polygon &b);
 
 struct Rectangle : Polygon {
@@ -125,6 +141,8 @@ struct Rectangle : Polygon {
     //autmatically gets vertices even if rotated in some way, centered in center
     //Use normal getRotatedVertices() if rotation center != polygon center of mass
     vector<Point> getVertices();
+
+    Polygon getPolygon(const Point &center = Point(0,0)) override;
     
 };
 
@@ -137,6 +155,7 @@ struct RegularPolygon : Polygon {
 
     //see notes in Rectangle struct
     vector<Point> getVertices();
+    Polygon getPolygon(const Point &center = Point(0,0)) override;
 };
 
 std::vector<Point> calculateRectangle(const Point &center, float w, float h);

@@ -35,18 +35,18 @@ void Polygon::addAngle(float radians) {
     else this->angle = output;
 }
 
-Point Point::rotateVector(float angle) {
+Point Point::rotateVector(float angle) const{
     float cosA = cos(angle);
     float sinA = sin(angle);
     return Point(this->x * cosA - this->y * sinA,
                  this->x * sinA + this->y * cosA);
 }
-Point Point::rotateVector(float cosA, float sinA) {
+Point Point::rotateVector(float cosA, float sinA) const{
     return Point(this->x * cosA - this->y * sinA,
                  this->x * sinA + this->y * cosA);
 }
 
-Point Point::rotatePoint(const Point& rotationCenter, float angle) {
+Point Point::rotatePoint(const Point& rotationCenter, float angle) const{
     float cosA = cos(angle);
     float sinA = sin(angle);
     
@@ -56,7 +56,7 @@ Point Point::rotatePoint(const Point& rotationCenter, float angle) {
                  dPoint.x * sinA + dPoint.y * cosA + rotationCenter.y);
 
 }
-Point Point::rotatePoint(const Point& rotationCenter, float cosA, float sinA) {
+Point Point::rotatePoint(const Point& rotationCenter, float cosA, float sinA) const{
     Point dPoint = *this - rotationCenter;
     return Point(dPoint.x * cosA - dPoint.y * sinA + rotationCenter.x,
                  dPoint.x * sinA + dPoint.y * cosA + rotationCenter.y);
@@ -113,11 +113,27 @@ bool isAlmostEqual(float a, float b, float epsilon) {
     return abs(a-b) <= epsilon;
 }
 
-Polygon Polygon::getPolygon(){
+Polygon Polygon::getPolygon(const Point &center){
     if (angle == 0) return *this;
     else {
-        // placeholder, will do this later
-        // polygon needs to have a copy constructor in order to do this well
+        return Polygon(this->getRotatedVertices(center),this->vertexCount,
+                        this->getEdgeVectors(), this->getEdgeNormals());
+        // after is done, replace instances of 'const Polygon&' parameters with this funcion
+    }
+}
+Polygon RegularPolygon::getPolygon(const Point &center){
+    if (angle == 0) return (Polygon) *this;
+    else {
+        return Polygon(this->getVertices(),this->vertexCount,
+                        this->getEdgeVectors(), this->getEdgeNormals());
+        // after is done, replace instances of 'const Polygon&' parameters with this funcion
+    }
+}
+Polygon Rectangle::getPolygon(const Point &center){
+    if (angle == 0) return (Polygon) *this;
+    else {
+        return Polygon(this->getVertices(),this->vertexCount,
+                        this->getEdgeVectors(), this->getEdgeNormals());
         // after is done, replace instances of 'const Polygon&' parameters with this funcion
     }
 }

@@ -79,7 +79,8 @@ int main(){
                 obstacle.updateSpeed();
                 obstacle.updatePosition();
                 
-                if (isColidingSAT(guy.getHitbox()->getPolygon(),obstacle.getHitbox()->getPolygon())){
+                if (isColidingSAT(guy.getHitbox()->getPolygon().getPolygon(),
+                                obstacle.getHitbox()->getPolygon().getPolygon())){
                     colisionIndicatorColor = al_map_rgb(140,20,20);
                 }else {
                     colisionIndicatorColor = al_map_rgb(20,140,20);
