@@ -64,6 +64,8 @@ int main(){
 
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
     
+    //testing cooldown
+    Cooldown jumpCD(0);
 
     while (gameActive) {
         
@@ -79,8 +81,8 @@ int main(){
                 obstacle.updateSpeed();
                 obstacle.updatePosition();
                 
-                if (isColidingSAT(guy.getHitbox()->getPolygon().getPolygon(),
-                                obstacle.getHitbox()->getPolygon().getPolygon())){
+                if (isColidingSAT(guy.getHitbox()->getPolygon(),
+                                obstacle.getHitbox()->getPolygon())){
                     colisionIndicatorColor = al_map_rgb(140,20,20);
                 }else {
                     colisionIndicatorColor = al_map_rgb(20,140,20);
@@ -88,11 +90,17 @@ int main(){
                 
                 redraw = true;
 
+                jumpCD.updateCooldown();
+                //cout << jumpCD.getCurrentPorcentage() << '\n';
+
             break;
             case ALLEGRO_EVENT_KEY_DOWN:
                 switch (event.keyboard.keycode){
                     case ALLEGRO_KEY_SPACE: case ALLEGRO_KEY_UP:
-                        guy.jump();
+                        if (jumpCD.isCooldownUp()) {
+                            guy.jump();
+                            jumpCD.restartCooldown();
+                        }
                         //cout << "Jump\n";
                         break;
                     }

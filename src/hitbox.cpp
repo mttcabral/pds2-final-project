@@ -25,7 +25,7 @@ RectangleHitbox::RectangleHitbox(const Point& center,float w, float h): Hitbox::
 
 float RectangleHitbox::getWidth() {return this->width;}
 float RectangleHitbox::getHeight() {return this->height;}
-Polygon RectangleHitbox::getPolygon() {return this->rectangle;}
+Polygon RectangleHitbox::getPolygon() {return this->rectangle.getPolygon();}
 
 float *RectangleHitbox::getVertices() {return this->rectangle.getPointArray();}
 
@@ -47,7 +47,7 @@ PolygonHitbox::PolygonHitbox(const Point&center,int n, float EdgeLength): Hitbox
 int PolygonHitbox::getSideCount() {return sides;}
 float PolygonHitbox::getEdgeLength() {return this->polygon.edgeLength;}
 float *PolygonHitbox::getVertices() {return this->polygon.getPointArray();}
-Polygon PolygonHitbox::getPolygon() {return this->polygon;}
+Polygon PolygonHitbox::getPolygon() {return this->polygon.getPolygon();}
 
 bool PolygonHitbox::updatePosition() {
     Point previous = this->getPos();
