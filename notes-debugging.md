@@ -21,7 +21,7 @@ Maybe rotation as a whole is implemented wrong
 
 ## other notes
 #### found when testing
-- rotating a rectangle completely broke the colision detection, no colision was never occouring when it should
+- rotating a rectangle completely broke the colision detection, no colision was ever occouring when it should
 - rotating the player (regular octagon) also broke it, but not in the same way (it was just highly off)
 
 
