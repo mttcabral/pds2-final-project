@@ -147,6 +147,6 @@ void Pipe::draw() {
         return;
     }
     al_draw_rotated_bitmap(pipeSprite,
-                            al_get_bitmap_width(pipeSprite)/2,al_get_bitmap_width(pipeSprite)/2,
-                            this->getPosX(), this->getPosY(),0,0);
+                            al_get_bitmap_width(pipeSprite)/2,al_get_bitmap_height(pipeSprite)/2,
+                            this->getPosX(), this->getPosY(),this->getHitbox()->getAngle(),0);
 }

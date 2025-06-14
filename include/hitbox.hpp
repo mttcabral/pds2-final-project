@@ -21,7 +21,8 @@ class Hitbox: public GameObject{
         void setTarget(Drawable *target);
 
         virtual Polygon getPolygon() = 0;
-
+        virtual float getAngle() = 0;
+        virtual void rotateHitbox(float radians) = 0;
         //virtual bool checkColision(); //to remove soon, wont be needed
 
         virtual ~Hitbox();
@@ -38,10 +39,14 @@ class RectangleHitbox : public Hitbox {
 
         float getWidth();
         float getHeight();
+
         Polygon getPolygon() override;
+        float getAngle() override;
 
         bool updatePosition() override;
-
+        
+        void rotateHitbox(float radians) override;
+        
         float *getVertices();
 
 };
@@ -55,9 +60,13 @@ class PolygonHitbox : public Hitbox {
 
         int getSideCount();
         float getEdgeLength();
+
         Polygon getPolygon() override;
+        float getAngle() override;
 
         bool updatePosition() override;
+
+        void rotateHitbox(float radians) override;
 
         float *getVertices();
 };

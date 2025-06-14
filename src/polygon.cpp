@@ -6,13 +6,30 @@ std::ostream& operator<<(std::ostream& os, const Point& p) {
     os << "(" << p.x << ", " << p.y << ")";
     return os;
 }
+std::ostream& operator<<(std::ostream& os, const Polygon& p) {
+    os << "..........polygon..........\n";
+    os << "vertices: count: " << p.vertexCount << '\n';
+    for (const Point& v : p.vertices)
+        os << v << ' ';
+    os << "\nedgeVectors: \n";
+    for (const Point& v : p.edgeVectors)
+        os << v << ' ';
+    os << "\nedgeNormals: \n";
+    for (const Point& v : p.edgeNormals)
+        os << v << ' ';
+    os << "angle: " << p.angle << '\n';
 
+    return os;
+}
+
+// CURRENTLY DOES NOT WORK WHEN ROTATING HITBOXES
+// :(
 bool isColidingSAT(const Polygon &a, const Polygon &b) {
     
-    set<Point> axes;
+    vector<Point> axes;
 
-    for (auto n : a.edgeNormals) axes.insert(n);
-    for (auto n : b.edgeNormals) axes.insert(n);
+    for (auto n : a.edgeNormals) axes.push_back(n);
+    for (auto n : b.edgeNormals) axes.push_back(n);
 
     for (auto axis : axes) {
 
@@ -139,10 +156,14 @@ Polygon Rectangle::getPolygon(const Point &center){
 }
 
 vector<Point> calculateRectangle(const Point &center, float w, float h) {
-    Point aux1(w/2,h/2);
-    Point aux2(w/2,-h/2);
-    return {center - aux1, center + aux1, 
-            center - aux2, center + aux2};
+    float halfW = w/2;
+    float halfH = h/2;
+    return {
+        Point(center.x + halfW, center.y - halfH), //top right
+        Point(center.x - halfW, center.y - halfH), //top left
+        Point(center.x - halfW, center.y + halfH), //bottom left 
+        Point(center.x + halfW, center.y + halfH), //bottom right
+    };
 }
 Rectangle::Rectangle(const Point &center, float w, float h): Polygon(calculateRectangle(center,w,h)),
                                                             width(w), height(h), center(center) {}

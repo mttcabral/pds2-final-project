@@ -24,7 +24,7 @@ struct Point{
         return (x != p2.x) ? x < p2.x : y < p2.y;
     }
     static Point getEdgeVector(const Point &p1, const Point &p2){
-        return p1-p2;
+        return p2-p1;
     }
     Point getNormalVector() const {
         return Point(-y,x);
@@ -62,7 +62,7 @@ struct Polygon{
         vertexCount = vertices.size();
 
         for (int i = 0; i < vertexCount; i++) {
-            Point nextVertex = vertices[i+1 == vertexCount ? 0 : i+1];
+            Point nextVertex = vertices[(i+1) % vertexCount];
             Point edge = Point::getEdgeVector(vertices[i],nextVertex);
 
             edgeVectors.insert(edge);
@@ -73,11 +73,11 @@ struct Polygon{
         vertexCount = vertices.size();
 
         for (int i = 0; i < vertexCount; i++) {
-            Point nextVertex = vertices[i+1 == vertexCount ? 0 : i+1];
+            Point nextVertex = vertices[(i+1) % vertexCount];
             Point edge = Point::getEdgeVector(vertices[i],nextVertex);
 
             edgeVectors.insert(edge);
-            edgeNormals.insert(edge.getNormalVector());
+            edgeNormals.insert(edge.getNormalVector().normalizeVector());
         }
     }
     Polygon(vector<Point>vert, int n , set<Point>vect, set<Point>normals): 
@@ -100,6 +100,8 @@ struct Polygon{
 
     void updateVertices(const Point& delta);
 };
+
+ostream& operator<<(std::ostream& os, const Polygon& p);
 
 // for rouding errors in calculations
 const float EPSILON = 1e-5;
