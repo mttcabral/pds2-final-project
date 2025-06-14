@@ -24,7 +24,8 @@ Maybe rotation as a whole is implemented wrong
 - rotating a rectangle completely broke the colision detection, no colision was ever occouring when it should
 - rotating the player (regular octagon) also broke it, but not in the same way (it was just highly off)
 
-
+- link explaining SAT colision detection:
+- https://dyn4j.org/2010/01/sat/
 ### debugging leftovers, maybe useful later
 
 ``` 
