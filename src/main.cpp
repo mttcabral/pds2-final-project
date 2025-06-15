@@ -10,6 +10,8 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
 
+#include "test.hpp"
+
 using namespace std;
 
 // Game constants:
@@ -58,10 +60,16 @@ int main(){
     Player guy;
     guy.loadSprite("assets/guy.png");
     // Basic obstacle object for testing
-    Pipe obstacle(Point(1000,400),128,128);
+    Pipe obstacle(Point(1000,400),50,300);
     //Pipe obstacle(Point(200,600),128,128);
-    obstacle.loadSprite("assets/pipe.png");
+    obstacle.loadSprite("assets/long.png");
 
+    //cout << guy.getHitbox()->getPolygon() << '\n';
+    //cout << obstacle.getHitbox()->getPolygon() << '\n';
+    obstacle.getHitbox()->rotateHitbox(PI/4);
+    //cout << obstacle.getHitbox()->getPolygon() << '\n';
+    //guy.getHitbox()->rotateHitbox(PI/4);
+    //test(guy.getHitbox()->getPolygon()); 
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
     
     //testing cooldown
@@ -72,6 +80,9 @@ int main(){
         ALLEGRO_EVENT event;
 
         al_wait_for_event(eventQueue, &event);
+        
+        //double currentTime = al_get_time();
+        //if ((int) currentTime % 20 == 0) cout << obstacle.getHitbox()->getPolygon() << '\n';
 
         switch (event.type) {
             case ALLEGRO_EVENT_TIMER:
@@ -81,9 +92,12 @@ int main(){
                 obstacle.updateSpeed();
                 obstacle.updatePosition();
                 
+                obstacle.getHitbox()->rotateHitbox(PI/180);
+
                 if (isColidingSAT(guy.getHitbox()->getPolygon(),
                                 obstacle.getHitbox()->getPolygon())){
                     colisionIndicatorColor = al_map_rgb(140,20,20);
+                    //cout << obstacle.getHitbox()->getPolygon() << '\n';
                 }else {
                     colisionIndicatorColor = al_map_rgb(20,140,20);
                 } //placeholder colision detection and visualization
