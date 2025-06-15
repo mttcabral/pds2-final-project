@@ -10,6 +10,8 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
 
+#include "test.hpp"
+
 using namespace std;
 
 // Game constants:
@@ -65,9 +67,9 @@ int main(){
     //cout << guy.getHitbox()->getPolygon() << '\n';
     //cout << obstacle.getHitbox()->getPolygon() << '\n';
     //obstacle.getHitbox()->rotateHitbox(PI/4);
-    //cout << obstacle.getHitbox()->getPolygon() << '\n';
+    cout << obstacle.getHitbox()->getPolygon() << '\n';
     //guy.getHitbox()->rotateHitbox(PI/4);
-
+    //test(guy.getHitbox()->getPolygon()); 
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
     
     //testing cooldown
@@ -78,6 +80,9 @@ int main(){
         ALLEGRO_EVENT event;
 
         al_wait_for_event(eventQueue, &event);
+        
+        double currentTime = al_get_time();
+        if ((int) currentTime % 20 == 0) cout << obstacle.getHitbox()->getPolygon() << '\n';
 
         switch (event.type) {
             case ALLEGRO_EVENT_TIMER:
