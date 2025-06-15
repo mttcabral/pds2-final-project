@@ -139,6 +139,13 @@ Polygon Polygon::getPolygon(const Point &center){
     }
 }
 Polygon RegularPolygon::getPolygon(const Point &center){
+    return Polygon::getPolygon(this->center);
+}
+Polygon Rectangle::getPolygon(const Point &center){
+    return Polygon::getPolygon(this->center);
+}
+/*
+Polygon RegularPolygon::getPolygon(const Point &center){
     if (angle == 0) return (Polygon) *this;
     else {
         return Polygon(this->getVertices(),this->vertexCount,
@@ -154,6 +161,7 @@ Polygon Rectangle::getPolygon(const Point &center){
         // after is done, replace instances of 'const Polygon&' parameters with this funcion
     }
 }
+*/
 
 vector<Point> calculateRectangle(const Point &center, float w, float h) {
     float halfW = w/2;
@@ -195,6 +203,15 @@ void Polygon::updateVertices(const Point& delta) {
     for (int i = 0; i < vertexCount; i++){
         vertices[i] = vertices[i] + delta;
     }
+}
+void Rectangle::updateVertices(const Point& delta) {
+    Polygon::updateVertices(delta);
+    this->center = this->center + delta;
+}
+
+void RegularPolygon::updateVertices(const Point& delta) {
+    Polygon::updateVertices(delta);
+    this->center = this->center + delta;
 }
 
 RegularPolygon::RegularPolygon(const Point &center,int n, float length): Polygon(calculateRegularPolygon(

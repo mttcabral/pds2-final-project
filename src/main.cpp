@@ -66,8 +66,8 @@ int main(){
 
     //cout << guy.getHitbox()->getPolygon() << '\n';
     //cout << obstacle.getHitbox()->getPolygon() << '\n';
-    //obstacle.getHitbox()->rotateHitbox(PI/4);
-    cout << obstacle.getHitbox()->getPolygon() << '\n';
+    obstacle.getHitbox()->rotateHitbox(PI/4);
+    //cout << obstacle.getHitbox()->getPolygon() << '\n';
     //guy.getHitbox()->rotateHitbox(PI/4);
     //test(guy.getHitbox()->getPolygon()); 
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
@@ -81,8 +81,8 @@ int main(){
 
         al_wait_for_event(eventQueue, &event);
         
-        double currentTime = al_get_time();
-        if ((int) currentTime % 20 == 0) cout << obstacle.getHitbox()->getPolygon() << '\n';
+        //double currentTime = al_get_time();
+        //if ((int) currentTime % 20 == 0) cout << obstacle.getHitbox()->getPolygon() << '\n';
 
         switch (event.type) {
             case ALLEGRO_EVENT_TIMER:
@@ -92,6 +92,8 @@ int main(){
                 obstacle.updateSpeed();
                 obstacle.updatePosition();
                 
+                obstacle.getHitbox()->rotateHitbox(PI/180);
+
                 if (isColidingSAT(guy.getHitbox()->getPolygon(),
                                 obstacle.getHitbox()->getPolygon())){
                     colisionIndicatorColor = al_map_rgb(140,20,20);

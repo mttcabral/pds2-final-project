@@ -98,7 +98,7 @@ struct Polygon{
 
     void addAngle(float radians);
 
-    void updateVertices(const Point& delta);
+    virtual void updateVertices(const Point& delta);
 };
 
 ostream& operator<<(std::ostream& os, const Polygon& p);
@@ -146,6 +146,7 @@ struct Rectangle : Polygon {
 
     Polygon getPolygon(const Point &center = Point(0,0)) override;
     
+    void updateVertices(const Point& delta) override;
 };
 
 struct RegularPolygon : Polygon {
@@ -158,6 +159,8 @@ struct RegularPolygon : Polygon {
     //see notes in Rectangle struct
     vector<Point> getVertices();
     Polygon getPolygon(const Point &center = Point(0,0)) override;
+
+    void updateVertices(const Point& delta) override;
 };
 
 std::vector<Point> calculateRectangle(const Point &center, float w, float h);

@@ -31,13 +31,13 @@ float RectangleHitbox::getAngle() {return this->rectangle.angle;}
 float *RectangleHitbox::getVertices() {return this->rectangle.getPointArray();}
 
 bool RectangleHitbox::updatePosition() {
-    Point previous = this->getPos();
+    Point previous = this->getPos(); // (500,400)
     
-    Hitbox::updatePosition();
+    Hitbox::updatePosition(); // getPos() -> (490,400)
 
-    Point deltaMovement = this->getPos() - previous;
+    Point deltaMovement = this->getPos() - previous; // = (-10,0)
 
-    this->rectangle.updateVertices(deltaMovement);
+    this->rectangle.updateVertices(deltaMovement); // (300,600) -> (290,600)
 
     return true;
 }
