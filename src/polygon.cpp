@@ -22,8 +22,6 @@ std::ostream& operator<<(std::ostream& os, const Polygon& p) {
     return os;
 }
 
-// CURRENTLY DOES NOT WORK WHEN ROTATING HITBOXES
-// :(
 bool isColidingSAT(const Polygon &a, const Polygon &b) {
     
     vector<Point> axes;
@@ -144,24 +142,6 @@ Polygon RegularPolygon::getPolygon(const Point &center){
 Polygon Rectangle::getPolygon(const Point &center){
     return Polygon::getPolygon(this->center);
 }
-/*
-Polygon RegularPolygon::getPolygon(const Point &center){
-    if (angle == 0) return (Polygon) *this;
-    else {
-        return Polygon(this->getVertices(),this->vertexCount,
-                        this->getEdgeVectors(), this->getEdgeNormals());
-        // after is done, replace instances of 'const Polygon&' parameters with this funcion
-    }
-}
-Polygon Rectangle::getPolygon(const Point &center){
-    if (angle == 0) return (Polygon) *this;
-    else {
-        return Polygon(this->getVertices(),this->vertexCount,
-                        this->getEdgeVectors(), this->getEdgeNormals());
-        // after is done, replace instances of 'const Polygon&' parameters with this funcion
-    }
-}
-*/
 
 vector<Point> calculateRectangle(const Point &center, float w, float h) {
     float halfW = w/2;
