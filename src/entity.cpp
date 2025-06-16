@@ -8,50 +8,6 @@ Entity::Entity(const Point&pos):
 
 Hitbox * Entity::getHitbox() {return this->hb;}
 
-BasicPlayer::BasicPlayer(): Entity::Entity(Point(X_AXIS,400),Point(0,10)) {
-    hb = new RectangleHitbox({xAxis,400},lengthSize,lengthSize);
-    hb->setTarget(this);
-    //cout << "speed " << this->getSpeed() << '\n'; 
-}
-
-BasicPlayer::~BasicPlayer() {
-    delete hb;
-}
-
-RectangleHitbox *BasicPlayer::getHitboxAABB() {return (RectangleHitbox*) this->getHitbox();}
-
-bool BasicPlayer::updatePosition() {
-    if (this->getPosX() != this->xAxis)
-        this->setPosX(this->getPosX() + this->getSpeedX());
-    this->setPosY(this->getPosY() + this->getSpeedY());
-    
-    this->hb->updatePosition();
-
-    return true;
-}
-
-void BasicPlayer::updateSpeed() {
-    if (this->getSpeedX() < 0) this->setSpeedX(0);
-    else if (this->getSpeedX() >= 0) this->addSpeedX(-5);
-
-    if (this->getSpeedY() < BASE_GRAVITY) this->addSpeedY(5);
-    else if (this->getSpeedY() >= BASE_GRAVITY) this->setSpeedY(BASE_GRAVITY);
-
-}
-
-void BasicPlayer::jump() {
-    this->setSpeedY(-40);
-}
-
-void BasicPlayer::draw() {
-    al_draw_filled_rectangle(this->getPosX()-this->lengthSize/2, this->getPosY()-this->lengthSize/2,
-                            this->getPosX()+this->lengthSize/2, this->getPosY()+this->lengthSize/2,
-                            al_map_rgb(50,100,200)
-                            );
-}
-
-
-
 Player::Player(): Entity({X_AXIS,400},{0,5}) {
     this->hb = new PolygonHitbox({X_AXIS,400},8,PLAYER_SIZE);
     this->hb->setTarget(this);

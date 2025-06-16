@@ -8,6 +8,7 @@
 using namespace std;
 const float PI = acos(-1.0); // PI calculated with arccos(-1)
 
+// Vector/Point struct, contains a pair of two float coordinates
 struct Point{
     float x,y;
 
@@ -44,6 +45,7 @@ struct Point{
 
 ostream& operator<<(std::ostream& os, const Point& p);
 
+//Polygon defined by a set of vertices that represent it's size and shape
 struct Polygon{
     vector<Point> vertices;
     int vertexCount;
@@ -107,6 +109,7 @@ ostream& operator<<(std::ostream& os, const Polygon& p);
 const float EPSILON = 1e-5;
 bool isAlmostEqual(float a, float b, float epsilon = EPSILON);
 
+//Used in SAT colision detection
 struct PolygonProjection{
     float minProj;
     float maxProj;
@@ -131,8 +134,9 @@ struct PolygonProjection{
 };
 
 //checks if two polygons colides using Separated Axes Theorem
-//remember to always pass as parameters p.getPolygon()!!!!!!!!!!!!!
+//remember to always pass as parameters p.getPolygon()!!!!!!!!!!!!! (handles rotation right)
 bool isColidingSAT(const Polygon &a, const Polygon &b);
+
 
 struct Rectangle : Polygon {
     float width, height;

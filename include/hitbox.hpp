@@ -3,15 +3,11 @@
 
 #include "game_object.hpp"
 
-/*
-enum class hitboxType {
-    Positive,
-    Negative
-}; //maybe overload the operator'!' to invert values (?)
-*/
-
+//Father hitbox game object class
+//used to determine occupied space in game and interact with other drawables
 class Hitbox: public GameObject{
     private:
+        //It is important to note that every hitbox is ALWAYS associated with an object and vice versa
         Drawable* target;
     public: 
         Hitbox(const Point& center); 
@@ -23,11 +19,11 @@ class Hitbox: public GameObject{
         virtual Polygon getPolygon() = 0;
         virtual float getAngle() = 0;
         virtual void rotateHitbox(float radians) = 0;
-        //virtual bool checkColision(); //to remove soon, wont be needed
 
         virtual ~Hitbox();
 };
 
+//Rectangular hitbox, used when a rectangle with variable W and H are needed as representation
 class RectangleHitbox : public Hitbox {
     private: 
         float width, height;
@@ -51,6 +47,7 @@ class RectangleHitbox : public Hitbox {
 
 };
 
+//Hitbox with a REGULAR polygon shape
 class PolygonHitbox : public Hitbox {
     private:
         int sides;

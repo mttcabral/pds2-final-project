@@ -9,6 +9,8 @@ const float BASE_GRAVITY = 10;
 const float BASE_X_MOVEMENT = 20;
 const float X_AXIS = 200;
 
+//Interactable game object
+//Has a hitbox atribute always so its interactable
 class Entity: public Drawable {
     protected:
         Hitbox * hb;
@@ -19,27 +21,10 @@ class Entity: public Drawable {
         Hitbox *getHitbox();
 };
 
-class BasicPlayer: public Entity {
-    private:
-        float xAxis = X_AXIS;
-        float lengthSize = 100;
-    public:
-        BasicPlayer();
-
-        RectangleHitbox *getHitboxAABB();
-
-        bool updatePosition() override;
-        void updateSpeed() override;
-
-        void jump();
-
-        void draw() override;
-        
-        ~BasicPlayer();
-};
-
 const float PLAYER_SIZE = 20;
 
+//Basic player class proof of concept
+//good if other more well baked versions are created that don't rely on this one
 class Player: public Entity {
     private: 
         ALLEGRO_BITMAP * playerSprite = nullptr;
@@ -61,6 +46,7 @@ class Player: public Entity {
 
 const float PIPE_X_SPEED = -15;
 
+//Basic obstacle proof of concept, best to not use if possible
 class Pipe: public Entity {
     private:
         ALLEGRO_BITMAP * pipeSprite = nullptr;

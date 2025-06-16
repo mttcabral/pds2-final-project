@@ -5,9 +5,10 @@
 #include <allegro5/allegro_primitives.h>
 #include "polygon.hpp"
 
-
+//Game Object Superclass
 class GameObject {
     private:
+        //Vector for position of object on the screen
         Point pos;
         
     protected:
@@ -27,9 +28,10 @@ class GameObject {
         
 };
 
-
+//Father class for all classes that are drawn on display and possibly move around
 class Drawable : public GameObject {
     private:
+        //Vector for object speed
         Point speed;
     protected:
         Drawable(const Point &pos, const Point &spd);
