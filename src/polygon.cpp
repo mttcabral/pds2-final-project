@@ -46,6 +46,7 @@ bool isColidingSAT(const Polygon &a, const Polygon &b) {
 
 void Polygon::addAngle(float radians) {
     float output = radians + this->angle;
+    output = fmod(output, 2*PI);
     if (isAlmostEqual(output,0)) this->angle = 0;
     else this->angle = output;
 }
