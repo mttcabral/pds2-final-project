@@ -1,0 +1,62 @@
+#include <iostream>
+
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_image.h>
+
+using namespace std;
+
+bool initialize_allegro() {
+    // Initialize main allegro
+    if (!al_init()) {
+        cout << "ERROR:" << "failed to initialize allegro" << endl;
+        return false;
+    }
+
+    // Initialize Allegro primitives addon
+    if (!al_init_primitives_addon()) {
+        cout << "ERROR:" << "failed to initialize allegro primitives" << endl;
+        return false;
+    }
+    
+    // Install keyboard input support
+    if (!al_install_keyboard()) {
+        cout << "ERROR:" << "failed to initialize keyboard" << endl;
+        return false;
+    }
+    if (!al_init_image_addon()) {
+        cout << "ERROR:" << "failed to initialize allegro image" << endl;
+        return false;
+    }
+    return true;
+}
+// Create an event queue to handle events
+bool initialize_event_queue(ALLEGRO_EVENT_QUEUE *&ev){
+    ev = al_create_event_queue();
+    if (!ev) {
+        cout << "ERROR:" << "failed to create event_queue" << endl;
+        return false;
+    }
+    else return true;
+}
+
+// Initialize display window and timer 
+bool initialize_display_and_timer(ALLEGRO_DISPLAY *&display,int w, int h, ALLEGRO_TIMER *&t, float fps){
+    display = al_create_display(w, h);
+    if (!display) {
+        cout << "ERROR:" << "failed to create display" << endl;
+        return false;
+    }
+    else {
+        t = al_create_timer(1.0/fps);
+        if (!t) {
+            cout << "ERROR:" << "failed to initialize timer" << endl;
+            al_destroy_display(display);
+            return false;
+        }
+        else return true;
+    }
+    
+}
+    
+
