@@ -1,14 +1,16 @@
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_primitives.h>
+
 #include "game_object.hpp"
 #include "hitbox.hpp"
 #include "entity.hpp"
 #include "initializer_allegro.hpp"
 #include "game_object_handler.hpp"
 #include "cooldown.hpp"
+
 #include <iostream>
 #include <string>
 
-#include <allegro5/allegro.h>
-#include <allegro5/allegro_primitives.h>
 
 using namespace std;
 
