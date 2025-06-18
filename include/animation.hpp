@@ -36,7 +36,7 @@ class Spritesheet {
 
         void advanceFrame();
 
-
+        ~Spritesheet();
 
 
 };

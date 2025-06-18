@@ -4,6 +4,7 @@
 #include "initializer_allegro.hpp"
 #include "game_object_handler.hpp"
 #include "cooldown.hpp"
+#include "animation.hpp"
 #include <iostream>
 #include <string>
 
@@ -14,6 +15,7 @@ using namespace std;
 
 // Game constants:
 // const float FPS = 30;                                      // Frames per second (in cooldown.hpp)
+// const float ANIM_FPS = 12;                                 // Frames per second for animation
 const int SCREEN_W = 1000;                                    // Screen width in pixels
 const int SCREEN_H = 800;                                     // Screen height in pixels
 const ALLEGRO_COLOR BACKGROUND_COLOR = al_map_rgb(0, 0, 0);   // Background color (black)
@@ -24,6 +26,7 @@ int main(){
     ALLEGRO_DISPLAY *display = nullptr;
     ALLEGRO_EVENT_QUEUE *eventQueue = nullptr;
     ALLEGRO_TIMER *timer = nullptr;
+    ALLEGRO_TIMER *animation_timer = nullptr;
     
     // Initializations:
 
@@ -37,9 +40,12 @@ int main(){
 
     if(!initialize_display_and_timer(display,SCREEN_W,SCREEN_H,timer,FPS)) return 1;
 
+    if(!initialize_timer(animation_timer,ANIM_FPS)) return 1;
+
     // Register event sources for the event queue
     al_register_event_source(eventQueue, al_get_display_event_source(display));
     al_register_event_source(eventQueue, al_get_timer_event_source(timer));
+    al_register_event_source(eventQueue, al_get_timer_event_source(animation_timer));
     al_register_event_source(eventQueue, al_get_keyboard_event_source());
 
     // Start the timer to control game speed
@@ -65,13 +71,8 @@ int main(){
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
     
     //testing sub bitmaps
-    ALLEGRO_BITMAP * sheet = al_load_bitmap("assets/test.png");
-    ALLEGRO_BITMAP * frames[8];
+    Spritesheet sheetTest("assets/kirby.png",8,26);
 
-    for (int i = 0; i < 8; i++) {
-        frames[i] = al_create_sub_bitmap(sheet,29*i,0,25,26);
-    }
-    int a = 0;
 
     //testing cooldown
     Cooldown jumpCD(0);
@@ -84,13 +85,13 @@ int main(){
 
         switch (event.type) {
             case ALLEGRO_EVENT_TIMER:
-
+            if (event.timer.source == timer) {
                 guy.updateSpeed();
                 guy.updatePosition(); 
                 obstacle.updateSpeed();
                 obstacle.updatePosition();
                 
-                obstacle.getHitbox()->rotateHitbox(PI/180);
+                 obstacle.getHitbox()->rotateHitbox(PI/180);
 
                 if (isColidingSAT(guy.getHitbox()->getPolygon(),
                                 obstacle.getHitbox()->getPolygon())){
@@ -100,9 +101,14 @@ int main(){
                 } //placeholder colision detection and visualization
                 
                 redraw = true;
-
+                
                 jumpCD.updateCooldown();
                 //cout << jumpCD.getCurrentPorcentage() << '\n';
+                
+            } else if (event.timer.source == animation_timer) {
+                cout << "animation_timer_event\n"; //not working currently, only if in normal timer
+                sheetTest.advanceFrame(); 
+            }
 
             break;
             case ALLEGRO_EVENT_KEY_DOWN:
@@ -133,12 +139,12 @@ int main(){
             //colision
             al_draw_filled_circle(800,400,30,colisionIndicatorColor); 
             
-            a++;
-            a = a % 32;
-            int b = a / 4;
+
 
             al_draw_scaled_rotated_bitmap(
-            frames[b],al_get_bitmap_width(frames[b])/2,al_get_bitmap_height(frames[b]),
+            sheetTest.getCurrentFrame(),
+            al_get_bitmap_width(sheetTest.getCurrentFrame())/2,
+            al_get_bitmap_height(sheetTest.getCurrentFrame()),
             500,400,
             4,4,
             0,0);
@@ -153,8 +159,6 @@ int main(){
     al_destroy_timer(timer);
     
 
-    al_destroy_bitmap(sheet);
-    //delete[] vertexList;
 
 
     return 0;

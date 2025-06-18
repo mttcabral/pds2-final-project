@@ -19,6 +19,12 @@ Spritesheet::Spritesheet(const char* dir, int count, int frameW): frameCount(cou
     }
 }
 
+Spritesheet::~Spritesheet() {
+    if (sheet) {
+        al_destroy_bitmap(sheet);
+    }
+}
+
 
 ALLEGRO_BITMAP * Spritesheet::getSheet() const {return this->sheet;}
 int Spritesheet::getFrameCount() const {return this->frameCount;}

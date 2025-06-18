@@ -58,5 +58,14 @@ bool initialize_display_and_timer(ALLEGRO_DISPLAY *&display,int w, int h, ALLEGR
     }
     
 }
-    
+
+//initialize just the timer
+bool initialize_timer(ALLEGRO_TIMER *&t, float fps) {
+    t = al_create_timer(1.0/fps);
+    if (!t) {
+        cout << "ERROR:" << "failed to initialize timer" << endl;
+            return false;
+    }
+    else return true;
+}  
 
