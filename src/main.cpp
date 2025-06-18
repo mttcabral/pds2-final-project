@@ -64,6 +64,15 @@ int main(){
  
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
     
+    //testing sub bitmaps
+    ALLEGRO_BITMAP * sheet = al_load_bitmap("assets/test.png");
+    ALLEGRO_BITMAP * frames[8];
+
+    for (int i = 0; i < 8; i++) {
+        frames[i] = al_create_sub_bitmap(sheet,29*i,0,25,26);
+    }
+    int a = 0;
+
     //testing cooldown
     Cooldown jumpCD(0);
 
@@ -123,6 +132,16 @@ int main(){
 
             //colision
             al_draw_filled_circle(800,400,30,colisionIndicatorColor); 
+            
+            a++;
+            a = a % 32;
+            int b = a / 4;
+
+            al_draw_scaled_rotated_bitmap(
+            frames[b],al_get_bitmap_width(frames[b])/2,al_get_bitmap_height(frames[b]),
+            500,400,
+            4,4,
+            0,0);
 
             al_flip_display(); //updates the display with the new frame 
 
@@ -133,6 +152,8 @@ int main(){
     al_destroy_event_queue(eventQueue);
     al_destroy_timer(timer);
     
+
+    al_destroy_bitmap(sheet);
     //delete[] vertexList;
 
 
