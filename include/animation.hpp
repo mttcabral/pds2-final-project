@@ -8,10 +8,10 @@
 
 using namespace std;
 
-const float ANIM_FPS = 12;
+const float ANIM_FPS = 24;
 
 class Spritesheet {
-    private:
+    protected:
         ALLEGRO_BITMAP * sheet = nullptr;
         int frameCount, frameWidth, frameHeight;
         int currentIndex = 0;
@@ -32,12 +32,32 @@ class Spritesheet {
 
         ALLEGRO_BITMAP * getCurrentFrame() const;
 
-        void resetAnimation();
+        virtual void resetAnimation();
 
-        void advanceFrame();
+        virtual void advanceFrame();
 
         ~Spritesheet();
 
+
+};
+
+class TriggerSpritesheet : public Spritesheet {
+    private:
+        bool active = false;
+        int cycles = 1;
+        int currentCycle = 0;
+    public:
+        TriggerSpritesheet(const char* dir, int count, int frameW, int frameH);
+        TriggerSpritesheet(const char* dir, int count, int frameW);
+
+        void setCycleCount(int n);
+        int getCycleCount() const;
+
+        void resetAnimation() override;
+
+        void advanceFrame() override;
+
+        bool isActive() const;
 
 };
 

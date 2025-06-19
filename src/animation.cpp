@@ -44,3 +44,36 @@ void Spritesheet::resetAnimation() {
 void Spritesheet::advanceFrame() {
     this->currentIndex = (this->currentIndex + 1) % this->frameCount; 
 };
+
+TriggerSpritesheet::TriggerSpritesheet(const char* dir, int count, int frameW, int frameH) :
+    Spritesheet::Spritesheet(dir,count,frameW,frameH) {}
+TriggerSpritesheet::TriggerSpritesheet(const char* dir, int count, int frameW) :
+    Spritesheet::Spritesheet(dir,count,frameW) {}
+
+
+void TriggerSpritesheet::setCycleCount(int n) {this->cycles = n;} //does not make check for invalid
+int TriggerSpritesheet::getCycleCount() const {return this->cycles;}
+
+void TriggerSpritesheet::resetAnimation() {
+    this->currentIndex = 0;
+    this->active = true;
+}
+
+void TriggerSpritesheet::advanceFrame() {
+    if (!this->active) return;
+    else {
+        this->currentIndex++;
+        if (this->currentIndex >= this->frameCount) {
+            this->currentCycle++;
+            this->currentIndex = 0;
+            if (this->currentCycle >= this->cycles) {
+                this->currentCycle = 0;
+                this->active = false;
+            }
+        }
+    }
+}
+
+bool TriggerSpritesheet::isActive() const {
+    return this->active;
+}

@@ -38,8 +38,9 @@ int main(){
 
     if(!initialize_event_queue(eventQueue)) return 1;
 
-    if(!initialize_display_and_timer(display,SCREEN_W,SCREEN_H,timer,FPS)) return 1;
+    if(!initialize_display(display,SCREEN_W,SCREEN_H)) return 1;
 
+    if(!initialize_timer(timer,FPS)) return 1;
     if(!initialize_timer(animation_timer,ANIM_FPS)) return 1;
 
     // Register event sources for the event queue
@@ -50,6 +51,7 @@ int main(){
 
     // Start the timer to control game speed
     al_start_timer(timer);
+    al_start_timer(animation_timer);
 
     // Game is being played control
     bool gameActive = true;
@@ -71,7 +73,7 @@ int main(){
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
     
     //testing sub bitmaps
-    Spritesheet sheetTest("assets/kirby.png",8,26);
+    TriggerSpritesheet sheetTest("assets/kirby.png",8,26);
 
 
     //testing cooldown
@@ -106,8 +108,9 @@ int main(){
                 //cout << jumpCD.getCurrentPorcentage() << '\n';
                 
             } else if (event.timer.source == animation_timer) {
-                cout << "animation_timer_event\n"; //not working currently, only if in normal timer
-                sheetTest.advanceFrame(); 
+                if(sheetTest.isActive()) {
+                    sheetTest.advanceFrame();
+                }
             }
 
             break;
@@ -117,6 +120,7 @@ int main(){
                         if (jumpCD.isCooldownUp()) {
                             guy.jump();
                             jumpCD.restartCooldown();
+                            sheetTest.resetAnimation();
                         }
                         //cout << "Jump\n";
                         break;
@@ -144,9 +148,9 @@ int main(){
             al_draw_scaled_rotated_bitmap(
             sheetTest.getCurrentFrame(),
             al_get_bitmap_width(sheetTest.getCurrentFrame())/2,
-            al_get_bitmap_height(sheetTest.getCurrentFrame()),
-            500,400,
-            4,4,
+            al_get_bitmap_height(sheetTest.getCurrentFrame())/2,
+            guy.getPosX(),guy.getPosY(),
+            2.5,2.5, 
             0,0);
 
             al_flip_display(); //updates the display with the new frame 
@@ -157,6 +161,7 @@ int main(){
     al_destroy_display(display);
     al_destroy_event_queue(eventQueue);
     al_destroy_timer(timer);
+    al_destroy_timer(animation_timer);
     
 
 

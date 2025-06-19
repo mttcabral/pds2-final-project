@@ -58,6 +58,14 @@ bool initialize_display_and_timer(ALLEGRO_DISPLAY *&display,int w, int h, ALLEGR
     }
     
 }
+// Initialize just the display
+bool initialize_display(ALLEGRO_DISPLAY *&display,int w, int h) {
+    display = al_create_display(w, h);
+    if (!display) {
+        cout << "ERROR:" << "failed to create display" << endl;
+        return false;
+    } else return true;
+}
 
 //initialize just the timer
 bool initialize_timer(ALLEGRO_TIMER *&t, float fps) {
