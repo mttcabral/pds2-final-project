@@ -28,6 +28,12 @@ bool initialize_allegro() {
         cout << "ERROR:" << "failed to initialize allegro image" << endl;
         return false;
     }
+
+    //install mouse support
+    if (!al_install_mouse()) {
+        return false;
+    }
+    
     return true;
 }
 // Create an event queue to handle events
