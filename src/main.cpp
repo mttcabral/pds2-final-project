@@ -66,24 +66,26 @@ int main(){
     //Pipe obstacle(Point(200,600),128,128);
     obstacle.loadSprite("assets/long.png");
 
-    // loading images
+    // loading images and font
     ALLEGRO_BITMAP* menu_background = al_load_bitmap("assets/menu_background.png");
     ALLEGRO_BITMAP* play_button = al_load_bitmap("assets/menu_play_button.png");
     ALLEGRO_BITMAP* quit_button = al_load_bitmap("assets/menu_quit_button.png");
+    ALLEGRO_FONT* menu_font = al_load_ttf_font("assets/PressStart2P-Regular.ttf", 72, 0);
 
     if (!menu_background) std::cerr << "Erro: imagem menu_background não foi carregada!\n";
     if (!play_button)     std::cerr << "Erro: imagem play_button não foi carregada!\n";
     if (!quit_button)     std::cerr << "Erro: imagem quit_button não foi carregada!\n";
+    if(!menu_font) std::cerr << "Erro: fonte menu_font não foi carregada \n";
 
 
     // seeing if everything is alright
-    if(!menu_background || !play_button || !quit_button){
+    if(!menu_background || !play_button || !quit_button || !menu_font){
         return 1;
     }
  
     //coordinates of play and quit
-    int xplay = 400, yplay = 350;
-    int xquit = 400, yquit = 450;
+    int xplay = 350, yplay = 350;
+    int xquit = 350, yquit = 650;
 
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
     
@@ -127,6 +129,8 @@ int main(){
         if(redraw && al_is_event_queue_empty(eventQueue)){
             al_clear_to_color(al_map_rgb(0,0,0)); 
             al_draw_bitmap(menu_background, 0, 0, 0);
+            al_draw_text(menu_font, al_map_rgb(0,0,0), (SCREEN_W/2) + 5, 260, ALLEGRO_ALIGN_CENTER, "PeiTche!");
+            al_draw_text(menu_font, al_map_rgb(255,255,255), (SCREEN_W/2) + 5, 250, ALLEGRO_ALIGN_CENTER, "PeiTche!");
             al_draw_bitmap(play_button, xplay, yplay, 0);
             al_draw_bitmap(quit_button, xquit, yquit, 0);
             al_flip_display();
@@ -197,7 +201,7 @@ int main(){
             redraw = false;
         }
     }
-
+    al_destroy_font(menu_font);
     al_destroy_bitmap(menu_background);
     al_destroy_bitmap(play_button);
     al_destroy_bitmap(quit_button);

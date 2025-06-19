@@ -3,6 +3,8 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
 
 using namespace std;
 
@@ -33,7 +35,14 @@ bool initialize_allegro() {
     if (!al_install_mouse()) {
         return false;
     }
+    if(!al_init_font_addon()) {
+        return false;
+    }  
+    if(!al_init_ttf_addon()) {
+        return false;
+    }
     
+
     return true;
 }
 // Create an event queue to handle events
