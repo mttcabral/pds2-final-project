@@ -5,6 +5,7 @@
 #include "game_object_handler.hpp"
 #include "cooldown.hpp"
 #include "animation.hpp"
+#include "passive.hpp"
 #include <iostream>
 #include <string>
 
@@ -74,6 +75,17 @@ int main(){
     
     //testing sub bitmaps
     TriggerSpritesheet sheetTest("assets/kirby.png",8,26);
+    
+    //testing background
+    //the timing is not perfet at all, fix this later
+    Background background3("assets/bg/bg3.png",Point(1700,400),1200,800,-2);
+    Background background33("assets/bg/bg3.png",Point(500,400),1200,800,-2);
+    
+    Background background2("assets/bg/bg2.png",Point(1700,400),1200,800,-5);
+    Background background22("assets/bg/bg2.png",Point(500,400),1200,800,-5);
+    
+    Background background1("assets/bg/bg1.png",Point(1700,400),1200,800,-10);
+    Background background11("assets/bg/bg1.png",Point(500,400),1200,800,-10);
 
 
     //testing cooldown
@@ -93,7 +105,14 @@ int main(){
                 obstacle.updateSpeed();
                 obstacle.updatePosition();
                 
-                 obstacle.getHitbox()->rotateHitbox(PI/180);
+                background3.updatePosition();
+                background33.updatePosition();
+                background2.updatePosition();
+                background22.updatePosition();
+                background1.updatePosition();
+                background11.updatePosition();
+
+                obstacle.getHitbox()->rotateHitbox(PI/180);
 
                 if (isColidingSAT(guy.getHitbox()->getPolygon(),
                                 obstacle.getHitbox()->getPolygon())){
@@ -135,6 +154,14 @@ int main(){
         if (redraw && al_is_event_queue_empty(eventQueue)) {
             //refresh display
             al_clear_to_color(baseBackgroundColor);
+
+            //bg
+            background3.draw();
+            background33.draw();
+            background2.draw();
+            background22.draw();
+            background1.draw();
+            background11.draw();
 
             //objects
             guy.draw();
