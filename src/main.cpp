@@ -39,10 +39,11 @@ int main(){
     if(!initialize_event_queue(eventQueue)) return 1;
 
     if(!initialize_display_and_timer(display,SCREEN_W,SCREEN_H,timer,FPS)) return 1;
+    if(!al_is_mouse_installed()) return 1;
 
     // Register event sources for the event queue
-    al_register_event_source(eventQueue, al_get_mouse_event_source());
     al_register_event_source(eventQueue, al_get_display_event_source(display));
+    al_register_event_source(eventQueue, al_get_mouse_event_source());
     al_register_event_source(eventQueue, al_get_timer_event_source(timer));
     al_register_event_source(eventQueue, al_get_keyboard_event_source());
 
@@ -66,9 +67,14 @@ int main(){
     obstacle.loadSprite("assets/long.png");
 
     // loading images
-    ALLEGRO_BITMAP* menu_background = al_load_bitmap("menu_background.png");
-    ALLEGRO_BITMAP* play_button = al_load_bitmap("menu_play_button.png");
-    ALLEGRO_BITMAP* quit_button = al_load_bitmap("menu_quit_button.png");
+    ALLEGRO_BITMAP* menu_background = al_load_bitmap("assets/menu_background.png");
+    ALLEGRO_BITMAP* play_button = al_load_bitmap("assets/menu_play_button.png");
+    ALLEGRO_BITMAP* quit_button = al_load_bitmap("assets/menu_quit_button.png");
+
+    if (!menu_background) std::cerr << "Erro: imagem menu_background não foi carregada!\n";
+    if (!play_button)     std::cerr << "Erro: imagem play_button não foi carregada!\n";
+    if (!quit_button)     std::cerr << "Erro: imagem quit_button não foi carregada!\n";
+
 
     // seeing if everything is alright
     if(!menu_background || !play_button || !quit_button){
@@ -89,12 +95,14 @@ int main(){
     
     while(state == MENU){
         ALLEGRO_EVENT event;
-        al_draw_bitmap(menu_background, 0, 0, 0);
-        al_draw_bitmap(play_button, xplay, yplay, 0);
-        al_draw_bitmap(quit_button, xquit, yquit, 0);
-        al_flip_display();
 
-        al_wait_for_event(eventQueue, &event);
+        al_wait_for_event(eventQueue, &event); // switch depois
+
+
+
+        if(event.type == ALLEGRO_EVENT_TIMER){
+            redraw = true;
+        }
 
         if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
             int mousex = event.mouse.x;
@@ -115,6 +123,15 @@ int main(){
         }
         if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
             state = QUIT;
+        }
+        if(redraw && al_is_event_queue_empty(eventQueue)){
+            al_clear_to_color(al_map_rgb(0,0,0)); 
+            al_draw_bitmap(menu_background, 0, 0, 0);
+            al_draw_bitmap(play_button, xplay, yplay, 0);
+            al_draw_bitmap(quit_button, xquit, yquit, 0);
+            al_flip_display();
+
+            redraw = false;
         }
     }
 
