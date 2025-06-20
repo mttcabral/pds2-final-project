@@ -92,7 +92,7 @@ void Pipe::updateSpeed() {
 bool Pipe::loadSprite(const char* dir){
         pipeSprite = al_load_bitmap(dir);
     if (!pipeSprite) {
-        std::cout << "SPRITE LOADING FAILED FOR PLAYER\n";
+        std::cout << "SPRITE LOADING FAILED FOR PIPE\n";
         return false;
     }else return true;
 }

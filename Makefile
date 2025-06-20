@@ -23,7 +23,7 @@ all: $(BIN_DIR)/main
 
 $(BIN_DIR)/main: $(OBJECTS) | $(BIN_DIR) $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(OBJECTS) -o $@ $(LDFLAGS)
-	cp -r assets bin/
+#	cp -r assets bin/
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
