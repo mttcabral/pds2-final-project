@@ -5,7 +5,7 @@
 #include "game_object_handler.hpp"
 #include "cooldown.hpp"
 #include "animation.hpp"
-#include "passive.hpp"
+#include "passive.hpp" 
 #include "sound.hpp"
 #include <iostream>
 #include <string>
@@ -44,7 +44,7 @@ int main(){
     if(!initialize_display_and_timer(display,SCREEN_W,SCREEN_H,timer,FPS)) return 1;
     
     if(!al_is_mouse_installed()) return 1;
-    if(!initialize_display(display,SCREEN_W,SCREEN_H)) return 1;
+    //if(!initialize_display(display,SCREEN_W,SCREEN_H)) return 1;
 
     if(!initialize_timer(timer,FPS)) return 1;
     if(!initialize_timer(animation_timer,ANIM_FPS)) return 1;
@@ -116,8 +116,8 @@ int main(){
     
  
     //coordinates of play and quit
-    int xplay = 350, yplay = 350;
-    int xquit = 350, yquit = 650;
+    int xplay = 250, yplay = 250;
+    int xquit = 250, yquit = 450;
 
 
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
@@ -181,8 +181,8 @@ int main(){
         if(redraw && al_is_event_queue_empty(eventQueue)){
             al_clear_to_color(al_map_rgb(0,0,0)); 
             al_draw_bitmap(menu_background, 0, 0, 0);
-            al_draw_text(menu_font, al_map_rgb(0,0,0), (SCREEN_W/2) + 5, 260, ALLEGRO_ALIGN_CENTER, "PeiTche!");
-            al_draw_text(menu_font, al_map_rgb(255,255,255), (SCREEN_W/2) + 5, 250, ALLEGRO_ALIGN_CENTER, "PeiTche!");
+            al_draw_text(menu_font, al_map_rgb(0,0,0), (SCREEN_W/2) + 5, 360, ALLEGRO_ALIGN_CENTER, "PeiTche!");
+            al_draw_text(menu_font, al_map_rgb(255,255,255), (SCREEN_W/2) + 5, 350, ALLEGRO_ALIGN_CENTER, "PeiTche!");
 
             //implementation of the hover effect
             if(Hplay) {
