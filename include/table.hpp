@@ -25,4 +25,13 @@ struct Point {
     void display();
 };
 
+struct Color{
+    float r, g, b;
+
+    Color();
+    Color(float, float, float);
+
+    void display();
+};
+
 #endif
