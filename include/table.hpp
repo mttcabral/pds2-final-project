@@ -51,10 +51,10 @@ struct Cell {
     Rectangle rectangle;
     string text;
 
-    Ceil();
-    Ceil(Rectangle, string);
+    Cell();
+    Cell(Rectangle, string);
 
-    Ceil& operator = (const Ceil&);
+    Cell& operator = (const Cell&);
 
     void display();
 };
@@ -66,6 +66,16 @@ struct Row {
     Row();
     Row(Color, Color);
     ~Row();
+
+    void display();
+};
+
+struct Table {
+    int numberRows;
+    Rectangle plan;
+    vector<Row> row;
+
+    Table(int, Rectangle);
 
     void display();
 };
