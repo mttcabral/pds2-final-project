@@ -9,4 +9,20 @@
 
 using namespace std;
 
+struct Point {
+    float x, y;
+
+    Point();
+    Point(float, float);
+    Point(const Point&);
+
+
+    Point& operator = (const Point&);
+    Point operator - (const Point&) const;
+    Point operator + (const Point&) const;
+    Point operator / (float) const;
+
+    void display();
+};
+
 #endif
