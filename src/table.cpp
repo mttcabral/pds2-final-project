@@ -30,3 +30,10 @@ Point Point::operator / (float f) const {
 void Point::display() {
     cout<<"(" << this->x << "," << this->y << ")" << endl;
 }
+
+Color::Color() : Color(0, 0, 0) {};
+Color::Color(float r, float g, float b) : r(r), g(g), b(b) {};
+
+void Color::display(){
+    cout<< "RGB: (" << this->r << "," << this->g << "," << this->b << ")" << endl;
+}
