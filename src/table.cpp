@@ -88,3 +88,28 @@ void Cell::display(){
     this->rectangle.display();
     cout<<endl;
 }
+
+Row::Row() : textColor(Color()), rowColor(Color()) {
+    column.resize(4);
+    for(int i = 0; i < 4; i++)
+        column[i] = new Cell();
+}
+
+Row::Row(Color textColor, Color rowColor) : textColor(textColor), rowColor(rowColor) {
+    column.resize(4);
+    for(int i = 0; i < 4; i++) {
+        column[i] = new Cell();
+    }
+};
+
+Row::~Row() {
+    for(int i = 0; i < 4; i++)
+        delete column[i];
+    column.clear();
+}
+
+void Row::display(){
+    for (int i = 0; i < 4; i++){
+        this->column[i]->display();
+    }
+}
