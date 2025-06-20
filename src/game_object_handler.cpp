@@ -1,43 +1,106 @@
 #include "game_object_handler.hpp"
+#include "cooldown.hpp"
+#include <memory>
+#include <allegro5/allegro_primitives.h> // se usar cores ou primitivas
 
-/*
-Handler::~Handler() {
-    for (auto obj : this->goodObjects) delete obj;
-    for (auto obj : this->badObjects) delete obj;
-}
-
-void Handler::addGoodObject(Entity* good) {goodObjects.push_front(good);}
-void Handler::addBadObject(Entity* bad) {badObjects.push_front(bad);}
-
-bool Handler::isColidingAABB(RectangleHitbox *&a, RectangleHitbox *&b){
-    //first AABB edges
-    double aLeftEdge = a->getVertex0().x;
-    double aRightEdge = a->getVertex1().x;
-    double aTopEdge = a->getVertex0().y;
-    double aBottomEdge = a->getVertex1().y;
-    //second AABB edges
-    double bLeftEdge = b->getVertex0().x;
-    double bRightEdge = b->getVertex1().x;
-    double bTopEdge = b->getVertex0().y;
-    double bBottomEdge = b->getVertex1().y;
-    //actual colision logic based on edges
-    return (aLeftEdge < bRightEdge) and (aRightEdge > bLeftEdge) and
-            (aTopEdge < bBottomEdge) and (aBottomEdge > bTopEdge);
-}
-
-Entity* Handler::checkBadColisionAABB(RectangleHitbox *&target) {
-
-    for (auto badObj : this->badObjects) {
-        RectangleHitbox *badBox = (RectangleHitbox*) badObj->getHitbox();
-        if (Handler::isColidingAABB(target,badBox)) {
-            return badObj;
+int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_EVENT_QUEUE &eventQueue, ALLEGRO_COLOR &baseBackgroundColor)
+{
+    std::cout << "Jogo iniciado!" << std::endl;
+    guy = unique_ptr<Player>(new Player());
+    guy->loadSprite("assets/guy.png");
+    al_start_timer(&timer);
+    bool redraw = false;
+    playing = true;
+    time = 0;
+    Cooldown jumpCD(0);
+    Cooldown obstacleCD(90);
+    while (playing)
+    {
+        ALLEGRO_EVENT event;
+        al_wait_for_event(&eventQueue, &event);
+        switch (event.type)
+        {
+        case ALLEGRO_EVENT_TIMER:
+            if (!playing) break;
+            time++;
+            guy->updateSpeed();
+            guy->updatePosition();
+            if (obstacleCD.isCooldownUp())
+            {
+                addObstacle();
+                obstacleCD.restartCooldown();
+            }
+            for (auto& obj : obstacles)
+            {
+                obj->updateSpeed();
+                obj->updatePosition();
+            }
+            if(checkCollisions()) break;
+            redraw = true;
+            jumpCD.updateCooldown();
+            obstacleCD.updateCooldown();
+            break;
+        case ALLEGRO_EVENT_KEY_DOWN:
+            switch (event.keyboard.keycode)
+            {
+            case ALLEGRO_KEY_SPACE:
+            case ALLEGRO_KEY_UP:
+                if (jumpCD.isCooldownUp())
+                {
+                    guy->jump();
+                    jumpCD.restartCooldown();
+                }
+                break;
+            }
+            break;
+        case ALLEGRO_EVENT_DISPLAY_CLOSE:
+            playing = false;
+            break;
+        }
+        if (redraw && al_is_event_queue_empty(&eventQueue))
+        {
+            // refresh display
+            al_clear_to_color(baseBackgroundColor);
+            // objects
+            drawAll();
+            // colision
+            al_flip_display(); // updates the display with the new frame
+            redraw = false;
         }
     }
-    return nullptr;
+    return time;
+}
+void Handler::addObstacle()
+{
+    obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 400), 50, 300)));
+    obstacles.back()->loadSprite("assets/long.png");
 }
 
-void Handler::drawAll() {
-    for (auto good : this->goodObjects) good->draw();
-    for (auto bad : this->badObjects) bad->draw();
+bool Handler::checkCollisions()
+{
+    for (auto& obj : obstacles)
+    {
+        if (isColidingSAT(guy->getHitbox()->getPolygon(),
+                        obj->getHitbox()->getPolygon()))
+        {
+            death();
+            return true;
+        }
+    }
+    return false;
 }
-*/
+void Handler::drawAll()
+{
+    if(guy) guy->draw();
+    for (auto& obj : obstacles)
+    {
+        obj->draw();
+    }
+}
+void Handler::death()
+{
+    guy.reset();
+    playing = false;
+    obstacles.clear();
+    cout << "MORREU" << endl;
+}

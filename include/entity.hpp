@@ -17,8 +17,8 @@ class Entity: public Drawable {
     public: 
         Entity(const Point&pos, const Point&spd);
         Entity(const Point&pos);
-
         Hitbox *getHitbox();
+        virtual ~Entity();
 };
 
 const float PLAYER_SIZE = 20;
@@ -64,9 +64,6 @@ class Pipe: public Entity {
 };
 
 //implement entities with PolygonHitbox now
-
-
-
 
 
 
