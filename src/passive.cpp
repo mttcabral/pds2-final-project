@@ -36,24 +36,30 @@ void Background::draw() {
 
 BackgroundHandler::BackgroundHandler(const char*dir, float w, float h,
                                      float speedX, float screenW, float screenH) :
-    bgPair({Background(dir, Point(w/2,screenH - h/2), w, h, speedX),
-            Background(dir, Point(w/2 + w,screenH - h/2), w, h, speedX)}), 
-    screenWidth(screenW), screenHeight(screenH), anchor(Point(w/2, screenH - h/2)) {}
+    screenWidth(screenW), screenHeight(screenH), anchor(Point(w/2, screenH - h/2)) {
+        bgPair.push_back(new Background(dir, anchor, w, h, speedX));
+        bgPair.push_back(new Background(dir, anchor + Point(w,0), w, h, speedX));
+    }
+
+BackgroundHandler::~BackgroundHandler() {
+    for (auto&bg: bgPair) delete bg; 
+}
 
 
 void BackgroundHandler::drawBackground() {
     for (auto &bg : bgPair) {
-        al_draw_rotated_bitmap(bg.image,bg.width/2, bg.height/2,
-                                bg.getPosX(), bg.getPosY(), 0 , 0);
+        al_draw_rotated_bitmap(bg->image,bg->width/2, bg->height/2,
+                                bg->getPosX(), bg->getPosY(), 0 , 0);
     }
 }
 
 void BackgroundHandler::updateBackgroundPosition() {
     for (auto& bg: bgPair) {
-        bg.updatePosition();
+        bg->updatePosition();
     }
-    if (bgPair[0].getPosX() <= -bgPair[0].width/2) {
-        bgPair[0].setPos(anchor);
-        bgPair[1].setPos(anchor + Point(bgPair[1].width,0));
+    if (bgPair[0]->getPosX() <= -bgPair[0]->width/2) {
+        bgPair[0]->setPosX(bgPair[1]->getPosX() + bgPair[1]->width);
+    }else if (bgPair[1]->getPosX() <= -bgPair[1]->width/2) {
+        bgPair[1]->setPosX(bgPair[0]->getPosX() + bgPair[0]->width);
     }
 }

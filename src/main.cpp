@@ -70,7 +70,7 @@ int main(){
     Pipe obstacle(Point(800,300),50,300);
     //Pipe obstacle(Point(200,600),128,128);
     obstacle.loadSprite("assets/long.png");
-    
+
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
     
     //testing sub bitmaps
@@ -78,15 +78,9 @@ int main(){
     
     //testing background
     //the timing is not perfet at all, fix this later
-    Background background3("assets/bg/bg3.png",Point(1700,400),1200,800,-2);
-    Background background33("assets/bg/bg3.png",Point(500,400),1200,800,-2);
-    
-    Background background2("assets/bg/bg2.png",Point(1700,400),1200,800,-4);
-    Background background22("assets/bg/bg2.png",Point(500,400),1200,800,-4);
-    
-    Background background1("assets/bg/bg1.png",Point(1700,400),1200,800,-8);
-    Background background11("assets/bg/bg1.png",Point(500,400),1200,800,-8);
-
+    BackgroundHandler bgLayer3("assets/bg/sea.png",900,600,-1,SCREEN_W, SCREEN_H);
+    BackgroundHandler bgLayer2("assets/bg/clouds.png",900,600,-4,SCREEN_W, SCREEN_H);
+    BackgroundHandler bgLayer1("assets/bg/rocks.png",2700,600,-10,SCREEN_W, SCREEN_H);
 
     //testing cooldown
     Cooldown jumpCD(0);
@@ -106,12 +100,10 @@ int main(){
                 obstacle.updateSpeed();
                 obstacle.updatePosition();
                 
-                background3.updatePosition();
-                background33.updatePosition();
-                background2.updatePosition();
-                background22.updatePosition();
-                background1.updatePosition();
-                background11.updatePosition();
+                bgLayer3.updateBackgroundPosition();
+                bgLayer2.updateBackgroundPosition();
+                bgLayer1.updateBackgroundPosition();
+
 
                 obstacle.getHitbox()->rotateHitbox(PI/180);
 
@@ -155,19 +147,16 @@ int main(){
             al_clear_to_color(baseBackgroundColor);
 
             //bg
-            background3.draw();
-            background33.draw();
-            background2.draw();
-            background22.draw();
-            background1.draw();
-            background11.draw();
+            bgLayer3.drawBackground();
+            bgLayer2.drawBackground();
+            bgLayer1.drawBackground();
 
             //objects
             guy.draw();
             obstacle.draw();
 
             //colision
-            al_draw_filled_circle(800,400,30,colisionIndicatorColor); 
+            //al_draw_filled_circle(800,400,30,colisionIndicatorColor); 
             
 
             /*

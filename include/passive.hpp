@@ -12,7 +12,7 @@ class Background : public Drawable {
     public:
         Background(const char* dir,const Point& pos,float w, float h,float speedX);
 
-        ~Background();
+        virtual ~Background();
 
         void updateSpeed() override;
         bool updatePosition() override;
@@ -24,12 +24,14 @@ class Background : public Drawable {
 
 class BackgroundHandler {
     private:
-        std::vector<Background> bgPair;
+        std::vector<Background*> bgPair;
         float screenWidth,screenHeight;
         Point anchor;
     public:
         BackgroundHandler(const char*dir,float w, float h, 
                             float speedX, float screenW, float screenH);
+
+        ~BackgroundHandler();
 
         void drawBackground();
         void updateBackgroundPosition();
