@@ -74,9 +74,9 @@ int main(){
     ALLEGRO_FONT* menu_font = al_load_ttf_font("assets/PressStart2P-Regular.ttf", 72, 0);
 
     // loading music
-    ALLEGRO_SAMPLE* menu_music = al_load_sample("assets/HudsonMohawke_Cbat.ogg");
+    ALLEGRO_SAMPLE* menu_music = al_load_sample("assets/HudsonMohawke_Cbat.wav");
     if(!menu_music) std::cerr << "Erro: música menu_music não foi carregada\n";
-    ALLEGRO_SAMPLE* playing_music = al_load_sample("assets/Escape_Persona5.ogg");
+    ALLEGRO_SAMPLE* playing_music = al_load_sample("assets/Escape_Persona5.wav");
     if(!playing_music) std::cerr << "Erro: música playing_music não foi carregada\n";
 
     //treating music
