@@ -3,11 +3,12 @@
 
 #include "game_object.hpp"
 #include "hitbox.hpp"
+#include "animation.hpp"
 #include <string>
 
 const float BASE_GRAVITY = 10;
 const float BASE_X_MOVEMENT = 20;
-const float X_AXIS = 200;
+const float X_AXIS = 160;
 
 //Interactable game object
 //Has a hitbox atribute always so its interactable
@@ -23,11 +24,15 @@ class Entity: public Drawable {
 
 const float PLAYER_SIZE = 20;
 
+enum class PlayerState {NONE, DEAD, IDLE, JUMPING};
+
 //Basic player class proof of concept
 //good if other more well baked versions are created that don't rely on this one
 class Player: public Entity {
     private: 
-        ALLEGRO_BITMAP * playerSprite = nullptr;
+        Spritesheet idleSprite;
+        TriggerSpritesheet jumpSprite;
+        PlayerState state = PlayerState::NONE;
     public: 
         Player();
 
@@ -38,7 +43,10 @@ class Player: public Entity {
 
         void draw() override;
 
-        bool loadSprite(const char* dir);
+        //bool loadSprite(const char* dir);
+        void updatePlayerState();
+        void updateAnimation();
+        void setPlayerState(PlayerState s);
 
         ~Player();
 

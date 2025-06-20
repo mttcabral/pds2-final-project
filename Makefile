@@ -16,14 +16,14 @@ LDFLAGS = $(shell pkg-config --libs $(PKG_CONFIG_LIBS))
 
 
 # Sources
-SOURCES = main polygon game_object hitbox entity game_object_handler cooldown
+SOURCES = main polygon game_object hitbox entity game_object_handler cooldown animation passive
 OBJECTS = $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SOURCES)))
 
 all: $(BIN_DIR)/main
 
 $(BIN_DIR)/main: $(OBJECTS) | $(BIN_DIR) $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(OBJECTS) -o $@ $(LDFLAGS)
-	cp -r assets bin/
+#	cp -r assets bin/
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -33,6 +33,9 @@ $(OBJ_DIR):
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)
+
+run:
+	./bin/main
 
 clean:
 	rm -rf $(OBJ_DIR)/*.o $(BIN_DIR)/main
