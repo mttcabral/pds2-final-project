@@ -4,6 +4,7 @@
 #include "initializer_allegro.hpp"
 #include "game_object_handler.hpp"
 #include "cooldown.hpp"
+#include "sound.hpp"
 #include <iostream>
 #include <string>
 
@@ -37,6 +38,7 @@ int main(){
     if(!initialize_event_queue(eventQueue)) return 1;
 
     if(!initialize_display_and_timer(display,SCREEN_W,SCREEN_H,timer,FPS)) return 1;
+    
     if(!al_is_mouse_installed()) return 1;
 
     // Register event sources for the event queue
@@ -83,13 +85,9 @@ int main(){
     ALLEGRO_SAMPLE_INSTANCE* menu_music_inst  = al_create_sample_instance(menu_music);
     ALLEGRO_SAMPLE_INSTANCE* playing_music_inst = al_create_sample_instance(playing_music);
     // menu music
-    al_attach_sample_instance_to_mixer(menu_music_inst, al_get_default_mixer());
-    al_set_sample_instance_playmode(menu_music_inst, ALLEGRO_PLAYMODE_LOOP);
-    al_set_sample_instance_gain(menu_music_inst, 0.1);
+    startmusic(menu_music_inst, 0.1);
     // playing music
-    al_attach_sample_instance_to_mixer(playing_music_inst, al_get_default_mixer());
-    al_set_sample_instance_playmode(playing_music_inst, ALLEGRO_PLAYMODE_LOOP);
-    al_set_sample_instance_gain(playing_music_inst, 0.1);
+    startmusic(playing_music_inst, 0.1);
 
 
 
