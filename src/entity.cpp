@@ -8,7 +8,8 @@ Entity::Entity(const Point&pos):
 
 Hitbox * Entity::getHitbox() {return this->hb;}
 
-Player::Player(): Entity({X_AXIS,400},{0,5}) {
+Player::Player(): Entity({X_AXIS,400},{0,5}),
+idleSprite("assets/idle.png",8,24,5), jumpSprite("assets/kirby.png",8,26,0) {
     this->hb = new PolygonHitbox({X_AXIS,400},8,PLAYER_SIZE);
     this->hb->setTarget(this);
 }
@@ -42,8 +43,11 @@ void Player::updateSpeed() {
 
 void Player::jump() {
     this->setSpeedY(-35);
+    this->state = PlayerState::JUMPING;
+    this->jumpSprite.resetAnimation();
 }
 
+/*
 bool Player::loadSprite(const char* dir) {
     playerSprite = al_load_bitmap(dir);
     if (!playerSprite) {
@@ -51,20 +55,71 @@ bool Player::loadSprite(const char* dir) {
         return false;
     }else return true;
 }
+*/
 
 void Player::draw() {
-    if (!playerSprite) {
-        std::cout << "NO SPRITE LOADED FOR PLAYER\n";
-        return;
+    Spritesheet * current = &this->idleSprite;
+    switch (this->state) {
+        case PlayerState::NONE:
+            break;
+        case PlayerState::DEAD:
+            break;
+        case PlayerState::IDLE:
+            break;
+        case PlayerState::JUMPING:
+            current = &this->jumpSprite;
+            break;
     }
-    al_draw_rotated_bitmap(playerSprite,
-                            al_get_bitmap_width(playerSprite)/2,al_get_bitmap_width(playerSprite)/2,
-                            this->getPosX(), this->getPosY(),0,0);
+    al_draw_scaled_rotated_bitmap(
+            current->getCurrentFrame(),
+            al_get_bitmap_width(current->getCurrentFrame())/2,
+            al_get_bitmap_height(current->getCurrentFrame())/2,
+            this->getPosX(),this->getPosY(),
+            2.5,2.5, 
+            0,0);
 }
 
+void Player::updateAnimation() {
+    switch (this->state) {
+        case PlayerState::IDLE:
+            this->idleSprite.advanceFrame();
+            break;
+        case PlayerState::JUMPING:
+            if (this->jumpSprite.isActive()) this->jumpSprite.advanceFrame();
+            else this->idleSprite.resetAnimation(); //maybe not necessary
+            break;
+        case PlayerState::NONE:
+            break;
+        case PlayerState::DEAD:
+            break;
+        //other states....
+    }
+}
+
+void Player::updatePlayerState() {
+    switch (this->state) {
+        case PlayerState::NONE:
+            this->state = PlayerState::IDLE;
+        case PlayerState::IDLE:
+            break;
+        case PlayerState::JUMPING:
+            if (!this->jumpSprite.isActive()) {
+                this->state = PlayerState::IDLE;
+                this->idleSprite.resetAnimation();
+            }
+            break;
+        case PlayerState::DEAD:
+            break;
+        //other states.........
+    }
+}
+//SUBJECT TO CHANGE: maybe implement player states based on cooldowns of actions
+//CURRENTLY: it is based on animation frames of TriggerSpritesheet being active or not
+
+void Player::setPlayerState(PlayerState s) {this->state = s;}
+
 Player::~Player() {
-    if (playerSprite) al_destroy_bitmap(playerSprite);
-    playerSprite = nullptr;
+    //spritesheets already handles destruction correctly
 }
 
 Pipe::Pipe(const Point&pos,float w, float h): Entity(pos,Point(PIPE_X_SPEED,0)) { //(-2,0)

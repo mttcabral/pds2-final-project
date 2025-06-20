@@ -65,7 +65,7 @@ int main(){
     // Basic player object for testing
     //BasicPlayer squareguy;
     Player guy;
-    guy.loadSprite("assets/guy.png");
+    //guy.loadSprite("assets/guy.png");
     // Basic obstacle object for testing
     Pipe obstacle(Point(1000,400),50,300);
     //Pipe obstacle(Point(200,600),128,128);
@@ -74,18 +74,18 @@ int main(){
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
     
     //testing sub bitmaps
-    TriggerSpritesheet sheetTest("assets/kirby.png",8,26,0);
+    //TriggerSpritesheet sheetTest("assets/kirby.png",8,26,0);
     
     //testing background
     //the timing is not perfet at all, fix this later
     Background background3("assets/bg/bg3.png",Point(1700,400),1200,800,-2);
     Background background33("assets/bg/bg3.png",Point(500,400),1200,800,-2);
     
-    Background background2("assets/bg/bg2.png",Point(1700,400),1200,800,-5);
-    Background background22("assets/bg/bg2.png",Point(500,400),1200,800,-5);
+    Background background2("assets/bg/bg2.png",Point(1700,400),1200,800,-4);
+    Background background22("assets/bg/bg2.png",Point(500,400),1200,800,-4);
     
-    Background background1("assets/bg/bg1.png",Point(1700,400),1200,800,-10);
-    Background background11("assets/bg/bg1.png",Point(500,400),1200,800,-10);
+    Background background1("assets/bg/bg1.png",Point(1700,400),1200,800,-8);
+    Background background11("assets/bg/bg1.png",Point(500,400),1200,800,-8);
 
 
     //testing cooldown
@@ -102,6 +102,7 @@ int main(){
             if (event.timer.source == timer) {
                 guy.updateSpeed();
                 guy.updatePosition(); 
+                guy.updatePlayerState();
                 obstacle.updateSpeed();
                 obstacle.updatePosition();
                 
@@ -127,9 +128,7 @@ int main(){
                 //cout << jumpCD.getCurrentPorcentage() << '\n';
                 
             } else if (event.timer.source == animation_timer) {
-                if(sheetTest.isActive()) {
-                    sheetTest.advanceFrame();
-                }
+                guy.updateAnimation();
             }
 
             break;
@@ -139,7 +138,7 @@ int main(){
                         if (jumpCD.isCooldownUp()) {
                             guy.jump();
                             jumpCD.restartCooldown();
-                            sheetTest.resetAnimation();
+                            //sheetTest.resetAnimation();
                         }
                         //cout << "Jump\n";
                         break;
@@ -171,7 +170,7 @@ int main(){
             al_draw_filled_circle(800,400,30,colisionIndicatorColor); 
             
 
-
+            /*
             al_draw_scaled_rotated_bitmap(
             sheetTest.getCurrentFrame(),
             al_get_bitmap_width(sheetTest.getCurrentFrame())/2,
@@ -179,6 +178,7 @@ int main(){
             guy.getPosX(),guy.getPosY(),
             2.5,2.5, 
             0,0);
+            */
 
             al_flip_display(); //updates the display with the new frame 
 
