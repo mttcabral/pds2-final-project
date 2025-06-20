@@ -47,4 +47,17 @@ struct Rectangle {
     void display();
 };
 
+struct Ceil {
+    Rectangle rectangle;
+    string text;
+
+    Ceil();
+    Ceil(Rectangle, string);
+
+    Ceil& operator = (const Ceil&);
+
+    void display();
+};
+
+
 #endif
