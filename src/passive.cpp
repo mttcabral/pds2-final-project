@@ -15,10 +15,13 @@ void Background::updateSpeed() {return;}
 
 //the timing is not perfect at all, fix later
 bool Background::updatePosition() {
+    this->setPosX(this->getPosX() + this->getSpeedX());
+    /*
     if (this->getPosX() <= -this->width/2) this->setPosX(1100 + this->width/2); //placeholder?
     else {
         this->setPosX(this->getPosX() + this->getSpeedX());
     }
+    */
     return true;
 }
 
@@ -26,5 +29,31 @@ void Background::draw() {
     if (image) {
         al_draw_rotated_bitmap(image,width/2,height/2,
         this->getPosX(),this->getPosY(), 0, 0);
+    }
+}
+
+//Point a = (0 + w/2, screenH - h/2)
+
+BackgroundHandler::BackgroundHandler(const char*dir, float w, float h,
+                                     float speedX, float screenW, float screenH) :
+    bgPair({Background(dir, Point(w/2,screenH - h/2), w, h, speedX),
+            Background(dir, Point(w/2 + w,screenH - h/2), w, h, speedX)}), 
+    screenWidth(screenW), screenHeight(screenH), anchor(Point(w/2, screenH - h/2)) {}
+
+
+void BackgroundHandler::drawBackground() {
+    for (auto &bg : bgPair) {
+        al_draw_rotated_bitmap(bg.image,bg.width/2, bg.height/2,
+                                bg.getPosX(), bg.getPosY(), 0 , 0);
+    }
+}
+
+void BackgroundHandler::updateBackgroundPosition() {
+    for (auto& bg: bgPair) {
+        bg.updatePosition();
+    }
+    if (bgPair[0].getPosX() <= -bgPair[0].width/2) {
+        bgPair[0].setPos(anchor);
+        bgPair[1].setPos(anchor + Point(bgPair[1].width,0));
     }
 }

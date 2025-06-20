@@ -34,5 +34,8 @@ $(OBJ_DIR):
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)
 
+run:
+	./bin/main
+
 clean:
 	rm -rf $(OBJ_DIR)/*.o $(BIN_DIR)/main

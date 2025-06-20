@@ -2,6 +2,7 @@
 #define PASSIVE_H
 
 #include "game_object.hpp"
+#include <vector>
 
 
 class Background : public Drawable {
@@ -18,8 +19,20 @@ class Background : public Drawable {
 
         void draw() override;
 
+        friend class BackgroundHandler;
+};
 
+class BackgroundHandler {
+    private:
+        std::vector<Background> bgPair;
+        float screenWidth,screenHeight;
+        Point anchor;
+    public:
+        BackgroundHandler(const char*dir,float w, float h, 
+                            float speedX, float screenW, float screenH);
 
+        void drawBackground();
+        void updateBackgroundPosition();
 };
 
 

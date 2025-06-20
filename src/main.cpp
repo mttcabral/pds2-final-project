@@ -17,8 +17,8 @@ using namespace std;
 // Game constants:
 // const float FPS = 30;                                      // Frames per second (in cooldown.hpp)
 // const float ANIM_FPS = 12;                                 // Frames per second for animation
-const int SCREEN_W = 1000;                                    // Screen width in pixels
-const int SCREEN_H = 800;                                     // Screen height in pixels
+const int SCREEN_W = 800;                                     // Screen width in pixels
+const int SCREEN_H = 600;                                     // Screen height in pixels
 const ALLEGRO_COLOR BACKGROUND_COLOR = al_map_rgb(0, 0, 0);   // Background color (black)
 
 int main(){
@@ -67,10 +67,10 @@ int main(){
     Player guy;
     //guy.loadSprite("assets/guy.png");
     // Basic obstacle object for testing
-    Pipe obstacle(Point(1000,400),50,300);
+    Pipe obstacle(Point(800,300),50,300);
     //Pipe obstacle(Point(200,600),128,128);
     obstacle.loadSprite("assets/long.png");
- 
+    
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
     
     //testing sub bitmaps

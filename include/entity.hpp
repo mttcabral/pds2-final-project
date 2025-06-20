@@ -8,7 +8,7 @@
 
 const float BASE_GRAVITY = 10;
 const float BASE_X_MOVEMENT = 20;
-const float X_AXIS = 200;
+const float X_AXIS = 160;
 
 //Interactable game object
 //Has a hitbox atribute always so its interactable
