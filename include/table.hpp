@@ -9,6 +9,9 @@
 
 using namespace std;
 
+const int NUMCOLUMNS = 4;
+const int NUMROWS = 9;
+
 struct Point {
     float x, y;
 
@@ -21,6 +24,7 @@ struct Point {
     Point operator - (const Point&) const;
     Point operator + (const Point&) const;
     Point operator / (float) const;
+    Point operator * (float);
 
     void display();
 };
@@ -30,6 +34,9 @@ struct Color{
 
     Color();
     Color(float, float, float);
+    Color(const Color&);
+
+    Color& operator = (const Color&);
 
     void display();
 };
@@ -41,6 +48,7 @@ struct Rectangle {
     Rectangle();
     Rectangle(Point, float, float);
     Rectangle(Point, Point);
+    Rectangle(const Rectangle&);
 
     Rectangle& operator = (const Rectangle&);
 
@@ -48,11 +56,13 @@ struct Rectangle {
 };
 
 struct Cell {
-    Rectangle rectangle;
+    Rectangle cellRectangle;
     string text;
 
     Cell();
     Cell(Rectangle, string);
+    Cell(Rectangle);
+    Cell(const Cell&);
 
     Cell& operator = (const Cell&);
 
@@ -60,23 +70,31 @@ struct Cell {
 };
 
 struct Row {
-    vector<Cell*> column;
+    vector<Cell> column;
+    Rectangle rowRectangle;
     Color textColor, rowColor;
 
     Row();
     Row(Color, Color);
-    ~Row();
+    Row(Rectangle);
+    Row(Point, Point);
+    Row(const Row&);
+
+    Row& operator = (const Row&);
 
     void display();
 };
 
 struct Table {
-    int numberRows;
-    Rectangle plan;
+    Rectangle tableRectangle;
     vector<Row> row;
 
-    Table(int, Rectangle);
+    Table(Rectangle);
+    Table(const Table&);
 
+    Table& operator = (const Table&);
+
+    //void updateNumberRows(int);
     void display();
 };
 
