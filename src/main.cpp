@@ -48,7 +48,8 @@ int main(){
     // Start the timer to control game speed
     al_start_timer(timer);
 
-
+    // Start the sample queue
+    al_reserve_samples(100);
     
     //Redraw condition, so that the game is rendered separately from other events in queue
     bool redraw = false;
@@ -72,18 +73,39 @@ int main(){
     ALLEGRO_BITMAP* hover_quit = al_load_bitmap("assets/menu__hover_quit_button.png");
     ALLEGRO_FONT* menu_font = al_load_ttf_font("assets/PressStart2P-Regular.ttf", 72, 0);
 
+    // loading music
+    ALLEGRO_SAMPLE* menu_music = al_load_sample("assets/HudsonMohawke_Cbat.ogg");
+    if(!menu_music) std::cerr << "Erro: música menu_music não foi carregada\n";
+    ALLEGRO_SAMPLE* playing_music = al_load_sample("assets/Escape_Persona5.ogg");
+    if(!playing_music) std::cerr << "Erro: música playing_music não foi carregada\n";
+
+    //treating music
+    ALLEGRO_SAMPLE_INSTANCE* menu_music_inst  = al_create_sample_instance(menu_music);
+    ALLEGRO_SAMPLE_INSTANCE* playing_music_inst = al_create_sample_instance(playing_music);
+    // menu music
+    al_attach_sample_instance_to_mixer(menu_music_inst, al_get_default_mixer());
+    al_set_sample_instance_playmode(menu_music_inst, ALLEGRO_PLAYMODE_LOOP);
+    al_set_sample_instance_gain(menu_music_inst, 0.1);
+    // playing music
+    al_attach_sample_instance_to_mixer(playing_music_inst, al_get_default_mixer());
+    al_set_sample_instance_playmode(playing_music_inst, ALLEGRO_PLAYMODE_LOOP);
+    al_set_sample_instance_gain(playing_music_inst, 0.1);
+
+
+
     if (!menu_background) std::cerr << "Erro: imagem menu_background não foi carregada!\n";
     if (!play_button)     std::cerr << "Erro: imagem play_button não foi carregada!\n";
     if(!hover_play) std::cerr << "Erro: imagem hover_play não foi carregada \n";
     if (!quit_button)     std::cerr << "Erro: imagem quit_button não foi carregada!\n";
     if(!hover_quit) std::cerr << "Erro: imagem hover_quit não foi carregada\n";
     if(!menu_font) std::cerr << "Erro: fonte menu_font não foi carregada \n";
-
+    
 
     // seeing if everything is alright
     if(!menu_background || !play_button || !quit_button || !menu_font){
         return 1;
     }
+    
  
     //coordinates of play and quit
     int xplay = 350, yplay = 350;
@@ -99,7 +121,11 @@ int main(){
 
     bool Hplay = false, Hquit = false; //variables that detect if the hover effect is playing
 
-    int mousex = -1, mousey = -1;   
+    int mousex = -1, mousey = -1;
+
+    if(state == MENU){
+        al_play_sample_instance(menu_music_inst);
+    }   
     
     while(state == MENU){
         ALLEGRO_EVENT event;
@@ -157,6 +183,10 @@ int main(){
 
             redraw = false;
         }
+    }
+    if(state == PLAYING){
+        al_stop_sample_instance(menu_music_inst);
+        al_play_sample_instance(playing_music_inst);
     }
 
     while (state == PLAYING) {
@@ -230,6 +260,10 @@ int main(){
     al_destroy_display(display);
     al_destroy_event_queue(eventQueue);
     al_destroy_timer(timer);
+    al_destroy_sample(menu_music);
+    al_destroy_sample_instance(menu_music_inst);
+    al_destroy_sample(playing_music);
+    al_destroy_sample_instance(playing_music_inst);
     
     //delete[] vertexList;
 

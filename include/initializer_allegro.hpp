@@ -36,15 +36,21 @@ bool initialize_allegro() {
     //install mouse support
     if (!al_install_mouse()) {
         return false;
+    
     }
+
     if(!al_init_font_addon()) {
         return false;
-    }  
+    }
+
     if(!al_init_ttf_addon()) {
         return false;
     }
-    
 
+    if(!al_install_audio()) return false;
+    
+    if(!al_init_acodec_addon()) return false;
+    
     return true;
 }
 // Create an event queue to handle events
