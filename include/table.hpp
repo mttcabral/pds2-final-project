@@ -34,4 +34,17 @@ struct Color{
     void display();
 };
 
+struct Rectangle {
+    Point center, topLeft, bottomRight;
+    float length, height;
+
+    Rectangle();
+    Rectangle(Point, float, float);
+    Rectangle(Point, Point);
+
+    Rectangle& operator = (const Rectangle&);
+
+    void display();
+};
+
 #endif
