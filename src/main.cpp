@@ -13,7 +13,7 @@
 
 using namespace std;
 
-enum GameState {MENU, PLAYING, LEADERBOARD, QUIT}; // Use for in game logic
+enum GameState {MENU, TRANSITION, PLAYING, LEADERBOARD, DEATH, QUIT}; // Use for in game logic
 
 // Game constants:
 // const float FPS = 30;                                      // Frames per second (in cooldown.hpp)
@@ -116,8 +116,8 @@ int main(){
     
  
     //coordinates of play and quit
-    int xplay = 250, yplay = 350;
-    int xquit = 250, yquit = 450;
+    int xplay = 300, yplay = 300;
+    int xquit = 300, yquit = 450;
 
 
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
@@ -136,164 +136,172 @@ int main(){
 
     //Menu condition
     GameState state = MENU;
+    bool gameActive = true;
 
     bool Hplay = false, Hquit = false; //variables that detect if the hover effect is playing
 
     int mousex = -1, mousey = -1;
 
-    if(state == MENU){
-        al_play_sample_instance(menu_music_inst);
-    }   
-    
-    while(state == MENU){
-        ALLEGRO_EVENT event;
-
-        al_wait_for_event(eventQueue, &event);
-
-        if(event.type == ALLEGRO_EVENT_TIMER){
-            redraw = true;
-        }
-
-        if(event.type == ALLEGRO_EVENT_MOUSE_AXES || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
-            mousex = event.mouse.x;
-            mousey = event.mouse.y;
-
-            int play_w = al_get_bitmap_width(play_button);
-            int play_h = al_get_bitmap_height(play_button);
-
-            int quit_w = al_get_bitmap_width(quit_button);
-            int quit_h = al_get_bitmap_height(quit_button);
-
-            Hplay = (mousex>=xplay && mousex <= xplay + play_w && mousey>=yplay && mousey<= yplay + play_h);
-            
-            Hquit = (mousex>=xquit && mousex <= xquit + quit_w && mousey>=yquit && mousey<= yquit + quit_h);
-        }
-
-        if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
-            if(Hplay) state = PLAYING;
-            if(Hquit) state = QUIT;
-        }
-
-        if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
-            state = QUIT;
-        }
-
-        if(redraw && al_is_event_queue_empty(eventQueue)){
-            al_clear_to_color(al_map_rgb(0,0,0)); 
-            al_draw_bitmap(menu_background, 0, 0, 0);
-            al_draw_text(menu_font, al_map_rgb(0,0,0), (SCREEN_W/2) + 5, 260, ALLEGRO_ALIGN_CENTER, "PeiTche!");
-            al_draw_text(menu_font, al_map_rgb(255,255,255), (SCREEN_W/2) + 5, 250, ALLEGRO_ALIGN_CENTER, "PeiTche!");
-
-            //implementation of the hover effect
-            if(Hplay) {
-                al_draw_bitmap(hover_play, xplay, yplay, 0);
-            } else {
-                al_draw_bitmap(play_button, xplay, yplay, 0);
-            }
-
-            if(Hquit) {
-                al_draw_bitmap(hover_quit, xquit, yquit, 0);
-            } else {
-                al_draw_bitmap(quit_button, xquit, yquit, 0);
-            }
-            
-            al_flip_display();
-
-            redraw = false;
-        }
-    }
-    if(state == PLAYING){
-        al_stop_sample_instance(menu_music_inst);
-        al_play_sample_instance(playing_music_inst);
-    }
-
-    while (state == PLAYING) {
+    while(gameActive){
+        if(state == MENU){
+            al_play_sample_instance(menu_music_inst);
+        }   
         
-        ALLEGRO_EVENT event;
+        while(state == MENU){
+            ALLEGRO_EVENT event;
 
-        al_wait_for_event(eventQueue, &event);
+            al_wait_for_event(eventQueue, &event);
 
-        switch (event.type) {
-            case ALLEGRO_EVENT_TIMER:
-            if (event.timer.source == timer) {
-                guy.updateSpeed();
-                guy.updatePosition(); 
-                guy.updatePlayerState();
-                obstacle.updateSpeed();
-                obstacle.updatePosition();
-                
-                bgLayer3.updateBackgroundPosition();
-                bgLayer2.updateBackgroundPosition();
-                bgLayer1.updateBackgroundPosition();
-
-
-                obstacle.getHitbox()->rotateHitbox(PI/180);
-
-                if (isColidingSAT(guy.getHitbox()->getPolygon(),
-                                obstacle.getHitbox()->getPolygon())){
-                    colisionIndicatorColor = al_map_rgb(140,20,20);
-                }else {
-                    colisionIndicatorColor = al_map_rgb(20,140,20);
-                } //placeholder colision detection and visualization
-                
+            if(event.type == ALLEGRO_EVENT_TIMER){
                 redraw = true;
-                
-                jumpCD.updateCooldown();
-                //cout << jumpCD.getCurrentPorcentage() << '\n';
-                
-            } else if (event.timer.source == animation_timer) {
-                guy.updateAnimation();
             }
 
-            break;
-            case ALLEGRO_EVENT_KEY_DOWN:
-                switch (event.keyboard.keycode){
-                    case ALLEGRO_KEY_SPACE: case ALLEGRO_KEY_UP:
-                        if (jumpCD.isCooldownUp()) {
-                            guy.jump();
-                            jumpCD.restartCooldown();
-                            //sheetTest.resetAnimation();
-                        }
-                        //cout << "Jump\n";
-                        break;
-                    }
-            break;
-            case ALLEGRO_EVENT_DISPLAY_CLOSE:
+            if(event.type == ALLEGRO_EVENT_MOUSE_AXES || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
+                mousex = event.mouse.x;
+                mousey = event.mouse.y;
+
+                int play_w = al_get_bitmap_width(play_button);
+                int play_h = al_get_bitmap_height(play_button);
+
+                int quit_w = al_get_bitmap_width(quit_button);
+                int quit_h = al_get_bitmap_height(quit_button);
+
+                Hplay = (mousex>=xplay && mousex <= xplay + play_w && mousey>=yplay && mousey<= yplay + play_h);
+                
+                Hquit = (mousex>=xquit && mousex <= xquit + quit_w && mousey>=yquit && mousey<= yquit + quit_h);
+            }
+
+            if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
+                if(Hplay) state = PLAYING;
+                if(Hquit) {
+                    state = QUIT;
+                    gameActive = false;
+                    } 
+            }
+
+            if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
                 state = QUIT;
-            break;
+                gameActive = false;
+            }
+
+            if(redraw && al_is_event_queue_empty(eventQueue)){
+                al_clear_to_color(al_map_rgb(0,0,0)); 
+                al_draw_bitmap(menu_background, 0, 0, 0);
+                al_draw_text(menu_font, al_map_rgb(0,0,0), (SCREEN_W/2) + 20, 160, ALLEGRO_ALIGN_CENTER, "PeiTche!");
+                al_draw_text(menu_font, al_map_rgb(255,255,255), (SCREEN_W/2) + 20, 150, ALLEGRO_ALIGN_CENTER, "PeiTche!");
+
+                //implementation of the hover effect
+                if(Hplay) {
+                    al_draw_bitmap(hover_play, xplay, yplay, 0);
+                } else {
+                    al_draw_bitmap(play_button, xplay, yplay, 0);
+                }
+
+                if(Hquit) {
+                    al_draw_bitmap(hover_quit, xquit, yquit, 0);
+                } else {
+                    al_draw_bitmap(quit_button, xquit, yquit, 0);
+                }
+                
+                al_flip_display();
+
+                redraw = false;
+            }
+        }
+        if(state == PLAYING){
+            al_stop_sample_instance(menu_music_inst);
+            al_play_sample_instance(playing_music_inst);
         }
 
-        //redraw frame
-        if (redraw && al_is_event_queue_empty(eventQueue)) {
-            //refresh display
-            al_clear_to_color(baseBackgroundColor);
-
-            //bg
-            bgLayer3.drawBackground();
-            bgLayer2.drawBackground();
-            bgLayer1.drawBackground();
-
-            //objects
-            guy.draw();
-            obstacle.draw();
-
-            //colision
-            //al_draw_filled_circle(800,400,30,colisionIndicatorColor); 
+        while (state == PLAYING) {
             
+            ALLEGRO_EVENT event;
 
-            /*
-            al_draw_scaled_rotated_bitmap(
-            sheetTest.getCurrentFrame(),
-            al_get_bitmap_width(sheetTest.getCurrentFrame())/2,
-            al_get_bitmap_height(sheetTest.getCurrentFrame())/2,
-            guy.getPosX(),guy.getPosY(),
-            2.5,2.5, 
-            0,0);
-            */
+            al_wait_for_event(eventQueue, &event);
 
-            al_flip_display(); //updates the display with the new frame 
+            switch (event.type) {
+                case ALLEGRO_EVENT_TIMER:
+                if (event.timer.source == timer) {
+                    guy.updateSpeed();
+                    guy.updatePosition(); 
+                    guy.updatePlayerState();
+                    obstacle.updateSpeed();
+                    obstacle.updatePosition();
+                    
+                    bgLayer3.updateBackgroundPosition();
+                    bgLayer2.updateBackgroundPosition();
+                    bgLayer1.updateBackgroundPosition();
 
-            redraw = false;
+
+                    obstacle.getHitbox()->rotateHitbox(PI/180);
+
+                    if (isColidingSAT(guy.getHitbox()->getPolygon(),
+                                    obstacle.getHitbox()->getPolygon())){
+                        colisionIndicatorColor = al_map_rgb(140,20,20);
+                    }else {
+                        colisionIndicatorColor = al_map_rgb(20,140,20);
+                    } //placeholder colision detection and visualization
+                    
+                    redraw = true;
+                    
+                    jumpCD.updateCooldown();
+                    //cout << jumpCD.getCurrentPorcentage() << '\n';
+                    
+                } else if (event.timer.source == animation_timer) {
+                    guy.updateAnimation();
+                }
+
+                break;
+                case ALLEGRO_EVENT_KEY_DOWN:
+                    switch (event.keyboard.keycode){
+                        case ALLEGRO_KEY_SPACE: case ALLEGRO_KEY_UP:
+                            if (jumpCD.isCooldownUp()) {
+                                guy.jump();
+                                jumpCD.restartCooldown();
+                                //sheetTest.resetAnimation();
+                            }
+                            //cout << "Jump\n";
+                            break;
+                        }
+                break;
+                case ALLEGRO_EVENT_DISPLAY_CLOSE:
+                    gameActive = false;
+                    state = QUIT;
+                break;
+            }
+
+            //redraw frame
+            if (redraw && al_is_event_queue_empty(eventQueue)) {
+                //refresh display
+                al_clear_to_color(baseBackgroundColor);
+
+                //bg
+                bgLayer3.drawBackground();
+                bgLayer2.drawBackground();
+                bgLayer1.drawBackground();
+
+                //objects
+                guy.draw();
+                obstacle.draw();
+
+                //colision
+                //al_draw_filled_circle(800,400,30,colisionIndicatorColor); 
+                
+
+                /*
+                al_draw_scaled_rotated_bitmap(
+                sheetTest.getCurrentFrame(),
+                al_get_bitmap_width(sheetTest.getCurrentFrame())/2,
+                al_get_bitmap_height(sheetTest.getCurrentFrame())/2,
+                guy.getPosX(),guy.getPosY(),
+                2.5,2.5, 
+                0,0);
+                */
+
+                al_flip_display(); //updates the display with the new frame 
+
+                redraw = false;
+            }
         }
     }
     al_destroy_font(menu_font);
