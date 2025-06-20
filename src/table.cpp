@@ -113,3 +113,39 @@ void Row::display(){
         this->column[i]->display();
     }
 }
+
+Table::Table(int numberRows, Rectangle inPlan) : numberRows(numberRows), plan(inPlan) {
+    row.resize(9);
+
+    Point firstCellTopLeft = inPlan.center + Point(((float) -inPlan.length)/(2.0), ((float) -inPlan.height)/(2.0)); // first Cell top left point
+    float CellLength = ((float)inPlan.length)/(4.0);
+    float CellHeight = ((float)inPlan.height)/((float)(numberRows+1));
+    Point firstCellBottomRight = firstCellTopLeft + Point(CellLength, CellHeight); // first Cell bottom right point
+
+    for (int i = 0; i < numberRows+1; i++){
+        Point CellTopLeft = firstCellTopLeft + Point(0, i*CellHeight);
+        Point CellBottomRight = firstCellBottomRight + Point(0, i*CellHeight);
+        for (int j = 0; j < 4; j++) {
+            if (j == 0) { // the first must fit the corner
+                CellTopLeft = CellTopLeft;
+                CellBottomRight = CellBottomRight;
+                row[i].column[j]->rectangle = Rectangle(CellTopLeft, CellBottomRight);
+            }
+            else {
+                CellTopLeft = CellTopLeft + Point(CellLength, 0);
+                CellBottomRight = CellBottomRight + Point(CellLength, 0);;
+                row[i].column[j]->rectangle = Rectangle(CellTopLeft, CellBottomRight);
+            }
+        }
+    }
+    row[0].column[0]->text = "RANK";
+    row[0].column[1]->text = "NICKNAME";
+    row[0].column[2]->text = "MAX PIPERS";
+    row[0].column[3]->text = "PLAYS";
+}
+
+void Table::display() {
+    for (int i = 0; i < numberRows; i++){
+        row[i].display();
+    }
+}
