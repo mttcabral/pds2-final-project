@@ -70,11 +70,15 @@ int main(){
     ALLEGRO_BITMAP* menu_background = al_load_bitmap("assets/menu_background.png");
     ALLEGRO_BITMAP* play_button = al_load_bitmap("assets/menu_play_button.png");
     ALLEGRO_BITMAP* quit_button = al_load_bitmap("assets/menu_quit_button.png");
+    ALLEGRO_BITMAP* hover_play = al_load_bitmap("assets/menu_hover_play_button.png");
+    ALLEGRO_BITMAP* hover_quit = al_load_bitmap("assets/menu__hover_quit_button.png");
     ALLEGRO_FONT* menu_font = al_load_ttf_font("assets/PressStart2P-Regular.ttf", 72, 0);
 
     if (!menu_background) std::cerr << "Erro: imagem menu_background não foi carregada!\n";
     if (!play_button)     std::cerr << "Erro: imagem play_button não foi carregada!\n";
+    if(!hover_play) std::cerr << "Erro: imagem hover_play não foi carregada \n";
     if (!quit_button)     std::cerr << "Erro: imagem quit_button não foi carregada!\n";
+    if(!hover_quit) std::cerr << "Erro: imagem hover_quit não foi carregada\n";
     if(!menu_font) std::cerr << "Erro: fonte menu_font não foi carregada \n";
 
 
@@ -94,21 +98,23 @@ int main(){
 
     //Menu condition
     GameState state = MENU;
+
+    bool Hplay = false, Hquit = false; //variables that detect if the hover effect is playing
+
+    int mousex = -1, mousey = -1;   
     
     while(state == MENU){
         ALLEGRO_EVENT event;
 
-        al_wait_for_event(eventQueue, &event); // switch depois
-
-
+        al_wait_for_event(eventQueue, &event);
 
         if(event.type == ALLEGRO_EVENT_TIMER){
             redraw = true;
         }
 
-        if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
-            int mousex = event.mouse.x;
-            int mousey = event.mouse.y;
+        if(event.type == ALLEGRO_EVENT_MOUSE_AXES || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
+            mousex = event.mouse.x;
+            mousey = event.mouse.y;
 
             int play_w = al_get_bitmap_width(play_button);
             int play_h = al_get_bitmap_height(play_button);
@@ -116,23 +122,39 @@ int main(){
             int quit_w = al_get_bitmap_width(quit_button);
             int quit_h = al_get_bitmap_height(quit_button);
 
-            if(mousex>=xplay && mousex <= xplay + play_w && mousey>=yplay && mousey<= yplay + play_h){
-                state = PLAYING;
-            }
-            if(mousex>=xquit && mousex <= xquit + quit_w && mousey>=yquit && mousey<= yquit + quit_h){
-                state = QUIT;
-            }
+            Hplay = (mousex>=xplay && mousex <= xplay + play_w && mousey>=yplay && mousey<= yplay + play_h);
+            
+            Hquit = (mousex>=xquit && mousex <= xquit + quit_w && mousey>=yquit && mousey<= yquit + quit_h);
         }
+
+        if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
+            if(Hplay) state = PLAYING;
+            if(Hquit) state = QUIT;
+        }
+
         if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
             state = QUIT;
         }
+
         if(redraw && al_is_event_queue_empty(eventQueue)){
             al_clear_to_color(al_map_rgb(0,0,0)); 
             al_draw_bitmap(menu_background, 0, 0, 0);
             al_draw_text(menu_font, al_map_rgb(0,0,0), (SCREEN_W/2) + 5, 260, ALLEGRO_ALIGN_CENTER, "PeiTche!");
             al_draw_text(menu_font, al_map_rgb(255,255,255), (SCREEN_W/2) + 5, 250, ALLEGRO_ALIGN_CENTER, "PeiTche!");
-            al_draw_bitmap(play_button, xplay, yplay, 0);
-            al_draw_bitmap(quit_button, xquit, yquit, 0);
+
+            //implementation of the hover effect
+            if(Hplay) {
+                al_draw_bitmap(hover_play, xplay, yplay, 0);
+            } else {
+                al_draw_bitmap(play_button, xplay, yplay, 0);
+            }
+
+            if(Hquit) {
+                al_draw_bitmap(hover_quit, xquit, yquit, 0);
+            } else {
+                al_draw_bitmap(quit_button, xquit, yquit, 0);
+            }
+            
             al_flip_display();
 
             redraw = false;
@@ -205,6 +227,8 @@ int main(){
     al_destroy_bitmap(menu_background);
     al_destroy_bitmap(play_button);
     al_destroy_bitmap(quit_button);
+    al_destroy_bitmap(hover_play);
+    al_destroy_bitmap(hover_quit);
     al_destroy_display(display);
     al_destroy_event_queue(eventQueue);
     al_destroy_timer(timer);
