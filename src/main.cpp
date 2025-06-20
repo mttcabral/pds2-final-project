@@ -4,6 +4,8 @@
 #include "initializer_allegro.hpp"
 #include "game_object_handler.hpp"
 #include "cooldown.hpp"
+#include "animation.hpp"
+#include "passive.hpp"
 #include "sound.hpp"
 #include <iostream>
 #include <string>
@@ -15,8 +17,9 @@ enum GameState {MENU, PLAYING, LEADERBOARD, QUIT}; // Use for in game logic
 
 // Game constants:
 // const float FPS = 30;                                      // Frames per second (in cooldown.hpp)
-const int SCREEN_W = 1000;                                    // Screen width in pixels
-const int SCREEN_H = 800;                                     // Screen height in pixels
+// const float ANIM_FPS = 12;                                 // Frames per second for animation
+const int SCREEN_W = 800;                                     // Screen width in pixels
+const int SCREEN_H = 600;                                     // Screen height in pixels
 const ALLEGRO_COLOR BACKGROUND_COLOR = al_map_rgb(0, 0, 0);   // Background color (black)
 
 int main(){
@@ -25,6 +28,7 @@ int main(){
     ALLEGRO_DISPLAY *display = nullptr;
     ALLEGRO_EVENT_QUEUE *eventQueue = nullptr;
     ALLEGRO_TIMER *timer = nullptr;
+    ALLEGRO_TIMER *animation_timer = nullptr;
     
     // Initializations:
 
@@ -40,15 +44,21 @@ int main(){
     if(!initialize_display_and_timer(display,SCREEN_W,SCREEN_H,timer,FPS)) return 1;
     
     if(!al_is_mouse_installed()) return 1;
+    if(!initialize_display(display,SCREEN_W,SCREEN_H)) return 1;
+
+    if(!initialize_timer(timer,FPS)) return 1;
+    if(!initialize_timer(animation_timer,ANIM_FPS)) return 1;
 
     // Register event sources for the event queue
     al_register_event_source(eventQueue, al_get_display_event_source(display));
     al_register_event_source(eventQueue, al_get_mouse_event_source());
     al_register_event_source(eventQueue, al_get_timer_event_source(timer));
+    al_register_event_source(eventQueue, al_get_timer_event_source(animation_timer));
     al_register_event_source(eventQueue, al_get_keyboard_event_source());
 
     // Start the timer to control game speed
     al_start_timer(timer);
+    al_start_timer(animation_timer);
 
     // Start the sample queue
     al_reserve_samples(100);
@@ -61,9 +71,9 @@ int main(){
     // Basic player object for testing
     // BasicPlayer squareguy;
     Player guy;
-    guy.loadSprite("assets/guy.png");
+    //guy.loadSprite("assets/guy.png");
     // Basic obstacle object for testing
-    Pipe obstacle(Point(1000,400),50,300);
+    Pipe obstacle(Point(800,300),50,300);
     //Pipe obstacle(Point(200,600),128,128);
     obstacle.loadSprite("assets/long.png");
 
@@ -109,8 +119,18 @@ int main(){
     int xplay = 350, yplay = 350;
     int xquit = 350, yquit = 650;
 
+
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
     
+    //testing sub bitmaps
+    //TriggerSpritesheet sheetTest("assets/kirby.png",8,26,0);
+    
+    //testing background
+    //the timing is not perfet at all, fix this later
+    BackgroundHandler bgLayer3("assets/bg/sea.png",900,600,-1,SCREEN_W, SCREEN_H);
+    BackgroundHandler bgLayer2("assets/bg/clouds.png",900,600,-4,SCREEN_W, SCREEN_H);
+    BackgroundHandler bgLayer1("assets/bg/rocks.png",2700,600,-10,SCREEN_W, SCREEN_H);
+
     //testing cooldown
     Cooldown jumpCD(0);
 
@@ -195,12 +215,18 @@ int main(){
 
         switch (event.type) {
             case ALLEGRO_EVENT_TIMER:
-
+            if (event.timer.source == timer) {
                 guy.updateSpeed();
                 guy.updatePosition(); 
+                guy.updatePlayerState();
                 obstacle.updateSpeed();
                 obstacle.updatePosition();
                 
+                bgLayer3.updateBackgroundPosition();
+                bgLayer2.updateBackgroundPosition();
+                bgLayer1.updateBackgroundPosition();
+
+
                 obstacle.getHitbox()->rotateHitbox(PI/180);
 
                 if (isColidingSAT(guy.getHitbox()->getPolygon(),
@@ -211,9 +237,13 @@ int main(){
                 } //placeholder colision detection and visualization
                 
                 redraw = true;
-
+                
                 jumpCD.updateCooldown();
                 //cout << jumpCD.getCurrentPorcentage() << '\n';
+                
+            } else if (event.timer.source == animation_timer) {
+                guy.updateAnimation();
+            }
 
             break;
             case ALLEGRO_EVENT_KEY_DOWN:
@@ -222,6 +252,7 @@ int main(){
                         if (jumpCD.isCooldownUp()) {
                             guy.jump();
                             jumpCD.restartCooldown();
+                            //sheetTest.resetAnimation();
                         }
                         //cout << "Jump\n";
                         break;
@@ -237,12 +268,28 @@ int main(){
             //refresh display
             al_clear_to_color(baseBackgroundColor);
 
+            //bg
+            bgLayer3.drawBackground();
+            bgLayer2.drawBackground();
+            bgLayer1.drawBackground();
+
             //objects
             guy.draw();
             obstacle.draw();
 
             //colision
-            al_draw_filled_circle(800,400,30,colisionIndicatorColor); 
+            //al_draw_filled_circle(800,400,30,colisionIndicatorColor); 
+            
+
+            /*
+            al_draw_scaled_rotated_bitmap(
+            sheetTest.getCurrentFrame(),
+            al_get_bitmap_width(sheetTest.getCurrentFrame())/2,
+            al_get_bitmap_height(sheetTest.getCurrentFrame())/2,
+            guy.getPosX(),guy.getPosY(),
+            2.5,2.5, 
+            0,0);
+            */
 
             al_flip_display(); //updates the display with the new frame 
 
@@ -258,12 +305,13 @@ int main(){
     al_destroy_display(display);
     al_destroy_event_queue(eventQueue);
     al_destroy_timer(timer);
+    al_destroy_timer(animation_timer);
     al_destroy_sample(menu_music);
     al_destroy_sample_instance(menu_music_inst);
     al_destroy_sample(playing_music);
     al_destroy_sample_instance(playing_music_inst);
     
-    //delete[] vertexList;
+
 
 
     return 0;
