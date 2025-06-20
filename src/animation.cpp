@@ -1,21 +1,25 @@
 #include "animation.hpp"
 
-Spritesheet::Spritesheet(const char* dir, int count, int frameW, int frameH): frameCount(count), frameWidth(frameW), frameHeight(frameH) {
+Spritesheet::Spritesheet(const char* dir, int count, int frameW, int frameH, int gap): frameCount(count),
+     frameWidth(frameW), frameHeight(frameH), frameGap(gap) {
     this->sheet = al_load_bitmap(dir);
     if (!sheet) throw(std::logic_error("failed to load bitmap"));
 
     for (int i = 0; i < this->frameCount; i++) {
-        this->frames.push_back(al_create_sub_bitmap(this->sheet,i*this->frameWidth,0,this->frameWidth,this->frameHeight));
+        this->frames.push_back(al_create_sub_bitmap(this->sheet,i*(this->frameWidth+this->frameGap),
+        0,this->frameWidth,this->frameHeight));
     }
 }
 
-Spritesheet::Spritesheet(const char* dir, int count, int frameW): frameCount(count), frameWidth(frameW) {
+Spritesheet::Spritesheet(const char* dir, int count, int frameW, int gap): frameCount(count),
+     frameWidth(frameW), frameGap(gap) {
     this->sheet = al_load_bitmap(dir);
     if (!sheet) throw(std::logic_error("failed to load bitmap"));
     this->frameHeight = al_get_bitmap_height(this->sheet);
 
     for (int i = 0; i < this->frameCount; i++) {
-        this->frames.push_back(al_create_sub_bitmap(this->sheet,i*this->frameWidth,0,this->frameWidth,this->frameHeight));
+        this->frames.push_back(al_create_sub_bitmap(this->sheet,i*(this->frameWidth+this->frameGap),
+            0,this->frameWidth,this->frameHeight));
     }
 }
 
@@ -45,10 +49,10 @@ void Spritesheet::advanceFrame() {
     this->currentIndex = (this->currentIndex + 1) % this->frameCount; 
 };
 
-TriggerSpritesheet::TriggerSpritesheet(const char* dir, int count, int frameW, int frameH) :
-    Spritesheet::Spritesheet(dir,count,frameW,frameH) {}
-TriggerSpritesheet::TriggerSpritesheet(const char* dir, int count, int frameW) :
-    Spritesheet::Spritesheet(dir,count,frameW) {}
+TriggerSpritesheet::TriggerSpritesheet(const char* dir, int count, int frameW, int frameH, int gap) :
+    Spritesheet::Spritesheet(dir,count,frameW,frameH, gap) {}
+TriggerSpritesheet::TriggerSpritesheet(const char* dir, int count, int frameW, int gap) :
+    Spritesheet::Spritesheet(dir,count,frameW, gap) {}
 
 
 void TriggerSpritesheet::setCycleCount(int n) {this->cycles = n;} //does not make check for invalid

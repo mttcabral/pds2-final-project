@@ -13,13 +13,13 @@ const float ANIM_FPS = 24;
 class Spritesheet {
     protected:
         ALLEGRO_BITMAP * sheet = nullptr;
-        int frameCount, frameWidth, frameHeight;
+        int frameCount, frameWidth, frameHeight, frameGap;
         int currentIndex = 0;
         vector<ALLEGRO_BITMAP*> frames;
     public:
 
-        Spritesheet(const char* dir, int count, int frameW, int frameH);
-        Spritesheet(const char* dir, int count, int frameW);
+        Spritesheet(const char* dir, int count, int frameW, int frameH, int gap);
+        Spritesheet(const char* dir, int count, int frameW, int gap);
 
         //void loadBitmap(const char* dir);
 
@@ -47,8 +47,8 @@ class TriggerSpritesheet : public Spritesheet {
         int cycles = 1;
         int currentCycle = 0;
     public:
-        TriggerSpritesheet(const char* dir, int count, int frameW, int frameH);
-        TriggerSpritesheet(const char* dir, int count, int frameW);
+        TriggerSpritesheet(const char* dir, int count, int frameW, int frameH, int gap);
+        TriggerSpritesheet(const char* dir, int count, int frameW, int gap);
 
         void setCycleCount(int n);
         int getCycleCount() const;

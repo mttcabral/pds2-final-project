@@ -74,7 +74,7 @@ int main(){
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
     
     //testing sub bitmaps
-    TriggerSpritesheet sheetTest("assets/kirby.png",8,26);
+    TriggerSpritesheet sheetTest("assets/kirby.png",8,26,0);
     
     //testing background
     //the timing is not perfet at all, fix this later
