@@ -116,7 +116,7 @@ int main(){
     
  
     //coordinates of play and quit
-    int xplay = 250, yplay = 250;
+    int xplay = 250, yplay = 350;
     int xquit = 250, yquit = 450;
 
 
@@ -181,8 +181,8 @@ int main(){
         if(redraw && al_is_event_queue_empty(eventQueue)){
             al_clear_to_color(al_map_rgb(0,0,0)); 
             al_draw_bitmap(menu_background, 0, 0, 0);
-            al_draw_text(menu_font, al_map_rgb(0,0,0), (SCREEN_W/2) + 5, 360, ALLEGRO_ALIGN_CENTER, "PeiTche!");
-            al_draw_text(menu_font, al_map_rgb(255,255,255), (SCREEN_W/2) + 5, 350, ALLEGRO_ALIGN_CENTER, "PeiTche!");
+            al_draw_text(menu_font, al_map_rgb(0,0,0), (SCREEN_W/2) + 5, 260, ALLEGRO_ALIGN_CENTER, "PeiTche!");
+            al_draw_text(menu_font, al_map_rgb(255,255,255), (SCREEN_W/2) + 5, 250, ALLEGRO_ALIGN_CENTER, "PeiTche!");
 
             //implementation of the hover effect
             if(Hplay) {
