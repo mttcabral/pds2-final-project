@@ -68,3 +68,23 @@ void Rectangle::display(){
     this->bottomRight.display();
     cout<<endl;
 }
+
+Cell::Cell(Rectangle rectangle, string text) : rectangle(rectangle), text(text) {};
+
+Cell::Cell() {
+    this->rectangle = Rectangle();
+    this->text = "";
+}
+
+Cell& Cell::operator = (const Cell& otherCell) {
+    this->rectangle = otherCell.rectangle;
+    this->text = otherCell.text;
+    return *this;
+}
+
+void Cell::display(){
+    cout << "Text: " << this->text << endl;
+    cout << "Rectangle: "<< endl;
+    this->rectangle.display();
+    cout<<endl;
+}
