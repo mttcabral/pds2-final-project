@@ -47,7 +47,7 @@ struct Rectangle {
     void display();
 };
 
-struct Ceil {
+struct Cell {
     Rectangle rectangle;
     string text;
 
@@ -59,5 +59,15 @@ struct Ceil {
     void display();
 };
 
+struct Row {
+    vector<Cell*> column;
+    Color textColor, rowColor;
+
+    Row();
+    Row(Color, Color);
+    ~Row();
+
+    void display();
+};
 
 #endif
