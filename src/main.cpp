@@ -36,7 +36,6 @@ int main(){
     //tries to solve frame-skipping bug, still not solved !!!
     al_set_new_display_option(ALLEGRO_VSYNC, 1, ALLEGRO_SUGGEST);
 
-
     if(!initialize_allegro()) return 1;
 
     if(!initialize_event_queue(eventQueue)) return 1;
@@ -61,7 +60,7 @@ int main(){
     al_start_timer(animation_timer);
 
     // Start the sample queue
-    al_reserve_samples(100);
+    al_reserve_samples(10);
     
     //Redraw condition, so that the game is rendered separately from other events in queue
     bool redraw = false;
@@ -88,7 +87,7 @@ int main(){
     ALLEGRO_BITMAP* menu_image = al_load_bitmap("assets/title_image.png");
 
     // loading music (.wav please)
-    ALLEGRO_SAMPLE* menu_music = al_load_sample("assets/HudsonMohawke_Cbat.wav");
+    ALLEGRO_SAMPLE* menu_music = al_load_sample("assets/DDDmario.wav");
     if(!menu_music) std::cerr << "Erro: música menu_music não foi carregada\n";
     ALLEGRO_SAMPLE* playing_music = al_load_sample("assets/Escape_Persona5.wav");
     if(!playing_music) std::cerr << "Erro: música playing_music não foi carregada\n";
@@ -98,7 +97,7 @@ int main(){
     ALLEGRO_SAMPLE_INSTANCE* playing_music_inst = al_create_sample_instance(playing_music);
     // menu music
 
-    startmusic(menu_music_inst, 0.1);
+    startmusic(menu_music_inst, 0.5);
     // playing music
     startmusic(playing_music_inst, 0.1);
 
@@ -197,7 +196,7 @@ int main(){
             if(redraw && al_is_event_queue_empty(eventQueue)){
                 al_clear_to_color(al_map_rgb(0,0,0)); 
                 al_draw_bitmap(menu_background, 0, 0, 0);
-                al_draw_bitmap(menu_image, 120, 50, 0);
+                al_draw_bitmap(menu_image, 110, 30, 0);
 
 
                 //implementation of the hover effect
