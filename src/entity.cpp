@@ -86,7 +86,6 @@ bool Pipe::updatePosition() {
 
     //this->setPos(this->getSpeed() + this->getPos());
     this->setPosX(this->getSpeedX() + this->getPosX());
-    if (this->getPosX() < -200) this->setPosX(1000); // placeholder !!!!!
     this->hb->updatePosition();
     return true;
 }

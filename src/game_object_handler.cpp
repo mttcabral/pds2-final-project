@@ -1,10 +1,13 @@
 #include "game_object_handler.hpp"
 #include "cooldown.hpp"
 #include <memory>
+#include <random>
+#include <chrono>
 #include <allegro5/allegro_primitives.h> // se usar cores ou primitivas
 
-int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_EVENT_QUEUE &eventQueue, ALLEGRO_COLOR &baseBackgroundColor)
+int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_EVENT_QUEUE &eventQueue)
 {
+    ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
     std::cout << "Jogo iniciado!" << std::endl;
     guy = unique_ptr<Player>(new Player());
     guy->loadSprite("assets/guy.png");
@@ -13,7 +16,8 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_EVENT_QUEUE &eventQueue, ALLEG
     playing = true;
     time = 0;
     Cooldown jumpCD(0);
-    Cooldown obstacleCD(90);
+    Cooldown obstacleCD(2);
+    
     while (playing)
     {
         ALLEGRO_EVENT event;
@@ -28,12 +32,17 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_EVENT_QUEUE &eventQueue, ALLEG
             if (obstacleCD.isCooldownUp())
             {
                 addObstacle();
+                obstacleCD.setRechargeTime(sortBetween(1, 2));
                 obstacleCD.restartCooldown();
             }
-            for (auto& obj : obstacles)
-            {
-                obj->updateSpeed();
-                obj->updatePosition();
+            for (auto it = obstacles.begin(); it != obstacles.end(); /* não incremente aqui */) {
+                (*it)->updateSpeed();
+                (*it)->updatePosition();
+                if ((*it)->getPosX() < -200) {
+                    it = obstacles.erase(it);
+                } else {
+                ++it;
+                }
             }
             if(checkCollisions()) break;
             redraw = true;
@@ -72,7 +81,10 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_EVENT_QUEUE &eventQueue, ALLEG
 }
 void Handler::addObstacle()
 {
-    obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 400), 50, 300)));
+    int x = sortBetween(50, 300);
+    obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 800-x), 50, 300)));
+    obstacles.back()->loadSprite("assets/long.png");
+    obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 250-x), 50, 300)));
     obstacles.back()->loadSprite("assets/long.png");
 }
 
@@ -103,4 +115,9 @@ void Handler::death()
     playing = false;
     obstacles.clear();
     cout << "MORREU" << endl;
+}
+int Handler::sortBetween(int min, int max) {
+    static std::mt19937 motor(std::random_device{}());
+    std::uniform_int_distribution<int> distribuicao(min, max);
+    return distribuicao(motor);
 }

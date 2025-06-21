@@ -15,12 +15,13 @@ private:
     std::list<std::unique_ptr<Pipe>> obstacles;
     int time = 0;
 public:
-    int gameOn(ALLEGRO_TIMER& timer, ALLEGRO_EVENT_QUEUE& eventQueue, ALLEGRO_COLOR& baseBackgroundColor);
+    int gameOn(ALLEGRO_TIMER& timer, ALLEGRO_EVENT_QUEUE& eventQueue);
     void addObstacle();
     void drawAll();
     bool checkCollisions();
     void drawObstacles();
     void death();
+    int sortBetween(int x, int y);
 };
 
 #endif

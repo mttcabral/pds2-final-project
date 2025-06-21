@@ -44,16 +44,11 @@ int main(){
 
     // Start the timer to control game speed
     al_start_timer(timer);
-
-    // Basic player object for testing
-    //BasicPlayer squareguy;
- 
-    ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
     
     //testing cooldown
     {
     Handler handler;
-    int tempoSobrevivido = handler.gameOn(*timer, *eventQueue, baseBackgroundColor); 
+    int tempoSobrevivido = handler.gameOn(*timer, *eventQueue); 
     cout << tempoSobrevivido << endl;
     }
 
