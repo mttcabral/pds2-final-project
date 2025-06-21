@@ -27,8 +27,16 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_EVENT_QUEUE &eventQueue)
         case ALLEGRO_EVENT_TIMER:
             if (!playing) break;
             time++;
-            guy->updateSpeed();
-            guy->updatePosition();
+            if (event.timer.source == timer) {
+                guy->updateSpeed();
+                guy->updatePosition();
+                guy.updatePlayerState();               
+                bgLayer3.updateBackgroundPosition();
+                bgLayer2.updateBackgroundPosition();
+                bgLayer1.updateBackgroundPosition();
+            } else if (event.timer.source == animation_timer) {
+                guy.updateAnimation();
+            }
             if (obstacleCD.isCooldownUp())
             {
                 addObstacle();
@@ -58,6 +66,7 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_EVENT_QUEUE &eventQueue)
                 {
                     guy->jump();
                     jumpCD.restartCooldown();
+                    //sheetTest.resetAnimation();
                 }
                 break;
             }
@@ -69,10 +78,13 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_EVENT_QUEUE &eventQueue)
         if (redraw && al_is_event_queue_empty(&eventQueue))
         {
             // refresh display
-            al_clear_to_color(baseBackgroundColor);
+            al_clear_to_color(baseBackgroundColor);    
+            //bg
+            bgLayer3.drawBackground();
+            bgLayer2.drawBackground();
+            bgLayer1.drawBackground();
             // objects
             drawAll();
-            // colision
             al_flip_display(); // updates the display with the new frame
             redraw = false;
         }
