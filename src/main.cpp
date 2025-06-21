@@ -83,6 +83,8 @@ int main(){
     ALLEGRO_BITMAP* quit_button = al_load_bitmap("assets/menu_quit_button.png");
     ALLEGRO_BITMAP* hover_play = al_load_bitmap("assets/menu_hover_play_button.png");
     ALLEGRO_BITMAP* hover_quit = al_load_bitmap("assets/menu__hover_quit_button.png");
+    ALLEGRO_BITMAP* leaderboard_button = al_load_bitmap("assets/menu_leaderboard_button.png");
+    ALLEGRO_BITMAP* hover_leaderboard = al_load_bitmap("assets/menu_hover_leaderboard_button.png");
     ALLEGRO_FONT* menu_font = al_load_ttf_font("assets/PressStart2P-Regular.ttf", 72, 0);
 
     // loading music (.wav please)
@@ -115,9 +117,10 @@ int main(){
     }
     
  
-    //coordinates of play and quit
+    //coordinates of play, quit and leaderboard
     int xplay = 300, yplay = 300;
-    int xquit = 300, yquit = 450;
+    int xquit = 300, yquit = 500;
+    int xleader = 300, yleader = 400;
 
 
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
@@ -138,7 +141,7 @@ int main(){
     GameState state = MENU;
     bool gameActive = true;
 
-    bool Hplay = false, Hquit = false; //variables that detect if the hover effect is playing
+    bool Hplay = false, Hquit = false, Hleader = false; //variables that detect if the hover effect is playing
 
     int mousex = -1, mousey = -1;
 
@@ -166,9 +169,14 @@ int main(){
                 int quit_w = al_get_bitmap_width(quit_button);
                 int quit_h = al_get_bitmap_height(quit_button);
 
+                int leader_w = al_get_bitmap_width(leaderboard_button);
+                int leader_h = al_get_bitmap_height(leaderboard_button);
+
                 Hplay = (mousex>=xplay && mousex <= xplay + play_w && mousey>=yplay && mousey<= yplay + play_h);
                 
                 Hquit = (mousex>=xquit && mousex <= xquit + quit_w && mousey>=yquit && mousey<= yquit + quit_h);
+
+                Hleader = (mousex>=xleader && mousex <= xleader + leader_w && mousey>=yleader && mousey<= yleader + leader_h);
             }
 
             if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
@@ -177,6 +185,7 @@ int main(){
                     state = QUIT;
                     gameActive = false;
                     } 
+                if(Hleader) state = LEADERBOARD;
             }
 
             if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
@@ -201,6 +210,11 @@ int main(){
                     al_draw_bitmap(hover_quit, xquit, yquit, 0);
                 } else {
                     al_draw_bitmap(quit_button, xquit, yquit, 0);
+                }
+                if(Hleader) {
+                    al_draw_bitmap(hover_leaderboard, xleader, yleader, 0);
+                } else {
+                    al_draw_bitmap(leaderboard_button, xleader, yleader, 0);
                 }
                 
                 al_flip_display();
