@@ -229,6 +229,11 @@ int main(){
             al_play_sample_instance(playing_music_inst);
         }
 
+        while(state == LEADERBOARD){
+
+            
+        }
+
         while (state == PLAYING) {
             
             ALLEGRO_EVENT event;
