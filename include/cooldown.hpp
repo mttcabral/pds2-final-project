@@ -4,7 +4,7 @@
 // class for handling time events, such as obstacle spawning or action cooldowns
 
 //keep this synced with 'main' FPS
-const float FPS = 60;
+const float FPS = 30;
 
 class Cooldown {
     private:

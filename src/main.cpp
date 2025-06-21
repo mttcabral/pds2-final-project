@@ -97,6 +97,7 @@ int main(){
     ALLEGRO_SAMPLE_INSTANCE* menu_music_inst  = al_create_sample_instance(menu_music);
     ALLEGRO_SAMPLE_INSTANCE* playing_music_inst = al_create_sample_instance(playing_music);
     // menu music
+
     startmusic(menu_music_inst, 0.1);
     // playing music
     startmusic(playing_music_inst, 0.1);
@@ -118,9 +119,10 @@ int main(){
     
  
     //coordinates of play, quit and leaderboard
-    int xplay = 300, yplay = 300;
-    int xquit = 300, yquit = 500;
-    int xleader = 300, yleader = 400;
+    int xplay = 150, yplay = 300;
+    int xquit = 490, yquit = 300;
+    int xleader = 320, yleader = 300;
+    
 
 
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
