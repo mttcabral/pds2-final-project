@@ -85,7 +85,7 @@ int main(){
     ALLEGRO_BITMAP* hover_quit = al_load_bitmap("assets/menu__hover_quit_button.png");
     ALLEGRO_BITMAP* leaderboard_button = al_load_bitmap("assets/menu_leaderboard_button.png");
     ALLEGRO_BITMAP* hover_leaderboard = al_load_bitmap("assets/menu_hover_leaderboard_button.png");
-    ALLEGRO_FONT* menu_font = al_load_ttf_font("assets/PressStart2P-Regular.ttf", 72, 0);
+    ALLEGRO_BITMAP* menu_image = al_load_bitmap("assets/title_image.png");
 
     // loading music (.wav please)
     ALLEGRO_SAMPLE* menu_music = al_load_sample("assets/HudsonMohawke_Cbat.wav");
@@ -109,19 +109,18 @@ int main(){
     if(!hover_play) std::cerr << "Erro: imagem hover_play não foi carregada \n";
     if (!quit_button)     std::cerr << "Erro: imagem quit_button não foi carregada!\n";
     if(!hover_quit) std::cerr << "Erro: imagem hover_quit não foi carregada\n";
-    if(!menu_font) std::cerr << "Erro: fonte menu_font não foi carregada \n";
     
 
     // seeing if everything is alright
-    if(!menu_background || !play_button || !quit_button || !menu_font){
+    if(!menu_background || !play_button || !quit_button){
         return 1;
     }
     
  
     //coordinates of play, quit and leaderboard
-    int xplay = 150, yplay = 300;
-    int xquit = 490, yquit = 300;
-    int xleader = 320, yleader = 300;
+    int xplay = 150, yplay = 400;
+    int xquit = 490, yquit = 400;
+    int xleader = 320, yleader = 400;
     
 
 
@@ -198,8 +197,8 @@ int main(){
             if(redraw && al_is_event_queue_empty(eventQueue)){
                 al_clear_to_color(al_map_rgb(0,0,0)); 
                 al_draw_bitmap(menu_background, 0, 0, 0);
-                al_draw_text(menu_font, al_map_rgb(0,0,0), (SCREEN_W/2) + 20, 160, ALLEGRO_ALIGN_CENTER, "PeiTche!");
-                al_draw_text(menu_font, al_map_rgb(255,255,255), (SCREEN_W/2) + 20, 150, ALLEGRO_ALIGN_CENTER, "PeiTche!");
+                al_draw_bitmap(menu_image, 120, 50, 0);
+
 
                 //implementation of the hover effect
                 if(Hplay) {
@@ -231,7 +230,7 @@ int main(){
 
         while(state == LEADERBOARD){
 
-            
+
         }
 
         while (state == PLAYING) {
@@ -325,7 +324,7 @@ int main(){
             }
         }
     }
-    al_destroy_font(menu_font);
+    al_destroy_bitmap(menu_image);
     al_destroy_bitmap(menu_background);
     al_destroy_bitmap(play_button);
     al_destroy_bitmap(quit_button);
