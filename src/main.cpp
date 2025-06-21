@@ -142,7 +142,7 @@ int main(){
     bool gameActive = true;
 
     bool Hplay = false, Hquit = false, Hleader = false; //variables that detect if the hover effect is playing
-
+    
     int mousex = -1, mousey = -1;
 
     while(gameActive){
