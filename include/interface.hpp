@@ -10,7 +10,7 @@
 using namespace std;
 
 
-bool hover_bool(ALLEGRO_EVENT event, ALLEGRO_BITMAP* any, int xcord, int ycord){
+bool isHovering(ALLEGRO_EVENT event, ALLEGRO_BITMAP* any, int xcord, int ycord){
     int mousex = -1, mousey = -1;
     mousex = event.mouse.x;
     mousey = event.mouse.y;

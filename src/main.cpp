@@ -186,9 +186,9 @@ int main(){
                     break;
 
                 case ALLEGRO_EVENT_MOUSE_AXES: case ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY:
-                    Hplay = hover_bool(event, play_button, xplay, yplay);
-                    Hquit = hover_bool(event, quit_button, xquit, yquit);
-                    Hleader = hover_bool(event,leaderboard_button, xleader, yleader);
+                    Hplay = isHovering(event, play_button, xplay, yplay);
+                    Hquit = isHovering(event, quit_button, xquit, yquit);
+                    Hleader = isHovering(event,leaderboard_button, xleader, yleader);
                     break;
 
                 case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
@@ -258,7 +258,7 @@ int main(){
                     break;
 
                 case ALLEGRO_EVENT_MOUSE_AXES: case ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY:
-                    Hback = hover_bool(event, back_button, xback, yback);
+                    Hback = isHovering(event, back_button, xback, yback);
                     break;
                     
                 case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
