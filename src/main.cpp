@@ -285,7 +285,7 @@ int main(){
             Handler handler;
             int tempoSobrevivido = handler.gameOn(*timer, *animation_timer, *eventQueue, SCREEN_H, SCREEN_W); 
             if(tempoSobrevivido != 0){
-                state = DEATH;
+                state = MENU; // por enquanto só para permitir retry fácil
             }
             cout << tempoSobrevivido << endl;
             al_flip_display(); //updates the display with the new frame 
