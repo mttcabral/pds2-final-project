@@ -137,8 +137,8 @@ void Handler::drawAll()
 void Handler::death()
 {
     guy.reset();
-    playing = false;
     obstacles.clear();
+    playing = false;
     cout << "MORREU" << endl;
 }
 int Handler::sortBetween(int min, int max) {
