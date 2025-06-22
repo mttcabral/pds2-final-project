@@ -169,6 +169,7 @@ int main(){
 
     //Menu condition
     GameState state = MENU;
+    GameState nextState = MENU;
     bool gameActive = true;
 
     bool Hplay = false, Hquit = false, Hleader = false, Hback = false; //variables that detect if the hover effect is playing
@@ -206,7 +207,7 @@ int main(){
                         gameActive = false;
                     } 
                     if(Hleader) {
-                        //state = LEADERBOARD;
+                        nextState = LEADERBOARD;
                         curtain.startTransition();
                     }
                     break;
@@ -217,6 +218,8 @@ int main(){
                     break;
 
             }
+
+            if (curtain.getStage() == tStage::SECOND_HALF) state = nextState;
 
             if(redraw && al_is_event_queue_empty(eventQueue)){
                 al_clear_to_color(al_map_rgb(0,0,0)); 
@@ -268,6 +271,9 @@ int main(){
             al_wait_for_event(eventQueue, &event);
             switch (event.type) {
                 case ALLEGRO_EVENT_TIMER:
+                    curtain.updateStage();
+                    curtain.updateSpeed();
+                    curtain.updatePosition();
                     redraw = true;
                     break;
 
@@ -276,7 +282,10 @@ int main(){
                     break;
                     
                 case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
-                    if(Hback) state = MENU;
+                    if(Hback) {
+                        nextState = MENU;
+                        curtain.startTransition();
+                    } 
                     break;
                 
                 case ALLEGRO_EVENT_DISPLAY_CLOSE:
@@ -285,6 +294,8 @@ int main(){
                     break;
                     
             }
+
+            if (curtain.getStage() == tStage::SECOND_HALF) state = nextState;
 
             if(redraw && al_is_event_queue_empty(eventQueue)) {
                 al_clear_to_color(al_map_rgb(255, 255, 255));
@@ -305,7 +316,12 @@ int main(){
                         al_draw_text(textFont, aColor, subX, subY, ALLEGRO_ALIGN_CENTRE, aText);
                     }
                 }
+
+                if (curtain.isActive()) curtain.draw();
+
                 al_flip_display();
+
+                redraw = false;
             //
             }
         }   
@@ -328,6 +344,10 @@ int main(){
                     bgLayer3.updateBackgroundPosition();
                     bgLayer2.updateBackgroundPosition();
                     bgLayer1.updateBackgroundPosition();
+
+                    curtain.updateStage();
+                    curtain.updateSpeed();
+                    curtain.updatePosition();
 
 
                     obstacle.getHitbox()->rotateHitbox(PI/180);
@@ -381,8 +401,7 @@ int main(){
                 guy.draw();
                 obstacle.draw();
 
-                //colision
-                //al_draw_filled_circle(800,400,30,colisionIndicatorColor); 
+                if (curtain.isActive()) curtain.draw();
                 
                 al_flip_display(); //updates the display with the new frame 
 

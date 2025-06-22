@@ -66,10 +66,10 @@ void BackgroundHandler::updateBackgroundPosition() {
 
 
 TransitionScreen::TransitionScreen(): Background::Background("assets/bg/transition.png",T_ANCHOR,
-                                                            800,1200,0), cd(2.4) {
+                                                            800,1200,0), cd(T_TIME) {
                                                                 if (!image) cout << "error";
                                                             }
-
+ 
                                                          
 void TransitionScreen::updateSpeed() {
     switch (this->stage) {
@@ -77,10 +77,10 @@ void TransitionScreen::updateSpeed() {
 
             break;
         case tStage::FIRST_HALF:
-            this->setSpeedY(-10);
+            this->setSpeedY(-T_SPEED);
             break;
         case tStage::SECOND_HALF:
-            this->setSpeedY(10);
+            this->setSpeedY(T_SPEED);
             break;
     }
 }

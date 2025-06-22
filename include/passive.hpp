@@ -41,6 +41,8 @@ class BackgroundHandler {
 enum class tStage {NONE, FIRST_HALF, SECOND_HALF};
 
 const Point T_ANCHOR(400,950);
+const float T_SPEED = 18;
+const float T_TIME = (750/(T_SPEED*FPS));
 
 class TransitionScreen: public Background {
     private:
