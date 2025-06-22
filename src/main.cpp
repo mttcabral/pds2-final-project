@@ -265,6 +265,10 @@ int main(){
                 al_flip_display();
             //
             }
+            if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
+                gameActive = false;
+                state = QUIT;
+            }
         }   
 
         while (state == PLAYING) {
