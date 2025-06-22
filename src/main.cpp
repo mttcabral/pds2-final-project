@@ -136,7 +136,7 @@ int main(){
     int xleader = 320, yleader = 400;
 
     //coordinates of back in LEADERBOARD
-    int xback = 100, yback = 500;
+    int xback = 20, yback = 450;
 
     string path = "assets/base.csv";
     RectangleT plan(PointT(400, 300), 600, 500);
