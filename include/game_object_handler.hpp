@@ -2,35 +2,26 @@
 #define HANDLER_H
 
 #include <list>
+#include <memory>
+#include <allegro5/allegro.h>
 #include "game_object.hpp"
 #include "hitbox.hpp"
 #include "entity.hpp"
 
-using namespace std;
-/*
 class Handler {
-    private:
-        list<Entity*> goodObjects;
-        
-        list<Entity*> badObjects;
-    public: 
-        void addGoodObject(Entity * good);
-        void addBadObject(Entity * bad);
-
-        Entity* checkBadColisionAABB(RectangleHitbox *&target);
-
-        static bool isColidingAABB(RectangleHitbox *&a, RectangleHitbox *&b);
-
-        void drawAll();
-        ~Handler();
-    };
-*/
-
-
-
-
-
-
-
+private:
+    bool playing = false;
+    std::unique_ptr<Player> guy;
+    std::list<std::unique_ptr<Pipe>> obstacles;
+    int time = 0;
+public:
+    int gameOn(ALLEGRO_TIMER& timer, ALLEGRO_TIMER& animation_timer, ALLEGRO_EVENT_QUEUE& eventQueue, const int SCREEN_H, const int SCREEN_W);
+    void addObstacle();
+    void drawAll();
+    bool checkCollisions();
+    void drawObstacles();
+    void death();
+    int sortBetween(int x, int y);
+};
 
 #endif

@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -std=c++11 -Wall -I$(INCLUDE_DIR)
+CFLAGS = -std=c++11 -Wall -g -I$(INCLUDE_DIR)
 
 # Directories
 INCLUDE_DIR = include

@@ -54,18 +54,4 @@ class Drawable : public GameObject {
         float getSpeedY();
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #endif

@@ -5,9 +5,10 @@ Entity::Entity(const Point&pos,const Point&spd):
     Drawable::Drawable(pos,spd) {}
 Entity::Entity(const Point&pos):
     Entity::Entity(pos,{0,0}) {}
-
 Hitbox * Entity::getHitbox() {return this->hb;}
-
+Entity::~Entity(){
+    delete hb;
+}    
 Player::Player(): Entity({X_AXIS,400},{0,5}),
 idleSprite("assets/idle.png",8,24,5), jumpSprite("assets/kirby.png",8,26,0) {
     this->hb = new PolygonHitbox({X_AXIS,400},8,PLAYER_SIZE);
@@ -128,15 +129,16 @@ Pipe::Pipe(const Point&pos,float w, float h): Entity(pos,Point(PIPE_X_SPEED,0)) 
 }
 
 Pipe::~Pipe() {
-    if (pipeSprite) al_destroy_bitmap(pipeSprite);
-    pipeSprite = nullptr;
+    if (pipeSprite != nullptr) {
+        al_destroy_bitmap(pipeSprite);
+        pipeSprite = nullptr;
+    }
 }
 
 bool Pipe::updatePosition() {
 
     //this->setPos(this->getSpeed() + this->getPos());
     this->setPosX(this->getSpeedX() + this->getPosX());
-    if (this->getPosX() < -200) this->setPosX(800); // placeholder !!!!!
     this->hb->updatePosition();
     return true;
 }
@@ -154,7 +156,7 @@ bool Pipe::loadSprite(const char* dir){
 
 void Pipe::draw() {
     if (!pipeSprite) {
-        std::cout << "NO SPRITE LOADED FOR PLAYER\n";
+        std::cout << "NO SPRITE LOADED FOR PIPE\n";
         return;
     }
     al_draw_rotated_bitmap(pipeSprite,
