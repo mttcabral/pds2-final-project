@@ -1,10 +1,6 @@
 #ifndef LEADERBOARD_H
 #define LEADERBOARD_H
 
-//#include <allegro5/allegro.h>
-//#include <allegro5/allegro_primitives.h>
-//#include <allegro5/allegro_color.h>
-//#include <allegro5/allegro_font.h>
 #include <set>
 #include <vector>
 #include <string>
@@ -18,14 +14,15 @@
 
 class LeaderBoard {
     private:
-        Table table;
         Base base;
-        vector<Player*> topPlayers;
+        vector<Profile*> topProfiles;
 
     public:
-        LeaderBoard(RectangleT, string);
+        Table table;
 
-        void newPlayer(Player);
+        LeaderBoard(string, RectangleT);
+
+        void newProfile(Profile);
         void updateLeaderBoard();
 
         void setTitleRowColor(Color);
@@ -42,7 +39,7 @@ class LeaderBoard {
 
         bool close();
 
-        //void displayAllegro(ALLEGRO_FONT*);
+        //void drawLeaderBoard(ALLEGRO_FONT*);
 
         void display();
 

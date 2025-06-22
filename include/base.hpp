@@ -10,10 +10,11 @@
 #include <algorithm>
 
 // pressupoe-se que name e nickname sao validos (foram tratados no main)
+const int NUMPROFILES = 8;
 
 using namespace std;
 
-class Player {
+class Profile {
     private:
         string name;
         string nickname;
@@ -22,16 +23,16 @@ class Player {
 
     public:
         // constructors
-        Player(); // default
-        Player(string, string); // novo jogador registrado, nao jogou ainda
-        Player(string, string, int, int); // inicializar lista de jogadores
-        Player(const Player&);
+        Profile(); // default
+        Profile(string, string); // novo jogador registrado, nao jogou ainda
+        Profile(string, string, int, int); // inicializar lista de jogadores
+        Profile(const Profile&);
 
         // operators
-        bool operator > (const Player&) const;
-        bool operator < (const Player&) const;
-        bool operator == (const Player&) const;
-        Player operator = (const Player&);
+        bool operator > (const Profile&) const;
+        bool operator < (const Profile&) const;
+        bool operator == (const Profile&) const;
+        Profile operator = (const Profile&);
 
         // getters
         string getName();
@@ -48,15 +49,15 @@ class Player {
 
 class Base {
     private:
-        vector<Player*> players; // too many players in the file can cause segmentation fault
+        vector<Profile*> profiles; // too many Profiles in the file can cause segmentation fault
 
-        void clearPlayers();
-        void copyPlayers(const vector<Player*>&);
+        void clearProfiles();
+        void copyProfiles(const vector<Profile*>&);
 
     public:
         // constructors
         Base(const Base&);
-        Base(const vector<Player*>&);
+        Base(const vector<Profile*>&);
         Base();
         Base(string);
 
@@ -67,13 +68,13 @@ class Base {
         Base operator = (const Base&);
 
         bool inBase (string);
-        bool inBase (Player);
+        bool inBase (Profile);
 
         // add and remove methods
-        bool updatePlayers(Player);
-        bool removePlayer(string);
+        bool updateProfiles(Profile);
+        bool removeProfile(string);
 
-        vector<Player*> getBestPlayers(int);
+        vector<Profile*> getBestProfiles();
         void saveBase(string);
         void display();
 };

@@ -11,7 +11,6 @@ using namespace std;
 
 const int NUMCOLUMNS = 4;
 const int NUMROWS = 9;
-const int NUMPLAYERS = NUMROWS - 1;
 
 struct PointT {
     private:
