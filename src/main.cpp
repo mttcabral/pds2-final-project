@@ -5,7 +5,10 @@
 #include "game_object_handler.hpp"
 #include "cooldown.hpp"
 #include "animation.hpp"
-#include "passive.hpp" 
+#include "passive.hpp"
+#include "leaderboard.hpp"
+#include "table.hpp"
+#include "base.hpp"
 #include "sound.hpp"
 #include <iostream>
 #include <string>
@@ -86,6 +89,7 @@ int main(){
     ALLEGRO_BITMAP* leaderboard_button = al_load_bitmap("assets/menu_leaderboard_button.png");
     ALLEGRO_BITMAP* hover_leaderboard = al_load_bitmap("assets/menu_hover_leaderboard_button.png");
     ALLEGRO_BITMAP* menu_image = al_load_bitmap("assets/title_image.png");
+    ALLEGRO_FONT* textFont = al_load_font("assets/PressStart2P-Regular.ttf", 12, 0);
 
     // loading music (.wav please)
     ALLEGRO_SAMPLE* menu_music = al_load_sample("assets/HudsonMohawke_Cbat.wav");
@@ -106,9 +110,10 @@ int main(){
 
     if (!menu_background) std::cerr << "Erro: imagem menu_background não foi carregada!\n";
     if (!play_button)     std::cerr << "Erro: imagem play_button não foi carregada!\n";
-    if(!hover_play) std::cerr << "Erro: imagem hover_play não foi carregada \n";
+    if (!hover_play) std::cerr << "Erro: imagem hover_play não foi carregada \n";
     if (!quit_button)     std::cerr << "Erro: imagem quit_button não foi carregada!\n";
-    if(!hover_quit) std::cerr << "Erro: imagem hover_quit não foi carregada\n";
+    if (!hover_quit) std::cerr << "Erro: imagem hover_quit não foi carregada\n";
+    if (!textFont) std::cerr << "Erro: fonte textFont não foi carregada\n";
     
 
     // seeing if everything is alright
@@ -122,6 +127,14 @@ int main(){
     int xquit = 490, yquit = 400;
     int xleader = 320, yleader = 400;
     
+    string path = "assets/base.csv";
+    RectangleT plan(PointT(400, 300), 600, 500);
+    LeaderBoard gameLeaderBoard(path, plan);
+
+    gameLeaderBoard.setTitleRowTextColor(Color(128, 0, 128));
+    gameLeaderBoard.setFirstRowTextColor(Color(255, 215, 0));
+    gameLeaderBoard.setSecondRowTextColor(Color(192, 192, 192));
+    gameLeaderBoard.setThirdRowTextColor(Color(205, 127, 50));
 
 
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
@@ -229,9 +242,32 @@ int main(){
         }
 
         while(state == LEADERBOARD){
+            //if (states == LE)
+            ALLEGRO_EVENT event;
 
+            al_wait_for_event(eventQueue, &event);
 
-        }
+            if(event.type == ALLEGRO_EVENT_TIMER){
+                redraw = true;
+            }
+
+            if(redraw && al_is_event_queue_empty(eventQueue)){
+                al_clear_to_color(al_map_rgb(255,255,255));
+
+                for (Row line : gameLeaderBoard.table.row) {
+                    Color tempTextColor = line.textColor;
+                    ALLEGRO_COLOR aColor = al_map_rgb(tempTextColor.r, tempTextColor.g, tempTextColor.b);
+                    for (int i = 0; i < NUMCOLUMNS; i++){
+                        float subX = line.rowRectangle.subCenters[i].x;
+                        float subY = line.rowRectangle.subCenters[i].y;
+                        char const *aText = line.texts[i].c_str();
+                        al_draw_text(textFont, aColor, subX, subY, ALLEGRO_ALIGN_CENTRE, aText);
+                    }
+                }
+                al_flip_display();
+            //
+            }
+        }    
 
         while (state == PLAYING) {
             
@@ -338,7 +374,7 @@ int main(){
     al_destroy_sample_instance(menu_music_inst);
     al_destroy_sample(playing_music);
     al_destroy_sample_instance(playing_music_inst);
-    
+    al_destroy_font(textFont);
 
 
 
