@@ -79,6 +79,11 @@ int main(){
     //Pipe obstacle(Point(200,600),128,128);
     obstacle.loadSprite("assets/long.png");
 
+    //testing transition:
+    TransitionScreen curtain;
+
+    //curtain.startTransition();
+
     // loading images and font
     ALLEGRO_BITMAP* menu_background = al_load_bitmap("assets/menu_background.png");
     ALLEGRO_BITMAP* play_button = al_load_bitmap("assets/menu_play_button.png");
@@ -182,6 +187,9 @@ int main(){
             al_wait_for_event(eventQueue, &event);
             switch (event.type) {
                 case ALLEGRO_EVENT_TIMER:
+                    curtain.updateStage();
+                    curtain.updateSpeed();
+                    curtain.updatePosition();
                     redraw = true;
                     break;
 
@@ -197,7 +205,10 @@ int main(){
                         state = QUIT;
                         gameActive = false;
                     } 
-                    if(Hleader) state = LEADERBOARD;
+                    if(Hleader) {
+                        //state = LEADERBOARD;
+                        curtain.startTransition();
+                    }
                     break;
 
                 case ALLEGRO_EVENT_DISPLAY_CLOSE:
@@ -231,6 +242,9 @@ int main(){
                     al_draw_bitmap(leaderboard_button, xleader, yleader, 0);
                 }
                 
+                if (curtain.isActive()) curtain.draw();
+                //al_draw_bitmap(curtain.getImage(),0,0,0);
+
                 al_flip_display();
 
                 redraw = false;
