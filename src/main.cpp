@@ -49,43 +49,12 @@ int main(){
     al_register_event_source(eventQueue, al_get_timer_event_source(timer));
     al_register_event_source(eventQueue, al_get_timer_event_source(animation_timer));
     al_register_event_source(eventQueue, al_get_keyboard_event_source());
-
     // Start the timer to control game speed
     al_start_timer(timer);
     al_start_timer(animation_timer);
-
-    // Game is being played control
-    bool gameActive = true;
-    
-    //Redraw condition, so that the game is rendered separately from other events in queue
-    bool redraw = false;
-
-    ALLEGRO_COLOR colisionIndicatorColor = al_map_rgb(20,140,20);
-
-    // Basic player object for testing
-    //BasicPlayer squareguy;
-    Player guy;
-    //guy.loadSprite("assets/guy.png");
-    // Basic obstacle object for testing
-    Pipe obstacle(Point(800,300),50,300);
-    //Pipe obstacle(Point(200,600),128,128);
-    obstacle.loadSprite("assets/long.png");
-
-    ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
-    
-    //testing sub bitmaps
-    //TriggerSpritesheet sheetTest("assets/kirby.png",8,26,0);
-    
-    //testing background
-    //the timing is not perfet at all, fix this later
-    BackgroundHandler bgLayer3("assets/bg/sea.png",900,600,-1,SCREEN_W, SCREEN_H);
-    BackgroundHandler bgLayer2("assets/bg/clouds.png",900,600,-4,SCREEN_W, SCREEN_H);
-    BackgroundHandler bgLayer1("assets/bg/rocks.png",2700,600,-10,SCREEN_W, SCREEN_H);
-
-    //testing cooldown
     {
     Handler handler;
-    int tempoSobrevivido = handler.gameOn(*timer, *eventQueue); 
+    int tempoSobrevivido = handler.gameOn(*timer, *animation_timer, *eventQueue, SCREEN_H, SCREEN_W); 
     cout << tempoSobrevivido << endl;
     }
 

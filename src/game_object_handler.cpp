@@ -1,22 +1,34 @@
+#include "game_object.hpp"
+#include "hitbox.hpp"
+#include "entity.hpp"
 #include "game_object_handler.hpp"
 #include "cooldown.hpp"
-#include <memory>
+#include "animation.hpp"
+#include "passive.hpp"
+#include <iostream>
+#include <string>
 #include <random>
 #include <chrono>
-#include <allegro5/allegro_primitives.h> // se usar cores ou primitivas
 
-int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_EVENT_QUEUE &eventQueue)
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_primitives.h>
+
+int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGRO_EVENT_QUEUE &eventQueue, const int SCREEN_H, const int SCREEN_W)
 {
+
+    BackgroundHandler bgLayer3("assets/bg/sea.png",900,600,-1,SCREEN_W, SCREEN_H);
+    BackgroundHandler bgLayer2("assets/bg/clouds.png",900,600,-4,SCREEN_W, SCREEN_H);
+    BackgroundHandler bgLayer1("assets/bg/rocks.png",2700,600,-10,SCREEN_W, SCREEN_H);
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
     std::cout << "Jogo iniciado!" << std::endl;
     guy = unique_ptr<Player>(new Player());
-    guy->loadSprite("assets/guy.png");
+    //guy->loadSprite("assets/guy.png");
     al_start_timer(&timer);
     bool redraw = false;
     playing = true;
     time = 0;
     Cooldown jumpCD(0);
-    Cooldown obstacleCD(2);
+    Cooldown obstacleCD(10);
     
     while (playing)
     {
@@ -27,20 +39,20 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_EVENT_QUEUE &eventQueue)
         case ALLEGRO_EVENT_TIMER:
             if (!playing) break;
             time++;
-            if (event.timer.source == timer) {
+            if (event.timer.source == &timer) {
                 guy->updateSpeed();
                 guy->updatePosition();
-                guy.updatePlayerState();               
+                guy->updatePlayerState();               
                 bgLayer3.updateBackgroundPosition();
                 bgLayer2.updateBackgroundPosition();
                 bgLayer1.updateBackgroundPosition();
-            } else if (event.timer.source == animation_timer) {
-                guy.updateAnimation();
+            } else if (event.timer.source == &animation_timer) {
+                guy->updateAnimation();
             }
             if (obstacleCD.isCooldownUp())
             {
                 addObstacle();
-                obstacleCD.setRechargeTime(sortBetween(1, 2));
+                obstacleCD.setRechargeTime(sortBetween(2, 3));
                 obstacleCD.restartCooldown();
             }
             for (auto it = obstacles.begin(); it != obstacles.end(); /* não incremente aqui */) {
