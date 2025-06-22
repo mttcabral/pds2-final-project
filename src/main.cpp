@@ -9,6 +9,7 @@
 #include "sound.hpp"
 #include "leaderboard.hpp"
 #include "table.hpp"
+#include "interface.hpp"
 #include <iostream>
 #include <string>
 
@@ -87,6 +88,8 @@ int main(){
     ALLEGRO_BITMAP* leaderboard_button = al_load_bitmap("assets/menu_leaderboard_button.png");
     ALLEGRO_BITMAP* hover_leaderboard = al_load_bitmap("assets/menu_hover_leaderboard_button.png");
     ALLEGRO_BITMAP* menu_image = al_load_bitmap("assets/title_image.png");
+    ALLEGRO_BITMAP* back_button = al_load_bitmap("assets/back_button.png");
+    ALLEGRO_BITMAP* hover_back = al_load_bitmap("assets/menu_hover_back_button.png");
     ALLEGRO_FONT* textFont = al_load_font("assets/PressStart2P-Regular.ttf", 12, 0);
 
     // loading music (.wav please)
@@ -94,16 +97,21 @@ int main(){
     if(!menu_music) std::cerr << "Erro: música menu_music não foi carregada\n";
     ALLEGRO_SAMPLE* playing_music = al_load_sample("assets/Escape_Persona5.wav");
     if(!playing_music) std::cerr << "Erro: música playing_music não foi carregada\n";
+    ALLEGRO_SAMPLE* leaderboard_music = al_load_sample("assets/leaderboard_music.wav");
+    if(!leaderboard_music) std::cerr << "Erro: música da leaderboard não carregada\n";
     if (!textFont) std::cerr << "Erro: fonte textFont não foi carregada\n";
+    
 
     //treating music
     ALLEGRO_SAMPLE_INSTANCE* menu_music_inst  = al_create_sample_instance(menu_music);
     ALLEGRO_SAMPLE_INSTANCE* playing_music_inst = al_create_sample_instance(playing_music);
+    ALLEGRO_SAMPLE_INSTANCE* leaderboard_music_inst = al_create_sample_instance(leaderboard_music);
     // menu music
 
     startmusic(menu_music_inst, 0.5);
     // playing music
     startmusic(playing_music_inst, 0.1);
+    startmusic(leaderboard_music_inst, 0.8);
 
 
 
@@ -112,6 +120,8 @@ int main(){
     if(!hover_play) std::cerr << "Erro: imagem hover_play não foi carregada \n";
     if (!quit_button)     std::cerr << "Erro: imagem quit_button não foi carregada!\n";
     if(!hover_quit) std::cerr << "Erro: imagem hover_quit não foi carregada\n";
+    if(!back_button) std::cerr << "Erro: imagem back_button não foi carregada\n";
+    if(!hover_back) std::cerr << "Erro: imagem hover_back não foi carregada\n";
     
 
     // seeing if everything is alright
@@ -120,10 +130,13 @@ int main(){
     }
     
  
-    //coordinates of play, quit and leaderboard
+    //coordinates of play, quit and leaderboard in MENU
     int xplay = 150, yplay = 400;
     int xquit = 490, yquit = 400;
     int xleader = 320, yleader = 400;
+
+    //coordinates of back in LEADERBOARD
+    int xback = 100, yback = 500;
 
     string path = "assets/base.csv";
     RectangleT plan(PointT(400, 300), 600, 500);
@@ -153,13 +166,14 @@ int main(){
     GameState state = MENU;
     bool gameActive = true;
 
-    bool Hplay = false, Hquit = false, Hleader = false; //variables that detect if the hover effect is playing
+    bool Hplay = false, Hquit = false, Hleader = false, Hback = false; //variables that detect if the hover effect is playing
     
-    int mousex = -1, mousey = -1;
 
     while(gameActive){
         if(state == MENU){
             al_play_sample_instance(menu_music_inst);
+            al_stop_sample_instance(playing_music_inst);
+            al_stop_sample_instance(leaderboard_music_inst);
         }   
         
         while(state == MENU){
@@ -172,23 +186,9 @@ int main(){
             }
 
             if(event.type == ALLEGRO_EVENT_MOUSE_AXES || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
-                mousex = event.mouse.x;
-                mousey = event.mouse.y;
-
-                int play_w = al_get_bitmap_width(play_button);
-                int play_h = al_get_bitmap_height(play_button);
-
-                int quit_w = al_get_bitmap_width(quit_button);
-                int quit_h = al_get_bitmap_height(quit_button);
-
-                int leader_w = al_get_bitmap_width(leaderboard_button);
-                int leader_h = al_get_bitmap_height(leaderboard_button);
-
-                Hplay = (mousex>=xplay && mousex <= xplay + play_w && mousey>=yplay && mousey<= yplay + play_h);
-                
-                Hquit = (mousex>=xquit && mousex <= xquit + quit_w && mousey>=yquit && mousey<= yquit + quit_h);
-
-                Hleader = (mousex>=xleader && mousex <= xleader + leader_w && mousey>=yleader && mousey<= yleader + leader_h);
+               Hplay = hover_bool(event, play_button, xplay, yplay);
+               Hquit = hover_bool(event, quit_button, xquit, yquit);
+               Hleader = hover_bool(event,leaderboard_button, xleader, yleader);
             }
 
             if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
@@ -236,7 +236,13 @@ int main(){
         }
         if(state == PLAYING){
             al_stop_sample_instance(menu_music_inst);
+            al_stop_sample_instance(leaderboard_music_inst);
             al_play_sample_instance(playing_music_inst);
+        }
+        if(state == LEADERBOARD) {
+            al_stop_sample_instance(menu_music_inst);
+            al_stop_sample_instance(playing_music_inst);
+            al_play_sample_instance(leaderboard_music_inst);
         }
 
         while(state == LEADERBOARD){
@@ -249,8 +255,22 @@ int main(){
                 redraw = true;
             }
 
+            if(event.type == ALLEGRO_EVENT_MOUSE_AXES || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
+                Hback = hover_bool(event, back_button, xback, yback);
+            }
+
+            if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
+                if(Hback) state = MENU;
+            }
+
             if(redraw && al_is_event_queue_empty(eventQueue)) {
                 al_clear_to_color(al_map_rgb(255, 255, 255));
+
+                if(Hback) {
+                    al_draw_bitmap(hover_back, xback, yback, 0);
+                } else {
+                    al_draw_bitmap(back_button, xback, yback, 0);
+                }
 
                 for (Row line : gameLeaderBoard.table.row) {
                     Color tempTextColor = line.textColor;
