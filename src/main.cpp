@@ -180,29 +180,31 @@ int main(){
             ALLEGRO_EVENT event;
 
             al_wait_for_event(eventQueue, &event);
+            switch (event.type) {
+                case ALLEGRO_EVENT_TIMER:
+                    redraw = true;
+                    break;
 
-            if(event.type == ALLEGRO_EVENT_TIMER){
-                redraw = true;
-            }
+                case ALLEGRO_EVENT_MOUSE_AXES: case ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY:
+                    Hplay = hover_bool(event, play_button, xplay, yplay);
+                    Hquit = hover_bool(event, quit_button, xquit, yquit);
+                    Hleader = hover_bool(event,leaderboard_button, xleader, yleader);
+                    break;
 
-            if(event.type == ALLEGRO_EVENT_MOUSE_AXES || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
-               Hplay = hover_bool(event, play_button, xplay, yplay);
-               Hquit = hover_bool(event, quit_button, xquit, yquit);
-               Hleader = hover_bool(event,leaderboard_button, xleader, yleader);
-            }
+                case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
+                    if(Hplay) state = PLAYING;
+                    if(Hquit) {
+                        state = QUIT;
+                        gameActive = false;
+                    } 
+                    if(Hleader) state = LEADERBOARD;
+                    break;
 
-            if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
-                if(Hplay) state = PLAYING;
-                if(Hquit) {
+                case ALLEGRO_EVENT_DISPLAY_CLOSE:
                     state = QUIT;
                     gameActive = false;
-                    } 
-                if(Hleader) state = LEADERBOARD;
-            }
+                    break;
 
-            if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
-                state = QUIT;
-                gameActive = false;
             }
 
             if(redraw && al_is_event_queue_empty(eventQueue)){
@@ -234,33 +236,40 @@ int main(){
                 redraw = false;
             }
         }
+
+
         if(state == PLAYING){
             al_stop_sample_instance(menu_music_inst);
             al_stop_sample_instance(leaderboard_music_inst);
             al_play_sample_instance(playing_music_inst);
-        }
-        if(state == LEADERBOARD) {
+        }else if(state == LEADERBOARD) {
             al_stop_sample_instance(menu_music_inst);
             al_stop_sample_instance(playing_music_inst);
             al_play_sample_instance(leaderboard_music_inst);
         }
 
         while(state == LEADERBOARD){
-            //if (states == LE)
             ALLEGRO_EVENT event;
 
             al_wait_for_event(eventQueue, &event);
+            switch (event.type) {
+                case ALLEGRO_EVENT_TIMER:
+                    redraw = true;
+                    break;
 
-            if(event.type == ALLEGRO_EVENT_TIMER){
-                redraw = true;
-            }
-
-            if(event.type == ALLEGRO_EVENT_MOUSE_AXES || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
-                Hback = hover_bool(event, back_button, xback, yback);
-            }
-
-            if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-                if(Hback) state = MENU;
+                case ALLEGRO_EVENT_MOUSE_AXES: case ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY:
+                    Hback = hover_bool(event, back_button, xback, yback);
+                    break;
+                    
+                case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
+                    if(Hback) state = MENU;
+                    break;
+                
+                case ALLEGRO_EVENT_DISPLAY_CLOSE:
+                    gameActive = false;
+                    state = QUIT;
+                    break;
+                    
             }
 
             if(redraw && al_is_event_queue_empty(eventQueue)) {
@@ -284,11 +293,6 @@ int main(){
                 }
                 al_flip_display();
             //
-            }
-            
-            if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-                gameActive = false;
-                state = QUIT;
             }
         }   
 
@@ -366,17 +370,6 @@ int main(){
                 //colision
                 //al_draw_filled_circle(800,400,30,colisionIndicatorColor); 
                 
-
-                /*
-                al_draw_scaled_rotated_bitmap(
-                sheetTest.getCurrentFrame(),
-                al_get_bitmap_width(sheetTest.getCurrentFrame())/2,
-                al_get_bitmap_height(sheetTest.getCurrentFrame())/2,
-                guy.getPosX(),guy.getPosY(),
-                2.5,2.5, 
-                0,0);
-                */
-
                 al_flip_display(); //updates the display with the new frame 
 
                 redraw = false;
