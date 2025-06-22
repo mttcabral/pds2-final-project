@@ -28,8 +28,9 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
     playing = true;
     time = 0;
     Cooldown jumpCD(0);
-    Cooldown obstacleCD(10);
-    
+    Cooldown obstacleCD(4);
+    obstacleCD.restartCooldown();
+
     while (playing)
     {
         ALLEGRO_EVENT event;
