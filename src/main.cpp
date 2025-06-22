@@ -7,6 +7,8 @@
 #include "animation.hpp"
 #include "passive.hpp" 
 #include "sound.hpp"
+#include "leaderboard.hpp"
+#include "table.hpp"
 #include <iostream>
 #include <string>
 
@@ -247,7 +249,7 @@ int main(){
                 redraw = true;
             }
 
-            if(redraw && al_is_event_queue_empty(eventQueue)){
+            if(redraw && al_is_event_queue_empty(eventQueue)) {
                 al_clear_to_color(al_map_rgb(255, 255, 255));
 
                 for (Row line : gameLeaderBoard.table.row) {
