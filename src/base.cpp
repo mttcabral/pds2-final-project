@@ -1,93 +1,93 @@
 #include "base.hpp"
 
-Player::Player() : Player("", "", 0, 1) {}; // default
+Profile::Profile() : Profile("", "", 0, 1) {}; // default
 
-Player::Player(string name, string nickname) : Player(name, nickname, 0, 1) {}; // default
+Profile::Profile(string name, string nickname) : Profile(name, nickname, 0, 1) {}; // default
 
-Player::Player(string name, string nickname, int maxPipers, int plays) : name(name), nickname(nickname), maxPipers(maxPipers), plays(plays) {} // inicializar lista de jogadores
+Profile::Profile(string name, string nickname, int maxPipers, int plays) : name(name), nickname(nickname), maxPipers(maxPipers), plays(plays) {} // inicializar lista de jogadores
 
-Player::Player(const Player& otherPlayer) {
-        this->name = otherPlayer.name;
-        this->nickname = otherPlayer.nickname;
-        this->maxPipers = otherPlayer.maxPipers;
-        this->plays = otherPlayer.plays;
+Profile::Profile(const Profile& otherProfile) {
+        this->name = otherProfile.name;
+        this->nickname = otherProfile.nickname;
+        this->maxPipers = otherProfile.maxPipers;
+        this->plays = otherProfile.plays;
     }
 
-bool Player::operator > (const Player& otherPlayer) const {
-            return (this->maxPipers > otherPlayer.maxPipers);
+bool Profile::operator > (const Profile& otherProfile) const {
+            return (this->maxPipers > otherProfile.maxPipers);
         }
 
-bool Player::operator < (const Player& otherPlayer) const {
-            return (this->maxPipers < otherPlayer.maxPipers);
+bool Profile::operator < (const Profile& otherProfile) const {
+            return (this->maxPipers < otherProfile.maxPipers);
         }
 
-bool Player::operator == (const Player& otherPlayer) const {
-    return (this->nickname == otherPlayer.nickname);
+bool Profile::operator == (const Profile& otherProfile) const {
+    return (this->nickname == otherProfile.nickname);
 }
 
-Player Player::operator = (const Player& otherPlayer) {
-    if (this != &otherPlayer) {
-        this->name = otherPlayer.name;
-        this->nickname = otherPlayer.nickname;
-        this->plays = otherPlayer.plays;
-        this->maxPipers = otherPlayer.maxPipers;
+Profile Profile::operator = (const Profile& otherProfile) {
+    if (this != &otherProfile) {
+        this->name = otherProfile.name;
+        this->nickname = otherProfile.nickname;
+        this->plays = otherProfile.plays;
+        this->maxPipers = otherProfile.maxPipers;
     }
     return *this;
 }
 
-string Player::getName() {
+string Profile::getName() {
     return this->name;
 }
 
-string Player::getNickname() {
+string Profile::getNickname() {
     return this->nickname;
 }
 
-int Player::getPlays() {
+int Profile::getPlays() {
     return this->plays;
 }
 
-int Player::getMaxPipers() {
+int Profile::getMaxPipers() {
     return this->maxPipers;
 }
 
-void Player::setPlays(int numPlays) {
+void Profile::setPlays(int numPlays) {
     this->plays = numPlays;
 }
 
-void Player::setMaxPipers(int numMaxPipers) {
+void Profile::setMaxPipers(int numMaxPipers) {
     this->maxPipers = numMaxPipers;
 }
 
-void Player::display(){
+void Profile::display(){
     cout << this->name << endl;
     cout << this->nickname << endl;
     cout << this->maxPipers << endl;
     cout << this->plays << endl;
 }
 
-void Base::clearPlayers() {
-    for (Player* player : this->players) {
-        delete player;
+void Base::clearProfiles() {
+    for (Profile* profile : this->profiles) {
+        delete profile;
     }
-    players.clear();
+    profiles.clear();
 }
 
-void Base::copyPlayers(const vector<Player*>& playersVector) {
-    for (Player* player : playersVector)
-        this->players.push_back(new Player(*player));
+void Base::copyProfiles(const vector<Profile*>& profilesVector) {
+    for (Profile* profile : profilesVector)
+        this->profiles.push_back(new Profile(*profile));
 }
 
 Base::Base(const Base& otherBase) {
-    copyPlayers(otherBase.players);
+    copyProfiles(otherBase.profiles);
 }
 
-Base::Base(const vector<Player*>& otherBaseVector) {
-    copyPlayers(otherBaseVector);
+Base::Base(const vector<Profile*>& otherBaseVector) {
+    copyProfiles(otherBaseVector);
 }
 
 Base::Base() {
-    this->players.resize(0);
+    this->profiles.resize(0);
 };
 
 Base::Base(string path) { // path to the file
@@ -127,7 +127,7 @@ Base::Base(string path) { // path to the file
                     count = 1;
                 }
             }
-            players.push_back(new Player(_name, _nickname, _maxPipers, _plays));
+            profiles.push_back(new Profile(_name, _nickname, _maxPipers, _plays));
         }
         else { // skip the first line
             noTittles = true;
@@ -137,101 +137,101 @@ Base::Base(string path) { // path to the file
 };
 
 Base::~Base() {
-    clearPlayers();
+    clearProfiles();
 };
 
 Base Base::operator = (const Base& otherBase) {
     if (this != &otherBase) {
-        clearPlayers();
-        copyPlayers(otherBase.players);
+        clearProfiles();
+        copyProfiles(otherBase.profiles);
     }
     return *this;
 }
 
 bool Base::inBase(string nickname) {
-    for (Player* player : this->players)
-        if (player->getNickname() == nickname) return true;
+    for (Profile* profile : this->profiles)
+        if (profile->getNickname() == nickname) return true;
 
     return false;
 }
 
-bool Base::inBase(Player otherPlayer) {
-    for (Player* player : this->players)
-        if (player->getNickname() == otherPlayer.getNickname()) return true;
+bool Base::inBase(Profile otherProfile) {
+    for (Profile* profile : this->profiles)
+        if (profile->getNickname() == otherProfile.getNickname()) return true;
 
     return false;
 }
 
-bool Base::updatePlayers(Player newPlayer) {
+bool Base::updateProfiles(Profile newProfile) {
     bool found = false;
-    for (Player* player : this->players) {
-        if (player->getNickname() == newPlayer.getNickname()) {
-            if (player->getName() == newPlayer.getName()) { // if players have the same nickname, so they must be the same person
-                if(player->getMaxPipers() < newPlayer.getMaxPipers()) {
-                    player->setMaxPipers(newPlayer.getMaxPipers());
+    for (Profile* profile : this->profiles) {
+        if (profile->getNickname() == newProfile.getNickname()) {
+            if (profile->getName() == newProfile.getName()) { // if profiles have the same nickname, so they must be the same person
+                if(profile->getMaxPipers() < newProfile.getMaxPipers()) {
+                    profile->setMaxPipers(newProfile.getMaxPipers());
                 }
-                player->setPlays(player->getPlays() + 1);
+                profile->setPlays(profile->getPlays() + 1);
             }
-            else // if players have the same nickname, but their names are different, they can not be different persons
+            else // if profiles have the same nickname, but their names are different, they can not be different persons
                 return false;
             found = 1;
         }
     }
     
     if (!found)
-        this->players.push_back(new Player(newPlayer));
+        this->profiles.push_back(new Profile(newProfile));
 
     return true;
 }
 
-bool Base::removePlayer(string nickname) {
-    for (int i = 0; i < this->players.size(); i++) {
-        if (this->players[i]->getNickname() == nickname){
-            this->players.erase(this->players.begin()+i);
+bool Base::removeProfile(string nickname) {
+    for (size_t i = 0; i < this->profiles.size(); i++) {
+        if (this->profiles[i]->getNickname() == nickname){
+            this->profiles.erase(this->profiles.begin()+i);
             return true;
         }
     }
     return false;
 }
 
-vector<Player*> Base::getBestPlayers(int size){
-    vector<Player*> orderedPlayersVector; // a new vector
-    for (Player* player : this->players)
-        orderedPlayersVector.push_back(new Player(*player));
+vector<Profile*> Base::getBestProfiles(){
+    vector<Profile*> orderedProfilesVector; // a new vector
+    for (Profile* profile : this->profiles)
+        orderedProfilesVector.push_back(new Profile(*profile));
 
-    sort(orderedPlayersVector.begin(), orderedPlayersVector.end(), [](Player* a, Player* b) {return *a > *b;}); // ordered vector
+    sort(orderedProfilesVector.begin(), orderedProfilesVector.end(), [](Profile* a, Profile* b) {return *a > *b;}); // ordered vector
 
-    vector<Player*> bestPlayers; // the return vector
+    vector<Profile*> bestProfiles; // the return vector
 
-    if (orderedPlayersVector.size() > size) { // if orderedPlayersVector size is bigger than size, then you need to filtrate
-        for (int i = 0; i < size; i++)
-            bestPlayers.push_back(new Player(*orderedPlayersVector[i])); 
+    if (orderedProfilesVector.size() > NUMPROFILES) { // if orderedProfilesVector NUMPROFILES is bigger than NUMPROFILES, then you need to filtrate
+        for (int i = 0; i < NUMPROFILES; i++)
+            bestProfiles.push_back(new Profile(*orderedProfilesVector[i])); 
     }
-    else { // if orderedPlayersVector size is smaller than size, then you do not need to filtrate
-        for (Player* player : orderedPlayersVector)
-            bestPlayers.push_back(new Player(*player));
+    else { // if orderedProfilesVector size is smaller than size, then you do not need to filtrate
+        for (Profile* profile : orderedProfilesVector)
+            bestProfiles.push_back(new Profile(*profile));
     }
     
-    for (Player* playerPointer : orderedPlayersVector) { // clear memory
-        delete playerPointer;
+    for (Profile* profilePointer : orderedProfilesVector) { // clear memory
+        delete profilePointer;
     }
-    orderedPlayersVector.clear();
+    orderedProfilesVector.clear();
 
-    return bestPlayers;
+    return bestProfiles;
 }
 
 void Base::saveBase(string path){
     ofstream base(path);
     base << "Name,Nickname,MaxPipers,Plays\n";
-    for (Player* player : this->players) {
-        base << player->getName() << "," << player->getNickname() << "," << player->getMaxPipers() << "," << player->getPlays() << "\n";
+    for (Profile* profile : this->profiles) {
+        base << profile->getName() << "," << profile->getNickname() << "," << profile->getMaxPipers() << "," << profile->getPlays() << "\n";
     }
     base.close();
 }
 
 void Base::display(){
-    for(Player *player : players)
-        cout << player->getName() << " " << player->getNickname() << " " << player->getMaxPipers() << " " << player->getPlays() << endl;
+    for(Profile *profile : profiles)
+        cout << profile->getName() << " " << profile->getNickname() << " " << profile->getMaxPipers() << " " << profile->getPlays() << endl;
 }
 
 /*

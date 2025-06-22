@@ -14,14 +14,15 @@
 
 class LeaderBoard {
     private:
-        Table table;
         Base base;
-        vector<Player*> topPlayers;
+        vector<Profile*> topProfiles;
 
     public:
-        LeaderBoard(RectangleT, string);
+        Table table;
 
-        void newPlayer(Player);
+        LeaderBoard(string, RectangleT);
+
+        void newProfile(Profile);
         void updateLeaderBoard();
 
         void setTitleRowColor(Color);
@@ -38,7 +39,7 @@ class LeaderBoard {
 
         bool close();
 
-        //void displayAllegro(ALLEGRO_FONT*);
+        //void drawLeaderBoard(ALLEGRO_FONT*);
 
         void display();
 

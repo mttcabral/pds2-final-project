@@ -1,39 +1,39 @@
 #include "leaderboard.hpp"
-// topPlayers has size NUMPLAYERS
+// topProfiless has size NUMPROFILES
 // table.row has size NUMROWS
 
-LeaderBoard::LeaderBoard(RectangleT plan, string path) : table(plan), base(path) {
-    this->topPlayers.resize(NUMPLAYERS);
+LeaderBoard::LeaderBoard(string path, RectangleT plan) : base(path), table(plan) {
+    this->topProfiles.resize(NUMPROFILES);
     this->table.row[0].texts = {"RANK", "NICKNAME", "MAX PIPERS", "PLAYS"};
     
-    this->topPlayers = base.getBestPlayers(NUMPLAYERS);
+    this->topProfiles = base.getBestProfiles();
     int i = 1;
-    for (Player* player : this->topPlayers) { // write table with information
+    for (Profile* profile : this->topProfiles) { // write table with information
         string _rank = to_string(i);
-        string _nickname = player->getNickname();
-        string _maxPipers = to_string(player->getMaxPipers());
-        string _plays = to_string(player->getPlays());
+        string _nickname = profile->getNickname();
+        string _maxPipers = to_string(profile->getMaxPipers());
+        string _plays = to_string(profile->getPlays());
         table.row[i].texts = {_rank, _nickname, _maxPipers, _plays};
         i++;
     }
 };
 
-void LeaderBoard::newPlayer(Player player) {
-    this->base.updatePlayers(player);
+void LeaderBoard::newProfile(Profile profile) {
+    this->base.updateProfiles(profile);
 }
 
-void LeaderBoard::updateLeaderBoard() { // called after newPlayer
-    for (Player* player : topPlayers)
-        delete player;
-    this->topPlayers.clear();
+void LeaderBoard::updateLeaderBoard() { // called after newProfiles
+    for (Profile* profile : topProfiles)
+        delete profile;
+    this->topProfiles.clear();
 
-    topPlayers = this->base.getBestPlayers(NUMPLAYERS);
+    topProfiles = this->base.getBestProfiles();
     int i = 1;
-    for (Player* player : this->topPlayers) { // write table with information
+    for (Profile* profile : this->topProfiles) { // write table with information
         string _rank = to_string(i);
-        string _nickname = player->getNickname();
-        string _maxPipers = to_string(player->getMaxPipers());
-        string _plays = to_string(player->getPlays());
+        string _nickname = profile->getNickname();
+        string _maxPipers = to_string(profile->getMaxPipers());
+        string _plays = to_string(profile->getPlays());
         table.row[i].texts = {_rank, _nickname, _maxPipers, _plays};
         i++;
     }
@@ -84,7 +84,7 @@ void LeaderBoard::setOthersRowsTextColor(Color rgb) {
 };
 
 /*
-void LeaderBoard::displayAllegro(ALLEGRO_FONT* font) {
+void LeaderBoard::drawLeaderBoard(ALLEGRO_FONT* font) {
     for (Row line : this->table.row) {
         Color tempTextColor = line.textColor;
         ALLEGRO_COLOR aColor = al_map_rgb(tempTextColor.r, tempTextColor.g, tempTextColor.b);
@@ -92,10 +92,10 @@ void LeaderBoard::displayAllegro(ALLEGRO_FONT* font) {
             float subX = line.rowRectangle.subCenters[i].x;
             float subY = line.rowRectangle.subCenters[i].y;
             char const *aText = line.texts[i].c_str();
-            al_draw_text(FONTFILENAME, aColor, subX, subY, ALLEGRO_ALIGN_CENTRE, aText);
+            al_draw_text(font, aColor, subX, subY, ALLEGRO_ALIGN_CENTRE, aText);
+            //
         }
     }
-    al_flip_display();
 }
 */
 

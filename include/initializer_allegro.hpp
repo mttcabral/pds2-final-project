@@ -3,6 +3,10 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
 
 using namespace std;
 
@@ -28,6 +32,25 @@ bool initialize_allegro() {
         cout << "ERROR:" << "failed to initialize allegro image" << endl;
         return false;
     }
+
+    //install mouse support
+    if (!al_install_mouse()) {
+        return false;
+    
+    }
+
+    if(!al_init_font_addon()) {
+        return false;
+    }
+
+    if(!al_init_ttf_addon()) {
+        return false;
+    }
+
+    if(!al_install_audio()) return false;
+    
+    if(!al_init_acodec_addon()) return false;
+    
     return true;
 }
 // Create an event queue to handle events
