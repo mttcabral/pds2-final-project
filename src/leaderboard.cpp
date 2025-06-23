@@ -83,7 +83,7 @@ void LeaderBoard::setOthersRowsTextColor(Color rgb) {
     }
 };
 
-/*
+
 void LeaderBoard::drawLeaderBoard(ALLEGRO_FONT* font) {
     for (Row line : this->table.row) {
         Color tempTextColor = line.textColor;
@@ -93,11 +93,10 @@ void LeaderBoard::drawLeaderBoard(ALLEGRO_FONT* font) {
             float subY = line.rowRectangle.subCenters[i].y;
             char const *aText = line.texts[i].c_str();
             al_draw_text(font, aColor, subX, subY, ALLEGRO_ALIGN_CENTRE, aText);
-            //
         }
     }
 }
-*/
+
 
 void LeaderBoard::display(){
     this->table.display();
