@@ -6,7 +6,8 @@
 #include <vector>
 #include <cmath>
 #include <iostream>
-#include <table.hpp>
+#include "table.hpp"
+#include <set>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
