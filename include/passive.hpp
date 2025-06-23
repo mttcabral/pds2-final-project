@@ -7,7 +7,7 @@
 
 
 class Background : public Drawable {
-    private:
+    protected:
         ALLEGRO_BITMAP * image = nullptr;
         float width, height;
     public:
