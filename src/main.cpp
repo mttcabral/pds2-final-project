@@ -12,6 +12,7 @@
 #include "interface.hpp"
 #include <iostream>
 #include <string>
+//#include "register.hpp"
 
 
 using namespace std;
@@ -138,14 +139,21 @@ int main(){
     //coordinates of back in LEADERBOARD
     int xback = 20, yback = 450;
 
+    // IMPLEMENTING LEADERBOARD
     string path = "assets/base.csv";
     RectangleT plan(PointT(400, 300), 600, 500);
     LeaderBoard gameLeaderBoard(path, plan);
-
     gameLeaderBoard.setTitleRowTextColor(Color(128, 0, 128));
     gameLeaderBoard.setFirstRowTextColor(Color(255, 215, 0));
     gameLeaderBoard.setSecondRowTextColor(Color(192, 192, 192));
     gameLeaderBoard.setThirdRowTextColor(Color(205, 127, 50));
+
+    // IMPLEMENTING
+    //Register toRegister(RectangleT(PointT(400, 300), 600, 300));
+    //toRegister.setTittleContent("INSERT YOUR NAME:");
+    //toRegister.setTittleTextColor(Color(0, 0, 0));
+    //toRegister.setMessageTextColor(Color(255, 0, 0));
+    //toRegister.setBufferTextColor(Color(0, 0, 255));
 
 
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
@@ -281,20 +289,33 @@ int main(){
                     al_draw_bitmap(back_button, xback, yback, 0);
                 }
 
-                for (Row line : gameLeaderBoard.table.row) {
-                    Color tempTextColor = line.textColor;
-                    ALLEGRO_COLOR aColor = al_map_rgb(tempTextColor.r, tempTextColor.g, tempTextColor.b);
-                    for (int i = 0; i < NUMCOLUMNS; i++){
-                        float subX = line.rowRectangle.subCenters[i].x;
-                        float subY = line.rowRectangle.subCenters[i].y;
-                        char const *aText = line.texts[i].c_str();
-                        al_draw_text(textFont, aColor, subX, subY, ALLEGRO_ALIGN_CENTRE, aText);
-                    }
-                }
+                //toRegister.drawRegister(textFont);  // NEW METHOD AND CLASS TO DRAW THE REGISTER
+                //al_flip_display();
+                
+                gameLeaderBoard.drawLeaderBoard(textFont);  // NEW METHOD TO DRAW THE LEADERBOARD
                 al_flip_display();
-            //
             }
-        }   
+                        
+            /*           
+            if (event.type == ALLEGRO_EVENT_KEY_CHAR) {
+                cout << "KEY_CHAR" << endl;
+
+                if (event.keyboard.unichar >= 32 && event.keyboard.unichar < 127){
+                    cout << ">= 32 && < 127" << endl;
+                    cout << "escrevendo" << endl;
+                    bool wrote = toRegister.writeInBuffer((char)event.keyboard.unichar);
+                    if(!wrote)
+                        cout << "nao escreveu" << endl;
+                }
+
+                else if (event.keyboard.keycode == ALLEGRO_KEY_BACKSPACE) {
+                    bool deleted = toRegister.deleteInBuffer();
+                    if (!deleted) 
+                        cout << "apagando" << endl;
+                }
+            }*/
+
+        }
 
         while (state == PLAYING) {
             
