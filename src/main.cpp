@@ -81,6 +81,7 @@ int main(){
     ALLEGRO_BITMAP* menu_image = al_load_bitmap("assets/title_image.png");
     ALLEGRO_BITMAP* back_button = al_load_bitmap("assets/back_button.png");
     ALLEGRO_BITMAP* hover_back = al_load_bitmap("assets/menu_hover_back_button.png");
+    ALLEGRO_BITMAP* leaderboard_background = al_load_bitmap("assets/leaderboard_background.jpeg");
     ALLEGRO_FONT* textFont = al_load_font("assets/PressStart2P-Regular.ttf", 12, 0);
 
     // loading music (.wav please)
@@ -253,7 +254,8 @@ int main(){
             }
 
             if(redraw && al_is_event_queue_empty(eventQueue)) {
-                al_clear_to_color(al_map_rgb(255, 255, 255));
+                al_clear_to_color(al_map_rgb(0,0,0)); 
+                al_draw_bitmap(leaderboard_background, 0, 0, 0);
 
                 if(Hback) {
                     al_draw_bitmap(hover_back, xback, yback, 0);
