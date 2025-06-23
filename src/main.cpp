@@ -16,7 +16,7 @@
 
 using namespace std;
 
-enum GameState {MENU, TRANSITION, PLAYING, LEADERBOARD, DEATH, QUIT}; // Use for in game logic
+enum GameState {MENU, TRANSITION, PLAYING, LEADERBOARD, DEATH, QUIT, CHECKIN}; // Use for in game logic
 
 // Game constants:
 // const float FPS = 30;                                      // Frames per second (in cooldown.hpp)
@@ -285,10 +285,22 @@ int main(){
             Handler handler;
             int tempoSobrevivido = handler.gameOn(*timer, *animation_timer, *eventQueue, SCREEN_H, SCREEN_W); 
             if(tempoSobrevivido != 0){
-                state = MENU; // por enquanto só para permitir retry fácil
+                state = DEATH; // por enquanto só para permitir retry fácil
             }
             al_flip_display(); //updates the display with the new frame 
             redraw = false;
+        }
+        // death logic
+        while (state == DEATH){
+            ALLEGRO_EVENT event; 
+
+            al_wait_for_event(eventQueue, &event);
+
+            if(event.type == ALLEGRO_EVENT_TIMER){
+                redraw = true;
+            }
+
+            
         }
     }
     al_destroy_bitmap(menu_image);
