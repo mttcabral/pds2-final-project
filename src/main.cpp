@@ -287,7 +287,6 @@ int main(){
             if(tempoSobrevivido != 0){
                 state = MENU; // por enquanto só para permitir retry fácil
             }
-            cout << tempoSobrevivido << endl;
             al_flip_display(); //updates the display with the new frame 
             redraw = false;
         }

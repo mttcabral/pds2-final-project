@@ -12,6 +12,7 @@
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_font.h>
 
 int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGRO_EVENT_QUEUE &eventQueue, const int SCREEN_H, const int SCREEN_W)
 {
@@ -19,6 +20,8 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
     BackgroundHandler bgLayer3("assets/bg/sea.png",900,600,-1,SCREEN_W, SCREEN_H);
     BackgroundHandler bgLayer2("assets/bg/clouds.png",900,600,-4,SCREEN_W, SCREEN_H);
     BackgroundHandler bgLayer1("assets/bg/rocks.png",2700,600,-10,SCREEN_W, SCREEN_H);
+    ALLEGRO_FONT* scoreCount = al_load_font("assets/PressStart2P-Regular.ttf", 30, 0);
+    
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
     std::cout << "Jogo iniciado!" << std::endl;
     guy = unique_ptr<Player>(new Player());
@@ -92,12 +95,15 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
         {
             // refresh display
             al_clear_to_color(baseBackgroundColor);    
+            string scoreText = to_string(time);
             //bg
             bgLayer3.drawBackground();
             bgLayer2.drawBackground();
             bgLayer1.drawBackground();
             // objects
             drawAll();
+            // score at playing state
+            al_draw_text(scoreCount, al_map_rgb(255,255,255), (SCREEN_W/2), 30, ALLEGRO_ALIGN_CENTER, scoreText.c_str());
             al_flip_display(); // updates the display with the new frame
             redraw = false;
         }
