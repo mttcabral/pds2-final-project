@@ -312,7 +312,7 @@ int main(){
         while (state == PLAYING) {
             Handler handler;
             int tempoSobrevivido = handler.gameOn(*timer, *animation_timer, *eventQueue, SCREEN_H, SCREEN_W); 
-            if(tempoSobrevivido != 0){
+            if(tempoSobrevivido == -1){
                 state = DEATH; // por enquanto só para permitir retry fácil
             }
             al_flip_display(); //updates the display with the new frame 
