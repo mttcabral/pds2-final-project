@@ -10,7 +10,7 @@
 #include <algorithm>
 
 // pressupoe-se que name e nickname sao validos (foram tratados no main)
-const int NUMPROFILES = 8;
+const int NUMPROFILES = 7;
 
 using namespace std;
 
