@@ -129,7 +129,7 @@ void Handler::addObstacle(ALLEGRO_BITMAP * image, Spritesheet * eelImage)
         case FLAPPY:
             if(x>50){
                 obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 800-x), 50, 300, image)));
-                obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 300-x), 50, 300, image)));        
+                obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 300-x), 50, 300, image, true)));        
             }else{
                 obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 425-x), 50, 300, image)));       
             }

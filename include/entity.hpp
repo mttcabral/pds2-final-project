@@ -62,8 +62,9 @@ const float PIPE_X_SPEED = -10;
 class Pipe: public Entity {
     private:
         ALLEGRO_BITMAP * pipeSprite = nullptr;
+        bool isInverted;
     public:
-        Pipe(const Point&pos,float w, float h, ALLEGRO_BITMAP * image = nullptr);
+        Pipe(const Point&pos,float w, float h, ALLEGRO_BITMAP * image = nullptr, bool inv = false);
 
         bool updatePosition() override;
         void updateSpeed() override;

@@ -118,8 +118,8 @@ Player::~Player() {
     //spritesheets already handles destruction correctly
 }
 
-Pipe::Pipe(const Point&pos,float w, float h, ALLEGRO_BITMAP * image):
-     Entity(pos,Point(PIPE_X_SPEED,0)), pipeSprite(image) { //(-2,0)
+Pipe::Pipe(const Point&pos,float w, float h, ALLEGRO_BITMAP * image, bool inv):
+     Entity(pos,Point(PIPE_X_SPEED,0)), pipeSprite(image), isInverted(inv) { //(-2,0)
     //loadSprite();
     this->hb = new RectangleHitbox(pos,w,h);
     this->hb->setTarget(this);
@@ -159,9 +159,11 @@ void Pipe::draw() {
         std::cout << "NO SPRITE LOADED FOR PIPE\n";
         return;
     }
+    float rotAngle = this->getHitbox()->getAngle();
+    if (this->isInverted) rotAngle += PI;
     al_draw_rotated_bitmap(pipeSprite,
                             al_get_bitmap_width(pipeSprite)/2,al_get_bitmap_height(pipeSprite)/2,
-                            this->getPosX(), this->getPosY(),this->getHitbox()->getAngle(),0);              
+                            this->getPosX(), this->getPosY(),rotAngle,0);              
 }
 
 
