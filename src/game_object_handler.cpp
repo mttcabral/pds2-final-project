@@ -23,7 +23,6 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
     ALLEGRO_FONT* scoreCount = al_load_font("assets/PressStart2P-Regular.ttf", 30, 0);
     
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
-    //guy->loadSprite("assets/guy.png");
     al_start_timer(&timer);
     bool redraw = false;
     playing = true;
@@ -66,11 +65,10 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
                 ++it;
                 }
             }
-            //if(checkCollisions() || outOfBorders()) return -1;
+            if(checkCollisions() || outOfBorders()) return -1;
             redraw = true;
             jumpCD.updateCooldown();
             obstacleCD.updateCooldown();
-            cout << guy.getPosY() << endl;
             break;
         case ALLEGRO_EVENT_KEY_DOWN:
             switch (event.keyboard.keycode)
