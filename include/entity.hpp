@@ -70,7 +70,7 @@ class Pipe: public Entity {
 
         ~Pipe();
 };
-
+/*
 class Eel: public Entity {
     private:
         Spritesheet idleSprite;
@@ -86,7 +86,7 @@ class Eel: public Entity {
         ~Eel();
 
 };
-
+*/
 
 
 

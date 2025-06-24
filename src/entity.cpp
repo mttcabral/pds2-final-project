@@ -148,7 +148,7 @@ void Pipe::updateSpeed() {
 }
 
 bool Pipe::loadSprite(){
-        pipeSprite = al_load_bitmap("assets/player/long.png");
+        pipeSprite = al_load_bitmap("assets/long.png");
     if (!pipeSprite) {
         std::cout << "SPRITE LOADING FAILED FOR PIPE\n";
         return false;
@@ -162,9 +162,9 @@ void Pipe::draw() {
     }
     al_draw_rotated_bitmap(pipeSprite,
                             al_get_bitmap_width(pipeSprite)/2,al_get_bitmap_height(pipeSprite)/2,
-                            this->getPosX(), this->getPosY(),this->getHitbox()->getAngle(),0);
+                            this->getPosX(), this->getPosY(),this->getHitbox()->getAngle(),0);              
 }
-Eel::Eel(int x): Entity({1000,300},Point(PIPE_X_SPEED,0)),
+/*Eel::Eel(int x): Entity({1000,300},Point(PIPE_X_SPEED,0)),
 idleSprite("assets/player/long.png",10,50,0) { 
     this->hb = new RectangleHitbox({1000,300},50,375+x);
     this->hb->setTarget(this);
@@ -189,3 +189,4 @@ void Eel::draw(){
             1.3,1.3, 
             0,0);
 }
+*/
