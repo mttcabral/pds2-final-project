@@ -23,7 +23,6 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
     ALLEGRO_FONT* scoreCount = al_load_font("assets/PressStart2P-Regular.ttf", 30, 0);
     
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
-    std::cout << "Jogo iniciado!" << std::endl;
     guy = unique_ptr<Player>(new Player());
     //guy->loadSprite("assets/guy.png");
     al_start_timer(&timer);
@@ -146,7 +145,6 @@ void Handler::death()
     guy.reset();
     obstacles.clear();
     playing = false;
-    cout << "MORREU" << endl;
 }
 int Handler::sortBetween(int min, int max) {
     static std::mt19937 motor(std::random_device{}());
