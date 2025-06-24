@@ -91,6 +91,8 @@ int main(){
     ALLEGRO_BITMAP* retry_button = al_load_bitmap("assets/retry_button.png");
     ALLEGRO_BITMAP* hover_retry = al_load_bitmap("assets/retry_hover_button.png");
     ALLEGRO_BITMAP* game_over_background = al_load_bitmap("assets/game_over_background.png");
+    ALLEGRO_BITMAP* register_button = al_load_bitmap("assets/register_button.png");
+    ALLEGRO_BITMAP* hover_register = al_load_bitmap("assets/register_hover_button.png");
     ALLEGRO_FONT* textFont = al_load_font("assets/PressStart2P-Regular.ttf", 12, 0);
 
     // loading music (.wav please)
@@ -144,8 +146,10 @@ int main(){
     int xplay = 150, yplay = 400;
     int xquit = 490, yquit = 400;
     int xleader = 320, yleader = 400;
-    int xhome = 450, yhome = 450;
-    int xretry = 250, yretry = 450;
+
+    int xhome = 600, yhome = 450;
+    int xretry = 100, yretry = 450;
+    int xreg = 350, yreg = 450;
 
     //coordinates of back in LEADERBOARD
     int xback = 20, yback = 450;
@@ -177,7 +181,7 @@ int main(){
     GameState next = MENU;
     bool gameActive = true;
 
-    bool Hplay = false, Hquit = false, Hleader = false, Hback = false, Hretry = false, Hmenu = false; //variables that detect if the hover effect is playing
+    bool Hplay = false, Hquit = false, Hleader = false, Hback = false, Hretry = false, Hmenu = false, Hregister = false; //variables that detect if the hover effect is playing
     
 
     while(gameActive){
@@ -185,6 +189,7 @@ int main(){
             al_play_sample_instance(menu_music_inst);
             al_stop_sample_instance(playing_music_inst);
             al_stop_sample_instance(leaderboard_music_inst);
+            al_stop_sample_instance(death_music_inst);
         }   
 
         while(state == MENU){
@@ -369,6 +374,8 @@ int main(){
             if(event.type == ALLEGRO_EVENT_MOUSE_AXES || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
                 Hretry = hover_bool(event, retry_button, xretry, yretry);
                 Hmenu = hover_bool(event, home_button, xhome, yhome);
+                Hregister = hover_bool(event, register_button, xreg, yreg);
+
             }
 
             mousebefore = mousenow;
@@ -386,6 +393,10 @@ int main(){
                     al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
                     state = MENU;
                     }
+                if(Hregister) {
+                    al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                    state = CHECKIN;
+                }
             }
 
             if(redraw && al_is_event_queue_empty(eventQueue)) {
@@ -401,6 +412,11 @@ int main(){
                     al_draw_bitmap(hover_home, xhome, yhome, 0);
                     } else {
                     al_draw_bitmap(home_button, xhome, yhome, 0);
+                    }
+                    if(Hregister) {
+                        al_draw_bitmap(hover_register, xreg, yreg, 0);
+                    } else {
+                        al_draw_bitmap(register_button, xreg, yreg, 0);
                     }
                     
 
