@@ -85,9 +85,10 @@ int main(){
     ALLEGRO_BITMAP* hover_back = al_load_bitmap("assets/menu_hover_back_button.png");
     ALLEGRO_BITMAP* leaderboard_background = al_load_bitmap("assets/leaderboard_background.jpeg");
     ALLEGRO_BITMAP* home_button = al_load_bitmap("assets/home_button.png");
-    ALLEGRO_BITMAP* hover_home = al_load_bitmap("assets/home_hover_button.png");
+    ALLEGRO_BITMAP* hover_home = al_load_bitmap("assets/home__hover_button.png");
     ALLEGRO_BITMAP* retry_button = al_load_bitmap("assets/retry_button.png");
     ALLEGRO_BITMAP* hover_retry = al_load_bitmap("assets/retry_hover_button.png");
+    ALLEGRO_BITMAP* game_over_background = al_load_bitmap("assets/game_over_background.png");
     ALLEGRO_FONT* textFont = al_load_font("assets/PressStart2P-Regular.ttf", 12, 0);
 
     // loading music (.wav please)
@@ -132,8 +133,8 @@ int main(){
     int xplay = 150, yplay = 400;
     int xquit = 490, yquit = 400;
     int xleader = 320, yleader = 400;
-    int xhome = 150, yhome = 400;
-    int xretry = 320, yretry = 400;
+    int xhome = 450, yhome = 450;
+    int xretry = 250, yretry = 450;
 
     //coordinates of back in LEADERBOARD
     int xback = 20, yback = 450;
@@ -338,20 +339,20 @@ int main(){
             }
 
             if(redraw && al_is_event_queue_empty(eventQueue)) {
-                al_draw_bitmap(menu_background, 0, 0, 0);
+                al_draw_bitmap(game_over_background, 0, 0, 0);
 
-                    /*if(Hretry) {
+                    if(Hretry) {
                     al_draw_bitmap(hover_retry, xretry, yretry, 0);
                     } else {
                     al_draw_bitmap(retry_button, xretry, yretry, 0);
                     }
 
                     if(Hmenu) {
-                    al_draw_bitmap(home_button, xhome, yhome, 0);
-                    } else {
                     al_draw_bitmap(hover_home, xhome, yhome, 0);
+                    } else {
+                    al_draw_bitmap(home_button, xhome, yhome, 0);
                     }
-                    */
+                    
 
                     al_flip_display();
             //
