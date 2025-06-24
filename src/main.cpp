@@ -25,7 +25,7 @@ const int SCREEN_W = 800;                                     // Screen width in
 const int SCREEN_H = 600;                                     // Screen height in pixels
 const ALLEGRO_COLOR BACKGROUND_COLOR = al_map_rgb(0, 0, 0);   // Background color (black)
 
-int main(){
+int main(int argc, char *argv[]){
 
     // Basic Allegro pointers:
     ALLEGRO_DISPLAY *display = nullptr;

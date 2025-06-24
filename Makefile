@@ -9,7 +9,7 @@ BIN_DIR = bin
 ASSETS_DIR = assets
 
 # for allegro library
-PKG_CONFIG_LIBS = allegro-5 allegro_image-5 allegro_font-5 allegro_ttf-5 allegro_audio-5 allegro_acodec-5 allegro_primitives-5
+PKG_CONFIG_LIBS = allegro-5 allegro_main-5 allegro_image-5 allegro_font-5 allegro_ttf-5 allegro_audio-5 allegro_acodec-5 allegro_primitives-5
 
 CFLAGS += $(shell pkg-config --cflags $(PKG_CONFIG_LIBS))
 LDFLAGS = $(shell pkg-config --libs $(PKG_CONFIG_LIBS))
