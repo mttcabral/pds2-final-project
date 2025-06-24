@@ -94,6 +94,11 @@ int main(){
     ALLEGRO_BITMAP* game_over_background = al_load_bitmap("assets/menu/game_over_background.png");
     ALLEGRO_BITMAP* register_button = al_load_bitmap("assets/menu/register_button.png");
     ALLEGRO_BITMAP* hover_register = al_load_bitmap("assets/menu/register_hover_button.png");
+    ALLEGRO_BITMAP* no_button = al_load_bitmap("assets/menu/no_button.png");
+    ALLEGRO_BITMAP* hover_no = al_load_bitmap("assets/menu/no_hover_button.png");
+    ALLEGRO_BITMAP* yes_button = al_load_bitmap("assets/menu/yes_button.png");
+    ALLEGRO_BITMAP* hover_yes = al_load_bitmap("assets/menu/yes_hover_button.png");
+    ALLEGRO_BITMAP* register_background = al_load_bitmap("assets/menu/register_background.png");
     ALLEGRO_FONT* textFont = al_load_font("assets/PressStart2P-Regular.ttf", 12, 0);
 
     // loading music (.wav please) 
@@ -428,28 +433,28 @@ int main(){
             }
 
             if(event.type == ALLEGRO_EVENT_MOUSE_AXES || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
-                Hretry = hover_bool(event, retry_button, xretry, yretry);
-                Hmenu = hover_bool(event, home_button, xhome, yhome);
+                Hretry = hover_bool(event, yes_button, xretry, yretry);
+                Hmenu = hover_bool(event, no_button, xhome, yhome);
             }
 
             if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-                if(Hretry) state = PLAYING;
-                if(Hmenu) state = MENU;
+                if(Hretry) {} // SIM QUERO FAZER NOVO REGISTRO
+                if(Hmenu) {} // NÃO NÃO QUERO FAZER NOVO REGISTRO
             }
 
             if(redraw && al_is_event_queue_empty(eventQueue)) {
-                al_draw_bitmap(game_over_background, 0, 0, 0);
+                al_draw_bitmap(register_background, 0, 0, 0);
 
                     if(Hretry) {
-                    al_draw_bitmap(hover_retry, xretry, yretry, 0);
+                    al_draw_bitmap(hover_yes, xretry, yretry, 0);
                     } else {
-                    al_draw_bitmap(retry_button, xretry, yretry, 0);
+                    al_draw_bitmap(yes_button, xretry, yretry, 0);
                     }
 
                     if(Hmenu) {
-                    al_draw_bitmap(hover_home, xhome, yhome, 0);
+                    al_draw_bitmap(hover_no, xhome, yhome, 0);
                     } else {
-                    al_draw_bitmap(home_button, xhome, yhome, 0);
+                    al_draw_bitmap(no_button, xhome, yhome, 0);
                     }
                     
                     if (operation == NAME){
