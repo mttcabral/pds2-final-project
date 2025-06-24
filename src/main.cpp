@@ -76,41 +76,41 @@ int main(){
     TransitionScreen curtain;
 
     // loading images and font
-    ALLEGRO_BITMAP* menu_background = al_load_bitmap("assets/menu_background.png");
-    ALLEGRO_BITMAP* play_button = al_load_bitmap("assets/menu_play_button.png");
-    ALLEGRO_BITMAP* quit_button = al_load_bitmap("assets/menu_quit_button.png");
-    ALLEGRO_BITMAP* hover_play = al_load_bitmap("assets/menu_hover_play_button.png");
-    ALLEGRO_BITMAP* hover_quit = al_load_bitmap("assets/menu__hover_quit_button.png");
-    ALLEGRO_BITMAP* leaderboard_button = al_load_bitmap("assets/menu_leaderboard_button.png");
-    ALLEGRO_BITMAP* hover_leaderboard = al_load_bitmap("assets/menu_hover_leaderboard_button.png");
-    ALLEGRO_BITMAP* menu_image = al_load_bitmap("assets/title_image.png");
-    ALLEGRO_BITMAP* back_button = al_load_bitmap("assets/back_button.png");
-    ALLEGRO_BITMAP* hover_back = al_load_bitmap("assets/menu_hover_back_button.png");
-    ALLEGRO_BITMAP* leaderboard_background = al_load_bitmap("assets/leaderboard_background.jpeg");
-    ALLEGRO_BITMAP* home_button = al_load_bitmap("assets/home_button.png");
-    ALLEGRO_BITMAP* hover_home = al_load_bitmap("assets/home__hover_button.png");
-    ALLEGRO_BITMAP* retry_button = al_load_bitmap("assets/retry_button.png");
-    ALLEGRO_BITMAP* hover_retry = al_load_bitmap("assets/retry_hover_button.png");
-    ALLEGRO_BITMAP* game_over_background = al_load_bitmap("assets/game_over_background.png");
-    ALLEGRO_BITMAP* register_button = al_load_bitmap("assets/register_button.png");
-    ALLEGRO_BITMAP* hover_register = al_load_bitmap("assets/register_hover_button.png");
+    ALLEGRO_BITMAP* menu_background = al_load_bitmap("assets/menu/menu_background.png"); 
+    ALLEGRO_BITMAP* play_button = al_load_bitmap("assets/menu/menu_play_button.png");
+    ALLEGRO_BITMAP* quit_button = al_load_bitmap("assets/menu/menu_quit_button.png");
+    ALLEGRO_BITMAP* hover_play = al_load_bitmap("assets/menu/menu_hover_play_button.png");
+    ALLEGRO_BITMAP* hover_quit = al_load_bitmap("assets/menu/menu__hover_quit_button.png");
+    ALLEGRO_BITMAP* leaderboard_button = al_load_bitmap("assets/menu/menu_leaderboard_button.png");
+    ALLEGRO_BITMAP* hover_leaderboard = al_load_bitmap("assets/menu/menu_hover_leaderboard_button.png");
+    ALLEGRO_BITMAP* menu_image = al_load_bitmap("assets/menu/title_image.png");
+    ALLEGRO_BITMAP* back_button = al_load_bitmap("assets/menu/back_button.png");
+    ALLEGRO_BITMAP* hover_back = al_load_bitmap("assets/menu/menu_hover_back_button.png");
+    ALLEGRO_BITMAP* leaderboard_background = al_load_bitmap("assets/menu/leaderboard_background.jpeg");
+    ALLEGRO_BITMAP* home_button = al_load_bitmap("assets/menu/home_button.png");
+    ALLEGRO_BITMAP* hover_home = al_load_bitmap("assets/menu/home__hover_button.png");
+    ALLEGRO_BITMAP* retry_button = al_load_bitmap("assets/menu/retry_button.png");
+    ALLEGRO_BITMAP* hover_retry = al_load_bitmap("assets/menu/retry_hover_button.png");
+    ALLEGRO_BITMAP* game_over_background = al_load_bitmap("assets/menu/game_over_background.png");
+    ALLEGRO_BITMAP* register_button = al_load_bitmap("assets/menu/register_button.png");
+    ALLEGRO_BITMAP* hover_register = al_load_bitmap("assets/menu/register_hover_button.png");
     ALLEGRO_FONT* textFont = al_load_font("assets/PressStart2P-Regular.ttf", 12, 0);
 
-    // loading music (.wav please)
-    ALLEGRO_SAMPLE* menu_music = al_load_sample("assets/DDDmario.wav");
+    // loading music (.wav please) 
+    ALLEGRO_SAMPLE* menu_music = al_load_sample("assets/music/DDDmario.wav");
     if(!menu_music) std::cerr << "Erro: música menu_music não foi carregada\n";
-    ALLEGRO_SAMPLE* playing_music = al_load_sample("assets/Escape_Persona5.wav");
+    ALLEGRO_SAMPLE* playing_music = al_load_sample("assets/music/Escape_Persona5.wav");
     if(!playing_music) std::cerr << "Erro: música playing_music não foi carregada\n";
-    ALLEGRO_SAMPLE* leaderboard_music = al_load_sample("assets/leaderboard_music.wav");
+    ALLEGRO_SAMPLE* leaderboard_music = al_load_sample("assets/music/leaderboard_music.wav");
     if(!leaderboard_music) std::cerr << "Erro: música da leaderboard não carregada\n";
     if (!textFont) std::cerr << "Erro: fonte textFont não foi carregada\n";
 
-    ALLEGRO_SAMPLE* error_soundeffect = al_load_sample("assets/soundeffect/error_soundeffect.wav");
-    ALLEGRO_SAMPLE* gaming_start = al_load_sample("assets/soundeffect/gaming_start.ogg");
-    ALLEGRO_SAMPLE* hover_soundeffect = al_load_sample("assets/soundeffect/hover_soundeffect.wav");
-    ALLEGRO_SAMPLE* register_soundeffect = al_load_sample("assets/soundeffect/register_soundeffect.wav");
-    ALLEGRO_SAMPLE* select_soundeffect = al_load_sample("assets/soundeffect/select_soundeffect.wav");
-    ALLEGRO_SAMPLE* death_music = al_load_sample("assets/death_soundtrack.wav");
+    ALLEGRO_SAMPLE* error_soundeffect = al_load_sample("assets/music/soundeffect/error_soundeffect.wav");
+    ALLEGRO_SAMPLE* gaming_start = al_load_sample("assets/music/soundeffect/gaming_start.ogg");
+    ALLEGRO_SAMPLE* hover_soundeffect = al_load_sample("assets/music/soundeffect/hover_soundeffect.wav");
+    ALLEGRO_SAMPLE* register_soundeffect = al_load_sample("assets/music/soundeffect/register_soundeffect.wav");
+    ALLEGRO_SAMPLE* select_soundeffect = al_load_sample("assets/music/soundeffect/select_soundeffect.wav");
+    ALLEGRO_SAMPLE* death_music = al_load_sample("assets/music/death_soundtrack.wav");
     
 
     //treating music

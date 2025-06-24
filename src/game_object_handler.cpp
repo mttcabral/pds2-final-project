@@ -25,7 +25,7 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
     al_install_audio();                  
     al_init_acodec_addon();             
     al_reserve_samples(10);             
-    ALLEGRO_SAMPLE* jumping_soundeffect = al_load_sample("assets/soundeffect/jumping_soundeffect.wav");
+    ALLEGRO_SAMPLE* jumping_soundeffect = al_load_sample("assets/music/soundeffect/jumping_soundeffect.wav");
     ALLEGRO_FONT* scoreCount = al_load_font("assets/PressStart2P-Regular.ttf", 30, 0);
     
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
