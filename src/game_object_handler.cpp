@@ -67,7 +67,7 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
                 ++it;
                 }
             }
-            if(checkCollisions()) return -1;
+            if(checkCollisions() || outOfBorders()) return -1;
             redraw = true;
             jumpCD.updateCooldown();
             obstacleCD.updateCooldown();
@@ -118,7 +118,13 @@ void Handler::addObstacle()
     obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 250-x), 50, 300)));
     obstacles.back()->loadSprite("assets/long.png");
 }
-
+bool Handler::outOfBorders(){
+    if(guy->getPosY() > 800 || guy->getPosY() < 0){
+        death();
+        return true;
+    }
+    return false;
+}
 bool Handler::checkCollisions()
 {
     for (auto& obj : obstacles)

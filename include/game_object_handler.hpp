@@ -19,6 +19,7 @@ public:
     void addObstacle();
     void drawAll();
     bool checkCollisions();
+    bool outOfBorders();
     void drawObstacles();
     void death();
     int sortBetween(int x, int y);

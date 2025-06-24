@@ -52,7 +52,7 @@ class Player: public Entity {
 
 };
 
-const float PIPE_X_SPEED = -15;
+const float PIPE_X_SPEED = -10;
 
 //Basic obstacle proof of concept, best to not use if possible
 class Pipe: public Entity {
