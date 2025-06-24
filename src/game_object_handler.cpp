@@ -23,7 +23,6 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
     ALLEGRO_FONT* scoreCount = al_load_font("assets/PressStart2P-Regular.ttf", 30, 0);
     
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
-    guy = unique_ptr<Player>(new Player());
     //guy->loadSprite("assets/guy.png");
     al_start_timer(&timer);
     bool redraw = false;
@@ -43,14 +42,14 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
             if (!playing) break;
             time++;
             if (event.timer.source == &timer) {
-                guy->updateSpeed();
-                guy->updatePosition();
-                guy->updatePlayerState();               
+                guy.updateSpeed();
+                guy.updatePosition();
+                guy.updatePlayerState();               
                 bgLayer3.updateBackgroundPosition();
                 bgLayer2.updateBackgroundPosition();
                 bgLayer1.updateBackgroundPosition();
             } else if (event.timer.source == &animation_timer) {
-                guy->updateAnimation();
+                guy.updateAnimation();
             }
             if (obstacleCD.isCooldownUp())
             {
@@ -71,6 +70,7 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
             redraw = true;
             jumpCD.updateCooldown();
             obstacleCD.updateCooldown();
+            cout << guy.getPosY() << endl;
             break;
         case ALLEGRO_EVENT_KEY_DOWN:
             switch (event.keyboard.keycode)
@@ -79,7 +79,7 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
             case ALLEGRO_KEY_UP:
                 if (jumpCD.isCooldownUp())
                 {
-                    guy->jump();
+                    guy.jump();
                     jumpCD.restartCooldown();
                     //sheetTest.resetAnimation();
                 }
@@ -119,7 +119,7 @@ void Handler::addObstacle()
     obstacles.back()->loadSprite("assets/long.png");
 }
 bool Handler::outOfBorders(){
-    if(guy->getPosY() > 800 || guy->getPosY() < 0){
+    if(guy.getPosY() > 800 || guy.getPosY() < 0){
         death();
         return true;
     }
@@ -129,7 +129,7 @@ bool Handler::checkCollisions()
 {
     for (auto& obj : obstacles)
     {
-        if (isColidingSAT(guy->getHitbox()->getPolygon(),
+        if (isColidingSAT(guy.getHitbox()->getPolygon(),
                         obj->getHitbox()->getPolygon()))
         {
             death();
@@ -140,7 +140,7 @@ bool Handler::checkCollisions()
 }
 void Handler::drawAll()
 {
-    if(guy) guy->draw();
+    guy.draw();
     for (auto& obj : obstacles)
     {
         obj->draw();
@@ -148,7 +148,6 @@ void Handler::drawAll()
 }
 void Handler::death()
 {
-    guy.reset();
     obstacles.clear();
     playing = false;
 }

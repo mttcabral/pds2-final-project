@@ -11,7 +11,7 @@
 class Handler {
 private:
     bool playing = false;
-    std::unique_ptr<Player> guy;
+    Player guy;
     std::list<std::unique_ptr<Pipe>> obstacles;
     int time = 0;
 public:
