@@ -18,6 +18,7 @@
 using namespace std;
 
 enum GameState {MENU, TRANSITION, PLAYING, LEADERBOARD, DEATH, QUIT, CHECKIN}; // Use for in game logic
+enum RegisterState {NAME, NICKNAME, SAVE};
 
 // Game constants:
 // const float FPS = 30;                                      // Frames per second (in cooldown.hpp)
@@ -163,6 +164,15 @@ int main(){
     gameLeaderBoard.setThirdRowTextColor(Color(205, 127, 50));
     gameLeaderBoard.setOthersRowsTextColor(Color(255, 255, 255));
 
+    Register nameRegister("PLEASE, ENTER YOUR NAME:", 20, RectangleT(PointT(400, 300), 200, 150));
+    nameRegister.setTittleTextColor(Color(0, 0, 255));
+    nameRegister.setMessageTextColor(Color(255, 0, 0));
+    nameRegister.setBufferTextColor(Color(0, 0, 0));
+
+    Register nicknameRegister("ENTER YOUR NICKNAME:", 20, RectangleT(PointT(400, 300), 200, 150));
+    nicknameRegister.setTittleTextColor(Color(0, 255, 0));
+    nicknameRegister.setMessageTextColor(Color(255, 0, 0));
+    nicknameRegister.setBufferTextColor(Color(0, 0, 0));
     
     //testing sub bitmaps
     //TriggerSpritesheet sheetTest("assets/kirby.png",8,26,0);
@@ -180,6 +190,14 @@ int main(){
     GameState state = MENU;
     GameState next = MENU;
     bool gameActive = true;
+
+    // Register condition
+    RegisterState operation = NAME;
+    string tryName = "";
+    string tryNickname = "";
+    Profile tryProfile = Profile();
+    bool yetRegistered = false;
+    int pontuation = 0;
 
     bool Hplay = false, Hquit = false, Hleader = false, Hback = false, Hretry = false, Hmenu = false, Hregister = false; //variables that detect if the hover effect is playing
     
@@ -288,20 +306,10 @@ int main(){
 
             if(event.type == ALLEGRO_EVENT_MOUSE_AXES || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
                 Hback = hover_bool(event, back_button, xback, yback);
-                
-            }
-
-            mousebefore = mousenow;
-            mousenow = (Hback);
-            if(mousenow && !mousebefore){
-                al_play_sample(hover_soundeffect, 0.4, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
             }
 
             if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-                if(Hback) {
-                    al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);;
-                    state = MENU;
-                }
+                if(Hback) state = MENU;
             }
 
             if(redraw && al_is_event_queue_empty(eventQueue)) {
@@ -310,13 +318,9 @@ int main(){
 
                 if(Hback) {
                     al_draw_bitmap(hover_back, xback, yback, 0);
-
                 } else {
                     al_draw_bitmap(back_button, xback, yback, 0);
                 }
-
-                //toRegister.drawRegister(textFont);  // NEW METHOD AND CLASS TO DRAW THE REGISTER
-                // al_flip_display();
 
                 gameLeaderBoard.drawLeaderBoard(textFont);  // NEW METHOD TO DRAW THE LEADERBOARD
                 al_flip_display();
@@ -328,24 +332,6 @@ int main(){
                 state = QUIT;
             }
 
-            /* REGISTER LOGIC TO IMPLEMENT 
-            if (event.type == ALLEGRO_EVENT_KEY_CHAR) {
-                cout << "KEY_CHAR" << endl;
-
-                if (event.keyboard.unichar >= 32 && event.keyboard.unichar < 127){
-                    cout << ">= 32 && < 127" << endl;
-                    cout << "escrevendo" << endl;
-                    bool wrote = toRegister.writeInBuffer((char)event.keyboard.unichar);
-                    if(!wrote)
-                        cout << "nao escreveu" << endl;
-                }
-
-                else if (event.keyboard.keycode == ALLEGRO_KEY_BACKSPACE) {
-                    bool deleted = toRegister.deleteInBuffer();
-                    if (!deleted) 
-                        cout << "apagando" << endl;
-                }
-            }*/
 
         }   
 
@@ -431,6 +417,115 @@ int main(){
 
             
         }
+
+        while (state == CHECKIN){
+            ALLEGRO_EVENT event; 
+
+            al_wait_for_event(eventQueue, &event);
+
+            if(event.type == ALLEGRO_EVENT_TIMER){
+                redraw = true;
+            }
+
+            if(event.type == ALLEGRO_EVENT_MOUSE_AXES || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
+                Hretry = hover_bool(event, retry_button, xretry, yretry);
+                Hmenu = hover_bool(event, home_button, xhome, yhome);
+            }
+
+            if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
+                if(Hretry) state = PLAYING;
+                if(Hmenu) state = MENU;
+            }
+
+            if(redraw && al_is_event_queue_empty(eventQueue)) {
+                al_draw_bitmap(game_over_background, 0, 0, 0);
+
+                    if(Hretry) {
+                    al_draw_bitmap(hover_retry, xretry, yretry, 0);
+                    } else {
+                    al_draw_bitmap(retry_button, xretry, yretry, 0);
+                    }
+
+                    if(Hmenu) {
+                    al_draw_bitmap(hover_home, xhome, yhome, 0);
+                    } else {
+                    al_draw_bitmap(home_button, xhome, yhome, 0);
+                    }
+                    
+                    if (operation == NAME){
+                        nameRegister.drawRegister(textFont);  // NEW METHOD AND CLASS TO DRAW THE REGISTER
+                    }
+                    else if (operation == NICKNAME) {
+                        nicknameRegister.drawRegister(textFont);
+                    }
+                    al_flip_display();
+            }
+
+            if(operation == NAME){
+                tryName = "";
+                if (event.type == ALLEGRO_EVENT_KEY_CHAR) {
+                    if (event.keyboard.unichar >= 32 && event.keyboard.unichar < 127)
+                        nameRegister.writeInBuffer((char)event.keyboard.unichar);
+
+                    else if (event.keyboard.keycode == ALLEGRO_KEY_BACKSPACE)
+                        nameRegister.deleteInBuffer();
+                
+                    else if (event.keyboard.keycode == ALLEGRO_KEY_ENTER) {
+                        string warning = "";
+                        tryName = nameRegister.getBufferContent();
+                        bool nameRegistered = checkName(tryName, warning);
+                        nameRegister.setMessageContent(warning);
+                        nameRegister.cleanBuffer();
+
+                        if (nameRegistered)
+                            operation = NICKNAME;
+                    }
+                }
+            }
+
+            if(operation == NICKNAME){
+                tryNickname = "";
+                if (event.type == ALLEGRO_EVENT_KEY_CHAR) {
+                    if (event.keyboard.unichar >= 32 && event.keyboard.unichar < 127)
+                        nicknameRegister.writeInBuffer((char)event.keyboard.unichar);
+
+                    else if (event.keyboard.keycode == ALLEGRO_KEY_BACKSPACE)
+                        nicknameRegister.deleteInBuffer();
+                
+                    else if (event.keyboard.keycode == ALLEGRO_KEY_ENTER) {
+                        string warning = "";
+                        tryNickname = nicknameRegister.getBufferContent();
+                        bool nicknameRegistered = checkNickname(tryNickname, warning);
+                        nicknameRegister.setMessageContent(warning);
+                        nicknameRegister.cleanBuffer();
+
+                        if (nicknameRegistered)
+                            operation = SAVE;
+                    }
+                }
+            }
+
+            if(operation == SAVE){
+                bool profileRegistered = gameLeaderBoard.addNewProfile(Profile(tryName, tryNickname, pontuation, 1)); // 800 eh pra teste. Passar o valor da distancia da partida
+                operation = NAME;
+                if (profileRegistered) {
+                    state = MENU;
+                    gameLeaderBoard.updateLeaderBoard();
+                    gameLeaderBoard.save(path);
+                }
+                else {
+                    nicknameRegister.setMessageContent("Nickname already in use. Try another one.");
+                    operation = NICKNAME;
+                }
+                
+            }
+            
+            if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+                gameActive = false;
+                state = QUIT;
+            }
+        }
+
     }
     al_destroy_bitmap(menu_image);
     al_destroy_bitmap(menu_background);
