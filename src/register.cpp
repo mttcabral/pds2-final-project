@@ -198,7 +198,7 @@ void Register::setBufferTextColor(Color color) {
     this->rows[2].textColor = color;
 }
 
-void Register::drawRegister(ALLEGRO_FONT* font) {
+void Register::drawRegister(ALLEGRO_FONT* font, ALLEGRO_FONT* messageFont) {
     for (int i = 0; i < 3; i ++) {
         Color tempColor = this->getIthTextColor(i);
         ALLEGRO_COLOR aColor = al_map_rgb(tempColor.r, tempColor.g, tempColor.b);
@@ -206,7 +206,10 @@ void Register::drawRegister(ALLEGRO_FONT* font) {
         float tempY = this->getIthCenterY(i);
         string tempText = this->getIthContent(i);
         const char* aText = tempText.c_str();
-        al_draw_text(font, aColor, tempX, tempY, ALLEGRO_ALIGN_CENTRE, aText);
+        if(i == 1)
+            al_draw_text(messageFont, aColor, tempX, tempY, ALLEGRO_ALIGN_CENTRE, aText);
+        else
+            al_draw_text(font, aColor, tempX, tempY, ALLEGRO_ALIGN_CENTRE, aText);
     }
 }
 

@@ -66,7 +66,7 @@ class Register {
         void setMessageTextColor(Color);
         void setBufferTextColor(Color);
 
-        void drawRegister(ALLEGRO_FONT*);
+        void drawRegister(ALLEGRO_FONT*, ALLEGRO_FONT*);
 };
 
 bool validateNameChars(string);
