@@ -1,6 +1,6 @@
 #include "base.hpp"
 
-Profile::Profile() : Profile("", "", 0, 1) {}; // default
+Profile::Profile() : Profile("", "", 0, 0) {}; // default
 
 Profile::Profile(string name, string nickname) : Profile(name, nickname, 0, 1) {}; // default
 
