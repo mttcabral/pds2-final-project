@@ -10,7 +10,7 @@ Entity::~Entity(){
     delete hb;
 }    
 Player::Player(): Entity({X_AXIS,400},{0,5}),
-idleSprite("assets/idle.png",8,24,5), jumpSprite("assets/kirby.png",8,26,0) {
+idleSprite("assets/player/idle.png",10,50,0), jumpSprite("assets/player/jump.png",10,50,0) { 
     this->hb = new PolygonHitbox({X_AXIS,400},8,PLAYER_SIZE);
     this->hb->setTarget(this);
 }
@@ -76,7 +76,7 @@ void Player::draw() {
             al_get_bitmap_width(current->getCurrentFrame())/2,
             al_get_bitmap_height(current->getCurrentFrame())/2,
             this->getPosX(),this->getPosY(),
-            2.5,2.5, 
+            1.3,1.3, 
             0,0);
 }
 
