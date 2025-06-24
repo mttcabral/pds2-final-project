@@ -18,7 +18,7 @@
 using namespace std;
 
 enum GameState {MENU, TRANSITION, PLAYING, LEADERBOARD, DEATH, QUIT, CHECKIN}; // Use for in game logic
-enum RegisterState {NAME, NICKNAME, SAVE};
+enum RegisterState {PRE, NAME, NICKNAME, SAVE};
 
 // Game constants:
 // const float FPS = 30;                                      // Frames per second (in cooldown.hpp)
@@ -172,14 +172,14 @@ int main(){
     gameLeaderBoard.setOthersRowsTextColor(Color(255, 255, 255));
 
     Register nameRegister("PLEASE, ENTER YOUR NAME:", 20, RectangleT(PointT(400, 300), 200, 150));
-    nameRegister.setTittleTextColor(Color(0, 0, 255));
-    nameRegister.setMessageTextColor(Color(255, 0, 0));
-    nameRegister.setBufferTextColor(Color(0, 0, 0));
+    nameRegister.setTittleTextColor(Color(255, 255, 255));
+    nameRegister.setMessageTextColor(Color(255, 255, 255));
+    nameRegister.setBufferTextColor(Color(0, 255, 0));
 
     Register nicknameRegister("ENTER YOUR NICKNAME:", 20, RectangleT(PointT(400, 300), 200, 150));
-    nicknameRegister.setTittleTextColor(Color(0, 255, 0));
-    nicknameRegister.setMessageTextColor(Color(255, 0, 0));
-    nicknameRegister.setBufferTextColor(Color(0, 0, 0));
+    nicknameRegister.setTittleTextColor(Color(255, 255, 255));
+    nicknameRegister.setMessageTextColor(Color(255, 255, 255));
+    nicknameRegister.setBufferTextColor(Color(0, 255, 0));
     
     //testing sub bitmaps
     //TriggerSpritesheet sheetTest("assets/kirby.png",8,26,0);
@@ -199,12 +199,11 @@ int main(){
     bool gameActive = true;
 
     // Register condition
-    RegisterState operation = NAME;
+    RegisterState operation = PRE;
     string tryName = "";
     string tryNickname = "";
-    Profile tryProfile = Profile();
     bool yetRegistered = false;
-    int pontuation = 0;
+    int gameScore = 0;
 
     bool Hplay = false, Hquit = false, Hleader = false, Hback = false, Hretry = false, Hmenu = false, Hregister = false; //variables that detect if the hover effect is playing
     
@@ -345,8 +344,8 @@ int main(){
 
         while (state == PLAYING) {
             Handler handler;
-            int tempoSobrevivido = handler.gameOn(*timer, *animation_timer, *eventQueue, SCREEN_H, SCREEN_W); 
-            if(tempoSobrevivido == -1){
+            gameScore = handler.gameOn(*timer, *animation_timer, *eventQueue, SCREEN_H, SCREEN_W); 
+            if(gameScore){
                 state = DEATH; // por enquanto só para permitir retry fácil
                 al_stop_sample_instance(playing_music_inst);
                 al_play_sample_instance(death_music_inst);
@@ -439,15 +438,27 @@ int main(){
                 redraw = true;
             }
 
-            if(event.type == ALLEGRO_EVENT_MOUSE_AXES || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
-                Hretry = hover_bool(event, yes_button, xretry, yretry);
-                Hmenu = hover_bool(event, no_button, xhome, yhome);
+            if (yetRegistered) {
+                if (operation == PRE) {
+                    if(event.type == ALLEGRO_EVENT_MOUSE_AXES || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
+                        Hretry = hover_bool(event, yes_button, xretry, yretry);
+                        Hmenu = hover_bool(event, no_button, xhome, yhome);
+                    }
+                    if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
+                        if(Hretry){
+                            operation = NAME;
+                        }
+                        if(Hmenu){
+                            operation = SAVE;
+                        }
+                    }
+                }
+            }
+            else {
+                if (operation == PRE)
+                    operation = NAME;
             }
 
-            if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-                if(Hretry) {} // SIM QUERO FAZER NOVO REGISTRO
-                if(Hmenu) {} // NÃO NÃO QUERO FAZER NOVO REGISTRO
-            }
             mousebefore = mousenow;
             mousenow = (Hretry || Hmenu);
             if(mousenow && !mousebefore){
@@ -457,6 +468,7 @@ int main(){
             if(redraw && al_is_event_queue_empty(eventQueue)) {
                 al_draw_bitmap(register_background, 0, 0, 0);
 
+                if(operation == PRE) {
                     if(Hretry) {
                     al_draw_bitmap(hover_yes, xretry, yretry, 0);
                     } else {
@@ -468,14 +480,19 @@ int main(){
                     } else {
                     al_draw_bitmap(no_button, xhome, yhome, 0);
                     }
+                }
+
+                if (operation == PRE) {
+                    al_draw_text(textFont, al_map_rgb(255, 255, 255), 400, 300, ALLEGRO_ALIGN_CENTRE, "REGISTER A NEW PROFILE?");
+                }
                     
-                    if (operation == NAME){
-                        nameRegister.drawRegister(textFont);  // NEW METHOD AND CLASS TO DRAW THE REGISTER
-                    }
-                    else if (operation == NICKNAME) {
-                        nicknameRegister.drawRegister(textFont);
-                    }
-                    al_flip_display();
+                if (operation == NAME){
+                    nameRegister.drawRegister(textFont);  // NEW METHOD AND CLASS TO DRAW THE REGISTER
+                }
+                else if (operation == NICKNAME) {
+                    nicknameRegister.drawRegister(textFont);
+                }
+                al_flip_display();
             }
 
             if(operation == NAME){
@@ -523,12 +540,13 @@ int main(){
             }
 
             if(operation == SAVE){
-                bool profileRegistered = gameLeaderBoard.addNewProfile(Profile(tryName, tryNickname, pontuation, 1)); // 800 eh pra teste. Passar o valor da distancia da partida
-                operation = NAME;
+                bool profileRegistered = gameLeaderBoard.addNewProfile(Profile(tryName, tryNickname, gameScore, 1));
+                operation = PRE;
                 if (profileRegistered) {
                     state = MENU;
                     gameLeaderBoard.updateLeaderBoard();
                     gameLeaderBoard.save(path);
+                    yetRegistered = true;
                 }
                 else {
                     nicknameRegister.setMessageContent("Nickname already in use. Try another one.");
