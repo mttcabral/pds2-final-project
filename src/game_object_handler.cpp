@@ -17,6 +17,8 @@
 int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGRO_EVENT_QUEUE &eventQueue, const int SCREEN_H, const int SCREEN_W)
 {
 
+    this->dynamic = NONE;
+
     BackgroundHandler bgLayer3("assets/bg/sea.png",900,600,-1,SCREEN_W, SCREEN_H);
     BackgroundHandler bgLayer2("assets/bg/clouds.png",900,600,-4,SCREEN_W, SCREEN_H);
     BackgroundHandler bgLayer1("assets/bg/rocks.png",2700,600,-10,SCREEN_W, SCREEN_H);
@@ -33,6 +35,8 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
 
     ALLEGRO_BITMAP * pipeSprite = al_load_bitmap("assets/long.png");
 
+    Spritesheet eelSprite("assets/eel.png",24,366,0);
+
     while (playing)
     {
         ALLEGRO_EVENT event;
@@ -43,6 +47,9 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
             if (!playing) break;
             time++;
             if (event.timer.source == &timer) {
+
+                this->updateAmbient();
+
                 guy.updateSpeed();
                 guy.updatePosition();
                 guy.updatePlayerState();               
@@ -51,10 +58,11 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
                 bgLayer1.updateBackgroundPosition();
             } else if (event.timer.source == &animation_timer) {
                 guy.updateAnimation();
+                eelSprite.advanceFrame();
             }
             if (obstacleCD.isCooldownUp())
             {
-                addObstacle(pipeSprite);
+                addObstacle(pipeSprite, &eelSprite);
                 obstacleCD.setRechargeTime(sortBetween(2, 3));
                 obstacleCD.restartCooldown();
             }
@@ -112,15 +120,26 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
 
     return time;
 }
-void Handler::addObstacle(ALLEGRO_BITMAP * image)
+void Handler::addObstacle(ALLEGRO_BITMAP * image, Spritesheet * eelImage)
 {
     int x = sortBetween(0, 300);
-    if(x>50){
-        obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 800-x), 50, 300, image)));
-        obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 300-x), 50, 300, image)));        
-    }else{
-        obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 425-x), 50, 300, image)));       
+    switch (this->dynamic){
+        case NONE:
+            break;
+        case FLAPPY:
+            if(x>50){
+                obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 800-x), 50, 300, image)));
+                obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 300-x), 50, 300, image)));        
+            }else{
+                obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 425-x), 50, 300, image)));       
+            }
+            break;
+        case EELS:
+            obstacles.push_back(unique_ptr<Pipe>(new Eel(Point(1000,200+x),eelImage)));
+            break;
+    
     }
+    
 
 
 }
@@ -161,4 +180,24 @@ int Handler::sortBetween(int min, int max) {
     static std::mt19937 motor(std::random_device{}());
     std::uniform_int_distribution<int> distribuicao(min, max);
     return distribuicao(motor);
+}
+
+void Handler::updateAmbient() {
+    int mark = this->time/200;
+    switch (this->dynamic) {
+        case NONE:
+            //cout << "none" << '\n';
+            if (this->time >= 50) this->dynamic = FLAPPY;
+            break;
+        case FLAPPY:
+            //cout << "flappy" << '\n';
+            if ( mark % 3 == 0  && this->time > 200) this->dynamic = EELS;
+            
+            break;
+        case EELS:
+            //cout << "eel" << '\n';
+            if ( mark % 3 != 0 ) this->dynamic = FLAPPY;
+
+            break;
+    }
 }

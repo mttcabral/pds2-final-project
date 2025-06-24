@@ -168,7 +168,7 @@ void Pipe::draw() {
 Eel::Eel(const Point& pos, Spritesheet * image): Pipe::Pipe(pos,EEL_W,EEL_H), sprite(image) {}
 
 void Eel::rotate() {
-    this->getHitbox()->rotateHitbox(PI/180);
+    this->getHitbox()->rotateHitbox(PI/120);
 }
 
 bool Eel::updatePosition() {
