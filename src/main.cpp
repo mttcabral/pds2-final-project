@@ -181,9 +181,6 @@ int main(){
             al_wait_for_event(eventQueue, &event);
 
             if(event.type == ALLEGRO_EVENT_TIMER){
-                curtain.updateStage();
-                curtain.updateSpeed();
-                curtain.updatePosition();
                 redraw = true;
             }
 
@@ -200,8 +197,7 @@ int main(){
                     gameActive = false;
                     } 
                 if(Hleader) {
-                    next = LEADERBOARD;
-                    curtain.startTransition();
+                   state = LEADERBOARD;
                     }
             }
 
