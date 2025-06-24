@@ -286,7 +286,7 @@ int main(){
             al_stop_sample_instance(menu_music_inst);
             al_stop_sample_instance(leaderboard_music_inst);
             al_play_sample_instance(playing_music_inst);
-            //stop death music
+            al_stop_sample_instance(death_music_inst);
         }
         if(state == LEADERBOARD) {
             al_stop_sample_instance(menu_music_inst);
