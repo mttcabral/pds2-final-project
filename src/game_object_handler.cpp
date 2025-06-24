@@ -73,7 +73,7 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
                 ++it;
                 }
             }
-            if(checkCollisions()) return -1;
+            if(checkCollisions()) return time;
             redraw = true;
             jumpCD.updateCooldown();
             obstacleCD.updateCooldown();
