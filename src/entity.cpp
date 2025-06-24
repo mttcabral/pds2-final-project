@@ -10,7 +10,8 @@ Entity::~Entity(){
     delete hb;
 }    
 Player::Player(): Entity({X_AXIS,400},{0,5}),
-idleSprite("assets/player/idle.png",10,50,0), jumpSprite("assets/player/jump.png",10,50,0) { 
+idleSprite("assets/player/idle.png",10,50,0), jumpSprite("assets/player/jump.png",10,50,0),
+angleCD(0.15) { 
     this->hb = new PolygonHitbox({X_AXIS,400},8,PLAYER_SIZE);
     this->hb->setTarget(this);
 }
@@ -29,14 +30,6 @@ void Player::updateSpeed() {
     if (this->getSpeedX() < 0) this->setSpeedX(0);
     else if (this->getSpeedX() >= 0) this->addSpeedX(-5);
 
-    
-    /*
-    if (this->getSpeedY() < BASE_GRAVITY) {
-        if (this->getSpeedY() <= 0) {
-            this->addSpeedY(7.5);
-        } else this->addSpeedY(5);
-    }
-    */
     if (this->getSpeedY() <= BASE_GRAVITY) this->addSpeedY(5);
     else if (this->getSpeedY() > BASE_GRAVITY) this->setSpeedY(BASE_GRAVITY);
 
@@ -47,16 +40,6 @@ void Player::jump() {
     this->state = PlayerState::JUMPING;
     this->jumpSprite.resetAnimation();
 }
-
-/*
-bool Player::loadSprite(const char* dir) {
-    playerSprite = al_load_bitmap(dir);
-    if (!playerSprite) {
-        std::cout << "SPRITE LOADING FAILED FOR PLAYER\n";
-        return false;
-    }else return true;
-}
-*/
 
 void Player::draw() {
     Spritesheet * current = &this->idleSprite;
@@ -77,7 +60,7 @@ void Player::draw() {
             al_get_bitmap_height(current->getCurrentFrame())/2,
             this->getPosX(),this->getPosY(),
             1.3,1.3, 
-            0,0);
+            this->angle,0);
 }
 
 void Player::updateAnimation() {
@@ -98,15 +81,27 @@ void Player::updateAnimation() {
 }
 
 void Player::updatePlayerState() {
+    this->angleCD.updateCooldown();
+    
     switch (this->state) {
         case PlayerState::NONE:
             this->state = PlayerState::IDLE;
+            this->angle = -PI/8;
+            this->angleCD.restartCooldown();
         case PlayerState::IDLE:
+            if (this->angleCD.isCooldownUp()) {
+                this->angle = PI/4 - PI/8;
+            }else {
+                float percent = 1 - angleCD.getCurrentPorcentage();
+                this->angle = -PI/8 + (PI/4)*percent;
+            }
             break;
         case PlayerState::JUMPING:
+            this->angle = -PI/8;
             if (!this->jumpSprite.isActive()) {
-                this->state = PlayerState::IDLE;
                 this->idleSprite.resetAnimation();
+                this->state = PlayerState::IDLE;
+                this->angleCD.restartCooldown();
             }
             break;
         case PlayerState::DEAD:

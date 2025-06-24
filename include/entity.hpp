@@ -4,6 +4,7 @@
 #include "game_object.hpp"
 #include "hitbox.hpp"
 #include "animation.hpp"
+#include "cooldown.hpp"
 #include <string>
 
 const float BASE_GRAVITY = 10;
@@ -33,6 +34,9 @@ class Player: public Entity {
         Spritesheet idleSprite;
         TriggerSpritesheet jumpSprite;
         PlayerState state = PlayerState::NONE;
+        
+        Cooldown angleCD;
+        float angle;
     public: 
         Player();
 
