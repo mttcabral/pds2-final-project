@@ -135,6 +135,7 @@ int main(){
     startmusic(playing_music_inst, 0.5);
     startmusic(leaderboard_music_inst, 0.8);
     startmusic(death_music_inst, 0.5);
+    startmusic(register_music_int, 0.5);
 
 
 
