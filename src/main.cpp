@@ -69,6 +69,8 @@ int main(){
     
     //Redraw condition, so that the game is rendered separately from other events in queue
     bool redraw = false;
+    bool mousenow = false;
+    bool mousebefore = false;
 
     TransitionScreen curtain;
 
@@ -99,18 +101,27 @@ int main(){
     ALLEGRO_SAMPLE* leaderboard_music = al_load_sample("assets/leaderboard_music.wav");
     if(!leaderboard_music) std::cerr << "Erro: música da leaderboard não carregada\n";
     if (!textFont) std::cerr << "Erro: fonte textFont não foi carregada\n";
+
+    ALLEGRO_SAMPLE* error_soundeffect = al_load_sample("assets/soundeffect/error_soundeffect.wav");
+    ALLEGRO_SAMPLE* gaming_start = al_load_sample("assets/soundeffect/gaming_start.ogg");
+    ALLEGRO_SAMPLE* hover_soundeffect = al_load_sample("assets/soundeffect/hover_soundeffect.wav");
+    ALLEGRO_SAMPLE* register_soundeffect = al_load_sample("assets/soundeffect/register_soundeffect.wav");
+    ALLEGRO_SAMPLE* select_soundeffect = al_load_sample("assets/soundeffect/select_soundeffect.wav");
+    ALLEGRO_SAMPLE* death_music = al_load_sample("assets/death_soundtrack.wav");
     
 
     //treating music
     ALLEGRO_SAMPLE_INSTANCE* menu_music_inst  = al_create_sample_instance(menu_music);
     ALLEGRO_SAMPLE_INSTANCE* playing_music_inst = al_create_sample_instance(playing_music);
     ALLEGRO_SAMPLE_INSTANCE* leaderboard_music_inst = al_create_sample_instance(leaderboard_music);
+    ALLEGRO_SAMPLE_INSTANCE* death_music_inst = al_create_sample_instance(death_music);
     // menu music
 
     startmusic(menu_music_inst, 0.5);
     // playing music
-    startmusic(playing_music_inst, 0.1);
+    startmusic(playing_music_inst, 0.5);
     startmusic(leaderboard_music_inst, 0.8);
+    startmusic(death_music_inst, 0.5);
 
 
 
@@ -189,15 +200,26 @@ int main(){
                Hplay = hover_bool(event, play_button, xplay, yplay);
                Hquit = hover_bool(event, quit_button, xquit, yquit);
                Hleader = hover_bool(event,leaderboard_button, xleader, yleader);
+               
+            }
+            mousebefore = mousenow;
+            mousenow = (Hplay || Hquit || Hleader);
+            if(mousenow && !mousebefore){
+                al_play_sample(hover_soundeffect, 0.4, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
             }
 
+
             if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
-                if(Hplay) state = PLAYING;
+                if(Hplay) {
+                    al_play_sample(gaming_start, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);;
+                    state = PLAYING;
+                    }
                 if(Hquit) {
                     state = QUIT;
                     gameActive = false;
                     } 
                 if(Hleader) {
+                    al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);;
                    state = LEADERBOARD;
                     }
             }
@@ -206,6 +228,7 @@ int main(){
                 state = QUIT;
                 gameActive = false;
             }
+
 
             if(redraw && al_is_event_queue_empty(eventQueue)){
                 al_clear_to_color(al_map_rgb(0,0,0)); 
@@ -240,6 +263,7 @@ int main(){
             al_stop_sample_instance(menu_music_inst);
             al_stop_sample_instance(leaderboard_music_inst);
             al_play_sample_instance(playing_music_inst);
+            //stop death music
         }
         if(state == LEADERBOARD) {
             al_stop_sample_instance(menu_music_inst);
@@ -259,10 +283,20 @@ int main(){
 
             if(event.type == ALLEGRO_EVENT_MOUSE_AXES || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
                 Hback = hover_bool(event, back_button, xback, yback);
+                
+            }
+
+            mousebefore = mousenow;
+            mousenow = (Hback);
+            if(mousenow && !mousebefore){
+                al_play_sample(hover_soundeffect, 0.4, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
             }
 
             if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-                if(Hback) state = MENU;
+                if(Hback) {
+                    al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);;
+                    state = MENU;
+                }
             }
 
             if(redraw && al_is_event_queue_empty(eventQueue)) {
@@ -271,6 +305,7 @@ int main(){
 
                 if(Hback) {
                     al_draw_bitmap(hover_back, xback, yback, 0);
+
                 } else {
                     al_draw_bitmap(back_button, xback, yback, 0);
                 }
@@ -314,10 +349,13 @@ int main(){
             int tempoSobrevivido = handler.gameOn(*timer, *animation_timer, *eventQueue, SCREEN_H, SCREEN_W); 
             if(tempoSobrevivido == -1){
                 state = DEATH; // por enquanto só para permitir retry fácil
+                al_stop_sample_instance(playing_music_inst);
+                al_play_sample_instance(death_music_inst);
             }
             al_flip_display(); //updates the display with the new frame 
             redraw = false;
         }
+
         // death logic
         while (state == DEATH){
             ALLEGRO_EVENT event; 
@@ -333,9 +371,21 @@ int main(){
                 Hmenu = hover_bool(event, home_button, xhome, yhome);
             }
 
+            mousebefore = mousenow;
+            mousenow = (Hretry || Hmenu);
+            if(mousenow && !mousebefore){
+                al_play_sample(hover_soundeffect, 0.4, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+            }
+
             if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-                if(Hretry) state = PLAYING;
-                if(Hmenu) state = MENU;
+                if(Hretry) {
+                    al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);;
+                    state = PLAYING;
+                    }
+                if(Hmenu) {
+                    al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                    state = MENU;
+                    }
             }
 
             if(redraw && al_is_event_queue_empty(eventQueue)) {
