@@ -110,11 +110,16 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
 }
 void Handler::addObstacle()
 {
-    int x = sortBetween(50, 300);
-    obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 800-x), 50, 300)));
-    obstacles.back()->loadSprite("assets/long.png");
-    obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 250-x), 50, 300)));
-    obstacles.back()->loadSprite("assets/long.png");
+    int x = sortBetween(0, 300);
+    if(x<50){
+        obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 800-x), 50, 300)));
+        obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 300-x), 50, 300)));        
+    }else{
+        obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 300-x), 50, 300)));        
+
+    }
+
+
 }
 bool Handler::outOfBorders(){
     if(guy.getPosY() > 600 || guy.getPosY() < 0){

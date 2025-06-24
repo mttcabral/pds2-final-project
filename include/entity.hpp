@@ -64,15 +64,28 @@ class Pipe: public Entity {
         bool updatePosition() override;
         void updateSpeed() override;
 
-        bool loadSprite(const char* dir);
+        bool loadSprite();
 
         void draw() override;
 
         ~Pipe();
 };
 
-//implement entities with PolygonHitbox now
+class Eel: public Entity {
+    private:
+        Spritesheet idleSprite;
+    public:
+        Eel(int x);
 
+        bool updatePosition() override;
+        void updateSpeed() override;
+        void updateAnimation();
+
+        void draw() override;
+
+        ~Eel();
+
+};
 
 
 
