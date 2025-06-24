@@ -22,12 +22,12 @@ const int MAXPROFILENAMESIZE = 20;
 const int MINPROFILENICKNAMESIZE = 4;
 const int MAXPROFILENICKNAMESIZE = 12;
 
-int const SIZEBUFFER = 21;
 int const NUMREGISTERROWS = 3;
 
 class Register {
     private:
-        char buffer[SIZEBUFFER];
+        int bufferSize;
+        char* buffer;
         int index;
         string tittle;
         string message;
@@ -35,13 +35,16 @@ class Register {
         vector<Row> rows;
     
     public:
-        Register(RectangleT);
+        Register(int, RectangleT);
+        Register(string, int, RectangleT);
+        ~Register();
 
         Register(const Register&);
         Register& operator = (const Register&);
 
         bool writeInBuffer(char);
         bool deleteInBuffer();
+        bool cleanBuffer();
 
         string getTittleContent();
         string getMessageContent();
@@ -75,7 +78,7 @@ bool validateNicknameSize(string);
 bool validateName(string);
 bool validateNickname(string);
 
-string checkName(string&, bool&, const char*&);
-string checkNickname(bool&, const char*&);
+bool checkName(string, string&);
+bool checkNickname(string, string&);
 
 #endif
