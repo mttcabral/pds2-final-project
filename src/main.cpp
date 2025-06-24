@@ -116,6 +116,7 @@ int main(){
     ALLEGRO_SAMPLE* register_soundeffect = al_load_sample("assets/music/soundeffect/register_soundeffect.wav");
     ALLEGRO_SAMPLE* select_soundeffect = al_load_sample("assets/music/soundeffect/select_soundeffect.wav");
     ALLEGRO_SAMPLE* death_music = al_load_sample("assets/music/death_soundtrack.wav");
+    ALLEGRO_SAMPLE* register_music = al_load_sample("assets/music/register_soundtrack.wav");
     
 
     //treating music
@@ -123,6 +124,7 @@ int main(){
     ALLEGRO_SAMPLE_INSTANCE* playing_music_inst = al_create_sample_instance(playing_music);
     ALLEGRO_SAMPLE_INSTANCE* leaderboard_music_inst = al_create_sample_instance(leaderboard_music);
     ALLEGRO_SAMPLE_INSTANCE* death_music_inst = al_create_sample_instance(death_music);
+    ALLEGRO_SAMPLE_INSTANCE* register_music_int = al_create_sample_instance(register_music);
     // menu music
 
     startmusic(menu_music_inst, 0.5);
@@ -213,6 +215,7 @@ int main(){
             al_stop_sample_instance(playing_music_inst);
             al_stop_sample_instance(leaderboard_music_inst);
             al_stop_sample_instance(death_music_inst);
+            al_stop_sample_instance(register_music_int);
         }   
 
         while(state == MENU){
@@ -420,7 +423,11 @@ int main(){
                 state = QUIT;
             }
 
-            
+        if(state == CHECKIN) {
+            al_stop_sample_instance (death_music_inst);
+            al_play_sample_instance(register_music_int);
+        }
+
         }
 
         while (state == CHECKIN){
