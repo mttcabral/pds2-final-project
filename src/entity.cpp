@@ -118,17 +118,20 @@ Player::~Player() {
     //spritesheets already handles destruction correctly
 }
 
-Pipe::Pipe(const Point&pos,float w, float h): Entity(pos,Point(PIPE_X_SPEED,0)) { //(-2,0)
-    loadSprite();
+Pipe::Pipe(const Point&pos,float w, float h, ALLEGRO_BITMAP * image):
+     Entity(pos,Point(PIPE_X_SPEED,0)), pipeSprite(image) { //(-2,0)
+    //loadSprite();
     this->hb = new RectangleHitbox(pos,w,h);
     this->hb->setTarget(this);
 }
 
 Pipe::~Pipe() {
+    /*
     if (pipeSprite != nullptr) {
         al_destroy_bitmap(pipeSprite);
         pipeSprite = nullptr;
     }
+    */
 }
 
 bool Pipe::updatePosition() {
@@ -141,7 +144,7 @@ bool Pipe::updatePosition() {
 void Pipe::updateSpeed() {
     return; //this basic pipe shoudn't accelerate 
 }
-
+/*
 bool Pipe::loadSprite(){
         pipeSprite = al_load_bitmap("assets/long.png");
     if (!pipeSprite) {
@@ -149,6 +152,7 @@ bool Pipe::loadSprite(){
         return false;
     }else return true;
 }
+*/
 
 void Pipe::draw() {
     if (!pipeSprite) {
@@ -159,29 +163,22 @@ void Pipe::draw() {
                             al_get_bitmap_width(pipeSprite)/2,al_get_bitmap_height(pipeSprite)/2,
                             this->getPosX(), this->getPosY(),this->getHitbox()->getAngle(),0);              
 }
-/*Eel::Eel(int x): Entity({1000,300},Point(PIPE_X_SPEED,0)),
-idleSprite("assets/player/long.png",10,50,0) { 
-    this->hb = new RectangleHitbox({1000,300},50,375+x);
-    this->hb->setTarget(this);
-};
-void Eel::updateAnimation(){
-    this->idleSprite.advanceFrame();
-};
-void Pipe::updateSpeed() {
-    return;
-};
-bool Eel::updatePosition(){
-    this->setPosX(this->getSpeedX() + this->getPosX());
-    this->hb->updatePosition();
-    return true;
-};
-void Eel::draw(){
-    al_draw_scaled_rotated_bitmap(
-            current.getCurrentFrame(),
-            al_get_bitmap_width(current->getCurrentFrame())/2,
-            al_get_bitmap_height(current->getCurrentFrame())/2,
-            this->getPosX(),this->getPosY(),
-            1.3,1.3, 
-            0,0);
+
+
+Eel::Eel(const Point& pos, Spritesheet * image): Pipe::Pipe(pos,EEL_W,EEL_H), sprite(image) {}
+
+void Eel::rotate() {
+    this->getHitbox()->rotateHitbox(PI/180);
 }
-*/
+
+bool Eel::updatePosition() {
+    this->rotate();
+    Pipe::updatePosition();
+    return true;
+}
+
+void Eel::draw() {
+    al_draw_rotated_bitmap(this->sprite->getCurrentFrame(),
+                            EEL_W/2,EEL_H/2, this->getPosX(),this->getPosY(),
+                        this->getHitbox()->getAngle(),0);
+}

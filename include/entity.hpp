@@ -63,7 +63,7 @@ class Pipe: public Entity {
     private:
         ALLEGRO_BITMAP * pipeSprite = nullptr;
     public:
-        Pipe(const Point&pos,float w, float h);
+        Pipe(const Point&pos,float w, float h, ALLEGRO_BITMAP * image = nullptr);
 
         bool updatePosition() override;
         void updateSpeed() override;
@@ -72,25 +72,27 @@ class Pipe: public Entity {
 
         void draw() override;
 
-        ~Pipe();
+        ~Pipe(); //will be replaced
 };
-/*
-class Eel: public Entity {
-    private:
-        Spritesheet idleSprite;
-    public:
-        Eel(int x);
 
+const float EEL_W = 366;
+const float EEL_H = 100;
+
+class Eel : public Pipe {
+    private:
+        Spritesheet * sprite;
+    public:
+        Eel(const Point&pos, Spritesheet * image);
+
+
+        void rotate();
         bool updatePosition() override;
-        void updateSpeed() override;
-        void updateAnimation();
 
         void draw() override;
+        //~Eel();
 
-        ~Eel();
 
 };
-*/
 
 
 

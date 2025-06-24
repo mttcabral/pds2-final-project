@@ -31,6 +31,8 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
     Cooldown obstacleCD(4);
     obstacleCD.restartCooldown();
 
+    ALLEGRO_BITMAP * pipeSprite = al_load_bitmap("assets/long.png");
+
     while (playing)
     {
         ALLEGRO_EVENT event;
@@ -52,7 +54,7 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
             }
             if (obstacleCD.isCooldownUp())
             {
-                addObstacle();
+                addObstacle(pipeSprite);
                 obstacleCD.setRechargeTime(sortBetween(2, 3));
                 obstacleCD.restartCooldown();
             }
@@ -106,16 +108,18 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
         }
     }
     
+    al_destroy_bitmap(pipeSprite);
+
     return time;
 }
-void Handler::addObstacle()
+void Handler::addObstacle(ALLEGRO_BITMAP * image)
 {
     int x = sortBetween(0, 300);
     if(x>50){
-        obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 800-x), 50, 300)));
-        obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 300-x), 50, 300)));        
+        obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 800-x), 50, 300, image)));
+        obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 300-x), 50, 300, image)));        
     }else{
-        obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 425-x), 50, 300)));       
+        obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 425-x), 50, 300, image)));       
     }
 
 

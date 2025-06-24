@@ -16,7 +16,7 @@ private:
     int time = 0;
 public:
     int gameOn(ALLEGRO_TIMER& timer, ALLEGRO_TIMER& animation_timer, ALLEGRO_EVENT_QUEUE& eventQueue, const int SCREEN_H, const int SCREEN_W);
-    void addObstacle();
+    void addObstacle(ALLEGRO_BITMAP * image);
     void drawAll();
     bool checkCollisions();
     bool outOfBorders();
