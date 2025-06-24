@@ -441,6 +441,11 @@ int main(){
                 if(Hretry) {} // SIM QUERO FAZER NOVO REGISTRO
                 if(Hmenu) {} // NÃO NÃO QUERO FAZER NOVO REGISTRO
             }
+            mousebefore = mousenow;
+            mousenow = (Hretry || Hmenu);
+            if(mousenow && !mousebefore){
+                al_play_sample(hover_soundeffect, 0.4, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+            }
 
             if(redraw && al_is_event_queue_empty(eventQueue)) {
                 al_draw_bitmap(register_background, 0, 0, 0);
