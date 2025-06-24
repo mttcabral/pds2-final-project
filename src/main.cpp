@@ -379,7 +379,7 @@ int main(){
             }
 
             mousebefore = mousenow;
-            mousenow = (Hretry || Hmenu);
+            mousenow = (Hretry || Hmenu || Hregister);
             if(mousenow && !mousebefore){
                 al_play_sample(hover_soundeffect, 0.4, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
             }
