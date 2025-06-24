@@ -8,7 +8,7 @@ float PointT::toZero(float smallNumber) {
     return smallNumber;
 }
 
-PointT::PointT() : PointT(0,0) {};
+PointT::PointT() : PointT(0,1) {};
 
 PointT::PointT(const PointT& otherPointT) {
     this->x = otherPointT.x;

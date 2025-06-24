@@ -4,16 +4,15 @@
 
 LeaderBoard::LeaderBoard(string path, RectangleT plan) : base(path), table(plan) {
     this->topProfiles.resize(NUMPROFILES);
-    this->table.row[0].texts = {"RANK", "NICKNAME", "MAX PIPERS", "PLAYS"};
+    //this->table.row[0].texts = {"RANK", "NICKNAME", "MAX PIPERS", "PLAYS"};  // COMENT HERE TO REMOVE THE TITTLE LINE
     
     this->topProfiles = base.getBestProfiles();
-    int i = 1;
+    int i = 0;
     for (Profile* profile : this->topProfiles) { // write table with information
-        string _rank = to_string(i);
         string _nickname = profile->getNickname();
         string _maxPipers = to_string(profile->getMaxPipers());
         string _plays = to_string(profile->getPlays());
-        table.row[i].texts = {_rank, _nickname, _maxPipers, _plays};
+        table.row[i].texts = {_nickname, _maxPipers, _plays};
         i++;
     }
 };
@@ -28,62 +27,61 @@ void LeaderBoard::updateLeaderBoard() { // called after newProfiles
     this->topProfiles.clear();
 
     topProfiles = this->base.getBestProfiles();
-    int i = 1;
+    int i = 0;
     for (Profile* profile : this->topProfiles) { // write table with information
-        string _rank = to_string(i);
         string _nickname = profile->getNickname();
         string _maxPipers = to_string(profile->getMaxPipers());
         string _plays = to_string(profile->getPlays());
-        table.row[i].texts = {_rank, _nickname, _maxPipers, _plays};
+        table.row[i].texts = {_nickname, _maxPipers, _plays};
         i++;
     }
 }
 
-void LeaderBoard::setTitleRowColor(Color rgb) {
+//void LeaderBoard::setTitleRowColor(Color rgb) {
+    //this->table.row[0].rowColor = rgb;
+//};
+
+void LeaderBoard::setFirstRowColor(Color rgb) {
     this->table.row[0].rowColor = rgb;
 };
 
-void LeaderBoard::setFirstRowColor(Color rgb) {
+void LeaderBoard::setSecondRowColor(Color rgb) {
     this->table.row[1].rowColor = rgb;
 };
 
-void LeaderBoard::setSecondRowColor(Color rgb) {
+void LeaderBoard::setThirdRowColor(Color rgb) {
     this->table.row[2].rowColor = rgb;
 };
 
-void LeaderBoard::setThirdRowColor(Color rgb) {
-    this->table.row[3].rowColor = rgb;
-};
-
 void LeaderBoard::setOthersRowsColor(Color rgb) {
-    for(int i = 4; i < NUMROWS; i++) {
+    for(int i = 3; i < NUMROWS; i++) {
         this->table.row[i].rowColor = rgb;
     }
 };
 
-void LeaderBoard::setTitleRowTextColor(Color rgb) {
+/*void LeaderBoard::setTitleRowTextColor(Color rgb) {
+    this->table.row[0].textColor = rgb;
+};*/
+
+void LeaderBoard::setFirstRowTextColor(Color rgb) {
     this->table.row[0].textColor = rgb;
 };
 
-void LeaderBoard::setFirstRowTextColor(Color rgb) {
+void LeaderBoard::setSecondRowTextColor(Color rgb) {
     this->table.row[1].textColor = rgb;
 };
 
-void LeaderBoard::setSecondRowTextColor(Color rgb) {
+void LeaderBoard::setThirdRowTextColor(Color rgb) {
     this->table.row[2].textColor = rgb;
 };
 
-void LeaderBoard::setThirdRowTextColor(Color rgb) {
-    this->table.row[3].textColor = rgb;
-};
-
 void LeaderBoard::setOthersRowsTextColor(Color rgb) {
-    for(int i = 4; i < NUMROWS; i++) {
+    for(int i = 3; i < NUMROWS; i++) {
         this->table.row[i].textColor = rgb;
     }
 };
 
-/*
+
 void LeaderBoard::drawLeaderBoard(ALLEGRO_FONT* font) {
     for (Row line : this->table.row) {
         Color tempTextColor = line.textColor;
@@ -93,11 +91,10 @@ void LeaderBoard::drawLeaderBoard(ALLEGRO_FONT* font) {
             float subY = line.rowRectangle.subCenters[i].y;
             char const *aText = line.texts[i].c_str();
             al_draw_text(font, aColor, subX, subY, ALLEGRO_ALIGN_CENTRE, aText);
-            //
         }
     }
 }
-*/
+
 
 void LeaderBoard::display(){
     this->table.display();
