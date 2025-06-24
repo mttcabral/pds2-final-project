@@ -57,10 +57,10 @@ int main(){
     al_register_event_source(eventQueue, al_get_timer_event_source(timer));
     al_register_event_source(eventQueue, al_get_timer_event_source(animation_timer));
     al_register_event_source(eventQueue, al_get_keyboard_event_source());
+
     // Start the timer to control game speed
     al_start_timer(timer);
     al_start_timer(animation_timer);
-
 
 
     // Start the sample queue
@@ -69,6 +69,7 @@ int main(){
     //Redraw condition, so that the game is rendered separately from other events in queue
     bool redraw = false;
 
+    TransitionScreen curtain;
 
     // loading images and font
     ALLEGRO_BITMAP* menu_background = al_load_bitmap("assets/menu_background.png");
@@ -154,9 +155,10 @@ int main(){
 
     //Menu condition
     GameState state = MENU;
+    GameState next = MENU;
     bool gameActive = true;
 
-    bool Hplay = false, Hquit = false, Hleader = false, Hback = false; //variables that detect if the hover effect is playing
+    bool Hplay = false, Hquit = false, Hleader = false, Hback = false, Hretry = false, Hmenu = false; //variables that detect if the hover effect is playing
     
 
     while(gameActive){
@@ -165,13 +167,16 @@ int main(){
             al_stop_sample_instance(playing_music_inst);
             al_stop_sample_instance(leaderboard_music_inst);
         }   
-        
+
         while(state == MENU){
             ALLEGRO_EVENT event;
 
             al_wait_for_event(eventQueue, &event);
 
             if(event.type == ALLEGRO_EVENT_TIMER){
+                curtain.updateStage();
+                curtain.updateSpeed();
+                curtain.updatePosition();
                 redraw = true;
             }
 
@@ -187,7 +192,10 @@ int main(){
                     state = QUIT;
                     gameActive = false;
                     } 
-                if(Hleader) state = LEADERBOARD;
+                if(Hleader) {
+                    next = LEADERBOARD;
+                    curtain.startTransition();
+                    }
             }
 
             if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
