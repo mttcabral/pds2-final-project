@@ -99,7 +99,8 @@ int main(){
     ALLEGRO_BITMAP* yes_button = al_load_bitmap("assets/menu/yes_button.png");
     ALLEGRO_BITMAP* hover_yes = al_load_bitmap("assets/menu/yes_hover_button.png");
     ALLEGRO_BITMAP* register_background = al_load_bitmap("assets/menu/register_background.png");
-    ALLEGRO_FONT* textFont = al_load_font("assets/PressStart2P-Regular.ttf", 12, 0);
+    ALLEGRO_FONT* normalFont = al_load_font("assets/PressStart2P-Regular.ttf", 12, 0);
+    ALLEGRO_FONT* registerFont = al_load_font("assets/PressStart2P-Regular.ttf", 18, 0);
 
     // loading music (.wav please) 
     ALLEGRO_SAMPLE* menu_music = al_load_sample("assets/music/DDDmario.wav");
@@ -108,7 +109,9 @@ int main(){
     if(!playing_music) std::cerr << "Erro: música playing_music não foi carregada\n";
     ALLEGRO_SAMPLE* leaderboard_music = al_load_sample("assets/music/leaderboard_music.wav");
     if(!leaderboard_music) std::cerr << "Erro: música da leaderboard não carregada\n";
-    if (!textFont) std::cerr << "Erro: fonte textFont não foi carregada\n";
+    if (!normalFont) std::cerr << "Erro: fonte normalFont não foi carregada\n";
+    if (!registerFont) std::cerr << "Erro: fonte normalFont não foi carregada\n";
+
 
     ALLEGRO_SAMPLE* error_soundeffect = al_load_sample("assets/music/soundeffect/error_soundeffect.wav");
     ALLEGRO_SAMPLE* gaming_start = al_load_sample("assets/music/soundeffect/gaming_start.ogg");
@@ -174,12 +177,12 @@ int main(){
     Register nameRegister("PLEASE, ENTER YOUR NAME:", 20, RectangleT(PointT(400, 300), 200, 150));
     nameRegister.setTittleTextColor(Color(255, 255, 255));
     nameRegister.setMessageTextColor(Color(255, 255, 255));
-    nameRegister.setBufferTextColor(Color(0, 255, 0));
+    nameRegister.setBufferTextColor(Color(255, 255, 255));
 
     Register nicknameRegister("ENTER YOUR NICKNAME:", 20, RectangleT(PointT(400, 300), 200, 150));
     nicknameRegister.setTittleTextColor(Color(255, 255, 255));
     nicknameRegister.setMessageTextColor(Color(255, 255, 255));
-    nicknameRegister.setBufferTextColor(Color(0, 255, 0));
+    nicknameRegister.setBufferTextColor(Color(255, 255, 255));
     
     //testing sub bitmaps
     //TriggerSpritesheet sheetTest("assets/kirby.png",8,26,0);
@@ -329,7 +332,7 @@ int main(){
                     al_draw_bitmap(back_button, xback, yback, 0);
                 }
 
-                gameLeaderBoard.drawLeaderBoard(textFont);  // NEW METHOD TO DRAW THE LEADERBOARD
+                gameLeaderBoard.drawLeaderBoard(normalFont);  // NEW METHOD TO DRAW THE LEADERBOARD
                 al_flip_display();
             //
             }
@@ -483,14 +486,14 @@ int main(){
                 }
 
                 if (operation == PRE) {
-                    al_draw_text(textFont, al_map_rgb(255, 255, 255), 400, 300, ALLEGRO_ALIGN_CENTRE, "REGISTER A NEW PROFILE?");
+                    al_draw_text(registerFont, al_map_rgb(255, 255, 255), 400, 300, ALLEGRO_ALIGN_CENTRE, "REGISTER A NEW PROFILE?");
                 }
                     
                 if (operation == NAME){
-                    nameRegister.drawRegister(textFont);  // NEW METHOD AND CLASS TO DRAW THE REGISTER
+                    nameRegister.drawRegister(registerFont, normalFont);  // NEW METHOD AND CLASS TO DRAW THE REGISTER
                 }
                 else if (operation == NICKNAME) {
-                    nicknameRegister.drawRegister(textFont);
+                    nicknameRegister.drawRegister(registerFont, normalFont);
                 }
                 al_flip_display();
             }
@@ -577,7 +580,8 @@ int main(){
     al_destroy_sample_instance(menu_music_inst);
     al_destroy_sample(playing_music);
     al_destroy_sample_instance(playing_music_inst);
-    al_destroy_font(textFont);
+    al_destroy_font(normalFont);
+    al_destroy_font(registerFont);
     
 
 
