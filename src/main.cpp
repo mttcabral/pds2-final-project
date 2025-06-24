@@ -383,7 +383,7 @@ int main(){
 
             if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
                 if(Hretry) {
-                    al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);;
+                    al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
                     state = PLAYING;
                     }
                 if(Hmenu) {
@@ -450,9 +450,11 @@ int main(){
                     }
                     if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
                         if(Hretry){
+                            al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
                             operation = NAME;
                         }
                         if(Hmenu){
+                            al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
                             operation = SAVE;
                         }
                     }
