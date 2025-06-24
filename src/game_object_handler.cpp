@@ -108,6 +108,7 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
             redraw = false;
         }
     }
+    
     return time;
 }
 void Handler::addObstacle()

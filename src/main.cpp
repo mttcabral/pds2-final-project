@@ -337,22 +337,23 @@ int main(){
                 if(Hmenu) state = MENU;
             }
 
-                if(redraw && al_is_event_queue_empty(eventQueue)) {
-                al_clear_to_color(al_map_rgb(0,0,0)); 
+            if(redraw && al_is_event_queue_empty(eventQueue)) {
+                al_draw_bitmap(menu_background, 0, 0, 0);
 
-                if(Hretry) {
+                    /*if(Hretry) {
                     al_draw_bitmap(hover_retry, xretry, yretry, 0);
-                } else {
+                    } else {
                     al_draw_bitmap(retry_button, xretry, yretry, 0);
-                }
+                    }
 
-                if(Hmenu) {
+                    if(Hmenu) {
                     al_draw_bitmap(home_button, xhome, yhome, 0);
-                } else {
+                    } else {
                     al_draw_bitmap(hover_home, xhome, yhome, 0);
-                }
+                    }
+                    */
 
-                al_flip_display();
+                    al_flip_display();
             //
             }
             
