@@ -4,21 +4,23 @@
 
 LeaderBoard::LeaderBoard(string path, RectangleT plan) : base(path), table(plan) {
     this->topProfiles.resize(NUMPROFILES);
-    //this->table.row[0].texts = {"RANK", "NICKNAME", "MAX PIPERS", "PLAYS"};  // COMENT HERE TO REMOVE THE TITTLE LINE
+    //this->table.row[0].texts = {"RANK", "NICKNAME", "MAX DISTANCE", "PLAYS"};  // COMENT HERE TO REMOVE THE TITTLE LINE
     
     this->topProfiles = base.getBestProfiles();
     int i = 0;
     for (Profile* profile : this->topProfiles) { // write table with information
         string _nickname = profile->getNickname();
-        string _maxPipers = to_string(profile->getMaxPipers());
+        string _maxDistance = to_string(profile->getMaxDistance());
         string _plays = to_string(profile->getPlays());
-        table.row[i].texts = {_nickname, _maxPipers, _plays};
+        table.row[i].texts = {_nickname, _maxDistance, _plays};
         i++;
     }
 };
 
-void LeaderBoard::newProfile(Profile profile) {
-    this->base.updateProfiles(profile);
+bool LeaderBoard::addNewProfile(Profile profile) {
+    bool profileAdded = this->base.updateProfiles(profile);
+    if (profileAdded) return true;
+    else return false;
 }
 
 void LeaderBoard::updateLeaderBoard() { // called after newProfiles
@@ -30,9 +32,9 @@ void LeaderBoard::updateLeaderBoard() { // called after newProfiles
     int i = 0;
     for (Profile* profile : this->topProfiles) { // write table with information
         string _nickname = profile->getNickname();
-        string _maxPipers = to_string(profile->getMaxPipers());
+        string _maxDistance = to_string(profile->getMaxDistance());
         string _plays = to_string(profile->getPlays());
-        table.row[i].texts = {_nickname, _maxPipers, _plays};
+        table.row[i].texts = {_nickname, _maxDistance, _plays};
         i++;
     }
 }

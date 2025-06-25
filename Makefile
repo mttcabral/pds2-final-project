@@ -9,14 +9,14 @@ BIN_DIR = bin
 ASSETS_DIR = assets
 
 # for allegro library
-PKG_CONFIG_LIBS = allegro-5 allegro_image-5 allegro_font-5 allegro_ttf-5 allegro_audio-5 allegro_acodec-5 allegro_primitives-5
+PKG_CONFIG_LIBS = allegro-5 allegro_main-5 allegro_image-5 allegro_font-5 allegro_ttf-5 allegro_audio-5 allegro_acodec-5 allegro_primitives-5
 
 CFLAGS += $(shell pkg-config --cflags $(PKG_CONFIG_LIBS))
 LDFLAGS = $(shell pkg-config --libs $(PKG_CONFIG_LIBS))
 
 
 # Sources
-SOURCES = main polygon game_object hitbox entity game_object_handler cooldown animation passive base table leaderboard
+SOURCES = main polygon game_object hitbox entity game_object_handler cooldown animation passive base table leaderboard register
 OBJECTS = $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SOURCES)))
 
 all: $(BIN_DIR)/main

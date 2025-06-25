@@ -16,6 +16,4 @@ void startmusic(ALLEGRO_SAMPLE_INSTANCE* any, float volume){
 }
 
 
-
-
 #endif

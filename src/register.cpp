@@ -1,9 +1,11 @@
 #include "register.hpp"
 
-Register::Register(RectangleT plan) : plan(plan) {
+Register::Register(int size, RectangleT plan) : Register("", size, plan) {};
+
+Register::Register(string tittle, int size, RectangleT plan) : bufferSize(size), tittle(tittle), plan(plan) {
+    buffer = new char[bufferSize + 1];
     buffer[0] = '\0';
     index = 0;
-    tittle = "";
     message = "";
 
     PointT firstRowTopLeft = plan.topLeft; // first Row top left point
@@ -16,34 +18,42 @@ Register::Register(RectangleT plan) : plan(plan) {
         rows[i].rowRectangle = RectangleT(firstRowTopLeft + PointT(0, i*rowHeight), firstRowBottomRight + PointT(0, i*rowHeight));
 }
 
+Register::~Register() {
+    delete[] buffer;
+}
+
 Register::Register(const Register& otherRegister) {
+    this->bufferSize = otherRegister.bufferSize;
     this->index = otherRegister.index;
     this->tittle = otherRegister.tittle;
     this->message = otherRegister.message;
     this->plan = otherRegister.plan;
 
-    for(int i = 0; i < otherRegister.index + 1; i++) {
-            this->buffer[i] = otherRegister.buffer[i];
-    }
+    this->buffer = new char[otherRegister.bufferSize + 1];
+    for(int i = 0; i < otherRegister.index + 1; i++)
+        this->buffer[i] = otherRegister.buffer[i];
 
     this->rows.resize(NUMREGISTERROWS);
-    for (int i = 0; i < NUMREGISTERROWS; i ++) {
+    for (int i = 0; i < NUMREGISTERROWS; i ++)
         this->rows[i] = otherRegister.rows[i];
-    }
 }
 
 Register& Register::operator = (const Register& otherRegister) {
     if (this != &otherRegister) {
+        char* newBuffer = new char[otherRegister.bufferSize + 1];
+        for(int i = 0; i < otherRegister.index + 1; i++)
+            newBuffer[i] = otherRegister.buffer[i];
+        
+        delete[] this->buffer;
+
+        this->buffer = newBuffer;
+        this->bufferSize = otherRegister.bufferSize;
         this->index = otherRegister.index;
         this->tittle = otherRegister.tittle;
         this->message = otherRegister.message;
         this->plan = otherRegister.plan;
 
-        for(int i = 0; i < otherRegister.index + 1; i++) {
-            this->buffer[i] = otherRegister.buffer[i];
-        }
-
-        this->rows.resize(NUMREGISTERROWS); // to avoid segmentation fault
+        this->rows.resize(NUMREGISTERROWS);
         for (int i = 0; i < NUMREGISTERROWS; i ++)
             this->rows[i] = otherRegister.rows[i];
     }
@@ -52,14 +62,23 @@ Register& Register::operator = (const Register& otherRegister) {
 }
 
 bool Register::writeInBuffer(char c) {
-    if (index < 20) {
+    if (index < bufferSize) {
         buffer[index] = c;
         index++;
         buffer[index] = '\0';
 
+        if (index < 4) 
+            message = "At least 4 characters!";
+        
+        else
+            message = "";
+
         return true;
     }
-    return false;
+    else {
+        message = "No more than " + to_string(bufferSize) + " characters!";
+        return false;
+    }
 }
 
 bool Register::deleteInBuffer() {
@@ -67,9 +86,27 @@ bool Register::deleteInBuffer() {
         index--;
         buffer[index] = '\0';
 
+        if (index < 4) 
+            message = "At least 4 characters!";
+
+        else
+            message = "";
+
+    if (index == 0){
+        message = "";
+    }
+
         return true;
     }
+
     return false;
+}
+
+bool Register::cleanBuffer() {
+    index = 0;
+    buffer[0] = '\0';
+    if (buffer[0] == '\0') return true;
+    else return false;
 }
 
 string Register::getTittleContent() {
@@ -161,7 +198,7 @@ void Register::setBufferTextColor(Color color) {
     this->rows[2].textColor = color;
 }
 
-void Register::drawRegister(ALLEGRO_FONT* font) {
+void Register::drawRegister(ALLEGRO_FONT* font, ALLEGRO_FONT* messageFont) {
     for (int i = 0; i < 3; i ++) {
         Color tempColor = this->getIthTextColor(i);
         ALLEGRO_COLOR aColor = al_map_rgb(tempColor.r, tempColor.g, tempColor.b);
@@ -169,7 +206,10 @@ void Register::drawRegister(ALLEGRO_FONT* font) {
         float tempY = this->getIthCenterY(i);
         string tempText = this->getIthContent(i);
         const char* aText = tempText.c_str();
-        al_draw_text(font, aColor, tempX, tempY, ALLEGRO_ALIGN_CENTRE, aText);
+        if(i == 1)
+            al_draw_text(messageFont, aColor, tempX, tempY, ALLEGRO_ALIGN_CENTRE, aText);
+        else
+            al_draw_text(font, aColor, tempX, tempY, ALLEGRO_ALIGN_CENTRE, aText);
     }
 }
 
@@ -221,13 +261,11 @@ bool validateNickname(string name) {
         throw runtime_error("Something went wrong! Please, try to register again.");
 }
 
-string checkName(string& name, bool& signal, const char*& warning) { // recebe nome, analisa se eh valido, atribui a signal a validade e a warning um aviso, caso houver
-    signal = false;
-
+bool checkName(string name, string& warning) { // recebe nome, analisa se eh valido, atribui a signal a validade e a warning um aviso, caso houver
     try {
         validateName(name);
-        signal = true;
         warning = "";
+        return true;
     }
     catch (invalid_argument &i) {
         warning = i.what();
@@ -238,20 +276,15 @@ string checkName(string& name, bool& signal, const char*& warning) { // recebe n
     catch (runtime_error &r) {
         warning = r.what();
     }
-    if (!signal)
-        name = "";
 
-    return name;
+    return false;
 }
 
-string checkNickname(bool& signal, const char*& warning) {
-    signal = false;
-    string nickname;
-
+bool checkNickname(string nickname, string& warning) {
     try {
         validateNickname(nickname);
-        signal = true;
         warning = "";
+        return true;
     }
     catch (invalid_argument &i) {
         warning = i.what();
@@ -262,8 +295,6 @@ string checkNickname(bool& signal, const char*& warning) {
     catch (runtime_error &r) {
         warning = r.what();
     }
-    if (!signal)
-        nickname = "";
 
-    return nickname;
+    return false;
 }
