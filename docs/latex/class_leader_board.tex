@@ -1,0 +1,254 @@
+\doxysection{Leader\+Board Class Reference}
+\hypertarget{class_leader_board}{}\label{class_leader_board}\index{LeaderBoard@{LeaderBoard}}
+
+
+Classe responsável por gerenciar e exibir o placar de líderes (leaderboard).  
+
+
+
+
+{\ttfamily \#include $<$leaderboard.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_leader_board_a8333e90c97a84c8a6119a4302ed9aac3}{Leader\+Board}} (string filename, \mbox{\hyperlink{struct_rectangle_t}{RectangleT}} rect)
+\begin{DoxyCompactList}\small\item\em Construtor do \doxylink{class_leader_board}{Leader\+Board}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_leader_board_a7a2a7ebe14e5e23b27faa5b8a2358e6c}{add\+New\+Profile}} (\mbox{\hyperlink{class_profile}{Profile}} profile)
+\begin{DoxyCompactList}\small\item\em Adiciona um novo perfil ao leaderboard. \end{DoxyCompactList}\item 
+\Hypertarget{class_leader_board_aab6d9f3125f784644bc7c6d27620206e}\label{class_leader_board_aab6d9f3125f784644bc7c6d27620206e} 
+void {\bfseries update\+Leader\+Board} ()
+\begin{DoxyCompactList}\small\item\em Atualiza o leaderboard com os melhores perfis. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_leader_board_addf2f4e76f804ace5fec323b684e7142}{set\+First\+Row\+Color}} (\mbox{\hyperlink{struct_color}{Color}} color)
+\begin{DoxyCompactList}\small\item\em Define a cor da primeira linha. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_leader_board_a9e34b3ba755799faf64e190bc56cdd7c}{set\+Second\+Row\+Color}} (\mbox{\hyperlink{struct_color}{Color}} color)
+\begin{DoxyCompactList}\small\item\em Define a cor da segunda linha. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_leader_board_af49e3d57da8ef6804a2dac2b64d8a18f}{set\+Third\+Row\+Color}} (\mbox{\hyperlink{struct_color}{Color}} color)
+\begin{DoxyCompactList}\small\item\em Define a cor da terceira linha. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_leader_board_a8019f7d21b4015d5dff071c57186d0ac}{set\+Others\+Rows\+Color}} (\mbox{\hyperlink{struct_color}{Color}} color)
+\begin{DoxyCompactList}\small\item\em Define a cor das demais linhas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_leader_board_a6f4033e847df9925b5e50d82ef0ae13f}{set\+First\+Row\+Text\+Color}} (\mbox{\hyperlink{struct_color}{Color}} color)
+\begin{DoxyCompactList}\small\item\em Define a cor do texto da primeira linha. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_leader_board_a08795d4813de128477668705a59f17b0}{set\+Second\+Row\+Text\+Color}} (\mbox{\hyperlink{struct_color}{Color}} color)
+\begin{DoxyCompactList}\small\item\em Define a cor do texto da segunda linha. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_leader_board_ade174deeec9f2c47fa9b52933ded8ef2}{set\+Third\+Row\+Text\+Color}} (\mbox{\hyperlink{struct_color}{Color}} color)
+\begin{DoxyCompactList}\small\item\em Define a cor do texto da terceira linha. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_leader_board_a937dac497e069431830a2441eae25fee}{set\+Others\+Rows\+Text\+Color}} (\mbox{\hyperlink{struct_color}{Color}} color)
+\begin{DoxyCompactList}\small\item\em Define a cor do texto das demais linhas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_leader_board_a04ccc70b1f813224a6515e3e19209add}{draw\+Leader\+Board}} (ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}font)
+\begin{DoxyCompactList}\small\item\em Desenha o leaderboard na tela. \end{DoxyCompactList}\item 
+\Hypertarget{class_leader_board_af64c26bdcce25b7430d3b57d2e055fd9}\label{class_leader_board_af64c26bdcce25b7430d3b57d2e055fd9} 
+void {\bfseries display} ()
+\begin{DoxyCompactList}\small\item\em Exibe o leaderboard no console. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_leader_board_a11696efa415c135416a9b59f679f9c3d}{save}} (string filename)
+\begin{DoxyCompactList}\small\item\em Salva o leaderboard em um arquivo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_leader_board_aea496ac3c714874622d212ec932a7780}\label{class_leader_board_aea496ac3c714874622d212ec932a7780} 
+\mbox{\hyperlink{struct_table}{Table}} {\bfseries table}
+\begin{DoxyCompactList}\small\item\em Tabela para exibição do leaderboard. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe responsável por gerenciar e exibir o placar de líderes (leaderboard). 
+
+\label{doc-constructors}
+\Hypertarget{class_leader_board_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_leader_board_a8333e90c97a84c8a6119a4302ed9aac3}\index{LeaderBoard@{LeaderBoard}!LeaderBoard@{LeaderBoard}}
+\index{LeaderBoard@{LeaderBoard}!LeaderBoard@{LeaderBoard}}
+\doxysubsubsection{\texorpdfstring{LeaderBoard()}{LeaderBoard()}}
+{\footnotesize\ttfamily \label{class_leader_board_a8333e90c97a84c8a6119a4302ed9aac3} 
+Leader\+Board\+::\+Leader\+Board (\begin{DoxyParamCaption}\item[{string}]{filename}{, }\item[{\mbox{\hyperlink{struct_rectangle_t}{RectangleT}}}]{rect}{}\end{DoxyParamCaption})}
+
+
+
+Construtor do \doxylink{class_leader_board}{Leader\+Board}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Nome do arquivo da base de dados. \\
+\hline
+{\em rect} & Retângulo para exibição da tabela. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_leader_board_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_leader_board_a7a2a7ebe14e5e23b27faa5b8a2358e6c}\index{LeaderBoard@{LeaderBoard}!addNewProfile@{addNewProfile}}
+\index{addNewProfile@{addNewProfile}!LeaderBoard@{LeaderBoard}}
+\doxysubsubsection{\texorpdfstring{addNewProfile()}{addNewProfile()}}
+{\footnotesize\ttfamily \label{class_leader_board_a7a2a7ebe14e5e23b27faa5b8a2358e6c} 
+bool Leader\+Board\+::add\+New\+Profile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_profile}{Profile}}}]{profile}{}\end{DoxyParamCaption})}
+
+
+
+Adiciona um novo perfil ao leaderboard. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em profile} & Perfil a ser adicionado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se adicionado com sucesso. 
+\end{DoxyReturn}
+\Hypertarget{class_leader_board_a04ccc70b1f813224a6515e3e19209add}\index{LeaderBoard@{LeaderBoard}!drawLeaderBoard@{drawLeaderBoard}}
+\index{drawLeaderBoard@{drawLeaderBoard}!LeaderBoard@{LeaderBoard}}
+\doxysubsubsection{\texorpdfstring{drawLeaderBoard()}{drawLeaderBoard()}}
+{\footnotesize\ttfamily \label{class_leader_board_a04ccc70b1f813224a6515e3e19209add} 
+void Leader\+Board\+::draw\+Leader\+Board (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}}]{font}{}\end{DoxyParamCaption})}
+
+
+
+Desenha o leaderboard na tela. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em font} & Fonte a ser utilizada. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_leader_board_a11696efa415c135416a9b59f679f9c3d}\index{LeaderBoard@{LeaderBoard}!save@{save}}
+\index{save@{save}!LeaderBoard@{LeaderBoard}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}}
+{\footnotesize\ttfamily \label{class_leader_board_a11696efa415c135416a9b59f679f9c3d} 
+void Leader\+Board\+::save (\begin{DoxyParamCaption}\item[{string}]{filename}{}\end{DoxyParamCaption})}
+
+
+
+Salva o leaderboard em um arquivo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Nome do arquivo. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_leader_board_addf2f4e76f804ace5fec323b684e7142}\index{LeaderBoard@{LeaderBoard}!setFirstRowColor@{setFirstRowColor}}
+\index{setFirstRowColor@{setFirstRowColor}!LeaderBoard@{LeaderBoard}}
+\doxysubsubsection{\texorpdfstring{setFirstRowColor()}{setFirstRowColor()}}
+{\footnotesize\ttfamily \label{class_leader_board_addf2f4e76f804ace5fec323b684e7142} 
+void Leader\+Board\+::set\+First\+Row\+Color (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_color}{Color}}}]{color}{}\end{DoxyParamCaption})}
+
+
+
+Define a cor da primeira linha. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & Cor a ser definida. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_leader_board_a6f4033e847df9925b5e50d82ef0ae13f}\index{LeaderBoard@{LeaderBoard}!setFirstRowTextColor@{setFirstRowTextColor}}
+\index{setFirstRowTextColor@{setFirstRowTextColor}!LeaderBoard@{LeaderBoard}}
+\doxysubsubsection{\texorpdfstring{setFirstRowTextColor()}{setFirstRowTextColor()}}
+{\footnotesize\ttfamily \label{class_leader_board_a6f4033e847df9925b5e50d82ef0ae13f} 
+void Leader\+Board\+::set\+First\+Row\+Text\+Color (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_color}{Color}}}]{color}{}\end{DoxyParamCaption})}
+
+
+
+Define a cor do texto da primeira linha. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & Cor a ser definida. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_leader_board_a8019f7d21b4015d5dff071c57186d0ac}\index{LeaderBoard@{LeaderBoard}!setOthersRowsColor@{setOthersRowsColor}}
+\index{setOthersRowsColor@{setOthersRowsColor}!LeaderBoard@{LeaderBoard}}
+\doxysubsubsection{\texorpdfstring{setOthersRowsColor()}{setOthersRowsColor()}}
+{\footnotesize\ttfamily \label{class_leader_board_a8019f7d21b4015d5dff071c57186d0ac} 
+void Leader\+Board\+::set\+Others\+Rows\+Color (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_color}{Color}}}]{color}{}\end{DoxyParamCaption})}
+
+
+
+Define a cor das demais linhas. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & Cor a ser definida. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_leader_board_a937dac497e069431830a2441eae25fee}\index{LeaderBoard@{LeaderBoard}!setOthersRowsTextColor@{setOthersRowsTextColor}}
+\index{setOthersRowsTextColor@{setOthersRowsTextColor}!LeaderBoard@{LeaderBoard}}
+\doxysubsubsection{\texorpdfstring{setOthersRowsTextColor()}{setOthersRowsTextColor()}}
+{\footnotesize\ttfamily \label{class_leader_board_a937dac497e069431830a2441eae25fee} 
+void Leader\+Board\+::set\+Others\+Rows\+Text\+Color (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_color}{Color}}}]{color}{}\end{DoxyParamCaption})}
+
+
+
+Define a cor do texto das demais linhas. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & Cor a ser definida. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_leader_board_a9e34b3ba755799faf64e190bc56cdd7c}\index{LeaderBoard@{LeaderBoard}!setSecondRowColor@{setSecondRowColor}}
+\index{setSecondRowColor@{setSecondRowColor}!LeaderBoard@{LeaderBoard}}
+\doxysubsubsection{\texorpdfstring{setSecondRowColor()}{setSecondRowColor()}}
+{\footnotesize\ttfamily \label{class_leader_board_a9e34b3ba755799faf64e190bc56cdd7c} 
+void Leader\+Board\+::set\+Second\+Row\+Color (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_color}{Color}}}]{color}{}\end{DoxyParamCaption})}
+
+
+
+Define a cor da segunda linha. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & Cor a ser definida. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_leader_board_a08795d4813de128477668705a59f17b0}\index{LeaderBoard@{LeaderBoard}!setSecondRowTextColor@{setSecondRowTextColor}}
+\index{setSecondRowTextColor@{setSecondRowTextColor}!LeaderBoard@{LeaderBoard}}
+\doxysubsubsection{\texorpdfstring{setSecondRowTextColor()}{setSecondRowTextColor()}}
+{\footnotesize\ttfamily \label{class_leader_board_a08795d4813de128477668705a59f17b0} 
+void Leader\+Board\+::set\+Second\+Row\+Text\+Color (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_color}{Color}}}]{color}{}\end{DoxyParamCaption})}
+
+
+
+Define a cor do texto da segunda linha. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & Cor a ser definida. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_leader_board_af49e3d57da8ef6804a2dac2b64d8a18f}\index{LeaderBoard@{LeaderBoard}!setThirdRowColor@{setThirdRowColor}}
+\index{setThirdRowColor@{setThirdRowColor}!LeaderBoard@{LeaderBoard}}
+\doxysubsubsection{\texorpdfstring{setThirdRowColor()}{setThirdRowColor()}}
+{\footnotesize\ttfamily \label{class_leader_board_af49e3d57da8ef6804a2dac2b64d8a18f} 
+void Leader\+Board\+::set\+Third\+Row\+Color (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_color}{Color}}}]{color}{}\end{DoxyParamCaption})}
+
+
+
+Define a cor da terceira linha. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & Cor a ser definida. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_leader_board_ade174deeec9f2c47fa9b52933ded8ef2}\index{LeaderBoard@{LeaderBoard}!setThirdRowTextColor@{setThirdRowTextColor}}
+\index{setThirdRowTextColor@{setThirdRowTextColor}!LeaderBoard@{LeaderBoard}}
+\doxysubsubsection{\texorpdfstring{setThirdRowTextColor()}{setThirdRowTextColor()}}
+{\footnotesize\ttfamily \label{class_leader_board_ade174deeec9f2c47fa9b52933ded8ef2} 
+void Leader\+Board\+::set\+Third\+Row\+Text\+Color (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_color}{Color}}}]{color}{}\end{DoxyParamCaption})}
+
+
+
+Define a cor do texto da terceira linha. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & Cor a ser definida. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/leaderboard.\+hpp\item 
+src/leaderboard.\+cpp\end{DoxyCompactItemize}

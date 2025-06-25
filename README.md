@@ -92,6 +92,7 @@ Classes de apoio que fornecem funcionalidades genéricas usadas em todo o projet
 
 - **assets**: recursos utilizados pelo programa como imagens, sprites, fontes etc.
 - **bin**: executáveis gerados pela compilação, criados durante a compilação pelo Makefile.
+- **docs**: documentação do projeto gerada automaticamente pelo Doxygen.
 - **include**: arquivos de cabeçalho (`.hpp`) do projeto.
 - **obj**: arquivos objeto (`.o`) criados durante a compilação.
 - **src**: arquivos de código-fonte (`.cpp`).

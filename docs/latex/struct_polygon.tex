@@ -1,0 +1,152 @@
+\doxysection{Polygon Struct Reference}
+\hypertarget{struct_polygon}{}\label{struct_polygon}\index{Polygon@{Polygon}}
+
+
+Estrutura que representa um polígono genérico.  
+
+
+
+
+{\ttfamily \#include $<$polygon.\+hpp$>$}
+
+Inheritance diagram for Polygon\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{struct_polygon}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ \mbox{\hyperlink{struct_polygon_a5237739e3da5d5847064d277c8c79b6b}{get\+Rotated\+Vertices}} (const \mbox{\hyperlink{struct_point}{Point}} \&center)
+\begin{DoxyCompactList}\small\item\em Retorna os vértices rotacionados em torno de um centro. \end{DoxyCompactList}\item 
+\Hypertarget{struct_polygon_abb30a24693fdf66bdc3d436d3afb6329}\label{struct_polygon_abb30a24693fdf66bdc3d436d3afb6329} 
+set$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ {\bfseries get\+Edge\+Vectors} ()
+\begin{DoxyCompactList}\small\item\em Retorna o conjunto de vetores das arestas. \end{DoxyCompactList}\item 
+\Hypertarget{struct_polygon_a7da79a2fa8991258bd1bf8a5552dcf60}\label{struct_polygon_a7da79a2fa8991258bd1bf8a5552dcf60} 
+set$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ {\bfseries get\+Edge\+Normals} ()
+\begin{DoxyCompactList}\small\item\em Retorna o conjunto de vetores normais das arestas. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{struct_polygon}{Polygon}} \mbox{\hyperlink{struct_polygon_a2ae0f76854de4558f397b6e4a6f7fcc9}{get\+Polygon}} (const \mbox{\hyperlink{struct_point}{Point}} \&center=\mbox{\hyperlink{struct_point}{Point}}(0, 0))
+\begin{DoxyCompactList}\small\item\em Retorna o polígono (possivelmente modificado). \end{DoxyCompactList}\item 
+\Hypertarget{struct_polygon_a39ee94bcebe021914514137de451eb5a}\label{struct_polygon_a39ee94bcebe021914514137de451eb5a} 
+{\bfseries Polygon} (initializer\+\_\+list$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ vert)
+\begin{DoxyCompactList}\small\item\em Construtor a partir de lista de vértices. \end{DoxyCompactList}\item 
+\Hypertarget{struct_polygon_a927bc003352b8fb41c61dbdb6efa710b}\label{struct_polygon_a927bc003352b8fb41c61dbdb6efa710b} 
+{\bfseries Polygon} (const std\+::vector$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ \&vert)
+\begin{DoxyCompactList}\small\item\em Construtor a partir de vetor de vértices. \end{DoxyCompactList}\item 
+\Hypertarget{struct_polygon_a14a5bd74ffb595c8615418fb37f98438}\label{struct_polygon_a14a5bd74ffb595c8615418fb37f98438} 
+{\bfseries Polygon} (vector$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ vert, int n, set$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ vect, set$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ normals)
+\begin{DoxyCompactList}\small\item\em Construtor completo. \end{DoxyCompactList}\item 
+\Hypertarget{struct_polygon_aa75f65ba4e3627737a5b2ce5d6a2b847}\label{struct_polygon_aa75f65ba4e3627737a5b2ce5d6a2b847} 
+{\bfseries Polygon} (const \mbox{\hyperlink{struct_polygon}{Polygon}} \&copy)
+\begin{DoxyCompactList}\small\item\em Construtor de cópia. \end{DoxyCompactList}\item 
+\Hypertarget{struct_polygon_a601a56146dde57d591c0866056374d0f}\label{struct_polygon_a601a56146dde57d591c0866056374d0f} 
+void {\bfseries operator=} (const \mbox{\hyperlink{struct_polygon}{Polygon}} \&copy)
+\begin{DoxyCompactList}\small\item\em Operador de atribuição. \end{DoxyCompactList}\item 
+\Hypertarget{struct_polygon_a146d9742716e32f88b4d962be79b1919}\label{struct_polygon_a146d9742716e32f88b4d962be79b1919} 
+float \texorpdfstring{$\ast$}{*} {\bfseries get\+Point\+Array} ()
+\begin{DoxyCompactList}\small\item\em Retorna um array de floats com os pontos do polígono. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_polygon_a2f4c346c08f5604fdc024a3f39077e47}{add\+Angle}} (float radians)
+\begin{DoxyCompactList}\small\item\em Adiciona um ângulo de rotação ao polígono. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{struct_polygon_ab67f88cb644d46df60cfdc1b83b2665f}{update\+Vertices}} (const \mbox{\hyperlink{struct_point}{Point}} \&delta)
+\begin{DoxyCompactList}\small\item\em Atualiza os vértices do polígono. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_polygon_ad934c1ce60c83161fbe11c1447399671}\label{struct_polygon_ad934c1ce60c83161fbe11c1447399671} 
+vector$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ {\bfseries vertices}
+\item 
+\Hypertarget{struct_polygon_a8914a62c4f756e8b2ce759da9109fb99}\label{struct_polygon_a8914a62c4f756e8b2ce759da9109fb99} 
+int {\bfseries vertex\+Count}
+\item 
+\Hypertarget{struct_polygon_aea2b4b53502f7a342786d56b34937ec9}\label{struct_polygon_aea2b4b53502f7a342786d56b34937ec9} 
+float {\bfseries angle} = 0
+\item 
+\Hypertarget{struct_polygon_aa939147e8296e7a71c9558c20f55ca2f}\label{struct_polygon_aa939147e8296e7a71c9558c20f55ca2f} 
+set$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ {\bfseries edge\+Vectors}
+\item 
+\Hypertarget{struct_polygon_a0b8a6df4464ddaf234f3aa1ed7d326e1}\label{struct_polygon_a0b8a6df4464ddaf234f3aa1ed7d326e1} 
+set$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ {\bfseries edge\+Normals}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Estrutura que representa um polígono genérico. 
+
+\label{doc-func-members}
+\Hypertarget{struct_polygon_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_polygon_a2f4c346c08f5604fdc024a3f39077e47}\index{Polygon@{Polygon}!addAngle@{addAngle}}
+\index{addAngle@{addAngle}!Polygon@{Polygon}}
+\doxysubsubsection{\texorpdfstring{addAngle()}{addAngle()}}
+{\footnotesize\ttfamily \label{struct_polygon_a2f4c346c08f5604fdc024a3f39077e47} 
+void Polygon\+::add\+Angle (\begin{DoxyParamCaption}\item[{float}]{radians}{}\end{DoxyParamCaption})}
+
+
+
+Adiciona um ângulo de rotação ao polígono. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em radians} & Ângulo em radianos. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{struct_polygon_a2ae0f76854de4558f397b6e4a6f7fcc9}\index{Polygon@{Polygon}!getPolygon@{getPolygon}}
+\index{getPolygon@{getPolygon}!Polygon@{Polygon}}
+\doxysubsubsection{\texorpdfstring{getPolygon()}{getPolygon()}}
+{\footnotesize\ttfamily \label{struct_polygon_a2ae0f76854de4558f397b6e4a6f7fcc9} 
+\mbox{\hyperlink{struct_polygon}{Polygon}} Polygon\+::get\+Polygon (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_point}{Point}} \&}]{center}{ = {\ttfamily \mbox{\hyperlink{struct_point}{Point}}(0,~0)}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Retorna o polígono (possivelmente modificado). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em center} & Centro de referência. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{struct_rectangle_aee19d822bb11679d706d8e3577ffcb1a}{Rectangle}}, and \mbox{\hyperlink{struct_regular_polygon_abf119fc2bc6999bfbee1cc42b0cac98b}{Regular\+Polygon}}.
+
+\Hypertarget{struct_polygon_a5237739e3da5d5847064d277c8c79b6b}\index{Polygon@{Polygon}!getRotatedVertices@{getRotatedVertices}}
+\index{getRotatedVertices@{getRotatedVertices}!Polygon@{Polygon}}
+\doxysubsubsection{\texorpdfstring{getRotatedVertices()}{getRotatedVertices()}}
+{\footnotesize\ttfamily \label{struct_polygon_a5237739e3da5d5847064d277c8c79b6b} 
+vector$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ Polygon\+::get\+Rotated\+Vertices (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_point}{Point}} \&}]{center}{}\end{DoxyParamCaption})}
+
+
+
+Retorna os vértices rotacionados em torno de um centro. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em center} & Centro de rotação. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{struct_polygon_ab67f88cb644d46df60cfdc1b83b2665f}\index{Polygon@{Polygon}!updateVertices@{updateVertices}}
+\index{updateVertices@{updateVertices}!Polygon@{Polygon}}
+\doxysubsubsection{\texorpdfstring{updateVertices()}{updateVertices()}}
+{\footnotesize\ttfamily \label{struct_polygon_ab67f88cb644d46df60cfdc1b83b2665f} 
+void Polygon\+::update\+Vertices (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_point}{Point}} \&}]{delta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Atualiza os vértices do polígono. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta} & Deslocamento. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{struct_rectangle_af08695900e11fb40509ed34d2a1fb423}{Rectangle}}, and \mbox{\hyperlink{struct_regular_polygon_aa5950a51e7bfbcef41ef96cfd4749b7b}{Regular\+Polygon}}.
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/polygon.\+hpp\item 
+src/polygon.\+cpp\end{DoxyCompactItemize}

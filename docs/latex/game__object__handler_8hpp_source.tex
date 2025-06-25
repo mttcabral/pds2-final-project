@@ -1,0 +1,54 @@
+\doxysection{game\+\_\+object\+\_\+handler.\+hpp}
+\hypertarget{game__object__handler_8hpp_source}{}\label{game__object__handler_8hpp_source}\index{include/game\_object\_handler.hpp@{include/game\_object\_handler.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ HANDLER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ HANDLER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <allegro5/allegro.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}game\_object.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}hitbox.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}entity.hpp"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{enum}\ Ambient}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ NONE,}
+\DoxyCodeLine{00014\ \ \ \ \ FLAPPY,}
+\DoxyCodeLine{00015\ \ \ \ \ EELS}
+\DoxyCodeLine{00016\ \};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_handler}{Handler}}}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{bool}\ playing\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{class_player}{Player}}\ guy;}
+\DoxyCodeLine{00023\ \ \ \ \ std::list<std::unique\_ptr<Pipe>>\ obstacles;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{int}\ time\ =\ 0;}
+\DoxyCodeLine{00025\ \ \ \ \ Ambient\ dynamic\ =\ NONE;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{float}\ gameSpeed\ =\ 1;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_handler_ac6d67fbe0ab3970c59d9facef0191e7f}{gameOn}}(ALLEGRO\_TIMER\ \&timer,\ ALLEGRO\_TIMER\ \&animation\_timer,\ ALLEGRO\_EVENT\_QUEUE\ \&eventQueue,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ SCREEN\_H,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ SCREEN\_W);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_handler_a60e5893425ff8094e9a45bdf00f6d60a}{addObstacle}}(ALLEGRO\_BITMAP\ *image,\ \mbox{\hyperlink{class_spritesheet}{Spritesheet}}\ *eelImage);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_handler_a5163f0e75b6422762561ecb73b772224}{outOfBorders}}();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_handler_a0094a902a58bf8cf15b3607e03e71952}{checkCollisions}}();}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_handler_a33963e77a1243319d7e80beef89e83d0}{drawAll}}();}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_handler_aecc7709e067e4b2a8a4efedb940e567e}{death}}();}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_handler_a8dea4668b6fecd7008d1964367310b48}{sortBetween}}(\textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_handler_a9652ea38441fab40fc738ffddc813303}{updateAmbient}}();}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{void}\ drawObstacles();}
+\DoxyCodeLine{00090\ \};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

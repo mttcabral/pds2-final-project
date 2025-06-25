@@ -1,0 +1,17 @@
+var searchData=
+[
+  ['rectangle_0',['Rectangle',['../struct_rectangle.html#a6b5ef3f4230ca8ce5b1475b8c302f77b',1,'Rectangle']]],
+  ['rectanglehitbox_1',['RectangleHitbox',['../class_rectangle_hitbox.html#a60865f9679eb27b01a62d88a6f517689',1,'RectangleHitbox']]],
+  ['rectanglet_2',['RectangleT',['../struct_rectangle_t.html#a7af26a4beb28a1738116858f5c549448',1,'RectangleT::RectangleT()'],['../struct_rectangle_t.html#a18c0f476ce77921c12618a9f2f3a784f',1,'RectangleT::RectangleT(PointT center, float length, float height)'],['../struct_rectangle_t.html#a64175fc7c1021938da5b058a980263e6',1,'RectangleT::RectangleT(PointT topLeft, PointT bottomRight)'],['../struct_rectangle_t.html#acfe0a21178e1ff028a4fe7235ab209c9',1,'RectangleT::RectangleT(const RectangleT &amp;other)']]],
+  ['refreshcooldown_3',['refreshCooldown',['../class_cooldown.html#a687506c09f71196fe8ebb2cbc3a95eea',1,'Cooldown']]],
+  ['register_4',['Register',['../class_register.html#a2931674c45328a0fb5080f95dae0092d',1,'Register::Register(int bufferSize, RectangleT plan)'],['../class_register.html#aa45c4375033c59fd629f324e98fb8c19',1,'Register::Register(string tittle, int bufferSize, RectangleT plan)'],['../class_register.html#a0e5b35cf6135cd0399ce5b5d74450b5c',1,'Register::Register(const Register &amp;other)']]],
+  ['regularpolygon_5',['RegularPolygon',['../struct_regular_polygon.html#a8bebdca1e4847a49856a297e0156558b',1,'RegularPolygon']]],
+  ['removeprofile_6',['removeProfile',['../class_base.html#a796d539a02bfb8820453fcd6811c6420',1,'Base']]],
+  ['resetanimation_7',['resetAnimation',['../class_spritesheet.html#af32a20b612c95e5526f93a73786b52e5',1,'Spritesheet::resetAnimation()'],['../class_trigger_spritesheet.html#a70dacd0e6b74d4955b1b2958af0534a0',1,'TriggerSpritesheet::resetAnimation()']]],
+  ['restartcooldown_8',['restartCooldown',['../class_cooldown.html#a05f677a90d18bb70011c01098a19630d',1,'Cooldown']]],
+  ['rotate_9',['rotate',['../class_eel.html#a1d2c2e728f33a45d56f389ce8f541484',1,'Eel']]],
+  ['rotatehitbox_10',['rotateHitbox',['../class_hitbox.html#a9c92639e8bd6204d624feb64468ecdfb',1,'Hitbox::rotateHitbox()'],['../class_rectangle_hitbox.html#af8b068a878d28343f000065c098dcba1',1,'RectangleHitbox::rotateHitbox()'],['../class_polygon_hitbox.html#ade39f184411eb6c872f94e062cecc415',1,'PolygonHitbox::rotateHitbox()']]],
+  ['rotatepoint_11',['rotatePoint',['../struct_point.html#a7a59dada6602ba2423e43d14e845b792',1,'Point::rotatePoint(const Point &amp;rotationCenter, float angle) const'],['../struct_point.html#ae8310a5e0ad2e71840f422172c1f2d05',1,'Point::rotatePoint(const Point &amp;rotationCenter, float cosA, float sinA) const']]],
+  ['rotatevector_12',['rotateVector',['../struct_point.html#a7c6ccf914e4a65d48b1e59571c9dfb95',1,'Point::rotateVector(float angle) const'],['../struct_point.html#aaed1ab9a133cd3c3a003aebe43360a30',1,'Point::rotateVector(float cosA, float sinA) const']]],
+  ['row_13',['Row',['../struct_row.html#a5cca50abc389396e26ec68cbd3fb6596',1,'Row::Row()'],['../struct_row.html#abe7372cdc28bd0b252aa9769f83f9a3f',1,'Row::Row(Color textColor, Color rowColor, RectangleT rowRectangle)'],['../struct_row.html#a8b61511e53b95de8eaebcbfc5e2f1e6b',1,'Row::Row(RectangleT rowRectangle)'],['../struct_row.html#a868e4a58108a257acaf3dcebe28c164a',1,'Row::Row(PointT topLeft, PointT bottomRight)'],['../struct_row.html#a432c7ca06e2073c9b7da6f83681a71f1',1,'Row::Row(const Row &amp;other)']]]
+];

@@ -1,0 +1,73 @@
+\doxysection{game\+\_\+object.\+hpp}
+\hypertarget{game__object_8hpp_source}{}\label{game__object_8hpp_source}\index{include/game\_object.hpp@{include/game\_object.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ GAME\_OBJECT\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ GAME\_OBJECT\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <allegro5/allegro.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_primitives.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}polygon.hpp"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_game_object_a9574dd653ec2144567ed3f27a2dca688}{GameObject}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{struct_point}{Point}}\ pos;\ }
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{class_game_object_a9574dd653ec2144567ed3f27a2dca688}{GameObject}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&position);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{class_game_object_a9574dd653ec2144567ed3f27a2dca688}{GameObject}}(\textcolor{keywordtype}{float}\ pX,\ \textcolor{keywordtype}{float}\ pY);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_object_a1059bb5df2b698bab091b6f8a96c357e}{setPosX}}(\textcolor{keywordtype}{float}\ x);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_object_ab47dca30df3ab8b7cde8f35c8fb06625}{setPosY}}(\textcolor{keywordtype}{float}\ y);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_object_ab2fc7f77d90d6fb126f4e6ae8cd32855}{setPos}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&p);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{struct_point}{Point}}\ \mbox{\hyperlink{class_game_object_a66b5a9a0dc145a0919ac1756ff2c7e1f}{getPos}}();}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_game_object_a988c84e3871b90c92c04ddc9483842db}{getPosX}}();}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_game_object_a1aaa68396e509ea7f05e13b942d4e918}{getPosY}}();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_game_object_acd4811284000c0989b6ffc4d41ddbe9b}{updatePosition}}()\ =\ 0;}
+\DoxyCodeLine{00072\ \};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_drawable_a59a2d9e82a5e9065f9fd5eaa8b7ac273}{Drawable}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_game_object_a9574dd653ec2144567ed3f27a2dca688}{GameObject}}}
+\DoxyCodeLine{00078\ \{}
+\DoxyCodeLine{00079\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{struct_point}{Point}}\ speed;\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{class_drawable_a59a2d9e82a5e9065f9fd5eaa8b7ac273}{Drawable}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&pos,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&spd);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{class_drawable_a59a2d9e82a5e9065f9fd5eaa8b7ac273}{Drawable}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&pos);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_drawable_adfecd91f96242422c8c06f4472d385de}{setSpeedX}}(\textcolor{keywordtype}{float}\ x);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_drawable_a1c561877612a240a357eae98b88ae93d}{setSpeedY}}(\textcolor{keywordtype}{float}\ y);}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_drawable_a5fdbfd8ee52bd2d974cf08edd67fd3d6}{setSpeed}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&pos);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_drawable_aa37d7b328240d343134adcfe5e4dcd38}{draw}}()\ =\ 0;}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_drawable_afc1482e540c8a73eaf4d1e7f2f5dd660}{updateSpeed}}()\ =\ 0;}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_drawable_a9dafc04b0493ca752f6a4cd2ad32eedc}{addSpeedVector}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&spd);}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_drawable_a0dd188182f57a376f063c9b4c21f4325}{addSpeedX}}(\textcolor{keywordtype}{float}\ x);}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_drawable_a1b19845978be055574dfe5f0828b1201}{addSpeedY}}(\textcolor{keywordtype}{float}\ y);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00146\ \ \ \ \ \mbox{\hyperlink{struct_point}{Point}}\ \mbox{\hyperlink{class_drawable_a02532cbe0c1a97acc722a32bfc94606e}{getSpeed}}();}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_drawable_ac96da92f873e7422d66e1e7bb6188202}{getSpeedX}}();}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_drawable_a57afa6b34e3c773f888deadc00040504}{getSpeedY}}();}
+\DoxyCodeLine{00159\ \};}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

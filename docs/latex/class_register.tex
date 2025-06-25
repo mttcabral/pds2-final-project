@@ -1,0 +1,437 @@
+\doxysection{Register Class Reference}
+\hypertarget{class_register}{}\label{class_register}\index{Register@{Register}}
+
+
+Classe responsável pelo registro de novos perfis.  
+
+
+
+
+{\ttfamily \#include $<$register.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_register_a2931674c45328a0fb5080f95dae0092d}{Register}} (int buffer\+Size, \mbox{\hyperlink{struct_rectangle_t}{RectangleT}} plan)
+\begin{DoxyCompactList}\small\item\em Construtor do registro. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_register_aa45c4375033c59fd629f324e98fb8c19}{Register}} (string tittle, int buffer\+Size, \mbox{\hyperlink{struct_rectangle_t}{RectangleT}} plan)
+\begin{DoxyCompactList}\small\item\em Construtor do registro com título. \end{DoxyCompactList}\item 
+\Hypertarget{class_register_a27490bda19cd4bd6ca09b48a795fc060}\label{class_register_a27490bda19cd4bd6ca09b48a795fc060} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Register} ()
+\begin{DoxyCompactList}\small\item\em Destrutor do registro. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_register_a0e5b35cf6135cd0399ce5b5d74450b5c}{Register}} (const \mbox{\hyperlink{class_register}{Register}} \&other)
+\begin{DoxyCompactList}\small\item\em Construtor de cópia. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_register}{Register}} \& \mbox{\hyperlink{class_register_a8e00bc9a6bad3a8fded4ca1fcdf80435}{operator=}} (const \mbox{\hyperlink{class_register}{Register}} \&other)
+\begin{DoxyCompactList}\small\item\em Operador de atribuição. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_register_aba95efa66e9c2335155691f9298c4046}{write\+In\+Buffer}} (char c)
+\begin{DoxyCompactList}\small\item\em Escreve um caractere no buffer. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_register_abbc372f2cf0e362c85ddd74456730c9e}{delete\+In\+Buffer}} ()
+\begin{DoxyCompactList}\small\item\em Remove o último caractere do buffer. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_register_ad447be46115bc0f9ebad3ed3b2a074b1}{clean\+Buffer}} ()
+\begin{DoxyCompactList}\small\item\em Limpa o buffer. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_register_a1f930e503694ee95c36f7af5c6a6d130}{get\+Tittle\+Content}} ()
+\begin{DoxyCompactList}\small\item\em Retorna o conteúdo do título. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_register_a169caff49b72e9692742e17e188b2697}{get\+Message\+Content}} ()
+\begin{DoxyCompactList}\small\item\em Retorna o conteúdo da mensagem. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_register_a807852e2e695c4e57988a9957222e03e}{get\+Buffer\+Content}} ()
+\begin{DoxyCompactList}\small\item\em Retorna o conteúdo do buffer. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_register_a4d9fe9b61bbfdda8ab1cd30bfc4c97bb}{get\+Ith\+Content}} (int i)
+\begin{DoxyCompactList}\small\item\em Retorna o conteúdo da i-\/ésima linha. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_color}{Color}} \mbox{\hyperlink{class_register_acbdd0675632b18d9e947557c547eec89}{get\+Tittle\+Text\+Color}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a cor do texto do título. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_color}{Color}} \mbox{\hyperlink{class_register_aada50cd85c4b8824fef0feab7956a07a}{get\+Message\+Text\+Color}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a cor do texto da mensagem. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_color}{Color}} \mbox{\hyperlink{class_register_a3ff9c7a5a37f19994864691e75aab0e1}{get\+Buffer\+Text\+Color}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a cor do texto do buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_color}{Color}} \mbox{\hyperlink{class_register_ae54c499e3d5c799339bf14ac6fc89421}{get\+Ith\+Text\+Color}} (int i)
+\begin{DoxyCompactList}\small\item\em Retorna a cor do texto da i-\/ésima linha. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_register_aa3b9fb293d01fef82e999d10162d3aea}{get\+Ith\+CenterX}} (int i)
+\begin{DoxyCompactList}\small\item\em Retorna a coordenada X central da i-\/ésima linha. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_register_aef06997ef4465e4999a9a049e1fe9f48}{get\+Ith\+CenterY}} (int i)
+\begin{DoxyCompactList}\small\item\em Retorna a coordenada Y central da i-\/ésima linha. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_register_a5cccfde07303bccd62cd308cf3815ffd}{set\+Tittle\+Content}} (string tittle)
+\begin{DoxyCompactList}\small\item\em Define o conteúdo do título. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_register_a3896372cf4a2a114e70f86d639968647}{set\+Message\+Content}} (string message)
+\begin{DoxyCompactList}\small\item\em Define o conteúdo da mensagem. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_register_a06494fdc165ee03d6f27b1f92e7d7cd5}{set\+Tittle\+Text\+Color}} (\mbox{\hyperlink{struct_color}{Color}} color)
+\begin{DoxyCompactList}\small\item\em Define a cor do texto do título. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_register_a7ec2611e0a30ceeff7227b29cf9ec33e}{set\+Message\+Text\+Color}} (\mbox{\hyperlink{struct_color}{Color}} color)
+\begin{DoxyCompactList}\small\item\em Define a cor do texto da mensagem. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_register_a03c398b1f854afc25e5cacb4dde42ec2}{set\+Buffer\+Text\+Color}} (\mbox{\hyperlink{struct_color}{Color}} color)
+\begin{DoxyCompactList}\small\item\em Define a cor do texto do buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_register_a1ec862d12f2350e4fc80b16e91dfa50f}{draw\+Register}} (ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}font1, ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}font2)
+\begin{DoxyCompactList}\small\item\em Desenha o formulário de registro na tela. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe responsável pelo registro de novos perfis. 
+
+\label{doc-constructors}
+\Hypertarget{class_register_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_register_a2931674c45328a0fb5080f95dae0092d}\index{Register@{Register}!Register@{Register}}
+\index{Register@{Register}!Register@{Register}}
+\doxysubsubsection{\texorpdfstring{Register()}{Register()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_register_a2931674c45328a0fb5080f95dae0092d} 
+Register\+::\+Register (\begin{DoxyParamCaption}\item[{int}]{buffer\+Size}{, }\item[{\mbox{\hyperlink{struct_rectangle_t}{RectangleT}}}]{plan}{}\end{DoxyParamCaption})}
+
+
+
+Construtor do registro. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer\+Size} & Tamanho do buffer. \\
+\hline
+{\em plan} & Retângulo de exibição. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_register_aa45c4375033c59fd629f324e98fb8c19}\index{Register@{Register}!Register@{Register}}
+\index{Register@{Register}!Register@{Register}}
+\doxysubsubsection{\texorpdfstring{Register()}{Register()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_register_aa45c4375033c59fd629f324e98fb8c19} 
+Register\+::\+Register (\begin{DoxyParamCaption}\item[{string}]{tittle}{, }\item[{int}]{buffer\+Size}{, }\item[{\mbox{\hyperlink{struct_rectangle_t}{RectangleT}}}]{plan}{}\end{DoxyParamCaption})}
+
+
+
+Construtor do registro com título. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tittle} & Título do registro. \\
+\hline
+{\em buffer\+Size} & Tamanho do buffer. \\
+\hline
+{\em plan} & Retângulo de exibição. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_register_a0e5b35cf6135cd0399ce5b5d74450b5c}\index{Register@{Register}!Register@{Register}}
+\index{Register@{Register}!Register@{Register}}
+\doxysubsubsection{\texorpdfstring{Register()}{Register()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_register_a0e5b35cf6135cd0399ce5b5d74450b5c} 
+Register\+::\+Register (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_register}{Register}} \&}]{other}{}\end{DoxyParamCaption})}
+
+
+
+Construtor de cópia. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Outro objeto \doxylink{class_register}{Register}. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_register_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_register_ad447be46115bc0f9ebad3ed3b2a074b1}\index{Register@{Register}!cleanBuffer@{cleanBuffer}}
+\index{cleanBuffer@{cleanBuffer}!Register@{Register}}
+\doxysubsubsection{\texorpdfstring{cleanBuffer()}{cleanBuffer()}}
+{\footnotesize\ttfamily \label{class_register_ad447be46115bc0f9ebad3ed3b2a074b1} 
+bool Register\+::clean\+Buffer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Limpa o buffer. 
+
+\begin{DoxyReturn}{Returns}
+true se limpo com sucesso. 
+\end{DoxyReturn}
+\Hypertarget{class_register_abbc372f2cf0e362c85ddd74456730c9e}\index{Register@{Register}!deleteInBuffer@{deleteInBuffer}}
+\index{deleteInBuffer@{deleteInBuffer}!Register@{Register}}
+\doxysubsubsection{\texorpdfstring{deleteInBuffer()}{deleteInBuffer()}}
+{\footnotesize\ttfamily \label{class_register_abbc372f2cf0e362c85ddd74456730c9e} 
+bool Register\+::delete\+In\+Buffer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Remove o último caractere do buffer. 
+
+\begin{DoxyReturn}{Returns}
+true se removido com sucesso. 
+\end{DoxyReturn}
+\Hypertarget{class_register_a1ec862d12f2350e4fc80b16e91dfa50f}\index{Register@{Register}!drawRegister@{drawRegister}}
+\index{drawRegister@{drawRegister}!Register@{Register}}
+\doxysubsubsection{\texorpdfstring{drawRegister()}{drawRegister()}}
+{\footnotesize\ttfamily \label{class_register_a1ec862d12f2350e4fc80b16e91dfa50f} 
+void Register\+::draw\+Register (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}}]{font1}{, }\item[{ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}}]{font2}{}\end{DoxyParamCaption})}
+
+
+
+Desenha o formulário de registro na tela. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em font1} & Fonte principal. \\
+\hline
+{\em font2} & Fonte secundária. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_register_a807852e2e695c4e57988a9957222e03e}\index{Register@{Register}!getBufferContent@{getBufferContent}}
+\index{getBufferContent@{getBufferContent}!Register@{Register}}
+\doxysubsubsection{\texorpdfstring{getBufferContent()}{getBufferContent()}}
+{\footnotesize\ttfamily \label{class_register_a807852e2e695c4e57988a9957222e03e} 
+string Register\+::get\+Buffer\+Content (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna o conteúdo do buffer. 
+
+\begin{DoxyReturn}{Returns}
+Conteúdo do buffer. 
+\end{DoxyReturn}
+\Hypertarget{class_register_a3ff9c7a5a37f19994864691e75aab0e1}\index{Register@{Register}!getBufferTextColor@{getBufferTextColor}}
+\index{getBufferTextColor@{getBufferTextColor}!Register@{Register}}
+\doxysubsubsection{\texorpdfstring{getBufferTextColor()}{getBufferTextColor()}}
+{\footnotesize\ttfamily \label{class_register_a3ff9c7a5a37f19994864691e75aab0e1} 
+\mbox{\hyperlink{struct_color}{Color}} Register\+::get\+Buffer\+Text\+Color (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna a cor do texto do buffer. 
+
+\begin{DoxyReturn}{Returns}
+Cor do texto. 
+\end{DoxyReturn}
+\Hypertarget{class_register_aa3b9fb293d01fef82e999d10162d3aea}\index{Register@{Register}!getIthCenterX@{getIthCenterX}}
+\index{getIthCenterX@{getIthCenterX}!Register@{Register}}
+\doxysubsubsection{\texorpdfstring{getIthCenterX()}{getIthCenterX()}}
+{\footnotesize\ttfamily \label{class_register_aa3b9fb293d01fef82e999d10162d3aea} 
+float Register\+::get\+Ith\+CenterX (\begin{DoxyParamCaption}\item[{int}]{i}{}\end{DoxyParamCaption})}
+
+
+
+Retorna a coordenada X central da i-\/ésima linha. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Índice da linha. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Coordenada X. 
+\end{DoxyReturn}
+\Hypertarget{class_register_aef06997ef4465e4999a9a049e1fe9f48}\index{Register@{Register}!getIthCenterY@{getIthCenterY}}
+\index{getIthCenterY@{getIthCenterY}!Register@{Register}}
+\doxysubsubsection{\texorpdfstring{getIthCenterY()}{getIthCenterY()}}
+{\footnotesize\ttfamily \label{class_register_aef06997ef4465e4999a9a049e1fe9f48} 
+float Register\+::get\+Ith\+CenterY (\begin{DoxyParamCaption}\item[{int}]{i}{}\end{DoxyParamCaption})}
+
+
+
+Retorna a coordenada Y central da i-\/ésima linha. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Índice da linha. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Coordenada Y. 
+\end{DoxyReturn}
+\Hypertarget{class_register_a4d9fe9b61bbfdda8ab1cd30bfc4c97bb}\index{Register@{Register}!getIthContent@{getIthContent}}
+\index{getIthContent@{getIthContent}!Register@{Register}}
+\doxysubsubsection{\texorpdfstring{getIthContent()}{getIthContent()}}
+{\footnotesize\ttfamily \label{class_register_a4d9fe9b61bbfdda8ab1cd30bfc4c97bb} 
+string Register\+::get\+Ith\+Content (\begin{DoxyParamCaption}\item[{int}]{i}{}\end{DoxyParamCaption})}
+
+
+
+Retorna o conteúdo da i-\/ésima linha. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Índice da linha. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Conteúdo da linha. 
+\end{DoxyReturn}
+\Hypertarget{class_register_ae54c499e3d5c799339bf14ac6fc89421}\index{Register@{Register}!getIthTextColor@{getIthTextColor}}
+\index{getIthTextColor@{getIthTextColor}!Register@{Register}}
+\doxysubsubsection{\texorpdfstring{getIthTextColor()}{getIthTextColor()}}
+{\footnotesize\ttfamily \label{class_register_ae54c499e3d5c799339bf14ac6fc89421} 
+\mbox{\hyperlink{struct_color}{Color}} Register\+::get\+Ith\+Text\+Color (\begin{DoxyParamCaption}\item[{int}]{i}{}\end{DoxyParamCaption})}
+
+
+
+Retorna a cor do texto da i-\/ésima linha. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Índice da linha. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Cor do texto. 
+\end{DoxyReturn}
+\Hypertarget{class_register_a169caff49b72e9692742e17e188b2697}\index{Register@{Register}!getMessageContent@{getMessageContent}}
+\index{getMessageContent@{getMessageContent}!Register@{Register}}
+\doxysubsubsection{\texorpdfstring{getMessageContent()}{getMessageContent()}}
+{\footnotesize\ttfamily \label{class_register_a169caff49b72e9692742e17e188b2697} 
+string Register\+::get\+Message\+Content (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna o conteúdo da mensagem. 
+
+\begin{DoxyReturn}{Returns}
+Conteúdo da mensagem. 
+\end{DoxyReturn}
+\Hypertarget{class_register_aada50cd85c4b8824fef0feab7956a07a}\index{Register@{Register}!getMessageTextColor@{getMessageTextColor}}
+\index{getMessageTextColor@{getMessageTextColor}!Register@{Register}}
+\doxysubsubsection{\texorpdfstring{getMessageTextColor()}{getMessageTextColor()}}
+{\footnotesize\ttfamily \label{class_register_aada50cd85c4b8824fef0feab7956a07a} 
+\mbox{\hyperlink{struct_color}{Color}} Register\+::get\+Message\+Text\+Color (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna a cor do texto da mensagem. 
+
+\begin{DoxyReturn}{Returns}
+Cor do texto. 
+\end{DoxyReturn}
+\Hypertarget{class_register_a1f930e503694ee95c36f7af5c6a6d130}\index{Register@{Register}!getTittleContent@{getTittleContent}}
+\index{getTittleContent@{getTittleContent}!Register@{Register}}
+\doxysubsubsection{\texorpdfstring{getTittleContent()}{getTittleContent()}}
+{\footnotesize\ttfamily \label{class_register_a1f930e503694ee95c36f7af5c6a6d130} 
+string Register\+::get\+Tittle\+Content (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna o conteúdo do título. 
+
+\begin{DoxyReturn}{Returns}
+Conteúdo do título. 
+\end{DoxyReturn}
+\Hypertarget{class_register_acbdd0675632b18d9e947557c547eec89}\index{Register@{Register}!getTittleTextColor@{getTittleTextColor}}
+\index{getTittleTextColor@{getTittleTextColor}!Register@{Register}}
+\doxysubsubsection{\texorpdfstring{getTittleTextColor()}{getTittleTextColor()}}
+{\footnotesize\ttfamily \label{class_register_acbdd0675632b18d9e947557c547eec89} 
+\mbox{\hyperlink{struct_color}{Color}} Register\+::get\+Tittle\+Text\+Color (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna a cor do texto do título. 
+
+\begin{DoxyReturn}{Returns}
+Cor do texto. 
+\end{DoxyReturn}
+\Hypertarget{class_register_a8e00bc9a6bad3a8fded4ca1fcdf80435}\index{Register@{Register}!operator=@{operator=}}
+\index{operator=@{operator=}!Register@{Register}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_register_a8e00bc9a6bad3a8fded4ca1fcdf80435} 
+\mbox{\hyperlink{class_register}{Register}} \& Register\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_register}{Register}} \&}]{other}{}\end{DoxyParamCaption})}
+
+
+
+Operador de atribuição. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Outro objeto \doxylink{class_register}{Register}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Referência para este objeto. 
+\end{DoxyReturn}
+\Hypertarget{class_register_a03c398b1f854afc25e5cacb4dde42ec2}\index{Register@{Register}!setBufferTextColor@{setBufferTextColor}}
+\index{setBufferTextColor@{setBufferTextColor}!Register@{Register}}
+\doxysubsubsection{\texorpdfstring{setBufferTextColor()}{setBufferTextColor()}}
+{\footnotesize\ttfamily \label{class_register_a03c398b1f854afc25e5cacb4dde42ec2} 
+void Register\+::set\+Buffer\+Text\+Color (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_color}{Color}}}]{color}{}\end{DoxyParamCaption})}
+
+
+
+Define a cor do texto do buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & Nova cor. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_register_a3896372cf4a2a114e70f86d639968647}\index{Register@{Register}!setMessageContent@{setMessageContent}}
+\index{setMessageContent@{setMessageContent}!Register@{Register}}
+\doxysubsubsection{\texorpdfstring{setMessageContent()}{setMessageContent()}}
+{\footnotesize\ttfamily \label{class_register_a3896372cf4a2a114e70f86d639968647} 
+void Register\+::set\+Message\+Content (\begin{DoxyParamCaption}\item[{string}]{message}{}\end{DoxyParamCaption})}
+
+
+
+Define o conteúdo da mensagem. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & Nova mensagem. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_register_a7ec2611e0a30ceeff7227b29cf9ec33e}\index{Register@{Register}!setMessageTextColor@{setMessageTextColor}}
+\index{setMessageTextColor@{setMessageTextColor}!Register@{Register}}
+\doxysubsubsection{\texorpdfstring{setMessageTextColor()}{setMessageTextColor()}}
+{\footnotesize\ttfamily \label{class_register_a7ec2611e0a30ceeff7227b29cf9ec33e} 
+void Register\+::set\+Message\+Text\+Color (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_color}{Color}}}]{color}{}\end{DoxyParamCaption})}
+
+
+
+Define a cor do texto da mensagem. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & Nova cor. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_register_a5cccfde07303bccd62cd308cf3815ffd}\index{Register@{Register}!setTittleContent@{setTittleContent}}
+\index{setTittleContent@{setTittleContent}!Register@{Register}}
+\doxysubsubsection{\texorpdfstring{setTittleContent()}{setTittleContent()}}
+{\footnotesize\ttfamily \label{class_register_a5cccfde07303bccd62cd308cf3815ffd} 
+void Register\+::set\+Tittle\+Content (\begin{DoxyParamCaption}\item[{string}]{tittle}{}\end{DoxyParamCaption})}
+
+
+
+Define o conteúdo do título. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tittle} & Novo título. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_register_a06494fdc165ee03d6f27b1f92e7d7cd5}\index{Register@{Register}!setTittleTextColor@{setTittleTextColor}}
+\index{setTittleTextColor@{setTittleTextColor}!Register@{Register}}
+\doxysubsubsection{\texorpdfstring{setTittleTextColor()}{setTittleTextColor()}}
+{\footnotesize\ttfamily \label{class_register_a06494fdc165ee03d6f27b1f92e7d7cd5} 
+void Register\+::set\+Tittle\+Text\+Color (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_color}{Color}}}]{color}{}\end{DoxyParamCaption})}
+
+
+
+Define a cor do texto do título. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & Nova cor. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_register_aba95efa66e9c2335155691f9298c4046}\index{Register@{Register}!writeInBuffer@{writeInBuffer}}
+\index{writeInBuffer@{writeInBuffer}!Register@{Register}}
+\doxysubsubsection{\texorpdfstring{writeInBuffer()}{writeInBuffer()}}
+{\footnotesize\ttfamily \label{class_register_aba95efa66e9c2335155691f9298c4046} 
+bool Register\+::write\+In\+Buffer (\begin{DoxyParamCaption}\item[{char}]{c}{}\end{DoxyParamCaption})}
+
+
+
+Escreve um caractere no buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & Caractere a ser escrito. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se escrito com sucesso. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/register.\+hpp\item 
+src/register.\+cpp\end{DoxyCompactItemize}

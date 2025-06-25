@@ -1,0 +1,162 @@
+\doxysection{Cooldown Class Reference}
+\hypertarget{class_cooldown}{}\label{class_cooldown}\index{Cooldown@{Cooldown}}
+
+
+Classe que gerencia cooldowns temporais.  
+
+
+
+
+{\ttfamily \#include $<$cooldown.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_cooldown_a527e43943a5ed330658a4d1a832774f5}{Cooldown}} (float wu\+Time)
+\begin{DoxyCompactList}\small\item\em Construtor que define o tempo de recarga em segundos. \end{DoxyCompactList}\item 
+\Hypertarget{class_cooldown_a754536aa6be6204a9c86984017132ad5}\label{class_cooldown_a754536aa6be6204a9c86984017132ad5} 
+{\bfseries Cooldown} ()
+\begin{DoxyCompactList}\small\item\em Construtor padrão. \end{DoxyCompactList}\item 
+\Hypertarget{class_cooldown_aa8c5c7a55d467b37594ff8fe2d073364}\label{class_cooldown_aa8c5c7a55d467b37594ff8fe2d073364} 
+void {\bfseries update\+Cooldown} ()
+\begin{DoxyCompactList}\small\item\em Atualiza o cooldown, reduzindo o tempo restante. \end{DoxyCompactList}\item 
+\Hypertarget{class_cooldown_a05f677a90d18bb70011c01098a19630d}\label{class_cooldown_a05f677a90d18bb70011c01098a19630d} 
+void {\bfseries restart\+Cooldown} ()
+\begin{DoxyCompactList}\small\item\em Reinicia o cooldown para o tempo de recarga. \end{DoxyCompactList}\item 
+\Hypertarget{class_cooldown_a687506c09f71196fe8ebb2cbc3a95eea}\label{class_cooldown_a687506c09f71196fe8ebb2cbc3a95eea} 
+void {\bfseries refresh\+Cooldown} ()
+\begin{DoxyCompactList}\small\item\em Define o cooldown como pronto imediatamente. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_cooldown_a8a376b2f7492d224a9f632590321f054}{is\+Cooldown\+Up}} ()
+\begin{DoxyCompactList}\small\item\em Verifica se o cooldown terminou. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_cooldown_a058717c876fa53fcd60ddf4d5ff9d0c9}{set\+Recharge\+Time}} (float wu\+Time)
+\begin{DoxyCompactList}\small\item\em Define um novo tempo de recarga (em segundos). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_cooldown_a16d6ece5ef8f16a9d23f5f3303ef177f}{set\+Update\+Frequency}} (float f)
+\begin{DoxyCompactList}\small\item\em Define um novo fator de velocidade de atualização. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_cooldown_aa15990283d9a66263984e81c0b1f6abe}{get\+Current\+Time\+Left}} ()
+\begin{DoxyCompactList}\small\item\em Retorna o tempo restante atual do cooldown. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_cooldown_ac9ff532969258ed459bb10c1da986a62}{get\+Current\+Porcentage}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a porcentagem do cooldown já decorrido. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_cooldown_a5d6d54d1e82f8aa6076464b42002c720}{get\+Recharge\+Time}} ()
+\begin{DoxyCompactList}\small\item\em Retorna o tempo total de recarga. \end{DoxyCompactList}\item 
+\Hypertarget{class_cooldown_a2b45214b4790c533e522f40215b545f2}\label{class_cooldown_a2b45214b4790c533e522f40215b545f2} 
+void {\bfseries freeze\+Cooldown} ()
+\begin{DoxyCompactList}\small\item\em Congela o cooldown (pausa a contagem). \end{DoxyCompactList}\item 
+\Hypertarget{class_cooldown_a74061e50de03ac6fead65f183aabd9f6}\label{class_cooldown_a74061e50de03ac6fead65f183aabd9f6} 
+void {\bfseries unfreeze\+Cooldown} ()
+\begin{DoxyCompactList}\small\item\em Descongela o cooldown (retoma a contagem). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe que gerencia cooldowns temporais. 
+
+\label{doc-constructors}
+\Hypertarget{class_cooldown_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_cooldown_a527e43943a5ed330658a4d1a832774f5}\index{Cooldown@{Cooldown}!Cooldown@{Cooldown}}
+\index{Cooldown@{Cooldown}!Cooldown@{Cooldown}}
+\doxysubsubsection{\texorpdfstring{Cooldown()}{Cooldown()}}
+{\footnotesize\ttfamily \label{class_cooldown_a527e43943a5ed330658a4d1a832774f5} 
+Cooldown\+::\+Cooldown (\begin{DoxyParamCaption}\item[{float}]{wu\+Time}{}\end{DoxyParamCaption})}
+
+
+
+Construtor que define o tempo de recarga em segundos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em wu\+Time} & Tempo de recarga em segundos. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_cooldown_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_cooldown_ac9ff532969258ed459bb10c1da986a62}\index{Cooldown@{Cooldown}!getCurrentPorcentage@{getCurrentPorcentage}}
+\index{getCurrentPorcentage@{getCurrentPorcentage}!Cooldown@{Cooldown}}
+\doxysubsubsection{\texorpdfstring{getCurrentPorcentage()}{getCurrentPorcentage()}}
+{\footnotesize\ttfamily \label{class_cooldown_ac9ff532969258ed459bb10c1da986a62} 
+float Cooldown\+::get\+Current\+Porcentage (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna a porcentagem do cooldown já decorrido. 
+
+\begin{DoxyReturn}{Returns}
+Porcentagem (0 a 1). 
+\end{DoxyReturn}
+\Hypertarget{class_cooldown_aa15990283d9a66263984e81c0b1f6abe}\index{Cooldown@{Cooldown}!getCurrentTimeLeft@{getCurrentTimeLeft}}
+\index{getCurrentTimeLeft@{getCurrentTimeLeft}!Cooldown@{Cooldown}}
+\doxysubsubsection{\texorpdfstring{getCurrentTimeLeft()}{getCurrentTimeLeft()}}
+{\footnotesize\ttfamily \label{class_cooldown_aa15990283d9a66263984e81c0b1f6abe} 
+float Cooldown\+::get\+Current\+Time\+Left (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna o tempo restante atual do cooldown. 
+
+\begin{DoxyReturn}{Returns}
+Tempo restante. 
+\end{DoxyReturn}
+\Hypertarget{class_cooldown_a5d6d54d1e82f8aa6076464b42002c720}\index{Cooldown@{Cooldown}!getRechargeTime@{getRechargeTime}}
+\index{getRechargeTime@{getRechargeTime}!Cooldown@{Cooldown}}
+\doxysubsubsection{\texorpdfstring{getRechargeTime()}{getRechargeTime()}}
+{\footnotesize\ttfamily \label{class_cooldown_a5d6d54d1e82f8aa6076464b42002c720} 
+float Cooldown\+::get\+Recharge\+Time (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna o tempo total de recarga. 
+
+\begin{DoxyReturn}{Returns}
+Tempo de recarga. 
+\end{DoxyReturn}
+\Hypertarget{class_cooldown_a8a376b2f7492d224a9f632590321f054}\index{Cooldown@{Cooldown}!isCooldownUp@{isCooldownUp}}
+\index{isCooldownUp@{isCooldownUp}!Cooldown@{Cooldown}}
+\doxysubsubsection{\texorpdfstring{isCooldownUp()}{isCooldownUp()}}
+{\footnotesize\ttfamily \label{class_cooldown_a8a376b2f7492d224a9f632590321f054} 
+bool Cooldown\+::is\+Cooldown\+Up (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Verifica se o cooldown terminou. 
+
+\begin{DoxyReturn}{Returns}
+true se terminou, false caso contrário. 
+\end{DoxyReturn}
+\Hypertarget{class_cooldown_a058717c876fa53fcd60ddf4d5ff9d0c9}\index{Cooldown@{Cooldown}!setRechargeTime@{setRechargeTime}}
+\index{setRechargeTime@{setRechargeTime}!Cooldown@{Cooldown}}
+\doxysubsubsection{\texorpdfstring{setRechargeTime()}{setRechargeTime()}}
+{\footnotesize\ttfamily \label{class_cooldown_a058717c876fa53fcd60ddf4d5ff9d0c9} 
+void Cooldown\+::set\+Recharge\+Time (\begin{DoxyParamCaption}\item[{float}]{wu\+Time}{}\end{DoxyParamCaption})}
+
+
+
+Define um novo tempo de recarga (em segundos). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em wu\+Time} & Novo tempo de recarga. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_cooldown_a16d6ece5ef8f16a9d23f5f3303ef177f}\index{Cooldown@{Cooldown}!setUpdateFrequency@{setUpdateFrequency}}
+\index{setUpdateFrequency@{setUpdateFrequency}!Cooldown@{Cooldown}}
+\doxysubsubsection{\texorpdfstring{setUpdateFrequency()}{setUpdateFrequency()}}
+{\footnotesize\ttfamily \label{class_cooldown_a16d6ece5ef8f16a9d23f5f3303ef177f} 
+void Cooldown\+::set\+Update\+Frequency (\begin{DoxyParamCaption}\item[{float}]{f}{}\end{DoxyParamCaption})}
+
+
+
+Define um novo fator de velocidade de atualização. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Novo fator de atualização. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/cooldown.\+hpp\item 
+src/cooldown.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,184 @@
+\doxysection{Player Class Reference}
+\hypertarget{class_player}{}\label{class_player}\index{Player@{Player}}
+
+
+Classe que representa o jogador principal.  
+
+
+
+
+{\ttfamily \#include $<$entity.\+hpp$>$}
+
+Inheritance diagram for Player\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_player}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_player_affe0cc3cb714f6deb4e62f0c0d3f1fd8}\label{class_player_affe0cc3cb714f6deb4e62f0c0d3f1fd8} 
+{\bfseries Player} ()
+\begin{DoxyCompactList}\small\item\em Construtor padrão do jogador. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_player_ad3d749a1e151c94af17fc0a8b0bd3b2b}{update\+Position}} () override
+\begin{DoxyCompactList}\small\item\em Atualiza a posição do jogador. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_a8f1d47e54db2164e021ed1785cec0366}{update\+Speed}} () override
+\begin{DoxyCompactList}\small\item\em Atualiza a velocidade do jogador. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_a70e21ca98281b7d72f105f2693113d7e}\label{class_player_a70e21ca98281b7d72f105f2693113d7e} 
+void {\bfseries jump} ()
+\begin{DoxyCompactList}\small\item\em Realiza o pulo do jogador. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_a7abe0fbf95b42b9ff4a2c0c7d334bc68}{draw}} () override
+\begin{DoxyCompactList}\small\item\em Desenha o jogador na tela. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_a7d0e648b1c47350ed2647b92132312f1}\label{class_player_a7d0e648b1c47350ed2647b92132312f1} 
+void {\bfseries update\+Player\+State} ()
+\begin{DoxyCompactList}\small\item\em Atualiza o estado do jogador. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_acc35ab7af8f44921ab8122154bdb82c5}\label{class_player_acc35ab7af8f44921ab8122154bdb82c5} 
+void {\bfseries update\+Animation} ()
+\begin{DoxyCompactList}\small\item\em Atualiza a animação do jogador. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_a66d9510ae2b80a79f70c84d099dc19e9}{set\+Player\+State}} (Player\+State s)
+\begin{DoxyCompactList}\small\item\em Define o estado do jogador. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_a749d2c00e1fe0f5c2746f7505a58c062}\label{class_player_a749d2c00e1fe0f5c2746f7505a58c062} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Player} ()
+\begin{DoxyCompactList}\small\item\em Destrutor do jogador. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_entity_ad185ab442f37a9c672c397ef0e998b66}{Entity}} (const \mbox{\hyperlink{struct_point}{Point}} \&pos, const \mbox{\hyperlink{struct_point}{Point}} \&spd)
+\begin{DoxyCompactList}\small\item\em Construtor da entidade com posição e velocidade. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_entity_a7ffca71f124858906f8df8b6885f6535}{Entity}} (const \mbox{\hyperlink{struct_point}{Point}} \&pos)
+\begin{DoxyCompactList}\small\item\em Construtor da entidade apenas com posição. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_hitbox}{Hitbox}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_entity_a10a53e3e42b5a700be7303cdb16e8edd}{get\+Hitbox}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a hitbox da entidade. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Entity} ()
+\begin{DoxyCompactList}\small\item\em Destrutor virtual. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_drawable}{Drawable}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_drawable_a9dafc04b0493ca752f6a4cd2ad32eedc}{add\+Speed\+Vector}} (const \mbox{\hyperlink{struct_point}{Point}} \&spd)
+\begin{DoxyCompactList}\small\item\em Adiciona um vetor à velocidade atual. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_drawable_a0dd188182f57a376f063c9b4c21f4325}{add\+SpeedX}} (float x)
+\begin{DoxyCompactList}\small\item\em Adiciona um valor à velocidade X. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_drawable_a1b19845978be055574dfe5f0828b1201}{add\+SpeedY}} (float y)
+\begin{DoxyCompactList}\small\item\em Adiciona um valor à velocidade Y. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_point}{Point}} \mbox{\hyperlink{class_drawable_a02532cbe0c1a97acc722a32bfc94606e}{get\+Speed}} ()
+\begin{DoxyCompactList}\small\item\em Retorna o vetor de velocidade. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_drawable_ac96da92f873e7422d66e1e7bb6188202}{get\+SpeedX}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a velocidade no eixo X. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_drawable_a57afa6b34e3c773f888deadc00040504}{get\+SpeedY}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a velocidade no eixo Y. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_game_object}{Game\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_point}{Point}} \mbox{\hyperlink{class_game_object_a66b5a9a0dc145a0919ac1756ff2c7e1f}{get\+Pos}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a posição do objeto. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_game_object_a988c84e3871b90c92c04ddc9483842db}{get\+PosX}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a coordenada X do objeto. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_game_object_a1aaa68396e509ea7f05e13b942d4e918}{get\+PosY}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a coordenada Y do objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_drawable}{Drawable}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_drawable_a59a2d9e82a5e9065f9fd5eaa8b7ac273}{Drawable}} (const \mbox{\hyperlink{struct_point}{Point}} \&pos, const \mbox{\hyperlink{struct_point}{Point}} \&spd)
+\begin{DoxyCompactList}\small\item\em Construtor protegido com posição e velocidade. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_drawable_ad7331f158072254cd5fa0c0d03caf1f9}{Drawable}} (const \mbox{\hyperlink{struct_point}{Point}} \&pos)
+\begin{DoxyCompactList}\small\item\em Construtor protegido apenas com posição. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_drawable_adfecd91f96242422c8c06f4472d385de}{set\+SpeedX}} (float x)
+\begin{DoxyCompactList}\small\item\em Define a velocidade no eixo X. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_drawable_a1c561877612a240a357eae98b88ae93d}{set\+SpeedY}} (float y)
+\begin{DoxyCompactList}\small\item\em Define a velocidade no eixo Y. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_drawable_a5fdbfd8ee52bd2d974cf08edd67fd3d6}{set\+Speed}} (const \mbox{\hyperlink{struct_point}{Point}} \&pos)
+\begin{DoxyCompactList}\small\item\em Define o vetor de velocidade. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_game_object}{Game\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_object_a9574dd653ec2144567ed3f27a2dca688}{Game\+Object}} (const \mbox{\hyperlink{struct_point}{Point}} \&position)
+\begin{DoxyCompactList}\small\item\em Construtor protegido com posição. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_game_object_a999f37cee25a36f2e5ec27934eda8393}{Game\+Object}} (float pX, float pY)
+\begin{DoxyCompactList}\small\item\em Construtor protegido com coordenadas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_a1059bb5df2b698bab091b6f8a96c357e}{set\+PosX}} (float x)
+\begin{DoxyCompactList}\small\item\em Define a coordenada X do objeto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_ab47dca30df3ab8b7cde8f35c8fb06625}{set\+PosY}} (float y)
+\begin{DoxyCompactList}\small\item\em Define a coordenada Y do objeto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_ab2fc7f77d90d6fb126f4e6ae8cd32855}{set\+Pos}} (const \mbox{\hyperlink{struct_point}{Point}} \&p)
+\begin{DoxyCompactList}\small\item\em Define a posição do objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_hitbox}{Hitbox}} \texorpdfstring{$\ast$}{*} {\bfseries hb}
+\begin{DoxyCompactList}\small\item\em Ponteiro para a hitbox da entidade. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe que representa o jogador principal. 
+
+\label{doc-func-members}
+\Hypertarget{class_player_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_player_a7abe0fbf95b42b9ff4a2c0c7d334bc68}\index{Player@{Player}!draw@{draw}}
+\index{draw@{draw}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{class_player_a7abe0fbf95b42b9ff4a2c0c7d334bc68} 
+void Player\+::draw (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Desenha o jogador na tela. 
+
+
+
+Implements \mbox{\hyperlink{class_drawable_aa37d7b328240d343134adcfe5e4dcd38}{Drawable}}.
+
+\Hypertarget{class_player_a66d9510ae2b80a79f70c84d099dc19e9}\index{Player@{Player}!setPlayerState@{setPlayerState}}
+\index{setPlayerState@{setPlayerState}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{setPlayerState()}{setPlayerState()}}
+{\footnotesize\ttfamily \label{class_player_a66d9510ae2b80a79f70c84d099dc19e9} 
+void Player\+::set\+Player\+State (\begin{DoxyParamCaption}\item[{Player\+State}]{s}{}\end{DoxyParamCaption})}
+
+
+
+Define o estado do jogador. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Novo estado. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_player_ad3d749a1e151c94af17fc0a8b0bd3b2b}\index{Player@{Player}!updatePosition@{updatePosition}}
+\index{updatePosition@{updatePosition}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{updatePosition()}{updatePosition()}}
+{\footnotesize\ttfamily \label{class_player_ad3d749a1e151c94af17fc0a8b0bd3b2b} 
+bool Player\+::update\+Position (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Atualiza a posição do jogador. 
+
+\begin{DoxyReturn}{Returns}
+true se a posição foi atualizada. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_game_object_acd4811284000c0989b6ffc4d41ddbe9b}{Game\+Object}}.
+
+\Hypertarget{class_player_a8f1d47e54db2164e021ed1785cec0366}\index{Player@{Player}!updateSpeed@{updateSpeed}}
+\index{updateSpeed@{updateSpeed}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{updateSpeed()}{updateSpeed()}}
+{\footnotesize\ttfamily \label{class_player_a8f1d47e54db2164e021ed1785cec0366} 
+void Player\+::update\+Speed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Atualiza a velocidade do jogador. 
+
+
+
+Implements \mbox{\hyperlink{class_drawable_afc1482e540c8a73eaf4d1e7f2f5dd660}{Drawable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/entity.\+hpp\item 
+src/entity.\+cpp\end{DoxyCompactItemize}

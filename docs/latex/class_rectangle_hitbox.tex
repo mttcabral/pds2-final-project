@@ -1,0 +1,215 @@
+\doxysection{Rectangle\+Hitbox Class Reference}
+\hypertarget{class_rectangle_hitbox}{}\label{class_rectangle_hitbox}\index{RectangleHitbox@{RectangleHitbox}}
+
+
+\doxylink{class_hitbox}{Hitbox} retangular, usada para representar retângulos com largura e altura variáveis.  
+
+
+
+
+{\ttfamily \#include $<$hitbox.\+hpp$>$}
+
+Inheritance diagram for Rectangle\+Hitbox\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_rectangle_hitbox}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_rectangle_hitbox_a60865f9679eb27b01a62d88a6f517689}{Rectangle\+Hitbox}} (const \mbox{\hyperlink{struct_point}{Point}} \&center, float w, float h)
+\begin{DoxyCompactList}\small\item\em Construtor da hitbox retangular. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_rectangle_hitbox_a1c6b871c216e5e19d39874dee4b3c5d1}{get\+Width}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a largura da hitbox. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_rectangle_hitbox_a6c2c1bc1241bc2e9d7133c585be3431c}{get\+Height}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a altura da hitbox. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_polygon}{Polygon}} \mbox{\hyperlink{class_rectangle_hitbox_ae3ded3ade9cf5115d36895b807a04aaa}{get\+Polygon}} () override
+\begin{DoxyCompactList}\small\item\em Retorna o polígono da hitbox. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_rectangle_hitbox_ab7a84e559f864119c48ea25f04dda944}{get\+Angle}} () override
+\begin{DoxyCompactList}\small\item\em Retorna o ângulo da hitbox. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_rectangle_hitbox_a71234a8119f877dbf988b85bf943c892}{update\+Position}} () override
+\begin{DoxyCompactList}\small\item\em Atualiza a posição da hitbox. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_rectangle_hitbox_af8b068a878d28343f000065c098dcba1}{rotate\+Hitbox}} (float radians) override
+\begin{DoxyCompactList}\small\item\em Rotaciona a hitbox. \end{DoxyCompactList}\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_rectangle_hitbox_a9e85c4b59519a1631f6f41b09efcf628}{get\+Vertices}} ()
+\begin{DoxyCompactList}\small\item\em Retorna os vértices do retângulo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_hitbox}{Hitbox}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_hitbox_ad2f514202e5fed3971ead61f7b6102b9}{Hitbox}} (const \mbox{\hyperlink{struct_point}{Point}} \&center)
+\begin{DoxyCompactList}\small\item\em Construtor da hitbox. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_hitbox_a15b038cf0f3393f039bd13c2bdffaf22}{set\+Target}} (\mbox{\hyperlink{class_drawable}{Drawable}} \texorpdfstring{$\ast$}{*}target)
+\begin{DoxyCompactList}\small\item\em Define o objeto alvo associado à hitbox. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Hitbox} ()
+\begin{DoxyCompactList}\small\item\em Destrutor virtual da hitbox. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_game_object}{Game\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_point}{Point}} \mbox{\hyperlink{class_game_object_a66b5a9a0dc145a0919ac1756ff2c7e1f}{get\+Pos}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a posição do objeto. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_game_object_a988c84e3871b90c92c04ddc9483842db}{get\+PosX}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a coordenada X do objeto. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_game_object_a1aaa68396e509ea7f05e13b942d4e918}{get\+PosY}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a coordenada Y do objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_game_object}{Game\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_object_a9574dd653ec2144567ed3f27a2dca688}{Game\+Object}} (const \mbox{\hyperlink{struct_point}{Point}} \&position)
+\begin{DoxyCompactList}\small\item\em Construtor protegido com posição. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_game_object_a999f37cee25a36f2e5ec27934eda8393}{Game\+Object}} (float pX, float pY)
+\begin{DoxyCompactList}\small\item\em Construtor protegido com coordenadas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_a1059bb5df2b698bab091b6f8a96c357e}{set\+PosX}} (float x)
+\begin{DoxyCompactList}\small\item\em Define a coordenada X do objeto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_ab47dca30df3ab8b7cde8f35c8fb06625}{set\+PosY}} (float y)
+\begin{DoxyCompactList}\small\item\em Define a coordenada Y do objeto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_ab2fc7f77d90d6fb126f4e6ae8cd32855}{set\+Pos}} (const \mbox{\hyperlink{struct_point}{Point}} \&p)
+\begin{DoxyCompactList}\small\item\em Define a posição do objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_hitbox}{Hitbox} retangular, usada para representar retângulos com largura e altura variáveis. 
+
+\label{doc-constructors}
+\Hypertarget{class_rectangle_hitbox_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_rectangle_hitbox_a60865f9679eb27b01a62d88a6f517689}\index{RectangleHitbox@{RectangleHitbox}!RectangleHitbox@{RectangleHitbox}}
+\index{RectangleHitbox@{RectangleHitbox}!RectangleHitbox@{RectangleHitbox}}
+\doxysubsubsection{\texorpdfstring{RectangleHitbox()}{RectangleHitbox()}}
+{\footnotesize\ttfamily \label{class_rectangle_hitbox_a60865f9679eb27b01a62d88a6f517689} 
+Rectangle\+Hitbox\+::\+Rectangle\+Hitbox (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_point}{Point}} \&}]{center}{, }\item[{float}]{w}{, }\item[{float}]{h}{}\end{DoxyParamCaption})}
+
+
+
+Construtor da hitbox retangular. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em center} & Centro da hitbox. \\
+\hline
+{\em w} & Largura. \\
+\hline
+{\em h} & Altura. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_rectangle_hitbox_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_rectangle_hitbox_ab7a84e559f864119c48ea25f04dda944}\index{RectangleHitbox@{RectangleHitbox}!getAngle@{getAngle}}
+\index{getAngle@{getAngle}!RectangleHitbox@{RectangleHitbox}}
+\doxysubsubsection{\texorpdfstring{getAngle()}{getAngle()}}
+{\footnotesize\ttfamily \label{class_rectangle_hitbox_ab7a84e559f864119c48ea25f04dda944} 
+float Rectangle\+Hitbox\+::get\+Angle (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Retorna o ângulo da hitbox. 
+
+\begin{DoxyReturn}{Returns}
+Ângulo em radianos. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_hitbox_a8530e1f0b6da8835101db75bb3ca91a9}{Hitbox}}.
+
+\Hypertarget{class_rectangle_hitbox_a6c2c1bc1241bc2e9d7133c585be3431c}\index{RectangleHitbox@{RectangleHitbox}!getHeight@{getHeight}}
+\index{getHeight@{getHeight}!RectangleHitbox@{RectangleHitbox}}
+\doxysubsubsection{\texorpdfstring{getHeight()}{getHeight()}}
+{\footnotesize\ttfamily \label{class_rectangle_hitbox_a6c2c1bc1241bc2e9d7133c585be3431c} 
+float Rectangle\+Hitbox\+::get\+Height (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna a altura da hitbox. 
+
+\begin{DoxyReturn}{Returns}
+Altura. 
+\end{DoxyReturn}
+\Hypertarget{class_rectangle_hitbox_ae3ded3ade9cf5115d36895b807a04aaa}\index{RectangleHitbox@{RectangleHitbox}!getPolygon@{getPolygon}}
+\index{getPolygon@{getPolygon}!RectangleHitbox@{RectangleHitbox}}
+\doxysubsubsection{\texorpdfstring{getPolygon()}{getPolygon()}}
+{\footnotesize\ttfamily \label{class_rectangle_hitbox_ae3ded3ade9cf5115d36895b807a04aaa} 
+\mbox{\hyperlink{struct_polygon}{Polygon}} Rectangle\+Hitbox\+::get\+Polygon (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Retorna o polígono da hitbox. 
+
+\begin{DoxyReturn}{Returns}
+Polígono. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_hitbox_a2fb1c95461937b937b92eef8bb844975}{Hitbox}}.
+
+\Hypertarget{class_rectangle_hitbox_a9e85c4b59519a1631f6f41b09efcf628}\index{RectangleHitbox@{RectangleHitbox}!getVertices@{getVertices}}
+\index{getVertices@{getVertices}!RectangleHitbox@{RectangleHitbox}}
+\doxysubsubsection{\texorpdfstring{getVertices()}{getVertices()}}
+{\footnotesize\ttfamily \label{class_rectangle_hitbox_a9e85c4b59519a1631f6f41b09efcf628} 
+float \texorpdfstring{$\ast$}{*} Rectangle\+Hitbox\+::get\+Vertices (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna os vértices do retângulo. 
+
+\begin{DoxyReturn}{Returns}
+Ponteiro para array de vértices. 
+\end{DoxyReturn}
+\Hypertarget{class_rectangle_hitbox_a1c6b871c216e5e19d39874dee4b3c5d1}\index{RectangleHitbox@{RectangleHitbox}!getWidth@{getWidth}}
+\index{getWidth@{getWidth}!RectangleHitbox@{RectangleHitbox}}
+\doxysubsubsection{\texorpdfstring{getWidth()}{getWidth()}}
+{\footnotesize\ttfamily \label{class_rectangle_hitbox_a1c6b871c216e5e19d39874dee4b3c5d1} 
+float Rectangle\+Hitbox\+::get\+Width (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna a largura da hitbox. 
+
+\begin{DoxyReturn}{Returns}
+Largura. 
+\end{DoxyReturn}
+\Hypertarget{class_rectangle_hitbox_af8b068a878d28343f000065c098dcba1}\index{RectangleHitbox@{RectangleHitbox}!rotateHitbox@{rotateHitbox}}
+\index{rotateHitbox@{rotateHitbox}!RectangleHitbox@{RectangleHitbox}}
+\doxysubsubsection{\texorpdfstring{rotateHitbox()}{rotateHitbox()}}
+{\footnotesize\ttfamily \label{class_rectangle_hitbox_af8b068a878d28343f000065c098dcba1} 
+void Rectangle\+Hitbox\+::rotate\+Hitbox (\begin{DoxyParamCaption}\item[{float}]{radians}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Rotaciona a hitbox. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em radians} & Ângulo em radianos. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_hitbox_a9c92639e8bd6204d624feb64468ecdfb}{Hitbox}}.
+
+\Hypertarget{class_rectangle_hitbox_a71234a8119f877dbf988b85bf943c892}\index{RectangleHitbox@{RectangleHitbox}!updatePosition@{updatePosition}}
+\index{updatePosition@{updatePosition}!RectangleHitbox@{RectangleHitbox}}
+\doxysubsubsection{\texorpdfstring{updatePosition()}{updatePosition()}}
+{\footnotesize\ttfamily \label{class_rectangle_hitbox_a71234a8119f877dbf988b85bf943c892} 
+bool Rectangle\+Hitbox\+::update\+Position (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Atualiza a posição da hitbox. 
+
+\begin{DoxyReturn}{Returns}
+true se a posição foi atualizada. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_hitbox_a27f71f2fac4a02a14976f5f2346c6ebe}{Hitbox}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/hitbox.\+hpp\item 
+src/hitbox.\+cpp\end{DoxyCompactItemize}

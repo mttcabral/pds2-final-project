@@ -1,0 +1,131 @@
+\doxysection{Handler Class Reference}
+\hypertarget{class_handler}{}\label{class_handler}\index{Handler@{Handler}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_handler_ac6d67fbe0ab3970c59d9facef0191e7f}{game\+On}} (ALLEGRO\+\_\+\+TIMER \&timer, ALLEGRO\+\_\+\+TIMER \&animation\+\_\+timer, ALLEGRO\+\_\+\+EVENT\+\_\+\+QUEUE \&event\+Queue, const int SCREEN\+\_\+H, const int SCREEN\+\_\+W)
+\begin{DoxyCompactList}\small\item\em Executa o loop principal do jogo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_handler_a60e5893425ff8094e9a45bdf00f6d60a}{add\+Obstacle}} (ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}image, \mbox{\hyperlink{class_spritesheet}{Spritesheet}} \texorpdfstring{$\ast$}{*}eel\+Image)
+\begin{DoxyCompactList}\small\item\em Adiciona um novo obstáculo ao jogo. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_handler_a5163f0e75b6422762561ecb73b772224}{out\+Of\+Borders}} ()
+\begin{DoxyCompactList}\small\item\em Verifica se o jogador saiu dos limites da tela. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_handler_a0094a902a58bf8cf15b3607e03e71952}{check\+Collisions}} ()
+\begin{DoxyCompactList}\small\item\em Verifica colisões entre o jogador e os obstáculos. \end{DoxyCompactList}\item 
+\Hypertarget{class_handler_a33963e77a1243319d7e80beef89e83d0}\label{class_handler_a33963e77a1243319d7e80beef89e83d0} 
+void {\bfseries draw\+All} ()
+\begin{DoxyCompactList}\small\item\em Desenha todos os objetos do jogo na tela. \end{DoxyCompactList}\item 
+\Hypertarget{class_handler_aecc7709e067e4b2a8a4efedb940e567e}\label{class_handler_aecc7709e067e4b2a8a4efedb940e567e} 
+void {\bfseries death} ()
+\begin{DoxyCompactList}\small\item\em Executa procedimentos de morte do jogador. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_handler_a8dea4668b6fecd7008d1964367310b48}{sort\+Between}} (int x, int y)
+\begin{DoxyCompactList}\small\item\em Sorteia um número inteiro entre min e max. \end{DoxyCompactList}\item 
+\Hypertarget{class_handler_a9652ea38441fab40fc738ffddc813303}\label{class_handler_a9652ea38441fab40fc738ffddc813303} 
+void {\bfseries update\+Ambient} ()
+\begin{DoxyCompactList}\small\item\em Atualiza o ambiente do jogo, mudando dinâmicas e velocidade. \end{DoxyCompactList}\item 
+\Hypertarget{class_handler_a7a4129125df48a8ca52ad11d43780311}\label{class_handler_a7a4129125df48a8ca52ad11d43780311} 
+void {\bfseries draw\+Obstacles} ()
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_handler_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_handler_a60e5893425ff8094e9a45bdf00f6d60a}\index{Handler@{Handler}!addObstacle@{addObstacle}}
+\index{addObstacle@{addObstacle}!Handler@{Handler}}
+\doxysubsubsection{\texorpdfstring{addObstacle()}{addObstacle()}}
+{\footnotesize\ttfamily \label{class_handler_a60e5893425ff8094e9a45bdf00f6d60a} 
+void Handler\+::add\+Obstacle (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}}]{image}{, }\item[{\mbox{\hyperlink{class_spritesheet}{Spritesheet}} \texorpdfstring{$\ast$}{*}}]{eel\+Image}{}\end{DoxyParamCaption})}
+
+
+
+Adiciona um novo obstáculo ao jogo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & Bitmap do obstáculo tipo \doxylink{class_pipe}{Pipe}. \\
+\hline
+{\em eel\+Image} & \doxylink{class_spritesheet}{Spritesheet} do obstáculo tipo \doxylink{class_eel}{Eel}. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_handler_a0094a902a58bf8cf15b3607e03e71952}\index{Handler@{Handler}!checkCollisions@{checkCollisions}}
+\index{checkCollisions@{checkCollisions}!Handler@{Handler}}
+\doxysubsubsection{\texorpdfstring{checkCollisions()}{checkCollisions()}}
+{\footnotesize\ttfamily \label{class_handler_a0094a902a58bf8cf15b3607e03e71952} 
+bool Handler\+::check\+Collisions (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Verifica colisões entre o jogador e os obstáculos. 
+
+\begin{DoxyReturn}{Returns}
+true Se houve colisão. 
+
+false Caso contrário. 
+\end{DoxyReturn}
+\Hypertarget{class_handler_ac6d67fbe0ab3970c59d9facef0191e7f}\index{Handler@{Handler}!gameOn@{gameOn}}
+\index{gameOn@{gameOn}!Handler@{Handler}}
+\doxysubsubsection{\texorpdfstring{gameOn()}{gameOn()}}
+{\footnotesize\ttfamily \label{class_handler_ac6d67fbe0ab3970c59d9facef0191e7f} 
+int Handler\+::game\+On (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+TIMER \&}]{timer}{, }\item[{ALLEGRO\+\_\+\+TIMER \&}]{animation\+\_\+timer}{, }\item[{ALLEGRO\+\_\+\+EVENT\+\_\+\+QUEUE \&}]{event\+Queue}{, }\item[{const int}]{SCREEN\+\_\+H}{, }\item[{const int}]{SCREEN\+\_\+W}{}\end{DoxyParamCaption})}
+
+
+
+Executa o loop principal do jogo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em timer} & Timer principal do jogo. \\
+\hline
+{\em animation\+\_\+timer} & Timer para animações. \\
+\hline
+{\em event\+Queue} & Fila de eventos do Allegro. \\
+\hline
+{\em SCREEN\+\_\+H} & Altura da tela. \\
+\hline
+{\em SCREEN\+\_\+W} & Largura da tela. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Pontuação final (tempo de sobrevivência). 
+\end{DoxyReturn}
+\Hypertarget{class_handler_a5163f0e75b6422762561ecb73b772224}\index{Handler@{Handler}!outOfBorders@{outOfBorders}}
+\index{outOfBorders@{outOfBorders}!Handler@{Handler}}
+\doxysubsubsection{\texorpdfstring{outOfBorders()}{outOfBorders()}}
+{\footnotesize\ttfamily \label{class_handler_a5163f0e75b6422762561ecb73b772224} 
+bool Handler\+::out\+Of\+Borders (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Verifica se o jogador saiu dos limites da tela. 
+
+\begin{DoxyReturn}{Returns}
+true Se saiu dos limites. 
+
+false Caso contrário. 
+\end{DoxyReturn}
+\Hypertarget{class_handler_a8dea4668b6fecd7008d1964367310b48}\index{Handler@{Handler}!sortBetween@{sortBetween}}
+\index{sortBetween@{sortBetween}!Handler@{Handler}}
+\doxysubsubsection{\texorpdfstring{sortBetween()}{sortBetween()}}
+{\footnotesize\ttfamily \label{class_handler_a8dea4668b6fecd7008d1964367310b48} 
+int Handler\+::sort\+Between (\begin{DoxyParamCaption}\item[{int}]{x}{, }\item[{int}]{y}{}\end{DoxyParamCaption})}
+
+
+
+Sorteia um número inteiro entre min e max. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em min} & Valor mínimo. \\
+\hline
+{\em max} & Valor máximo. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Número sorteado. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/game\+\_\+object\+\_\+handler.\+hpp\item 
+src/game\+\_\+object\+\_\+handler.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,256 @@
+\doxysection{Spritesheet Class Reference}
+\hypertarget{class_spritesheet}{}\label{class_spritesheet}\index{Spritesheet@{Spritesheet}}
+
+
+Classe que representa uma spritesheet para animações.  
+
+
+
+
+{\ttfamily \#include $<$animation.\+hpp$>$}
+
+Inheritance diagram for Spritesheet\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_spritesheet}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_spritesheet_ab877eee6b3df7adf4b9294ac6d2e64e7}{Spritesheet}} (const char \texorpdfstring{$\ast$}{*}dir, int count, int frameW, int frameH, int gap)
+\begin{DoxyCompactList}\small\item\em Construtor da spritesheet. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_spritesheet_a90af95eb972e9f0c8272d616f9bbcbff}{Spritesheet}} (const char \texorpdfstring{$\ast$}{*}dir, int count, int frameW, int gap)
+\begin{DoxyCompactList}\small\item\em Construtor alternativo da spritesheet. \end{DoxyCompactList}\item 
+ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_spritesheet_a65e770b3a364b06a345a67cb32293ba4}{get\+Sheet}} () const
+\begin{DoxyCompactList}\small\item\em Retorna o bitmap da spritesheet. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_spritesheet_abcedb3cea621ea7026cb85a18fcf4dbd}{get\+Frame\+Count}} () const
+\begin{DoxyCompactList}\small\item\em Retorna a quantidade de frames. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_spritesheet_a3b3cb11539c6ab8b6fd93d2ee8b506bb}{get\+Frame\+Width}} () const
+\begin{DoxyCompactList}\small\item\em Retorna a largura de cada frame. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_spritesheet_ac1ea8b40ace9ea71e3c574f1180fa320}{get\+Frame\+Height}} () const
+\begin{DoxyCompactList}\small\item\em Retorna a altura de cada frame. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_spritesheet_aca203aefdcdc062e8166a6924d4f28ce}{get\+Current\+Index}} () const
+\begin{DoxyCompactList}\small\item\em Retorna o índice do frame atual. \end{DoxyCompactList}\item 
+ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_spritesheet_a2398b6acc332afc246f4e775fc00fcfd}{get\+Frame}} (int i) const
+\begin{DoxyCompactList}\small\item\em Retorna o frame na posição i. \end{DoxyCompactList}\item 
+ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_spritesheet_a98dd42bff4782d82a11c2cfa6d10b7b4}{get\+Current\+Frame}} () const
+\begin{DoxyCompactList}\small\item\em Retorna o frame atual. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_spritesheet_af32a20b612c95e5526f93a73786b52e5}{reset\+Animation}} ()
+\begin{DoxyCompactList}\small\item\em Reinicia a animação para o primeiro frame. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_spritesheet_aad307837837ce9845cdbfc6118ebc1d6}{advance\+Frame}} ()
+\begin{DoxyCompactList}\small\item\em Avança para o próximo frame da animação. \end{DoxyCompactList}\item 
+\Hypertarget{class_spritesheet_a7037870efa64d9fedb8fa2d7072bf28c}\label{class_spritesheet_a7037870efa64d9fedb8fa2d7072bf28c} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Spritesheet} ()
+\begin{DoxyCompactList}\small\item\em Destrutor da spritesheet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_spritesheet_a726b1e199de084f4d3277a8c6712dcfe}\label{class_spritesheet_a726b1e199de084f4d3277a8c6712dcfe} 
+ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*} {\bfseries sheet} = nullptr
+\item 
+\Hypertarget{class_spritesheet_abe9f9cfb60fd6a8b280e020aa8d22496}\label{class_spritesheet_abe9f9cfb60fd6a8b280e020aa8d22496} 
+int {\bfseries frame\+Count}
+\item 
+\Hypertarget{class_spritesheet_a7785108791f5770ea28d4edd3e42873c}\label{class_spritesheet_a7785108791f5770ea28d4edd3e42873c} 
+int {\bfseries frame\+Width}
+\item 
+\Hypertarget{class_spritesheet_ab5b187cbf917bc967aa6577945640caf}\label{class_spritesheet_ab5b187cbf917bc967aa6577945640caf} 
+int {\bfseries frame\+Height}
+\item 
+\Hypertarget{class_spritesheet_a7505ac2d95b750652c05cd349fb7e7f9}\label{class_spritesheet_a7505ac2d95b750652c05cd349fb7e7f9} 
+int {\bfseries frame\+Gap}
+\item 
+\Hypertarget{class_spritesheet_aeb346fda140658418f9a68c5bcdd0bc5}\label{class_spritesheet_aeb346fda140658418f9a68c5bcdd0bc5} 
+int {\bfseries current\+Index} = 0
+\item 
+\Hypertarget{class_spritesheet_a25e759f013f77855aa4f2da4c748d0b5}\label{class_spritesheet_a25e759f013f77855aa4f2da4c748d0b5} 
+vector$<$ ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*} $>$ {\bfseries frames}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe que representa uma spritesheet para animações. 
+
+\label{doc-constructors}
+\Hypertarget{class_spritesheet_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_spritesheet_ab877eee6b3df7adf4b9294ac6d2e64e7}\index{Spritesheet@{Spritesheet}!Spritesheet@{Spritesheet}}
+\index{Spritesheet@{Spritesheet}!Spritesheet@{Spritesheet}}
+\doxysubsubsection{\texorpdfstring{Spritesheet()}{Spritesheet()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_spritesheet_ab877eee6b3df7adf4b9294ac6d2e64e7} 
+Spritesheet\+::\+Spritesheet (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{dir}{, }\item[{int}]{count}{, }\item[{int}]{frameW}{, }\item[{int}]{frameH}{, }\item[{int}]{gap}{}\end{DoxyParamCaption})}
+
+
+
+Construtor da spritesheet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dir} & Caminho do arquivo da spritesheet. \\
+\hline
+{\em count} & Quantidade de frames. \\
+\hline
+{\em frameW} & Largura de cada frame. \\
+\hline
+{\em frameH} & Altura de cada frame. \\
+\hline
+{\em gap} & Espaço entre frames. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_spritesheet_a90af95eb972e9f0c8272d616f9bbcbff}\index{Spritesheet@{Spritesheet}!Spritesheet@{Spritesheet}}
+\index{Spritesheet@{Spritesheet}!Spritesheet@{Spritesheet}}
+\doxysubsubsection{\texorpdfstring{Spritesheet()}{Spritesheet()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_spritesheet_a90af95eb972e9f0c8272d616f9bbcbff} 
+Spritesheet\+::\+Spritesheet (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{dir}{, }\item[{int}]{count}{, }\item[{int}]{frameW}{, }\item[{int}]{gap}{}\end{DoxyParamCaption})}
+
+
+
+Construtor alternativo da spritesheet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dir} & Caminho do arquivo da spritesheet. \\
+\hline
+{\em count} & Quantidade de frames. \\
+\hline
+{\em frameW} & Largura de cada frame. \\
+\hline
+{\em gap} & Espaço entre frames. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_spritesheet_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_spritesheet_aad307837837ce9845cdbfc6118ebc1d6}\index{Spritesheet@{Spritesheet}!advanceFrame@{advanceFrame}}
+\index{advanceFrame@{advanceFrame}!Spritesheet@{Spritesheet}}
+\doxysubsubsection{\texorpdfstring{advanceFrame()}{advanceFrame()}}
+{\footnotesize\ttfamily \label{class_spritesheet_aad307837837ce9845cdbfc6118ebc1d6} 
+void Spritesheet\+::advance\+Frame (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Avança para o próximo frame da animação. 
+
+
+
+Reimplemented in \mbox{\hyperlink{class_trigger_spritesheet_ac74c58bd297ce617b8ce9b16c88f1d1d}{Trigger\+Spritesheet}}.
+
+\Hypertarget{class_spritesheet_a98dd42bff4782d82a11c2cfa6d10b7b4}\index{Spritesheet@{Spritesheet}!getCurrentFrame@{getCurrentFrame}}
+\index{getCurrentFrame@{getCurrentFrame}!Spritesheet@{Spritesheet}}
+\doxysubsubsection{\texorpdfstring{getCurrentFrame()}{getCurrentFrame()}}
+{\footnotesize\ttfamily \label{class_spritesheet_a98dd42bff4782d82a11c2cfa6d10b7b4} 
+ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*} Spritesheet\+::get\+Current\+Frame (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retorna o frame atual. 
+
+\begin{DoxyReturn}{Returns}
+ALLEGRO\+\_\+\+BITMAP\texorpdfstring{$\ast$}{*} Frame atual. 
+\end{DoxyReturn}
+\Hypertarget{class_spritesheet_aca203aefdcdc062e8166a6924d4f28ce}\index{Spritesheet@{Spritesheet}!getCurrentIndex@{getCurrentIndex}}
+\index{getCurrentIndex@{getCurrentIndex}!Spritesheet@{Spritesheet}}
+\doxysubsubsection{\texorpdfstring{getCurrentIndex()}{getCurrentIndex()}}
+{\footnotesize\ttfamily \label{class_spritesheet_aca203aefdcdc062e8166a6924d4f28ce} 
+int Spritesheet\+::get\+Current\+Index (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retorna o índice do frame atual. 
+
+\begin{DoxyReturn}{Returns}
+int Índice do frame atual. 
+\end{DoxyReturn}
+\Hypertarget{class_spritesheet_a2398b6acc332afc246f4e775fc00fcfd}\index{Spritesheet@{Spritesheet}!getFrame@{getFrame}}
+\index{getFrame@{getFrame}!Spritesheet@{Spritesheet}}
+\doxysubsubsection{\texorpdfstring{getFrame()}{getFrame()}}
+{\footnotesize\ttfamily \label{class_spritesheet_a2398b6acc332afc246f4e775fc00fcfd} 
+ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*} Spritesheet\+::get\+Frame (\begin{DoxyParamCaption}\item[{int}]{i}{}\end{DoxyParamCaption}) const}
+
+
+
+Retorna o frame na posição i. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Índice do frame. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ALLEGRO\+\_\+\+BITMAP\texorpdfstring{$\ast$}{*} Frame selecionado. 
+\end{DoxyReturn}
+\Hypertarget{class_spritesheet_abcedb3cea621ea7026cb85a18fcf4dbd}\index{Spritesheet@{Spritesheet}!getFrameCount@{getFrameCount}}
+\index{getFrameCount@{getFrameCount}!Spritesheet@{Spritesheet}}
+\doxysubsubsection{\texorpdfstring{getFrameCount()}{getFrameCount()}}
+{\footnotesize\ttfamily \label{class_spritesheet_abcedb3cea621ea7026cb85a18fcf4dbd} 
+int Spritesheet\+::get\+Frame\+Count (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retorna a quantidade de frames. 
+
+\begin{DoxyReturn}{Returns}
+int Número de frames. 
+\end{DoxyReturn}
+\Hypertarget{class_spritesheet_ac1ea8b40ace9ea71e3c574f1180fa320}\index{Spritesheet@{Spritesheet}!getFrameHeight@{getFrameHeight}}
+\index{getFrameHeight@{getFrameHeight}!Spritesheet@{Spritesheet}}
+\doxysubsubsection{\texorpdfstring{getFrameHeight()}{getFrameHeight()}}
+{\footnotesize\ttfamily \label{class_spritesheet_ac1ea8b40ace9ea71e3c574f1180fa320} 
+int Spritesheet\+::get\+Frame\+Height (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retorna a altura de cada frame. 
+
+\begin{DoxyReturn}{Returns}
+int Altura do frame. 
+\end{DoxyReturn}
+\Hypertarget{class_spritesheet_a3b3cb11539c6ab8b6fd93d2ee8b506bb}\index{Spritesheet@{Spritesheet}!getFrameWidth@{getFrameWidth}}
+\index{getFrameWidth@{getFrameWidth}!Spritesheet@{Spritesheet}}
+\doxysubsubsection{\texorpdfstring{getFrameWidth()}{getFrameWidth()}}
+{\footnotesize\ttfamily \label{class_spritesheet_a3b3cb11539c6ab8b6fd93d2ee8b506bb} 
+int Spritesheet\+::get\+Frame\+Width (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retorna a largura de cada frame. 
+
+\begin{DoxyReturn}{Returns}
+int Largura do frame. 
+\end{DoxyReturn}
+\Hypertarget{class_spritesheet_a65e770b3a364b06a345a67cb32293ba4}\index{Spritesheet@{Spritesheet}!getSheet@{getSheet}}
+\index{getSheet@{getSheet}!Spritesheet@{Spritesheet}}
+\doxysubsubsection{\texorpdfstring{getSheet()}{getSheet()}}
+{\footnotesize\ttfamily \label{class_spritesheet_a65e770b3a364b06a345a67cb32293ba4} 
+ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*} Spritesheet\+::get\+Sheet (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retorna o bitmap da spritesheet. 
+
+\begin{DoxyReturn}{Returns}
+ALLEGRO\+\_\+\+BITMAP\texorpdfstring{$\ast$}{*} Bitmap da spritesheet. 
+\end{DoxyReturn}
+\Hypertarget{class_spritesheet_af32a20b612c95e5526f93a73786b52e5}\index{Spritesheet@{Spritesheet}!resetAnimation@{resetAnimation}}
+\index{resetAnimation@{resetAnimation}!Spritesheet@{Spritesheet}}
+\doxysubsubsection{\texorpdfstring{resetAnimation()}{resetAnimation()}}
+{\footnotesize\ttfamily \label{class_spritesheet_af32a20b612c95e5526f93a73786b52e5} 
+void Spritesheet\+::reset\+Animation (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reinicia a animação para o primeiro frame. 
+
+
+
+Reimplemented in \mbox{\hyperlink{class_trigger_spritesheet_a70dacd0e6b74d4955b1b2958af0534a0}{Trigger\+Spritesheet}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/animation.\+hpp\item 
+src/animation.\+cpp\end{DoxyCompactItemize}

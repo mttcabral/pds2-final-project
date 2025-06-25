@@ -3,77 +3,179 @@
 
 #include "game_object.hpp"
 
-//Father hitbox game object class
-//used to determine occupied space in game and interact with other drawables
-class Hitbox: public GameObject{
-    private:
-        //It is important to note that every hitbox is ALWAYS associated with an object and vice versa
-        Drawable* target;
-    public: 
-        Hitbox(const Point& center); 
+/**
+ * @brief Classe base para hitboxes de objetos do jogo.
+ *
+ * Utilizada para determinar o espaço ocupado no jogo e interagir com outros objetos desenháveis.
+ */
+class Hitbox : public GameObject
+{
+private:
+    Drawable *target; ///< Objeto associado à hitbox (sempre existe uma relação 1:1).
+public:
+    /**
+     * @brief Construtor da hitbox.
+     * @param center Centro da hitbox.
+     */
+    Hitbox(const Point &center);
 
-        bool updatePosition() override;
-        
-        void setTarget(Drawable *target);
+    /**
+     * @brief Atualiza a posição da hitbox.
+     * @return true se a posição foi atualizada.
+     */
+    bool updatePosition() override;
 
-        virtual Polygon getPolygon() = 0;
-        virtual float getAngle() = 0;
-        virtual void rotateHitbox(float radians) = 0;
+    /**
+     * @brief Define o objeto alvo associado à hitbox.
+     * @param target Ponteiro para o objeto Drawable.
+     */
+    void setTarget(Drawable *target);
 
-        virtual ~Hitbox();
+    /**
+     * @brief Retorna o polígono da hitbox.
+     * @return Polígono da hitbox.
+     */
+    virtual Polygon getPolygon() = 0;
+
+    /**
+     * @brief Retorna o ângulo da hitbox.
+     * @return Ângulo em radianos.
+     */
+    virtual float getAngle() = 0;
+
+    /**
+     * @brief Rotaciona a hitbox.
+     * @param radians Ângulo em radianos.
+     */
+    virtual void rotateHitbox(float radians) = 0;
+
+    /**
+     * @brief Destrutor virtual da hitbox.
+     */
+    virtual ~Hitbox();
 };
 
-//Rectangular hitbox, used when a rectangle with variable W and H are needed as representation
-class RectangleHitbox : public Hitbox {
-    private: 
-        float width, height;
-        Rectangle rectangle;
-    public: 
-        RectangleHitbox(const Point &center,float w, float h);
+/**
+ * @brief Hitbox retangular, usada para representar retângulos com largura e altura variáveis.
+ */
+class RectangleHitbox : public Hitbox
+{
+private:
+    float width;         ///< Largura do retângulo.
+    float height;        ///< Altura do retângulo.
+    Rectangle rectangle; ///< Objeto retângulo associado.
+public:
+    /**
+     * @brief Construtor da hitbox retangular.
+     * @param center Centro da hitbox.
+     * @param w Largura.
+     * @param h Altura.
+     */
+    RectangleHitbox(const Point &center, float w, float h);
 
-        //bool checkColision() override;
+    // bool checkColision() override;
 
-        float getWidth();
-        float getHeight();
+    /**
+     * @brief Retorna a largura da hitbox.
+     * @return Largura.
+     */
+    float getWidth();
 
-        Polygon getPolygon() override;
-        float getAngle() override;
+    /**
+     * @brief Retorna a altura da hitbox.
+     * @return Altura.
+     */
+    float getHeight();
 
-        bool updatePosition() override;
-        
-        void rotateHitbox(float radians) override;
-        
-        float *getVertices();
+    /**
+     * @brief Retorna o polígono da hitbox.
+     * @return Polígono.
+     */
+    Polygon getPolygon() override;
 
+    /**
+     * @brief Retorna o ângulo da hitbox.
+     * @return Ângulo em radianos.
+     */
+    float getAngle() override;
+
+    /**
+     * @brief Atualiza a posição da hitbox.
+     * @return true se a posição foi atualizada.
+     */
+    bool updatePosition() override;
+
+    /**
+     * @brief Rotaciona a hitbox.
+     * @param radians Ângulo em radianos.
+     */
+    void rotateHitbox(float radians) override;
+
+    /**
+     * @brief Retorna os vértices do retângulo.
+     * @return Ponteiro para array de vértices.
+     */
+    float *getVertices();
 };
 
-//Hitbox with a REGULAR polygon shape
-class PolygonHitbox : public Hitbox {
-    private:
-        int sides;
-        RegularPolygon polygon;
-    public:
-        PolygonHitbox(const Point&center,int n, float EdgeLength);
+/**
+ * @brief Hitbox com formato de polígono regular.
+ */
+class PolygonHitbox : public Hitbox
+{
+private:
+    int sides;              ///< Número de lados do polígono.
+    RegularPolygon polygon; ///< Polígono regular associado.
+public:
+    /**
+     * @brief Construtor da hitbox poligonal.
+     * @param center Centro da hitbox.
+     * @param n Número de lados.
+     * @param EdgeLength Tamanho da aresta.
+     */
+    PolygonHitbox(const Point &center, int n, float EdgeLength);
 
-        int getSideCount();
-        float getEdgeLength();
+    /**
+     * @brief Retorna o número de lados do polígono.
+     * @return Número de lados.
+     */
+    int getSideCount();
 
-        Polygon getPolygon() override;
-        float getAngle() override;
+    /**
+     * @brief Retorna o tamanho da aresta.
+     * @return Tamanho da aresta.
+     */
+    float getEdgeLength();
 
-        bool updatePosition() override;
+    /**
+     * @brief Retorna o polígono da hitbox.
+     * @return Polígono.
+     */
+    Polygon getPolygon() override;
 
-        void rotateHitbox(float radians) override;
+    /**
+     * @brief Retorna o ângulo da hitbox.
+     * @return Ângulo em radianos.
+     */
+    float getAngle() override;
 
-        float *getVertices();
+    /**
+     * @brief Atualiza a posição da hitbox.
+     * @return true se a posição foi atualizada.
+     */
+    bool updatePosition() override;
+
+    /**
+     * @brief Rotaciona a hitbox.
+     * @param radians Ângulo em radianos.
+     */
+    void rotateHitbox(float radians) override;
+
+    /**
+     * @brief Retorna os vértices do polígono.
+     * @return Ponteiro para array de vértices.
+     */
+    float *getVertices();
 };
-
-
-
-
-
-
-
-
 
 #endif

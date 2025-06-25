@@ -1,0 +1,64 @@
+\doxysection{leaderboard.\+hpp}
+\hypertarget{leaderboard_8hpp_source}{}\label{leaderboard_8hpp_source}\index{include/leaderboard.hpp@{include/leaderboard.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ LEADERBOARD\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ LEADERBOARD\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <allegro5/allegro.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_font.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_ttf.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}base.hpp"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}table.hpp"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_leader_board_a8333e90c97a84c8a6119a4302ed9aac3}{LeaderBoard}}}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{class_base}{Base}}\ base;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ vector<Profile\ *>\ topProfiles;\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{struct_table}{Table}}\ \mbox{\hyperlink{class_leader_board_aea496ac3c714874622d212ec932a7780}{table}};\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{class_leader_board_a8333e90c97a84c8a6119a4302ed9aac3}{LeaderBoard}}(\textcolor{keywordtype}{string}\ filename,\ \mbox{\hyperlink{struct_rectangle_t}{RectangleT}}\ rect);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_leader_board_a7a2a7ebe14e5e23b27faa5b8a2358e6c}{addNewProfile}}(\mbox{\hyperlink{class_profile}{Profile}}\ profile);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_leader_board_aab6d9f3125f784644bc7c6d27620206e}{updateLeaderBoard}}();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ void\ setTitleRowColor(Color);}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_leader_board_addf2f4e76f804ace5fec323b684e7142}{setFirstRowColor}}(\mbox{\hyperlink{struct_color}{Color}}\ color);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_leader_board_a9e34b3ba755799faf64e190bc56cdd7c}{setSecondRowColor}}(\mbox{\hyperlink{struct_color}{Color}}\ color);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_leader_board_af49e3d57da8ef6804a2dac2b64d8a18f}{setThirdRowColor}}(\mbox{\hyperlink{struct_color}{Color}}\ color);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_leader_board_a8019f7d21b4015d5dff071c57186d0ac}{setOthersRowsColor}}(\mbox{\hyperlink{struct_color}{Color}}\ color);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{//\ void\ setTitleRowTextColor(Color);}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_leader_board_a6f4033e847df9925b5e50d82ef0ae13f}{setFirstRowTextColor}}(\mbox{\hyperlink{struct_color}{Color}}\ color);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_leader_board_a08795d4813de128477668705a59f17b0}{setSecondRowTextColor}}(\mbox{\hyperlink{struct_color}{Color}}\ color);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_leader_board_ade174deeec9f2c47fa9b52933ded8ef2}{setThirdRowTextColor}}(\mbox{\hyperlink{struct_color}{Color}}\ color);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_leader_board_a937dac497e069431830a2441eae25fee}{setOthersRowsTextColor}}(\mbox{\hyperlink{struct_color}{Color}}\ color);}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_leader_board_a04ccc70b1f813224a6515e3e19209add}{drawLeaderBoard}}(ALLEGRO\_FONT\ *font);}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_leader_board_af64c26bdcce25b7430d3b57d2e055fd9}{display}}();}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_leader_board_a11696efa415c135416a9b59f679f9c3d}{save}}(\textcolor{keywordtype}{string}\ filename);}
+\DoxyCodeLine{00115\ \};}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

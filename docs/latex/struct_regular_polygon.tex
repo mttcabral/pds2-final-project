@@ -1,0 +1,143 @@
+\doxysection{Regular\+Polygon Struct Reference}
+\hypertarget{struct_regular_polygon}{}\label{struct_regular_polygon}\index{RegularPolygon@{RegularPolygon}}
+
+
+Estrutura que representa um polígono regular (herda de \doxylink{struct_polygon}{Polygon}).  
+
+
+
+
+{\ttfamily \#include $<$polygon.\+hpp$>$}
+
+Inheritance diagram for Regular\+Polygon\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{struct_regular_polygon}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_regular_polygon_a8bebdca1e4847a49856a297e0156558b}{Regular\+Polygon}} (const \mbox{\hyperlink{struct_point}{Point}} \&center, int n, float length)
+\begin{DoxyCompactList}\small\item\em Construtor do polígono regular. \end{DoxyCompactList}\item 
+\Hypertarget{struct_regular_polygon_a47e84855515aa198c73d681ad85502f6}\label{struct_regular_polygon_a47e84855515aa198c73d681ad85502f6} 
+vector$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ {\bfseries get\+Vertices} ()
+\begin{DoxyCompactList}\small\item\em Retorna os vértices do polígono regular. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_polygon}{Polygon}} \mbox{\hyperlink{struct_regular_polygon_abf119fc2bc6999bfbee1cc42b0cac98b}{get\+Polygon}} (const \mbox{\hyperlink{struct_point}{Point}} \&center=\mbox{\hyperlink{struct_point}{Point}}(0, 0)) override
+\begin{DoxyCompactList}\small\item\em Retorna o polígono regular. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_regular_polygon_aa5950a51e7bfbcef41ef96cfd4749b7b}{update\+Vertices}} (const \mbox{\hyperlink{struct_point}{Point}} \&delta) override
+\begin{DoxyCompactList}\small\item\em Atualiza os vértices do polígono regular. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{struct_polygon}{Polygon}}}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ \mbox{\hyperlink{struct_polygon_a5237739e3da5d5847064d277c8c79b6b}{get\+Rotated\+Vertices}} (const \mbox{\hyperlink{struct_point}{Point}} \&center)
+\begin{DoxyCompactList}\small\item\em Retorna os vértices rotacionados em torno de um centro. \end{DoxyCompactList}\item 
+set$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ {\bfseries get\+Edge\+Vectors} ()
+\begin{DoxyCompactList}\small\item\em Retorna o conjunto de vetores das arestas. \end{DoxyCompactList}\item 
+set$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ {\bfseries get\+Edge\+Normals} ()
+\begin{DoxyCompactList}\small\item\em Retorna o conjunto de vetores normais das arestas. \end{DoxyCompactList}\item 
+{\bfseries Polygon} (initializer\+\_\+list$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ vert)
+\begin{DoxyCompactList}\small\item\em Construtor a partir de lista de vértices. \end{DoxyCompactList}\item 
+{\bfseries Polygon} (const std\+::vector$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ \&vert)
+\begin{DoxyCompactList}\small\item\em Construtor a partir de vetor de vértices. \end{DoxyCompactList}\item 
+{\bfseries Polygon} (vector$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ vert, int n, set$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ vect, set$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ normals)
+\begin{DoxyCompactList}\small\item\em Construtor completo. \end{DoxyCompactList}\item 
+{\bfseries Polygon} (const \mbox{\hyperlink{struct_polygon}{Polygon}} \&copy)
+\begin{DoxyCompactList}\small\item\em Construtor de cópia. \end{DoxyCompactList}\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{struct_polygon}{Polygon}} \&copy)
+\begin{DoxyCompactList}\small\item\em Operador de atribuição. \end{DoxyCompactList}\item 
+float \texorpdfstring{$\ast$}{*} {\bfseries get\+Point\+Array} ()
+\begin{DoxyCompactList}\small\item\em Retorna um array de floats com os pontos do polígono. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_polygon_a2f4c346c08f5604fdc024a3f39077e47}{add\+Angle}} (float radians)
+\begin{DoxyCompactList}\small\item\em Adiciona um ângulo de rotação ao polígono. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_regular_polygon_ae59a6f7419784e3cbf201549825e1127}\label{struct_regular_polygon_ae59a6f7419784e3cbf201549825e1127} 
+\mbox{\hyperlink{struct_point}{Point}} {\bfseries center}
+\item 
+\Hypertarget{struct_regular_polygon_ae431a4cb2fc38ec634039d6719b228b6}\label{struct_regular_polygon_ae431a4cb2fc38ec634039d6719b228b6} 
+int {\bfseries Edge\+Count}
+\item 
+\Hypertarget{struct_regular_polygon_a290da51830a56e20da5d76eeb8806bdd}\label{struct_regular_polygon_a290da51830a56e20da5d76eeb8806bdd} 
+float {\bfseries edge\+Length}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{struct_polygon}{Polygon}}}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ {\bfseries vertices}
+\item 
+int {\bfseries vertex\+Count}
+\item 
+float {\bfseries angle} = 0
+\item 
+set$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ {\bfseries edge\+Vectors}
+\item 
+set$<$ \mbox{\hyperlink{struct_point}{Point}} $>$ {\bfseries edge\+Normals}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Estrutura que representa um polígono regular (herda de \doxylink{struct_polygon}{Polygon}). 
+
+\label{doc-constructors}
+\Hypertarget{struct_regular_polygon_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{struct_regular_polygon_a8bebdca1e4847a49856a297e0156558b}\index{RegularPolygon@{RegularPolygon}!RegularPolygon@{RegularPolygon}}
+\index{RegularPolygon@{RegularPolygon}!RegularPolygon@{RegularPolygon}}
+\doxysubsubsection{\texorpdfstring{RegularPolygon()}{RegularPolygon()}}
+{\footnotesize\ttfamily \label{struct_regular_polygon_a8bebdca1e4847a49856a297e0156558b} 
+Regular\+Polygon\+::\+Regular\+Polygon (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_point}{Point}} \&}]{center}{, }\item[{int}]{n}{, }\item[{float}]{length}{}\end{DoxyParamCaption})}
+
+
+
+Construtor do polígono regular. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em center} & Centro do polígono. \\
+\hline
+{\em n} & Número de lados. \\
+\hline
+{\em length} & Tamanho da aresta. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{struct_regular_polygon_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_regular_polygon_abf119fc2bc6999bfbee1cc42b0cac98b}\index{RegularPolygon@{RegularPolygon}!getPolygon@{getPolygon}}
+\index{getPolygon@{getPolygon}!RegularPolygon@{RegularPolygon}}
+\doxysubsubsection{\texorpdfstring{getPolygon()}{getPolygon()}}
+{\footnotesize\ttfamily \label{struct_regular_polygon_abf119fc2bc6999bfbee1cc42b0cac98b} 
+\mbox{\hyperlink{struct_polygon}{Polygon}} Regular\+Polygon\+::get\+Polygon (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_point}{Point}} \&}]{center}{ = {\ttfamily \mbox{\hyperlink{struct_point}{Point}}(0,~0)}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Retorna o polígono regular. 
+
+
+
+Reimplemented from \mbox{\hyperlink{struct_polygon_a2ae0f76854de4558f397b6e4a6f7fcc9}{Polygon}}.
+
+\Hypertarget{struct_regular_polygon_aa5950a51e7bfbcef41ef96cfd4749b7b}\index{RegularPolygon@{RegularPolygon}!updateVertices@{updateVertices}}
+\index{updateVertices@{updateVertices}!RegularPolygon@{RegularPolygon}}
+\doxysubsubsection{\texorpdfstring{updateVertices()}{updateVertices()}}
+{\footnotesize\ttfamily \label{struct_regular_polygon_aa5950a51e7bfbcef41ef96cfd4749b7b} 
+void Regular\+Polygon\+::update\+Vertices (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_point}{Point}} \&}]{delta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Atualiza os vértices do polígono regular. 
+
+
+
+Reimplemented from \mbox{\hyperlink{struct_polygon_ab67f88cb644d46df60cfdc1b83b2665f}{Polygon}}.
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/polygon.\+hpp\item 
+src/polygon.\+cpp\end{DoxyCompactItemize}
