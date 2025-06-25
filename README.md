@@ -1,4 +1,4 @@
-# Projeto Final de PDS2: Peitche!
+# Projeto Final de PDS2: Peitchê!
 
 Este projeto foi desenvolvido como trabalho final para a disciplina de Programação e Desenvolvimento de Software 2 (PDS2) na Universidade Federal de Minas Gerais (UFMG).
 
