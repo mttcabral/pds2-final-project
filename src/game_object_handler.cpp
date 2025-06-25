@@ -18,133 +18,145 @@
 
 int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGRO_EVENT_QUEUE &eventQueue, const int SCREEN_H, const int SCREEN_W)
 {
-
-    this->dynamic = NONE;
-
-    BackgroundHandler bgLayer3("assets/bg/sea.png", 900, 600, -1, SCREEN_W, SCREEN_H);
-    BackgroundHandler bgLayer2("assets/bg/clouds.png", 900, 600, -4, SCREEN_W, SCREEN_H);
-    BackgroundHandler bgLayer1("assets/bg/rocks.png", 2700, 600, -10, SCREEN_W, SCREEN_H);
-    al_install_audio();
-    al_init_acodec_addon();
-    al_reserve_samples(10);
-    ALLEGRO_SAMPLE *jumping_soundeffect = al_load_sample("assets/music/soundeffect/jumping_soundeffect.wav");
-    ALLEGRO_FONT *scoreCount = al_load_font("assets/PressStart2P-Regular.ttf", 30, 0);
-
-    ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7, 0.7, 0.9, 1);
-    al_start_timer(&timer);
-    bool redraw = false;
-    playing = true;
-    time = 0;
-    Cooldown jumpCD(0);
-    Cooldown obstacleCD(4);
-    obstacleCD.restartCooldown();
-
-    ALLEGRO_BITMAP *pipeSprite = al_load_bitmap("assets/obstacle/sandPipe.png");
-
-    Spritesheet eelSprite("assets/obstacle/eel.png", 24, 366, 0);
-
-    this->gameSpeed = 1;
-    Pipe::updateScreenSpeed(-7);
-
-    while (playing)
+    try
     {
-        ALLEGRO_EVENT event;
-        al_wait_for_event(&eventQueue, &event);
-        switch (event.type)
-        {
-        case ALLEGRO_EVENT_TIMER:
-            if (!playing)
-                break;
+        this->dynamic = NONE;
 
-            if (event.timer.source == &timer)
+        BackgroundHandler bgLayer3("assets/bg/sea.png", 900, 600, -1, SCREEN_W, SCREEN_H);
+        BackgroundHandler bgLayer2("assets/bg/clouds.png", 900, 600, -4, SCREEN_W, SCREEN_H);
+        BackgroundHandler bgLayer1("assets/bg/rocks.png", 2700, 600, -10, SCREEN_W, SCREEN_H);
+        al_install_audio();
+        al_init_acodec_addon();
+        al_reserve_samples(10);
+        ALLEGRO_SAMPLE *jumping_soundeffect = al_load_sample("assets/music/soundeffect/jumping_soundeffect.wav");
+        ALLEGRO_FONT *scoreCount = al_load_font("assets/PressStart2P-Regular.ttf", 30, 0);
+
+        ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7, 0.7, 0.9, 1);
+        al_start_timer(&timer);
+        bool redraw = false;
+        playing = true;
+        time = 0;
+        Cooldown jumpCD(0);
+        Cooldown obstacleCD(4);
+        obstacleCD.restartCooldown();
+
+        ALLEGRO_BITMAP *pipeSprite = al_load_bitmap("assets/obstacle/sandPipe.png");
+
+        Spritesheet eelSprite("assets/obstacle/eel.png", 24, 366, 0);
+
+        this->gameSpeed = 1;
+        Pipe::updateScreenSpeed(-7);
+
+        while (playing)
+        {
+            ALLEGRO_EVENT event;
+            al_wait_for_event(&eventQueue, &event);
+            switch (event.type)
             {
-                time++;
-                if (this->gameSpeed >= 1)
-                    this->time = this->time + this->gameSpeed;
-                else
+            case ALLEGRO_EVENT_TIMER:
+                if (!playing)
+                    break;
+
+                if (event.timer.source == &timer)
+                {
                     time++;
+                    if (this->gameSpeed >= 1)
+                        this->time = this->time + this->gameSpeed;
+                    else
+                        time++;
 
-                this->updateAmbient();
+                    this->updateAmbient();
 
-                guy.updateSpeed();
-                guy.updatePosition();
-                guy.updatePlayerState();
-                bgLayer3.updateBackgroundPosition();
-                bgLayer2.updateBackgroundPosition();
-                bgLayer1.updateBackgroundPosition();
-            }
-            else if (event.timer.source == &animation_timer)
-            {
-                guy.updateAnimation();
-                eelSprite.advanceFrame();
-            }
-            if (obstacleCD.isCooldownUp())
-            {
-                addObstacle(pipeSprite, &eelSprite);
-                obstacleCD.setRechargeTime(sortBetween(2, 3));
-                obstacleCD.restartCooldown();
-            }
-            for (auto it = obstacles.begin(); it != obstacles.end(); /* não incremente aqui */)
-            {
-                (*it)->updateSpeed();
-                (*it)->updatePosition();
-                if ((*it)->getPosX() < -200)
-                {
-                    it = obstacles.erase(it);
+                    guy.updateSpeed();
+                    guy.updatePosition();
+                    guy.updatePlayerState();
+                    bgLayer3.updateBackgroundPosition();
+                    bgLayer2.updateBackgroundPosition();
+                    bgLayer1.updateBackgroundPosition();
                 }
-                else
+                else if (event.timer.source == &animation_timer)
                 {
-                    ++it;
+                    guy.updateAnimation();
+                    eelSprite.advanceFrame();
                 }
-            }
-            if (checkCollisions() || outOfBorders())
-                return time;
-
-            redraw = true;
-            jumpCD.updateCooldown();
-            obstacleCD.updateCooldown();
-            break;
-        case ALLEGRO_EVENT_KEY_DOWN:
-            switch (event.keyboard.keycode)
-            {
-            case ALLEGRO_KEY_SPACE:
-            case ALLEGRO_KEY_UP:
-                if (jumpCD.isCooldownUp())
+                if (obstacleCD.isCooldownUp())
                 {
-                    guy.jump();
-                    al_play_sample(jumping_soundeffect, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                    addObstacle(pipeSprite, &eelSprite);
+                    obstacleCD.setRechargeTime(sortBetween(2, 3));
+                    obstacleCD.restartCooldown();
+                }
+                for (auto it = obstacles.begin(); it != obstacles.end(); /* não incremente aqui */)
+                {
+                    (*it)->updateSpeed();
+                    (*it)->updatePosition();
+                    if ((*it)->getPosX() < -200)
+                    {
+                        it = obstacles.erase(it);
+                    }
+                    else
+                    {
+                        ++it;
+                    }
+                }
+                if (checkCollisions() || outOfBorders())
+                    return time;
 
-                    jumpCD.restartCooldown();
-                    // sheetTest.resetAnimation();
+                redraw = true;
+                jumpCD.updateCooldown();
+                obstacleCD.updateCooldown();
+                break;
+            case ALLEGRO_EVENT_KEY_DOWN:
+                switch (event.keyboard.keycode)
+                {
+                case ALLEGRO_KEY_SPACE:
+                case ALLEGRO_KEY_UP:
+                    if (jumpCD.isCooldownUp())
+                    {
+                        guy.jump();
+                        al_play_sample(jumping_soundeffect, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+
+                        jumpCD.restartCooldown();
+                        // sheetTest.resetAnimation();
+                    }
+                    break;
                 }
                 break;
+            case ALLEGRO_EVENT_DISPLAY_CLOSE:
+                playing = false;
+                break;
             }
-            break;
-        case ALLEGRO_EVENT_DISPLAY_CLOSE:
-            playing = false;
-            break;
+            if (redraw && al_is_event_queue_empty(&eventQueue))
+            {
+                // refresh display
+                al_clear_to_color(baseBackgroundColor);
+                string scoreText = to_string(time);
+                // bg
+                bgLayer3.drawBackground();
+                bgLayer2.drawBackground();
+                bgLayer1.drawBackground();
+                // objects
+                drawAll();
+                // score at playing state
+                al_draw_text(scoreCount, al_map_rgb(255, 255, 255), (SCREEN_W / 2), 30, ALLEGRO_ALIGN_CENTER, scoreText.c_str());
+                al_flip_display(); // updates the display with the new frame
+                redraw = false;
+            }
         }
-        if (redraw && al_is_event_queue_empty(&eventQueue))
-        {
-            // refresh display
-            al_clear_to_color(baseBackgroundColor);
-            string scoreText = to_string(time);
-            // bg
-            bgLayer3.drawBackground();
-            bgLayer2.drawBackground();
-            bgLayer1.drawBackground();
-            // objects
-            drawAll();
-            // score at playing state
-            al_draw_text(scoreCount, al_map_rgb(255, 255, 255), (SCREEN_W / 2), 30, ALLEGRO_ALIGN_CENTER, scoreText.c_str());
-            al_flip_display(); // updates the display with the new frame
-            redraw = false;
-        }
+
+        al_destroy_bitmap(pipeSprite);
+
+        return time;
     }
-
-    al_destroy_bitmap(pipeSprite);
-
-    return time;
+    catch (const std::exception &e)
+    {
+        std::cerr << "Erro: " << e.what() << std::endl;
+        return -1;
+    }
+    catch (...)
+    {
+        std::cerr << "Erro desconhecido ocorreu!" << std::endl;
+        return -1;
+    }
 }
 
 void Handler::addObstacle(ALLEGRO_BITMAP *image, Spritesheet *eelImage)
