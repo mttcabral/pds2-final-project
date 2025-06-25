@@ -4,6 +4,7 @@
 #include "game_object.hpp"
 #include "hitbox.hpp"
 #include "animation.hpp"
+#include "cooldown.hpp"
 #include <string>
 
 const float BASE_GRAVITY = 10;
@@ -33,6 +34,9 @@ class Player: public Entity {
         Spritesheet idleSprite;
         TriggerSpritesheet jumpSprite;
         PlayerState state = PlayerState::NONE;
+        
+        Cooldown angleCD;
+        float angle;
     public: 
         Player();
 
@@ -52,28 +56,46 @@ class Player: public Entity {
 
 };
 
-const float PIPE_X_SPEED = -15;
+const float PIPE_X_SPEED = -10;
 
 //Basic obstacle proof of concept, best to not use if possible
 class Pipe: public Entity {
     private:
         ALLEGRO_BITMAP * pipeSprite = nullptr;
+        bool isInverted;
     public:
-        Pipe(const Point&pos,float w, float h);
+        static float screenSpeed;
+        static void updateScreenSpeed(float s);
+
+        Pipe(const Point&pos,float w, float h, ALLEGRO_BITMAP * image = nullptr, bool inv = false);
 
         bool updatePosition() override;
         void updateSpeed() override;
 
-        bool loadSprite(const char* dir);
+        bool loadSprite();
 
         void draw() override;
 
-        ~Pipe();
 };
 
-//implement entities with PolygonHitbox now
+const float EEL_W = 366;
+const float EEL_H = 100;
+
+class Eel : public Pipe {
+    private:
+        Spritesheet * sprite;
+    public:
+        Eel(const Point&pos, Spritesheet * image);
 
 
+        void rotate();
+        bool updatePosition() override;
+
+        void draw() override;
+        //~Eel();
+
+
+};
 
 
 

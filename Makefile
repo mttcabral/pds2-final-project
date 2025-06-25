@@ -26,6 +26,7 @@ $(BIN_DIR)/main: $(OBJECTS) | $(BIN_DIR) $(OBJ_DIR)
 #	cp -r assets bin/
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
+	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR):

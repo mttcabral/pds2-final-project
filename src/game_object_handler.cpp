@@ -19,6 +19,8 @@
 int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGRO_EVENT_QUEUE &eventQueue, const int SCREEN_H, const int SCREEN_W)
 {
 
+    this->dynamic = NONE;
+
     BackgroundHandler bgLayer3("assets/bg/sea.png",900,600,-1,SCREEN_W, SCREEN_H);
     BackgroundHandler bgLayer2("assets/bg/clouds.png",900,600,-4,SCREEN_W, SCREEN_H);
     BackgroundHandler bgLayer1("assets/bg/rocks.png",2700,600,-10,SCREEN_W, SCREEN_H);
@@ -29,8 +31,6 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
     ALLEGRO_FONT* scoreCount = al_load_font("assets/PressStart2P-Regular.ttf", 30, 0);
     
     ALLEGRO_COLOR baseBackgroundColor = al_map_rgba_f(0.7,0.7,0.9,1);
-    guy = unique_ptr<Player>(new Player());
-    //guy->loadSprite("assets/guy.png");
     al_start_timer(&timer);
     bool redraw = false;
     playing = true;
@@ -38,6 +38,13 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
     Cooldown jumpCD(0);
     Cooldown obstacleCD(4);
     obstacleCD.restartCooldown();
+
+    ALLEGRO_BITMAP * pipeSprite = al_load_bitmap("assets/sandPipe.png");
+
+    Spritesheet eelSprite("assets/eel.png",24,366,0);
+
+    this->gameSpeed = 1;
+    Pipe::updateScreenSpeed(-7);
 
     while (playing)
     {
@@ -47,20 +54,27 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
         {
         case ALLEGRO_EVENT_TIMER:
             if (!playing) break;
-            time++;
+            
             if (event.timer.source == &timer) {
-                guy->updateSpeed();
-                guy->updatePosition();
-                guy->updatePlayerState();               
+                time++;
+                if (this->gameSpeed >= 1) this->time = this->time + this->gameSpeed;
+                else time++;
+
+                this->updateAmbient();
+
+                guy.updateSpeed();
+                guy.updatePosition();
+                guy.updatePlayerState();               
                 bgLayer3.updateBackgroundPosition();
                 bgLayer2.updateBackgroundPosition();
                 bgLayer1.updateBackgroundPosition();
             } else if (event.timer.source == &animation_timer) {
-                guy->updateAnimation();
+                guy.updateAnimation();
+                eelSprite.advanceFrame();
             }
             if (obstacleCD.isCooldownUp())
             {
-                addObstacle();
+                addObstacle(pipeSprite, &eelSprite);
                 obstacleCD.setRechargeTime(sortBetween(2, 3));
                 obstacleCD.restartCooldown();
             }
@@ -74,6 +88,7 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
                 }
             }
             if(checkCollisions()) return time;
+
             redraw = true;
             jumpCD.updateCooldown();
             obstacleCD.updateCooldown();
@@ -86,7 +101,8 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
                 if (jumpCD.isCooldownUp())
                 {
                     guy->jump();
-                    al_play_sample(jumping_soundeffect, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);;
+                    al_play_sample(jumping_soundeffect, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+
                     jumpCD.restartCooldown();
                     //sheetTest.resetAnimation();
                 }
@@ -115,22 +131,41 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
         }
     }
     
+    al_destroy_bitmap(pipeSprite);
+
     return time;
 }
-void Handler::addObstacle()
+void Handler::addObstacle(ALLEGRO_BITMAP * image, Spritesheet * eelImage)
 {
-    int x = sortBetween(50, 300);
-    obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 800-x), 50, 300)));
-    obstacles.back()->loadSprite("assets/long.png");
-    obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 250-x), 50, 300)));
-    obstacles.back()->loadSprite("assets/long.png");
-}
+    int x = sortBetween(80, 430);
+    switch (this->dynamic){
+        case NONE:
+            break;
+        case FLAPPY:
+            obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 910-x), 45, 470, image)));
+            obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 190-x), 145, 470, image, true)));        
+            break;
+        case EELS:
+            obstacles.push_back(unique_ptr<Pipe>(new Eel(Point(1000,50+x),eelImage)));
+            break;
+    
+    }
+    
 
+
+}
+bool Handler::outOfBorders(){
+    if(guy.getPosY() > 600 || guy.getPosY() < 0){
+        death();
+        return true;
+    }
+    return false;
+}
 bool Handler::checkCollisions()
 {
     for (auto& obj : obstacles)
     {
-        if (isColidingSAT(guy->getHitbox()->getPolygon(),
+        if (isColidingSAT(guy.getHitbox()->getPolygon(),
                         obj->getHitbox()->getPolygon()))
         {
             death();
@@ -141,7 +176,7 @@ bool Handler::checkCollisions()
 }
 void Handler::drawAll()
 {
-    if(guy) guy->draw();
+    guy.draw();
     for (auto& obj : obstacles)
     {
         obj->draw();
@@ -149,7 +184,6 @@ void Handler::drawAll()
 }
 void Handler::death()
 {
-    guy.reset();
     obstacles.clear();
     playing = false;
 }
@@ -157,4 +191,32 @@ int Handler::sortBetween(int min, int max) {
     static std::mt19937 motor(std::random_device{}());
     std::uniform_int_distribution<int> distribuicao(min, max);
     return distribuicao(motor);
+}
+
+void Handler::updateAmbient() {
+    int mark = this->time/200;
+
+    if (this->time > 600 && this->gameSpeed < 1.3) {
+            this->gameSpeed = 1.3;
+            Pipe::updateScreenSpeed(-7 * this->gameSpeed);
+    } else if (this->time > 1200 && this->gameSpeed < 1.8) {
+            this->gameSpeed = 1.8;
+            Pipe::updateScreenSpeed(-7 * this->gameSpeed);
+    }
+    switch (this->dynamic) {
+        case NONE:
+            //cout << "none" << '\n';
+            if (this->time >= 50) this->dynamic = FLAPPY;
+            break;
+        case FLAPPY:
+            //cout << "flappy" << '\n';
+            if ( mark % 3 == 0  && this->time > 200) this->dynamic = EELS;
+            
+            break;
+        case EELS:
+            //cout << "eel" << '\n';
+            if ( mark % 3 != 0 ) this->dynamic = FLAPPY;
+
+            break;
+    }
 }
