@@ -100,7 +100,7 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
             case ALLEGRO_KEY_UP:
                 if (jumpCD.isCooldownUp())
                 {
-                    guy->jump();
+                    guy.jump();
                     al_play_sample(jumping_soundeffect, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 
                     jumpCD.restartCooldown();

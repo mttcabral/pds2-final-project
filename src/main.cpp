@@ -101,6 +101,7 @@ int main(int argc, char *argv[]){
     ALLEGRO_BITMAP* register_background = al_load_bitmap("assets/menu/register_background.png");
     ALLEGRO_FONT* normalFont = al_load_font("assets/PressStart2P-Regular.ttf", 12, 0);
     ALLEGRO_FONT* registerFont = al_load_font("assets/PressStart2P-Regular.ttf", 18, 0);
+    
 
     // loading music (.wav please) 
     ALLEGRO_SAMPLE* menu_music = al_load_sample("assets/music/DDDmario.wav");
@@ -180,7 +181,7 @@ int main(int argc, char *argv[]){
     nameRegister.setMessageTextColor(Color(255, 255, 255));
     nameRegister.setBufferTextColor(Color(255, 255, 255));
 
-    Register nicknameRegister("ENTER YOUR NICKNAME:", 20, RectangleT(PointT(400, 300), 200, 150));
+    Register nicknameRegister("ENTER YOUR NICKNAME:", 12, RectangleT(PointT(400, 300), 200, 150));
     nicknameRegister.setTittleTextColor(Color(255, 255, 255));
     nicknameRegister.setMessageTextColor(Color(255, 255, 255));
     nicknameRegister.setBufferTextColor(Color(255, 255, 255));
@@ -207,6 +208,7 @@ int main(int argc, char *argv[]){
     string tryName = "";
     string tryNickname = "";
     bool yetRegistered = false;
+    bool enterBuf = false;
     int gameScore = 0;
 
     bool Hplay = false, Hquit = false, Hleader = false, Hback = false, Hretry = false, Hmenu = false, Hregister = false; //variables that detect if the hover effect is playing
@@ -514,11 +516,16 @@ int main(int argc, char *argv[]){
                         string warning = "";
                         tryName = nameRegister.getBufferContent();
                         bool nameRegistered = checkName(tryName, warning);
+                        if(!nameRegistered) al_play_sample(error_soundeffect, 0.5, 0.0 , 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
                         nameRegister.setMessageContent(warning);
                         nameRegister.cleanBuffer();
+                        enterBuf = false;
 
-                        if (nameRegistered)
+                        if (nameRegistered) {
                             operation = NICKNAME;
+                            al_play_sample(register_soundeffect, 0.5, 0.0 , 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                            nameRegister.cleanBuffer();
+                        }
                     }
                 }
             }
@@ -526,22 +533,28 @@ int main(int argc, char *argv[]){
             if(operation == NICKNAME){
                 tryNickname = "";
                 if (event.type == ALLEGRO_EVENT_KEY_CHAR) {
-                    if (event.keyboard.unichar >= 32 && event.keyboard.unichar < 127)
+                    if (event.keyboard.unichar >= 32 && event.keyboard.unichar < 127) {
                         nicknameRegister.writeInBuffer((char)event.keyboard.unichar);
-
+                    }
                     else if (event.keyboard.keycode == ALLEGRO_KEY_BACKSPACE)
                         nicknameRegister.deleteInBuffer();
                 
                     else if (event.keyboard.keycode == ALLEGRO_KEY_ENTER) {
                         string warning = "";
                         tryNickname = nicknameRegister.getBufferContent();
-                        bool nicknameRegistered = checkNickname(tryNickname, warning);
-                        nicknameRegister.setMessageContent(warning);
+                        bool nicknameRegistered = false;
+                        nicknameRegistered = checkNickname(tryNickname, warning);
+                        if(enterBuf) {
+                            if(!nicknameRegistered) al_play_sample(error_soundeffect, 0.5, 0.0 , 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                            nicknameRegister.setMessageContent(warning);
+                        }
                         nicknameRegister.cleanBuffer();
+                        enterBuf = true;
 
-                        if (nicknameRegistered)
+                        if (nicknameRegistered) 
                             operation = SAVE;
                     }
+                    
                 }
             }
 
@@ -553,8 +566,10 @@ int main(int argc, char *argv[]){
                     gameLeaderBoard.updateLeaderBoard();
                     gameLeaderBoard.save(path);
                     yetRegistered = true;
+                    al_play_sample(register_soundeffect, 0.5, 0.0 , 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
                 }
                 else {
+                    al_play_sample(error_soundeffect, 0.5, 0.0 , 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
                     nicknameRegister.setMessageContent("Nickname already in use. Try another one.");
                     operation = NICKNAME;
                 }
