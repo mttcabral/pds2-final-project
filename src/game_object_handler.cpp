@@ -87,7 +87,7 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
                 ++it;
                 }
             }
-            if(checkCollisions()) return time;
+            if(checkCollisions() || outOfBorders()) return time;
 
             redraw = true;
             jumpCD.updateCooldown();
@@ -142,7 +142,7 @@ void Handler::addObstacle(ALLEGRO_BITMAP * image, Spritesheet * eelImage)
         case NONE:
             break;
         case FLAPPY:
-            obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 910-x), 45, 470, image)));
+            obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 910-x), 145, 470, image)));
             obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 190-x), 145, 470, image, true)));        
             break;
         case EELS:
