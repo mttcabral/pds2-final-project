@@ -102,7 +102,7 @@ Classes de apoio que fornecem funcionalidades genéricas usadas em todo o projet
 
 ---
 
-## 5\. Como Compilar e Executar
+## 5\. Peitchê: como compilar e executar
 
 Para compilar e executar o projeto, siga os passos abaixo.
 
@@ -124,20 +124,48 @@ Para compilar e executar o projeto, siga os passos abaixo.
 1.  **Clone o repositório:**
 
     ```bash
-    git clone <URL_DO_REPOSITORIO>
-    cd <NOME_DA_PASTA_DO_PROJETO>
+    git clone <https://github.com/mttcabral/pds2-final-project.git>
+    cd <pds2-final-project>
     ```
 
 2.  **Compile o projeto:**
     Execute o comando `make` no diretório raiz do projeto. O Makefile irá compilar todos os arquivos-fonte e criar o executável no diretório `bin/`.
 
     ```bash
-    make
+    make all
     ```
 
 3.  **Execute o jogo:**
     Após a compilação, execute o arquivo gerado.
 
     ```bash
-    ./bin/main
+    make run
+    ```
+
+---
+
+## 6\. Testes: como compilar e executar
+
+Para compilar e executar os testes, siga os passos abaixo.
+
+### Pré-requisitos
+
+- **GCC (G++)** com suporte a C++11 ou superior.
+- **Make**.
+- **Allegro 5**: É necessário ter a biblioteca Allegro 5 e seus add-ons instalados:
+  - `allegro`
+  - `allegro_primitives`
+  - `allegro_image`
+  - `allegro_font`
+  - `allegro_ttf`
+  - `allegro_audio`
+  - `allegro_acodec`
+
+### Passos
+
+2.  **Compile e execute o teste:**
+    Execute o comando `make` no diretório raiz do projeto. O Makefile irá compilar todos os arquivos-fonte e criar o executável no diretório `bin/`.
+
+    ```bash
+    make test
     ```
