@@ -2,11 +2,12 @@
 #define PASSIVE_H
 
 #include "game_object.hpp"
+#include "cooldown.hpp"
 #include <vector>
 
 
 class Background : public Drawable {
-    private:
+    protected:
         ALLEGRO_BITMAP * image = nullptr;
         float width, height;
     public:
@@ -37,7 +38,32 @@ class BackgroundHandler {
         void updateBackgroundPosition();
 };
 
+enum class tStage {NONE, FIRST_HALF, SECOND_HALF};
 
+const Point T_ANCHOR(400,950);
+const float T_SPEED = 18;
+const float T_TIME = (750/(T_SPEED*FPS));
+
+class TransitionScreen: public Background {
+    private:
+        Cooldown cd;
+        tStage stage = tStage::NONE;
+    public:
+        TransitionScreen();
+
+        void updateSpeed() override;
+        bool updatePosition() override;
+        
+        void draw() override;
+
+        void updateStage();
+
+        void startTransition();
+
+
+        bool isActive();
+        tStage getStage();
+};
 
 
 

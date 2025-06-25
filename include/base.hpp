@@ -10,7 +10,7 @@
 #include <algorithm>
 
 // pressupoe-se que name e nickname sao validos (foram tratados no main)
-const int NUMPROFILES = 8;
+const int NUMPROFILES = 7;
 
 using namespace std;
 
@@ -18,7 +18,7 @@ class Profile {
     private:
         string name;
         string nickname;
-        int maxPipers;
+        int maxDistance;
         int plays;
 
     public:
@@ -38,11 +38,11 @@ class Profile {
         string getName();
         string getNickname();
         int getPlays();
-        int getMaxPipers();
+        int getMaxDistance();
 
         // setters
         void setPlays(int);
-        void setMaxPipers(int);
+        void setMaxDistance(int);
 
         void display();
 };

@@ -9,8 +9,8 @@
 
 using namespace std;
 
-const int NUMCOLUMNS = 4;
-const int NUMROWS = 9;
+const int NUMCOLUMNS = 3;
+const int NUMROWS = 7;
 
 struct PointT {
     private:

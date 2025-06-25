@@ -63,3 +63,74 @@ void BackgroundHandler::updateBackgroundPosition() {
         bgPair[1]->setPosX(bgPair[0]->getPosX() + bgPair[0]->width);
     }
 }
+
+TransitionScreen::TransitionScreen(): Background::Background("assets/bg/transition.png",T_ANCHOR,
+                                                            800,1200,0), cd(T_TIME) {
+                                                                if (!image) cout << "error";
+                                                            }
+ 
+                                                         
+void TransitionScreen::updateSpeed() {
+    switch (this->stage) {
+        case tStage::NONE:
+
+            break;
+        case tStage::FIRST_HALF:
+            this->setSpeedY(-T_SPEED);
+            break;
+        case tStage::SECOND_HALF:
+            this->setSpeedY(T_SPEED);
+            break;
+    }
+}
+
+void TransitionScreen::draw() {  
+    //cout << "aaaa\n";
+    al_draw_rotated_bitmap(image,width/2,height/2,this->getPosX(),this->getPosY(),0,0);
+}
+
+void TransitionScreen::updateStage() {
+    cd.updateCooldown();
+
+    switch (this->stage) {
+        case tStage::NONE:
+            break;
+        case tStage::FIRST_HALF:
+            if (cd.isCooldownUp()) {
+                stage = tStage::SECOND_HALF;
+                cd.restartCooldown();
+            }
+            break;
+        case tStage::SECOND_HALF:
+            if (cd.isCooldownUp()) {
+                stage = tStage::NONE;
+                this->setPos(T_ANCHOR);
+            }
+            break;
+    }
+}
+
+bool TransitionScreen::updatePosition() {
+    switch (this->stage) {
+        case tStage::NONE:
+            break;
+        case tStage::FIRST_HALF: case tStage::SECOND_HALF:
+            this->setPosY(this->getPosY() + this->getSpeedY());
+            //cout << this->getPos() << '\n';
+            break;
+    }
+    return true;
+}
+
+bool TransitionScreen::isActive() {
+    if (stage == tStage::NONE) return false;
+    else return true;
+}
+tStage TransitionScreen::getStage() {return this->stage;}
+
+void TransitionScreen::startTransition() {
+    stage = tStage::FIRST_HALF;
+    cd.restartCooldown();
+    this->setPos(T_ANCHOR);
+    //cout << "transition\n";
+}

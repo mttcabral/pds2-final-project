@@ -1,24 +1,24 @@
 #include "base.hpp"
 
-Profile::Profile() : Profile("", "", 0, 1) {}; // default
+Profile::Profile() : Profile("", "", 0, 0) {}; // default
 
 Profile::Profile(string name, string nickname) : Profile(name, nickname, 0, 1) {}; // default
 
-Profile::Profile(string name, string nickname, int maxPipers, int plays) : name(name), nickname(nickname), maxPipers(maxPipers), plays(plays) {} // inicializar lista de jogadores
+Profile::Profile(string name, string nickname, int maxDistance, int plays) : name(name), nickname(nickname), maxDistance(maxDistance), plays(plays) {} // inicializar lista de jogadores
 
 Profile::Profile(const Profile& otherProfile) {
         this->name = otherProfile.name;
         this->nickname = otherProfile.nickname;
-        this->maxPipers = otherProfile.maxPipers;
+        this->maxDistance = otherProfile.maxDistance;
         this->plays = otherProfile.plays;
     }
 
 bool Profile::operator > (const Profile& otherProfile) const {
-            return (this->maxPipers > otherProfile.maxPipers);
+            return (this->maxDistance > otherProfile.maxDistance);
         }
 
 bool Profile::operator < (const Profile& otherProfile) const {
-            return (this->maxPipers < otherProfile.maxPipers);
+            return (this->maxDistance < otherProfile.maxDistance);
         }
 
 bool Profile::operator == (const Profile& otherProfile) const {
@@ -30,7 +30,7 @@ Profile Profile::operator = (const Profile& otherProfile) {
         this->name = otherProfile.name;
         this->nickname = otherProfile.nickname;
         this->plays = otherProfile.plays;
-        this->maxPipers = otherProfile.maxPipers;
+        this->maxDistance = otherProfile.maxDistance;
     }
     return *this;
 }
@@ -47,22 +47,23 @@ int Profile::getPlays() {
     return this->plays;
 }
 
-int Profile::getMaxPipers() {
-    return this->maxPipers;
+int Profile::getMaxDistance() {
+    return this->maxDistance;
 }
 
 void Profile::setPlays(int numPlays) {
     this->plays = numPlays;
 }
 
-void Profile::setMaxPipers(int numMaxPipers) {
-    this->maxPipers = numMaxPipers;
+void Profile::setMaxDistance(int distance) {
+    if (distance > this->maxDistance) this->maxDistance = distance;
 }
+
 
 void Profile::display(){
     cout << this->name << endl;
     cout << this->nickname << endl;
-    cout << this->maxPipers << endl;
+    cout << this->maxDistance << endl;
     cout << this->plays << endl;
 }
 
@@ -97,7 +98,7 @@ Base::Base(string path) { // path to the file
     string _name;
     string _nickname;
     int _plays;
-    int _maxPipers;
+    int _maxDistance;
 
     bool noTittles = false;
     int count = 1;
@@ -118,7 +119,7 @@ Base::Base(string path) { // path to the file
                 }
                 else if (count == 3) { // 3 and 4 for integers
                     istringstream value(cell);
-                    value >> _maxPipers;
+                    value >> _maxDistance;
                     count++;
                 }
                 else if (count == 4) {
@@ -127,7 +128,7 @@ Base::Base(string path) { // path to the file
                     count = 1;
                 }
             }
-            profiles.push_back(new Profile(_name, _nickname, _maxPipers, _plays));
+            profiles.push_back(new Profile(_name, _nickname, _maxDistance, _plays));
         }
         else { // skip the first line
             noTittles = true;
@@ -167,9 +168,7 @@ bool Base::updateProfiles(Profile newProfile) {
     for (Profile* profile : this->profiles) {
         if (profile->getNickname() == newProfile.getNickname()) {
             if (profile->getName() == newProfile.getName()) { // if profiles have the same nickname, so they must be the same person
-                if(profile->getMaxPipers() < newProfile.getMaxPipers()) {
-                    profile->setMaxPipers(newProfile.getMaxPipers());
-                }
+                profile->setMaxDistance(newProfile.getMaxDistance());
                 profile->setPlays(profile->getPlays() + 1);
             }
             else // if profiles have the same nickname, but their names are different, they can not be different persons
@@ -222,46 +221,14 @@ vector<Profile*> Base::getBestProfiles(){
 
 void Base::saveBase(string path){
     ofstream base(path);
-    base << "Name,Nickname,MaxPipers,Plays\n";
+    base << "Name,Nickname,MaxDistance,Plays\n";
     for (Profile* profile : this->profiles) {
-        base << profile->getName() << "," << profile->getNickname() << "," << profile->getMaxPipers() << "," << profile->getPlays() << "\n";
+        base << profile->getName() << "," << profile->getNickname() << "," << profile->getMaxDistance() << "," << profile->getPlays() << "\n";
     }
     base.close();
 }
 
 void Base::display(){
     for(Profile *profile : profiles)
-        cout << profile->getName() << " " << profile->getNickname() << " " << profile->getMaxPipers() << " " << profile->getPlays() << endl;
+        cout << profile->getName() << " " << profile->getNickname() << " " << profile->getMaxDistance() << " " << profile->getPlays() << endl;
 }
-
-/*
-bool validateNicknameChars (string nickname) {
-    set<char> validChars = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-                            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'T', 'S', 'U', 'V', 'W', 'X', 'Y', 'Z',
-                            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '_'};
-    for (int i = 0; i < nickname.size(); i++)
-        if (validChars.find(nickname[i]) == validChars.end()) return false;
-    
-    return false;
-}
-
-bool validateNameChars (string name) {
-    set<char> validChars = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-                                 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'T', 'S', 'U', 'V', 'W', 'X', 'Y', 'Z',
-                                 ' '};
-    for (int i = 0; i < name.size(); i++)
-        if (validChars.find(name[i]) == validChars.end()) return false;
-    
-    return false;
-}
-
-bool validateNicknameSize (string nickname) {
-    if (nickname.size() > 12 ) return false;
-    return true;
-}
-
-bool validateNameSize (string name) {
-    if (name.size() > 20 ) return false;
-    return true;
-}
-*/

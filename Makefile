@@ -16,7 +16,7 @@ LDFLAGS = $(shell pkg-config --libs $(PKG_CONFIG_LIBS))
 
 
 # Sources
-SOURCES = main polygon game_object hitbox entity game_object_handler cooldown animation passive base table leaderboard
+SOURCES = main polygon game_object hitbox entity game_object_handler cooldown animation passive base table leaderboard register
 OBJECTS = $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SOURCES)))
 
 all: $(BIN_DIR)/main
