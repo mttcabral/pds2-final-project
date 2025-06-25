@@ -33,7 +33,7 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
     Cooldown obstacleCD(4);
     obstacleCD.restartCooldown();
 
-    ALLEGRO_BITMAP * pipeSprite = al_load_bitmap("assets/long.png");
+    ALLEGRO_BITMAP * pipeSprite = al_load_bitmap("assets/sandPipe.png");
 
     Spritesheet eelSprite("assets/eel.png",24,366,0);
 
@@ -122,20 +122,16 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
 }
 void Handler::addObstacle(ALLEGRO_BITMAP * image, Spritesheet * eelImage)
 {
-    int x = sortBetween(0, 300);
+    int x = sortBetween(80, 430);
     switch (this->dynamic){
         case NONE:
             break;
         case FLAPPY:
-            if(x>50){
-                obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 800-x), 50, 300, image)));
-                obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 300-x), 50, 300, image, true)));        
-            }else{
-                obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 425-x), 50, 300, image)));       
-            }
+            obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 900-x), 45, 470, image)));
+            obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 230-x), 145, 470, image, true)));        
             break;
         case EELS:
-            obstacles.push_back(unique_ptr<Pipe>(new Eel(Point(1000,200+x),eelImage)));
+            obstacles.push_back(unique_ptr<Pipe>(new Eel(Point(1000,50+x),eelImage)));
             break;
     
     }
