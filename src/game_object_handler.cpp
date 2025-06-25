@@ -39,9 +39,9 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
     Cooldown obstacleCD(4);
     obstacleCD.restartCooldown();
 
-    ALLEGRO_BITMAP * pipeSprite = al_load_bitmap("assets/sandPipe.png");
+    ALLEGRO_BITMAP * pipeSprite = al_load_bitmap("assets/obstacle/sandPipe.png");
 
-    Spritesheet eelSprite("assets/eel.png",24,366,0);
+    Spritesheet eelSprite("assets/obstacle/eel.png",24,366,0);
 
     this->gameSpeed = 1;
     Pipe::updateScreenSpeed(-7);
