@@ -187,11 +187,11 @@ int Handler::sortBetween(int min, int max) {
 void Handler::updateAmbient() {
     int mark = this->time/200;
 
-    if (this->time > 600 && this->gameSpeed < 1.5) {
-            this->gameSpeed = 1.5;
+    if (this->time > 600 && this->gameSpeed < 1.3) {
+            this->gameSpeed = 1.3;
             Pipe::updateScreenSpeed(-7 * this->gameSpeed);
-    } else if (this->time > 1200 && this->gameSpeed < 3) {
-            this->gameSpeed = 3;
+    } else if (this->time > 1200 && this->gameSpeed < 1.8) {
+            this->gameSpeed = 1.8;
             Pipe::updateScreenSpeed(-7 * this->gameSpeed);
     }
     switch (this->dynamic) {
