@@ -1,0 +1,148 @@
+\doxysection{Row Struct Reference}
+\hypertarget{struct_row}{}\label{struct_row}\index{Row@{Row}}
+
+
+Estrutura que representa uma linha da tabela.  
+
+
+
+
+{\ttfamily \#include $<$table.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_row_a5cca50abc389396e26ec68cbd3fb6596}\label{struct_row_a5cca50abc389396e26ec68cbd3fb6596} 
+{\bfseries Row} ()
+\begin{DoxyCompactList}\small\item\em Construtor padrão. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_row_abe7372cdc28bd0b252aa9769f83f9a3f}{Row}} (\mbox{\hyperlink{struct_color}{Color}} text\+Color, \mbox{\hyperlink{struct_color}{Color}} \mbox{\hyperlink{struct_row_a1ae948065e3b42005f671c8fa0d59c10}{row\+Color}}, \mbox{\hyperlink{struct_rectangle_t}{RectangleT}} \mbox{\hyperlink{struct_row_a55dd2e0d4adc01546af328b1dccfcc09}{row\+Rectangle}})
+\begin{DoxyCompactList}\small\item\em Construtor com cores e retângulo. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_row_a8b61511e53b95de8eaebcbfc5e2f1e6b}{Row}} (\mbox{\hyperlink{struct_rectangle_t}{RectangleT}} \mbox{\hyperlink{struct_row_a55dd2e0d4adc01546af328b1dccfcc09}{row\+Rectangle}})
+\begin{DoxyCompactList}\small\item\em Construtor com retângulo. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_row_a868e4a58108a257acaf3dcebe28c164a}{Row}} (\mbox{\hyperlink{struct_point_t}{PointT}} top\+Left, \mbox{\hyperlink{struct_point_t}{PointT}} bottom\+Right)
+\begin{DoxyCompactList}\small\item\em Construtor com dois pontos. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_row_a432c7ca06e2073c9b7da6f83681a71f1}{Row}} (const \mbox{\hyperlink{struct_row}{Row}} \&other)
+\begin{DoxyCompactList}\small\item\em Construtor de cópia. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_row}{Row}} \& \mbox{\hyperlink{struct_row_a72e018bf92ce50cb299d57502443f7d6}{operator=}} (const \mbox{\hyperlink{struct_row}{Row}} \&other)
+\begin{DoxyCompactList}\small\item\em Operador de atribuição. \end{DoxyCompactList}\item 
+\Hypertarget{struct_row_ad2a5fc9e22587f163507666e9e0a9cc1}\label{struct_row_ad2a5fc9e22587f163507666e9e0a9cc1} 
+void {\bfseries display} ()
+\begin{DoxyCompactList}\small\item\em Exibe a linha no console. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_row_a55dd2e0d4adc01546af328b1dccfcc09}\label{struct_row_a55dd2e0d4adc01546af328b1dccfcc09} 
+\mbox{\hyperlink{struct_rectangle_t}{RectangleT}} {\bfseries row\+Rectangle}
+\begin{DoxyCompactList}\small\item\em Retângulo da linha. \end{DoxyCompactList}\item 
+\Hypertarget{struct_row_a094b762fba2ebf3832dd63c70c18f2be}\label{struct_row_a094b762fba2ebf3832dd63c70c18f2be} 
+vector$<$ string $>$ {\bfseries texts}
+\begin{DoxyCompactList}\small\item\em Textos da linha. \end{DoxyCompactList}\item 
+\Hypertarget{struct_row_a20b5e9189d4ee6b63b0699dd53710c34}\label{struct_row_a20b5e9189d4ee6b63b0699dd53710c34} 
+\mbox{\hyperlink{struct_color}{Color}} {\bfseries text\+Color}
+\item 
+\Hypertarget{struct_row_a1ae948065e3b42005f671c8fa0d59c10}\label{struct_row_a1ae948065e3b42005f671c8fa0d59c10} 
+\mbox{\hyperlink{struct_color}{Color}} {\bfseries row\+Color}
+\begin{DoxyCompactList}\small\item\em Cores do texto e da linha. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Estrutura que representa uma linha da tabela. 
+
+\label{doc-constructors}
+\Hypertarget{struct_row_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{struct_row_abe7372cdc28bd0b252aa9769f83f9a3f}\index{Row@{Row}!Row@{Row}}
+\index{Row@{Row}!Row@{Row}}
+\doxysubsubsection{\texorpdfstring{Row()}{Row()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{struct_row_abe7372cdc28bd0b252aa9769f83f9a3f} 
+Row\+::\+Row (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_color}{Color}}}]{text\+Color}{, }\item[{\mbox{\hyperlink{struct_color}{Color}}}]{row\+Color}{, }\item[{\mbox{\hyperlink{struct_rectangle_t}{RectangleT}}}]{row\+Rectangle}{}\end{DoxyParamCaption})}
+
+
+
+Construtor com cores e retângulo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text\+Color} & Cor do texto. \\
+\hline
+{\em row\+Color} & Cor da linha. \\
+\hline
+{\em row\+Rectangle} & Retângulo da linha. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{struct_row_a8b61511e53b95de8eaebcbfc5e2f1e6b}\index{Row@{Row}!Row@{Row}}
+\index{Row@{Row}!Row@{Row}}
+\doxysubsubsection{\texorpdfstring{Row()}{Row()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{struct_row_a8b61511e53b95de8eaebcbfc5e2f1e6b} 
+Row\+::\+Row (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_rectangle_t}{RectangleT}}}]{row\+Rectangle}{}\end{DoxyParamCaption})}
+
+
+
+Construtor com retângulo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row\+Rectangle} & Retângulo da linha. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{struct_row_a868e4a58108a257acaf3dcebe28c164a}\index{Row@{Row}!Row@{Row}}
+\index{Row@{Row}!Row@{Row}}
+\doxysubsubsection{\texorpdfstring{Row()}{Row()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{struct_row_a868e4a58108a257acaf3dcebe28c164a} 
+Row\+::\+Row (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_point_t}{PointT}}}]{top\+Left}{, }\item[{\mbox{\hyperlink{struct_point_t}{PointT}}}]{bottom\+Right}{}\end{DoxyParamCaption})}
+
+
+
+Construtor com dois pontos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em top\+Left} & Canto superior esquerdo. \\
+\hline
+{\em bottom\+Right} & Canto inferior direito. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{struct_row_a432c7ca06e2073c9b7da6f83681a71f1}\index{Row@{Row}!Row@{Row}}
+\index{Row@{Row}!Row@{Row}}
+\doxysubsubsection{\texorpdfstring{Row()}{Row()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{struct_row_a432c7ca06e2073c9b7da6f83681a71f1} 
+Row\+::\+Row (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_row}{Row}} \&}]{other}{}\end{DoxyParamCaption})}
+
+
+
+Construtor de cópia. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Outra linha. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{struct_row_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_row_a72e018bf92ce50cb299d57502443f7d6}\index{Row@{Row}!operator=@{operator=}}
+\index{operator=@{operator=}!Row@{Row}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{struct_row_a72e018bf92ce50cb299d57502443f7d6} 
+\mbox{\hyperlink{struct_row}{Row}} \& Row\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_row}{Row}} \&}]{other}{}\end{DoxyParamCaption})}
+
+
+
+Operador de atribuição. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Outra linha. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Referência para esta linha. 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/table.\+hpp\item 
+src/table.\+cpp\end{DoxyCompactItemize}

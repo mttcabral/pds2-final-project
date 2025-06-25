@@ -1,0 +1,129 @@
+\doxysection{Color Struct Reference}
+\hypertarget{struct_color}{}\label{struct_color}\index{Color@{Color}}
+
+
+Estrutura que representa uma cor RGB.  
+
+
+
+
+{\ttfamily \#include $<$table.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_color_a9a742cbe9f9f4037f5d9f4e81a9b2428}\label{struct_color_a9a742cbe9f9f4037f5d9f4e81a9b2428} 
+{\bfseries Color} ()
+\begin{DoxyCompactList}\small\item\em Construtor padrão. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_color_a373c542c99fb83ce9c7c08aae76b2718}{Color}} (float r, float g, float \mbox{\hyperlink{struct_color_a33e482be18d6ea31d2b403bee13683b7}{b}})
+\begin{DoxyCompactList}\small\item\em Construtor com valores RGB. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_color_a866f5b3f4192cdd953900b3bdae4b2cd}{Color}} (const \mbox{\hyperlink{struct_color}{Color}} \&other)
+\begin{DoxyCompactList}\small\item\em Construtor de cópia. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_color}{Color}} \& \mbox{\hyperlink{struct_color_a5ec3c2546dae446433c59fbdf400ef65}{operator=}} (const \mbox{\hyperlink{struct_color}{Color}} \&other)
+\begin{DoxyCompactList}\small\item\em Operador de atribuição. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_color}{Color}} \mbox{\hyperlink{struct_color_a79c97e49526c5abcbf6838e0fc996888}{operator/}} (float f) const
+\begin{DoxyCompactList}\small\item\em Divide cor por escalar. \end{DoxyCompactList}\item 
+\Hypertarget{struct_color_ab285b7aec9813654cd3c80c3207b3038}\label{struct_color_ab285b7aec9813654cd3c80c3207b3038} 
+void {\bfseries display} ()
+\begin{DoxyCompactList}\small\item\em Exibe a cor no console. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_color_a3958a556b47d2de3dd45c75aac833c20}\label{struct_color_a3958a556b47d2de3dd45c75aac833c20} 
+float {\bfseries r}
+\item 
+\Hypertarget{struct_color_a5defbb21620e480e556181772d665f34}\label{struct_color_a5defbb21620e480e556181772d665f34} 
+float {\bfseries g}
+\item 
+\Hypertarget{struct_color_a33e482be18d6ea31d2b403bee13683b7}\label{struct_color_a33e482be18d6ea31d2b403bee13683b7} 
+float {\bfseries b}
+\begin{DoxyCompactList}\small\item\em Componentes de cor (0 -\/ 255) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Estrutura que representa uma cor RGB. 
+
+\label{doc-constructors}
+\Hypertarget{struct_color_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{struct_color_a373c542c99fb83ce9c7c08aae76b2718}\index{Color@{Color}!Color@{Color}}
+\index{Color@{Color}!Color@{Color}}
+\doxysubsubsection{\texorpdfstring{Color()}{Color()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{struct_color_a373c542c99fb83ce9c7c08aae76b2718} 
+Color\+::\+Color (\begin{DoxyParamCaption}\item[{float}]{r}{, }\item[{float}]{g}{, }\item[{float}]{b}{}\end{DoxyParamCaption})}
+
+
+
+Construtor com valores RGB. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & Vermelho. \\
+\hline
+{\em g} & Verde. \\
+\hline
+{\em b} & Azul. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{struct_color_a866f5b3f4192cdd953900b3bdae4b2cd}\index{Color@{Color}!Color@{Color}}
+\index{Color@{Color}!Color@{Color}}
+\doxysubsubsection{\texorpdfstring{Color()}{Color()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{struct_color_a866f5b3f4192cdd953900b3bdae4b2cd} 
+Color\+::\+Color (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_color}{Color}} \&}]{other}{}\end{DoxyParamCaption})}
+
+
+
+Construtor de cópia. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Outra cor. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{struct_color_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_color_a79c97e49526c5abcbf6838e0fc996888}\index{Color@{Color}!operator/@{operator/}}
+\index{operator/@{operator/}!Color@{Color}}
+\doxysubsubsection{\texorpdfstring{operator/()}{operator/()}}
+{\footnotesize\ttfamily \label{struct_color_a79c97e49526c5abcbf6838e0fc996888} 
+\mbox{\hyperlink{struct_color}{Color}} Color\+::operator/ (\begin{DoxyParamCaption}\item[{float}]{f}{}\end{DoxyParamCaption}) const}
+
+
+
+Divide cor por escalar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Escalar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Resultado da divisão. 
+\end{DoxyReturn}
+\Hypertarget{struct_color_a5ec3c2546dae446433c59fbdf400ef65}\index{Color@{Color}!operator=@{operator=}}
+\index{operator=@{operator=}!Color@{Color}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{struct_color_a5ec3c2546dae446433c59fbdf400ef65} 
+\mbox{\hyperlink{struct_color}{Color}} \& Color\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_color}{Color}} \&}]{other}{}\end{DoxyParamCaption})}
+
+
+
+Operador de atribuição. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Outra cor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Referência para esta cor. 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/table.\+hpp\item 
+src/table.\+cpp\end{DoxyCompactItemize}

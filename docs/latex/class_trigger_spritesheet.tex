@@ -1,0 +1,209 @@
+\doxysection{Trigger\+Spritesheet Class Reference}
+\hypertarget{class_trigger_spritesheet}{}\label{class_trigger_spritesheet}\index{TriggerSpritesheet@{TriggerSpritesheet}}
+
+
+Classe para spritesheets que são ativadas por gatilho e possuem ciclos.  
+
+
+
+
+{\ttfamily \#include $<$animation.\+hpp$>$}
+
+Inheritance diagram for Trigger\+Spritesheet\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_trigger_spritesheet}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_trigger_spritesheet_abe91f8b1a4c9d0f5f6acf6318233b022}{Trigger\+Spritesheet}} (const char \texorpdfstring{$\ast$}{*}dir, int count, int frameW, int frameH, int gap)
+\begin{DoxyCompactList}\small\item\em Construtor da \doxylink{class_trigger_spritesheet}{Trigger\+Spritesheet}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_trigger_spritesheet_aab307c266af379daf78926541b7be154}{Trigger\+Spritesheet}} (const char \texorpdfstring{$\ast$}{*}dir, int count, int frameW, int gap)
+\begin{DoxyCompactList}\small\item\em Construtor alternativo da \doxylink{class_trigger_spritesheet}{Trigger\+Spritesheet}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_trigger_spritesheet_aa5cd158ab3b11008662d97d032197317}{set\+Cycle\+Count}} (int n)
+\begin{DoxyCompactList}\small\item\em Define o número de ciclos da animação. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_trigger_spritesheet_ae8a5343b5af8804a098a9e1c5e64c984}{get\+Cycle\+Count}} () const
+\begin{DoxyCompactList}\small\item\em Retorna o número de ciclos definidos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_trigger_spritesheet_a70dacd0e6b74d4955b1b2958af0534a0}{reset\+Animation}} () override
+\begin{DoxyCompactList}\small\item\em Reinicia a animação e os ciclos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_trigger_spritesheet_ac74c58bd297ce617b8ce9b16c88f1d1d}{advance\+Frame}} () override
+\begin{DoxyCompactList}\small\item\em Avança para o próximo frame, considerando os ciclos. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_trigger_spritesheet_a9a12833f65ff49c36d827f9cbcee5d31}{is\+Active}} () const
+\begin{DoxyCompactList}\small\item\em Verifica se a animação está ativa. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_spritesheet}{Spritesheet}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_spritesheet_ab877eee6b3df7adf4b9294ac6d2e64e7}{Spritesheet}} (const char \texorpdfstring{$\ast$}{*}dir, int count, int frameW, int frameH, int gap)
+\begin{DoxyCompactList}\small\item\em Construtor da spritesheet. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_spritesheet_a90af95eb972e9f0c8272d616f9bbcbff}{Spritesheet}} (const char \texorpdfstring{$\ast$}{*}dir, int count, int frameW, int gap)
+\begin{DoxyCompactList}\small\item\em Construtor alternativo da spritesheet. \end{DoxyCompactList}\item 
+ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_spritesheet_a65e770b3a364b06a345a67cb32293ba4}{get\+Sheet}} () const
+\begin{DoxyCompactList}\small\item\em Retorna o bitmap da spritesheet. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_spritesheet_abcedb3cea621ea7026cb85a18fcf4dbd}{get\+Frame\+Count}} () const
+\begin{DoxyCompactList}\small\item\em Retorna a quantidade de frames. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_spritesheet_a3b3cb11539c6ab8b6fd93d2ee8b506bb}{get\+Frame\+Width}} () const
+\begin{DoxyCompactList}\small\item\em Retorna a largura de cada frame. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_spritesheet_ac1ea8b40ace9ea71e3c574f1180fa320}{get\+Frame\+Height}} () const
+\begin{DoxyCompactList}\small\item\em Retorna a altura de cada frame. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_spritesheet_aca203aefdcdc062e8166a6924d4f28ce}{get\+Current\+Index}} () const
+\begin{DoxyCompactList}\small\item\em Retorna o índice do frame atual. \end{DoxyCompactList}\item 
+ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_spritesheet_a2398b6acc332afc246f4e775fc00fcfd}{get\+Frame}} (int i) const
+\begin{DoxyCompactList}\small\item\em Retorna o frame na posição i. \end{DoxyCompactList}\item 
+ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_spritesheet_a98dd42bff4782d82a11c2cfa6d10b7b4}{get\+Current\+Frame}} () const
+\begin{DoxyCompactList}\small\item\em Retorna o frame atual. \end{DoxyCompactList}\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Spritesheet} ()
+\begin{DoxyCompactList}\small\item\em Destrutor da spritesheet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_spritesheet}{Spritesheet}}}
+\begin{DoxyCompactItemize}
+\item 
+ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*} {\bfseries sheet} = nullptr
+\item 
+int {\bfseries frame\+Count}
+\item 
+int {\bfseries frame\+Width}
+\item 
+int {\bfseries frame\+Height}
+\item 
+int {\bfseries frame\+Gap}
+\item 
+int {\bfseries current\+Index} = 0
+\item 
+vector$<$ ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*} $>$ {\bfseries frames}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe para spritesheets que são ativadas por gatilho e possuem ciclos. 
+
+\label{doc-constructors}
+\Hypertarget{class_trigger_spritesheet_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_trigger_spritesheet_abe91f8b1a4c9d0f5f6acf6318233b022}\index{TriggerSpritesheet@{TriggerSpritesheet}!TriggerSpritesheet@{TriggerSpritesheet}}
+\index{TriggerSpritesheet@{TriggerSpritesheet}!TriggerSpritesheet@{TriggerSpritesheet}}
+\doxysubsubsection{\texorpdfstring{TriggerSpritesheet()}{TriggerSpritesheet()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_trigger_spritesheet_abe91f8b1a4c9d0f5f6acf6318233b022} 
+Trigger\+Spritesheet\+::\+Trigger\+Spritesheet (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{dir}{, }\item[{int}]{count}{, }\item[{int}]{frameW}{, }\item[{int}]{frameH}{, }\item[{int}]{gap}{}\end{DoxyParamCaption})}
+
+
+
+Construtor da \doxylink{class_trigger_spritesheet}{Trigger\+Spritesheet}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dir} & Caminho do arquivo da spritesheet. \\
+\hline
+{\em count} & Quantidade de frames. \\
+\hline
+{\em frameW} & Largura de cada frame. \\
+\hline
+{\em frameH} & Altura de cada frame. \\
+\hline
+{\em gap} & Espaço entre frames. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_trigger_spritesheet_aab307c266af379daf78926541b7be154}\index{TriggerSpritesheet@{TriggerSpritesheet}!TriggerSpritesheet@{TriggerSpritesheet}}
+\index{TriggerSpritesheet@{TriggerSpritesheet}!TriggerSpritesheet@{TriggerSpritesheet}}
+\doxysubsubsection{\texorpdfstring{TriggerSpritesheet()}{TriggerSpritesheet()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_trigger_spritesheet_aab307c266af379daf78926541b7be154} 
+Trigger\+Spritesheet\+::\+Trigger\+Spritesheet (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{dir}{, }\item[{int}]{count}{, }\item[{int}]{frameW}{, }\item[{int}]{gap}{}\end{DoxyParamCaption})}
+
+
+
+Construtor alternativo da \doxylink{class_trigger_spritesheet}{Trigger\+Spritesheet}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dir} & Caminho do arquivo da spritesheet. \\
+\hline
+{\em count} & Quantidade de frames. \\
+\hline
+{\em frameW} & Largura de cada frame. \\
+\hline
+{\em gap} & Espaço entre frames. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_trigger_spritesheet_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_trigger_spritesheet_ac74c58bd297ce617b8ce9b16c88f1d1d}\index{TriggerSpritesheet@{TriggerSpritesheet}!advanceFrame@{advanceFrame}}
+\index{advanceFrame@{advanceFrame}!TriggerSpritesheet@{TriggerSpritesheet}}
+\doxysubsubsection{\texorpdfstring{advanceFrame()}{advanceFrame()}}
+{\footnotesize\ttfamily \label{class_trigger_spritesheet_ac74c58bd297ce617b8ce9b16c88f1d1d} 
+void Trigger\+Spritesheet\+::advance\+Frame (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Avança para o próximo frame, considerando os ciclos. 
+
+
+
+Reimplemented from \mbox{\hyperlink{class_spritesheet_aad307837837ce9845cdbfc6118ebc1d6}{Spritesheet}}.
+
+\Hypertarget{class_trigger_spritesheet_ae8a5343b5af8804a098a9e1c5e64c984}\index{TriggerSpritesheet@{TriggerSpritesheet}!getCycleCount@{getCycleCount}}
+\index{getCycleCount@{getCycleCount}!TriggerSpritesheet@{TriggerSpritesheet}}
+\doxysubsubsection{\texorpdfstring{getCycleCount()}{getCycleCount()}}
+{\footnotesize\ttfamily \label{class_trigger_spritesheet_ae8a5343b5af8804a098a9e1c5e64c984} 
+int Trigger\+Spritesheet\+::get\+Cycle\+Count (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retorna o número de ciclos definidos. 
+
+\begin{DoxyReturn}{Returns}
+int Número de ciclos. 
+\end{DoxyReturn}
+\Hypertarget{class_trigger_spritesheet_a9a12833f65ff49c36d827f9cbcee5d31}\index{TriggerSpritesheet@{TriggerSpritesheet}!isActive@{isActive}}
+\index{isActive@{isActive}!TriggerSpritesheet@{TriggerSpritesheet}}
+\doxysubsubsection{\texorpdfstring{isActive()}{isActive()}}
+{\footnotesize\ttfamily \label{class_trigger_spritesheet_a9a12833f65ff49c36d827f9cbcee5d31} 
+bool Trigger\+Spritesheet\+::is\+Active (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Verifica se a animação está ativa. 
+
+\begin{DoxyReturn}{Returns}
+true Se ativa. 
+
+false Se inativa. 
+\end{DoxyReturn}
+\Hypertarget{class_trigger_spritesheet_a70dacd0e6b74d4955b1b2958af0534a0}\index{TriggerSpritesheet@{TriggerSpritesheet}!resetAnimation@{resetAnimation}}
+\index{resetAnimation@{resetAnimation}!TriggerSpritesheet@{TriggerSpritesheet}}
+\doxysubsubsection{\texorpdfstring{resetAnimation()}{resetAnimation()}}
+{\footnotesize\ttfamily \label{class_trigger_spritesheet_a70dacd0e6b74d4955b1b2958af0534a0} 
+void Trigger\+Spritesheet\+::reset\+Animation (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reinicia a animação e os ciclos. 
+
+
+
+Reimplemented from \mbox{\hyperlink{class_spritesheet_af32a20b612c95e5526f93a73786b52e5}{Spritesheet}}.
+
+\Hypertarget{class_trigger_spritesheet_aa5cd158ab3b11008662d97d032197317}\index{TriggerSpritesheet@{TriggerSpritesheet}!setCycleCount@{setCycleCount}}
+\index{setCycleCount@{setCycleCount}!TriggerSpritesheet@{TriggerSpritesheet}}
+\doxysubsubsection{\texorpdfstring{setCycleCount()}{setCycleCount()}}
+{\footnotesize\ttfamily \label{class_trigger_spritesheet_aa5cd158ab3b11008662d97d032197317} 
+void Trigger\+Spritesheet\+::set\+Cycle\+Count (\begin{DoxyParamCaption}\item[{int}]{n}{}\end{DoxyParamCaption})}
+
+
+
+Define o número de ciclos da animação. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Número de ciclos. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/animation.\+hpp\item 
+src/animation.\+cpp\end{DoxyCompactItemize}

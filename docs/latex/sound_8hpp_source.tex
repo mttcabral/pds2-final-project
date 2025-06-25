@@ -1,0 +1,25 @@
+\doxysection{sound.\+hpp}
+\hypertarget{sound_8hpp_source}{}\label{sound_8hpp_source}\index{include/sound.hpp@{include/sound.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ALLINTERFACE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ALLINTERFACE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <allegro5/allegro.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_primitives.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_image.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_font.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_ttf.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_audio.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_acodec.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{void}\ startmusic(ALLEGRO\_SAMPLE\_INSTANCE\ *any,\ \textcolor{keywordtype}{float}\ volume)}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ al\_attach\_sample\_instance\_to\_mixer(any,\ al\_get\_default\_mixer());}
+\DoxyCodeLine{00021\ \ \ \ \ al\_set\_sample\_instance\_playmode(any,\ ALLEGRO\_PLAYMODE\_LOOP);}
+\DoxyCodeLine{00022\ \ \ \ \ al\_set\_sample\_instance\_gain(any,\ volume);}
+\DoxyCodeLine{00023\ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

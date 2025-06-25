@@ -1,0 +1,196 @@
+\doxysection{Profile Class Reference}
+\hypertarget{class_profile}{}\label{class_profile}\index{Profile@{Profile}}
+
+
+Classe que representa o perfil de um jogador.  
+
+
+
+
+{\ttfamily \#include $<$base.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_profile_a4eea708cdbed0262d9e7ddbe3f1e3f89}\label{class_profile_a4eea708cdbed0262d9e7ddbe3f1e3f89} 
+{\bfseries Profile} ()
+\begin{DoxyCompactList}\small\item\em Construtor padrão. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_profile_aa684ecfdb03967751bdd0d7ecf2fea8b}{Profile}} (string, string)
+\begin{DoxyCompactList}\small\item\em Construtor para novo jogador registrado. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_profile_af3d9e834621a93b373bee44fb5a8d2b4}{Profile}} (string, string, int, int)
+\begin{DoxyCompactList}\small\item\em Construtor para inicializar lista de jogadores. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_profile_a78160cd774353305a82a48e002c8cc4d}{Profile}} (const \mbox{\hyperlink{class_profile}{Profile}} \&)
+\begin{DoxyCompactList}\small\item\em Construtor de cópia. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_profile_abe24da926e4e60825ca6b9346cf80a9b}{operator$>$}} (const \mbox{\hyperlink{class_profile}{Profile}} \&) const
+\begin{DoxyCompactList}\small\item\em Operador de comparação maior. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_profile_a8093fb4f22084e2c8b0e29b4e76f1e4b}{operator$<$}} (const \mbox{\hyperlink{class_profile}{Profile}} \&) const
+\begin{DoxyCompactList}\small\item\em Operador de comparação menor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_profile_acb8f1102fef5b6e5d77266e26f54f91d}{operator==}} (const \mbox{\hyperlink{class_profile}{Profile}} \&) const
+\begin{DoxyCompactList}\small\item\em Operador de igualdade. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_profile}{Profile}} \mbox{\hyperlink{class_profile_aaba093deccc54d4ea1d7ca27818ae7a2}{operator=}} (const \mbox{\hyperlink{class_profile}{Profile}} \&)
+\begin{DoxyCompactList}\small\item\em Operador de atribuição. \end{DoxyCompactList}\item 
+\Hypertarget{class_profile_a98f8f86d5da206e4ed3f431d0bf5cfca}\label{class_profile_a98f8f86d5da206e4ed3f431d0bf5cfca} 
+string {\bfseries get\+Name} ()
+\begin{DoxyCompactList}\small\item\em Retorna o nome do jogador. \end{DoxyCompactList}\item 
+\Hypertarget{class_profile_ac795ff57ca52d217c4b5e5d48a16563c}\label{class_profile_ac795ff57ca52d217c4b5e5d48a16563c} 
+string {\bfseries get\+Nickname} ()
+\begin{DoxyCompactList}\small\item\em Retorna o nickname do jogador. \end{DoxyCompactList}\item 
+\Hypertarget{class_profile_a31b088d4025304448f37ae8b4097c18d}\label{class_profile_a31b088d4025304448f37ae8b4097c18d} 
+int {\bfseries get\+Plays} ()
+\begin{DoxyCompactList}\small\item\em Retorna o número de partidas jogadas. \end{DoxyCompactList}\item 
+\Hypertarget{class_profile_a0158fa8c4a588c2b80ac0de7e9edc974}\label{class_profile_a0158fa8c4a588c2b80ac0de7e9edc974} 
+int {\bfseries get\+Max\+Distance} ()
+\begin{DoxyCompactList}\small\item\em Retorna a maior distância alcançada. \end{DoxyCompactList}\item 
+\Hypertarget{class_profile_a9754e95b733c5262b541a0bec939084e}\label{class_profile_a9754e95b733c5262b541a0bec939084e} 
+void {\bfseries set\+Plays} (int)
+\begin{DoxyCompactList}\small\item\em Define o número de partidas jogadas. \end{DoxyCompactList}\item 
+\Hypertarget{class_profile_a73dafb928a0172ed2dba6ef73f8f4a20}\label{class_profile_a73dafb928a0172ed2dba6ef73f8f4a20} 
+void {\bfseries set\+Max\+Distance} (int)
+\begin{DoxyCompactList}\small\item\em Define a maior distância alcançada. \end{DoxyCompactList}\item 
+\Hypertarget{class_profile_a55cd586dc70e7b17a25a6418fff278b8}\label{class_profile_a55cd586dc70e7b17a25a6418fff278b8} 
+void {\bfseries display} ()
+\begin{DoxyCompactList}\small\item\em Exibe as informações do perfil. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe que representa o perfil de um jogador. 
+
+\label{doc-constructors}
+\Hypertarget{class_profile_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_profile_aa684ecfdb03967751bdd0d7ecf2fea8b}\index{Profile@{Profile}!Profile@{Profile}}
+\index{Profile@{Profile}!Profile@{Profile}}
+\doxysubsubsection{\texorpdfstring{Profile()}{Profile()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_profile_aa684ecfdb03967751bdd0d7ecf2fea8b} 
+Profile\+::\+Profile (\begin{DoxyParamCaption}\item[{string}]{name}{, }\item[{string}]{nickname}{}\end{DoxyParamCaption})}
+
+
+
+Construtor para novo jogador registrado. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Nome do jogador. \\
+\hline
+{\em nickname} & Apelido do jogador. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_profile_af3d9e834621a93b373bee44fb5a8d2b4}\index{Profile@{Profile}!Profile@{Profile}}
+\index{Profile@{Profile}!Profile@{Profile}}
+\doxysubsubsection{\texorpdfstring{Profile()}{Profile()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_profile_af3d9e834621a93b373bee44fb5a8d2b4} 
+Profile\+::\+Profile (\begin{DoxyParamCaption}\item[{string}]{name}{, }\item[{string}]{nickname}{, }\item[{int}]{max\+Distance}{, }\item[{int}]{plays}{}\end{DoxyParamCaption})}
+
+
+
+Construtor para inicializar lista de jogadores. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Nome do jogador. \\
+\hline
+{\em nickname} & Apelido do jogador. \\
+\hline
+{\em max\+Distance} & Maior distância. \\
+\hline
+{\em plays} & Número de partidas. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_profile_a78160cd774353305a82a48e002c8cc4d}\index{Profile@{Profile}!Profile@{Profile}}
+\index{Profile@{Profile}!Profile@{Profile}}
+\doxysubsubsection{\texorpdfstring{Profile()}{Profile()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_profile_a78160cd774353305a82a48e002c8cc4d} 
+Profile\+::\+Profile (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_profile}{Profile}} \&}]{other\+Profile}{}\end{DoxyParamCaption})}
+
+
+
+Construtor de cópia. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Outro objeto \doxylink{class_profile}{Profile}. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_profile_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_profile_a8093fb4f22084e2c8b0e29b4e76f1e4b}\index{Profile@{Profile}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Profile@{Profile}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily \label{class_profile_a8093fb4f22084e2c8b0e29b4e76f1e4b} 
+bool Profile\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_profile}{Profile}} \&}]{other\+Profile}{}\end{DoxyParamCaption}) const}
+
+
+
+Operador de comparação menor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Outro objeto \doxylink{class_profile}{Profile}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se este perfil for menor. 
+\end{DoxyReturn}
+\Hypertarget{class_profile_aaba093deccc54d4ea1d7ca27818ae7a2}\index{Profile@{Profile}!operator=@{operator=}}
+\index{operator=@{operator=}!Profile@{Profile}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_profile_aaba093deccc54d4ea1d7ca27818ae7a2} 
+\mbox{\hyperlink{class_profile}{Profile}} Profile\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_profile}{Profile}} \&}]{other\+Profile}{}\end{DoxyParamCaption})}
+
+
+
+Operador de atribuição. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Outro objeto \doxylink{class_profile}{Profile}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{class_profile}{Profile}\& Referência para este objeto. 
+\end{DoxyReturn}
+\Hypertarget{class_profile_acb8f1102fef5b6e5d77266e26f54f91d}\index{Profile@{Profile}!operator==@{operator==}}
+\index{operator==@{operator==}!Profile@{Profile}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily \label{class_profile_acb8f1102fef5b6e5d77266e26f54f91d} 
+bool Profile\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_profile}{Profile}} \&}]{other\+Profile}{}\end{DoxyParamCaption}) const}
+
+
+
+Operador de igualdade. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Outro objeto \doxylink{class_profile}{Profile}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se os perfis forem iguais. 
+\end{DoxyReturn}
+\Hypertarget{class_profile_abe24da926e4e60825ca6b9346cf80a9b}\index{Profile@{Profile}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!Profile@{Profile}}
+\doxysubsubsection{\texorpdfstring{operator$>$()}{operator>()}}
+{\footnotesize\ttfamily \label{class_profile_abe24da926e4e60825ca6b9346cf80a9b} 
+bool Profile\+::operator$>$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_profile}{Profile}} \&}]{other\+Profile}{}\end{DoxyParamCaption}) const}
+
+
+
+Operador de comparação maior. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Outro objeto \doxylink{class_profile}{Profile}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se este perfil for maior. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/base.\+hpp\item 
+src/base.\+cpp\end{DoxyCompactItemize}

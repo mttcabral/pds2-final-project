@@ -1,0 +1,329 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}Hierarchical Index}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Class Hierarchy}{1}{section.1.1}%
+\contentsline {chapter}{\numberline {2}Class Index}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Class List}{3}{section.2.1}%
+\contentsline {chapter}{\numberline {3}File Index}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}File List}{5}{section.3.1}%
+\contentsline {chapter}{\numberline {4}Class Documentation}{7}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Background Class Reference}{7}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Detailed Description}{9}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Constructor \& Destructor Documentation}{9}{subsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.1}Background()}{9}{subsubsection.4.1.2.1}%
+\contentsline {subsection}{\numberline {4.1.3}Member Function Documentation}{9}{subsection.4.1.3}%
+\contentsline {subsubsection}{\numberline {4.1.3.1}draw()}{9}{subsubsection.4.1.3.1}%
+\contentsline {subsubsection}{\numberline {4.1.3.2}updatePosition()}{10}{subsubsection.4.1.3.2}%
+\contentsline {subsubsection}{\numberline {4.1.3.3}updateSpeed()}{10}{subsubsection.4.1.3.3}%
+\contentsline {section}{\numberline {4.2}Background\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Handler Class Reference}{10}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Detailed Description}{10}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Constructor \& Destructor Documentation}{11}{subsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.2.1}BackgroundHandler()}{11}{subsubsection.4.2.2.1}%
+\contentsline {section}{\numberline {4.3}Base Class Reference}{11}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Detailed Description}{12}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Constructor \& Destructor Documentation}{12}{subsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.1}Base()\hspace {0.1cm}{\footnotesize \ttfamily [1/3]}}{12}{subsubsection.4.3.2.1}%
+\contentsline {subsubsection}{\numberline {4.3.2.2}Base()\hspace {0.1cm}{\footnotesize \ttfamily [2/3]}}{12}{subsubsection.4.3.2.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.3}Base()\hspace {0.1cm}{\footnotesize \ttfamily [3/3]}}{12}{subsubsection.4.3.2.3}%
+\contentsline {subsection}{\numberline {4.3.3}Member Function Documentation}{13}{subsection.4.3.3}%
+\contentsline {subsubsection}{\numberline {4.3.3.1}getBestProfiles()}{13}{subsubsection.4.3.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.3.2}inBase()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{13}{subsubsection.4.3.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.3.3}inBase()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{13}{subsubsection.4.3.3.3}%
+\contentsline {subsubsection}{\numberline {4.3.3.4}operator=()}{13}{subsubsection.4.3.3.4}%
+\contentsline {subsubsection}{\numberline {4.3.3.5}removeProfile()}{14}{subsubsection.4.3.3.5}%
+\contentsline {subsubsection}{\numberline {4.3.3.6}saveBase()}{14}{subsubsection.4.3.3.6}%
+\contentsline {subsubsection}{\numberline {4.3.3.7}updateProfiles()}{14}{subsubsection.4.3.3.7}%
+\contentsline {section}{\numberline {4.4}Color Struct Reference}{15}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Detailed Description}{15}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Constructor \& Destructor Documentation}{15}{subsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.2.1}Color()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{15}{subsubsection.4.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.4.2.2}Color()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{15}{subsubsection.4.4.2.2}%
+\contentsline {subsection}{\numberline {4.4.3}Member Function Documentation}{16}{subsection.4.4.3}%
+\contentsline {subsubsection}{\numberline {4.4.3.1}operator/()}{16}{subsubsection.4.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.4.3.2}operator=()}{16}{subsubsection.4.4.3.2}%
+\contentsline {section}{\numberline {4.5}Cooldown Class Reference}{16}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Detailed Description}{17}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Constructor \& Destructor Documentation}{17}{subsection.4.5.2}%
+\contentsline {subsubsection}{\numberline {4.5.2.1}Cooldown()}{17}{subsubsection.4.5.2.1}%
+\contentsline {subsection}{\numberline {4.5.3}Member Function Documentation}{18}{subsection.4.5.3}%
+\contentsline {subsubsection}{\numberline {4.5.3.1}getCurrentPorcentage()}{18}{subsubsection.4.5.3.1}%
+\contentsline {subsubsection}{\numberline {4.5.3.2}getCurrentTimeLeft()}{18}{subsubsection.4.5.3.2}%
+\contentsline {subsubsection}{\numberline {4.5.3.3}getRechargeTime()}{18}{subsubsection.4.5.3.3}%
+\contentsline {subsubsection}{\numberline {4.5.3.4}isCooldownUp()}{18}{subsubsection.4.5.3.4}%
+\contentsline {subsubsection}{\numberline {4.5.3.5}setRechargeTime()}{18}{subsubsection.4.5.3.5}%
+\contentsline {subsubsection}{\numberline {4.5.3.6}setUpdateFrequency()}{19}{subsubsection.4.5.3.6}%
+\contentsline {section}{\numberline {4.6}Drawable Class Reference}{19}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Detailed Description}{21}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Constructor \& Destructor Documentation}{21}{subsection.4.6.2}%
+\contentsline {subsubsection}{\numberline {4.6.2.1}Drawable()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{21}{subsubsection.4.6.2.1}%
+\contentsline {subsubsection}{\numberline {4.6.2.2}Drawable()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{21}{subsubsection.4.6.2.2}%
+\contentsline {subsection}{\numberline {4.6.3}Member Function Documentation}{21}{subsection.4.6.3}%
+\contentsline {subsubsection}{\numberline {4.6.3.1}addSpeedVector()}{21}{subsubsection.4.6.3.1}%
+\contentsline {subsubsection}{\numberline {4.6.3.2}addSpeedX()}{22}{subsubsection.4.6.3.2}%
+\contentsline {subsubsection}{\numberline {4.6.3.3}addSpeedY()}{22}{subsubsection.4.6.3.3}%
+\contentsline {subsubsection}{\numberline {4.6.3.4}draw()}{22}{subsubsection.4.6.3.4}%
+\contentsline {subsubsection}{\numberline {4.6.3.5}getSpeed()}{22}{subsubsection.4.6.3.5}%
+\contentsline {subsubsection}{\numberline {4.6.3.6}getSpeedX()}{23}{subsubsection.4.6.3.6}%
+\contentsline {subsubsection}{\numberline {4.6.3.7}getSpeedY()}{23}{subsubsection.4.6.3.7}%
+\contentsline {subsubsection}{\numberline {4.6.3.8}setSpeed()}{23}{subsubsection.4.6.3.8}%
+\contentsline {subsubsection}{\numberline {4.6.3.9}setSpeedX()}{23}{subsubsection.4.6.3.9}%
+\contentsline {subsubsection}{\numberline {4.6.3.10}setSpeedY()}{23}{subsubsection.4.6.3.10}%
+\contentsline {subsubsection}{\numberline {4.6.3.11}updateSpeed()}{24}{subsubsection.4.6.3.11}%
+\contentsline {section}{\numberline {4.7}Eel Class Reference}{24}{section.4.7}%
+\contentsline {subsection}{\numberline {4.7.1}Detailed Description}{26}{subsection.4.7.1}%
+\contentsline {subsection}{\numberline {4.7.2}Constructor \& Destructor Documentation}{27}{subsection.4.7.2}%
+\contentsline {subsubsection}{\numberline {4.7.2.1}Eel()}{27}{subsubsection.4.7.2.1}%
+\contentsline {subsection}{\numberline {4.7.3}Member Function Documentation}{28}{subsection.4.7.3}%
+\contentsline {subsubsection}{\numberline {4.7.3.1}draw()}{28}{subsubsection.4.7.3.1}%
+\contentsline {subsubsection}{\numberline {4.7.3.2}updatePosition()}{28}{subsubsection.4.7.3.2}%
+\contentsline {section}{\numberline {4.8}Entity Class Reference}{28}{section.4.8}%
+\contentsline {subsection}{\numberline {4.8.1}Detailed Description}{30}{subsection.4.8.1}%
+\contentsline {subsection}{\numberline {4.8.2}Constructor \& Destructor Documentation}{30}{subsection.4.8.2}%
+\contentsline {subsubsection}{\numberline {4.8.2.1}Entity()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{30}{subsubsection.4.8.2.1}%
+\contentsline {subsubsection}{\numberline {4.8.2.2}Entity()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{30}{subsubsection.4.8.2.2}%
+\contentsline {subsection}{\numberline {4.8.3}Member Function Documentation}{31}{subsection.4.8.3}%
+\contentsline {subsubsection}{\numberline {4.8.3.1}getHitbox()}{31}{subsubsection.4.8.3.1}%
+\contentsline {section}{\numberline {4.9}Game\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Object Class Reference}{31}{section.4.9}%
+\contentsline {subsection}{\numberline {4.9.1}Detailed Description}{32}{subsection.4.9.1}%
+\contentsline {subsection}{\numberline {4.9.2}Constructor \& Destructor Documentation}{32}{subsection.4.9.2}%
+\contentsline {subsubsection}{\numberline {4.9.2.1}GameObject()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{32}{subsubsection.4.9.2.1}%
+\contentsline {subsubsection}{\numberline {4.9.2.2}GameObject()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{32}{subsubsection.4.9.2.2}%
+\contentsline {subsection}{\numberline {4.9.3}Member Function Documentation}{33}{subsection.4.9.3}%
+\contentsline {subsubsection}{\numberline {4.9.3.1}getPos()}{33}{subsubsection.4.9.3.1}%
+\contentsline {subsubsection}{\numberline {4.9.3.2}getPosX()}{33}{subsubsection.4.9.3.2}%
+\contentsline {subsubsection}{\numberline {4.9.3.3}getPosY()}{33}{subsubsection.4.9.3.3}%
+\contentsline {subsubsection}{\numberline {4.9.3.4}setPos()}{33}{subsubsection.4.9.3.4}%
+\contentsline {subsubsection}{\numberline {4.9.3.5}setPosX()}{33}{subsubsection.4.9.3.5}%
+\contentsline {subsubsection}{\numberline {4.9.3.6}setPosY()}{34}{subsubsection.4.9.3.6}%
+\contentsline {subsubsection}{\numberline {4.9.3.7}updatePosition()}{34}{subsubsection.4.9.3.7}%
+\contentsline {section}{\numberline {4.10}Handler Class Reference}{34}{section.4.10}%
+\contentsline {subsection}{\numberline {4.10.1}Member Function Documentation}{35}{subsection.4.10.1}%
+\contentsline {subsubsection}{\numberline {4.10.1.1}addObstacle()}{35}{subsubsection.4.10.1.1}%
+\contentsline {subsubsection}{\numberline {4.10.1.2}checkCollisions()}{35}{subsubsection.4.10.1.2}%
+\contentsline {subsubsection}{\numberline {4.10.1.3}gameOn()}{35}{subsubsection.4.10.1.3}%
+\contentsline {subsubsection}{\numberline {4.10.1.4}outOfBorders()}{36}{subsubsection.4.10.1.4}%
+\contentsline {subsubsection}{\numberline {4.10.1.5}sortBetween()}{36}{subsubsection.4.10.1.5}%
+\contentsline {section}{\numberline {4.11}Hitbox Class Reference}{36}{section.4.11}%
+\contentsline {subsection}{\numberline {4.11.1}Detailed Description}{37}{subsection.4.11.1}%
+\contentsline {subsection}{\numberline {4.11.2}Constructor \& Destructor Documentation}{37}{subsection.4.11.2}%
+\contentsline {subsubsection}{\numberline {4.11.2.1}Hitbox()}{37}{subsubsection.4.11.2.1}%
+\contentsline {subsection}{\numberline {4.11.3}Member Function Documentation}{38}{subsection.4.11.3}%
+\contentsline {subsubsection}{\numberline {4.11.3.1}getAngle()}{38}{subsubsection.4.11.3.1}%
+\contentsline {subsubsection}{\numberline {4.11.3.2}getPolygon()}{38}{subsubsection.4.11.3.2}%
+\contentsline {subsubsection}{\numberline {4.11.3.3}rotateHitbox()}{38}{subsubsection.4.11.3.3}%
+\contentsline {subsubsection}{\numberline {4.11.3.4}setTarget()}{38}{subsubsection.4.11.3.4}%
+\contentsline {subsubsection}{\numberline {4.11.3.5}updatePosition()}{39}{subsubsection.4.11.3.5}%
+\contentsline {section}{\numberline {4.12}Leader\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Board Class Reference}{39}{section.4.12}%
+\contentsline {subsection}{\numberline {4.12.1}Detailed Description}{40}{subsection.4.12.1}%
+\contentsline {subsection}{\numberline {4.12.2}Constructor \& Destructor Documentation}{40}{subsection.4.12.2}%
+\contentsline {subsubsection}{\numberline {4.12.2.1}LeaderBoard()}{40}{subsubsection.4.12.2.1}%
+\contentsline {subsection}{\numberline {4.12.3}Member Function Documentation}{40}{subsection.4.12.3}%
+\contentsline {subsubsection}{\numberline {4.12.3.1}addNewProfile()}{40}{subsubsection.4.12.3.1}%
+\contentsline {subsubsection}{\numberline {4.12.3.2}drawLeaderBoard()}{41}{subsubsection.4.12.3.2}%
+\contentsline {subsubsection}{\numberline {4.12.3.3}save()}{41}{subsubsection.4.12.3.3}%
+\contentsline {subsubsection}{\numberline {4.12.3.4}setFirstRowColor()}{41}{subsubsection.4.12.3.4}%
+\contentsline {subsubsection}{\numberline {4.12.3.5}setFirstRowTextColor()}{41}{subsubsection.4.12.3.5}%
+\contentsline {subsubsection}{\numberline {4.12.3.6}setOthersRowsColor()}{42}{subsubsection.4.12.3.6}%
+\contentsline {subsubsection}{\numberline {4.12.3.7}setOthersRowsTextColor()}{42}{subsubsection.4.12.3.7}%
+\contentsline {subsubsection}{\numberline {4.12.3.8}setSecondRowColor()}{42}{subsubsection.4.12.3.8}%
+\contentsline {subsubsection}{\numberline {4.12.3.9}setSecondRowTextColor()}{42}{subsubsection.4.12.3.9}%
+\contentsline {subsubsection}{\numberline {4.12.3.10}setThirdRowColor()}{43}{subsubsection.4.12.3.10}%
+\contentsline {subsubsection}{\numberline {4.12.3.11}setThirdRowTextColor()}{43}{subsubsection.4.12.3.11}%
+\contentsline {section}{\numberline {4.13}Pipe Class Reference}{43}{section.4.13}%
+\contentsline {subsection}{\numberline {4.13.1}Detailed Description}{45}{subsection.4.13.1}%
+\contentsline {subsection}{\numberline {4.13.2}Constructor \& Destructor Documentation}{46}{subsection.4.13.2}%
+\contentsline {subsubsection}{\numberline {4.13.2.1}Pipe()}{46}{subsubsection.4.13.2.1}%
+\contentsline {subsection}{\numberline {4.13.3}Member Function Documentation}{46}{subsection.4.13.3}%
+\contentsline {subsubsection}{\numberline {4.13.3.1}draw()}{46}{subsubsection.4.13.3.1}%
+\contentsline {subsubsection}{\numberline {4.13.3.2}loadSprite()}{46}{subsubsection.4.13.3.2}%
+\contentsline {subsubsection}{\numberline {4.13.3.3}updatePosition()}{46}{subsubsection.4.13.3.3}%
+\contentsline {subsubsection}{\numberline {4.13.3.4}updateScreenSpeed()}{46}{subsubsection.4.13.3.4}%
+\contentsline {subsubsection}{\numberline {4.13.3.5}updateSpeed()}{47}{subsubsection.4.13.3.5}%
+\contentsline {section}{\numberline {4.14}Player Class Reference}{47}{section.4.14}%
+\contentsline {subsection}{\numberline {4.14.1}Detailed Description}{49}{subsection.4.14.1}%
+\contentsline {subsection}{\numberline {4.14.2}Member Function Documentation}{49}{subsection.4.14.2}%
+\contentsline {subsubsection}{\numberline {4.14.2.1}draw()}{49}{subsubsection.4.14.2.1}%
+\contentsline {subsubsection}{\numberline {4.14.2.2}setPlayerState()}{49}{subsubsection.4.14.2.2}%
+\contentsline {subsubsection}{\numberline {4.14.2.3}updatePosition()}{50}{subsubsection.4.14.2.3}%
+\contentsline {subsubsection}{\numberline {4.14.2.4}updateSpeed()}{50}{subsubsection.4.14.2.4}%
+\contentsline {section}{\numberline {4.15}Point Struct Reference}{50}{section.4.15}%
+\contentsline {subsection}{\numberline {4.15.1}Detailed Description}{51}{subsection.4.15.1}%
+\contentsline {subsection}{\numberline {4.15.2}Constructor \& Destructor Documentation}{51}{subsection.4.15.2}%
+\contentsline {subsubsection}{\numberline {4.15.2.1}Point()}{51}{subsubsection.4.15.2.1}%
+\contentsline {subsection}{\numberline {4.15.3}Member Function Documentation}{51}{subsection.4.15.3}%
+\contentsline {subsubsection}{\numberline {4.15.3.1}rotatePoint()}{51}{subsubsection.4.15.3.1}%
+\contentsline {subsubsection}{\numberline {4.15.3.2}rotateVector()}{51}{subsubsection.4.15.3.2}%
+\contentsline {section}{\numberline {4.16}PointT Struct Reference}{52}{section.4.16}%
+\contentsline {subsection}{\numberline {4.16.1}Detailed Description}{53}{subsection.4.16.1}%
+\contentsline {subsection}{\numberline {4.16.2}Constructor \& Destructor Documentation}{53}{subsection.4.16.2}%
+\contentsline {subsubsection}{\numberline {4.16.2.1}PointT()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{53}{subsubsection.4.16.2.1}%
+\contentsline {subsubsection}{\numberline {4.16.2.2}PointT()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{53}{subsubsection.4.16.2.2}%
+\contentsline {subsection}{\numberline {4.16.3}Member Function Documentation}{53}{subsection.4.16.3}%
+\contentsline {subsubsection}{\numberline {4.16.3.1}operator$\ast $()}{53}{subsubsection.4.16.3.1}%
+\contentsline {subsubsection}{\numberline {4.16.3.2}operator+()}{53}{subsubsection.4.16.3.2}%
+\contentsline {subsubsection}{\numberline {4.16.3.3}operator-\/()}{54}{subsubsection.4.16.3.3}%
+\contentsline {subsubsection}{\numberline {4.16.3.4}operator/()}{54}{subsubsection.4.16.3.4}%
+\contentsline {subsubsection}{\numberline {4.16.3.5}operator=()}{54}{subsubsection.4.16.3.5}%
+\contentsline {section}{\numberline {4.17}Polygon Struct Reference}{55}{section.4.17}%
+\contentsline {subsection}{\numberline {4.17.1}Detailed Description}{56}{subsection.4.17.1}%
+\contentsline {subsection}{\numberline {4.17.2}Member Function Documentation}{56}{subsection.4.17.2}%
+\contentsline {subsubsection}{\numberline {4.17.2.1}addAngle()}{56}{subsubsection.4.17.2.1}%
+\contentsline {subsubsection}{\numberline {4.17.2.2}getPolygon()}{56}{subsubsection.4.17.2.2}%
+\contentsline {subsubsection}{\numberline {4.17.2.3}getRotatedVertices()}{56}{subsubsection.4.17.2.3}%
+\contentsline {subsubsection}{\numberline {4.17.2.4}updateVertices()}{57}{subsubsection.4.17.2.4}%
+\contentsline {section}{\numberline {4.18}Polygon\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Hitbox Class Reference}{57}{section.4.18}%
+\contentsline {subsection}{\numberline {4.18.1}Detailed Description}{58}{subsection.4.18.1}%
+\contentsline {subsection}{\numberline {4.18.2}Constructor \& Destructor Documentation}{58}{subsection.4.18.2}%
+\contentsline {subsubsection}{\numberline {4.18.2.1}PolygonHitbox()}{58}{subsubsection.4.18.2.1}%
+\contentsline {subsection}{\numberline {4.18.3}Member Function Documentation}{59}{subsection.4.18.3}%
+\contentsline {subsubsection}{\numberline {4.18.3.1}getAngle()}{59}{subsubsection.4.18.3.1}%
+\contentsline {subsubsection}{\numberline {4.18.3.2}getEdgeLength()}{59}{subsubsection.4.18.3.2}%
+\contentsline {subsubsection}{\numberline {4.18.3.3}getPolygon()}{59}{subsubsection.4.18.3.3}%
+\contentsline {subsubsection}{\numberline {4.18.3.4}getSideCount()}{59}{subsubsection.4.18.3.4}%
+\contentsline {subsubsection}{\numberline {4.18.3.5}getVertices()}{60}{subsubsection.4.18.3.5}%
+\contentsline {subsubsection}{\numberline {4.18.3.6}rotateHitbox()}{60}{subsubsection.4.18.3.6}%
+\contentsline {subsubsection}{\numberline {4.18.3.7}updatePosition()}{60}{subsubsection.4.18.3.7}%
+\contentsline {section}{\numberline {4.19}Polygon\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projection Struct Reference}{60}{section.4.19}%
+\contentsline {subsection}{\numberline {4.19.1}Detailed Description}{61}{subsection.4.19.1}%
+\contentsline {subsection}{\numberline {4.19.2}Constructor \& Destructor Documentation}{61}{subsection.4.19.2}%
+\contentsline {subsubsection}{\numberline {4.19.2.1}PolygonProjection()}{61}{subsubsection.4.19.2.1}%
+\contentsline {subsection}{\numberline {4.19.3}Member Function Documentation}{61}{subsection.4.19.3}%
+\contentsline {subsubsection}{\numberline {4.19.3.1}doProjectionOverlap()}{61}{subsubsection.4.19.3.1}%
+\contentsline {section}{\numberline {4.20}Profile Class Reference}{62}{section.4.20}%
+\contentsline {subsection}{\numberline {4.20.1}Detailed Description}{62}{subsection.4.20.1}%
+\contentsline {subsection}{\numberline {4.20.2}Constructor \& Destructor Documentation}{62}{subsection.4.20.2}%
+\contentsline {subsubsection}{\numberline {4.20.2.1}Profile()\hspace {0.1cm}{\footnotesize \ttfamily [1/3]}}{62}{subsubsection.4.20.2.1}%
+\contentsline {subsubsection}{\numberline {4.20.2.2}Profile()\hspace {0.1cm}{\footnotesize \ttfamily [2/3]}}{63}{subsubsection.4.20.2.2}%
+\contentsline {subsubsection}{\numberline {4.20.2.3}Profile()\hspace {0.1cm}{\footnotesize \ttfamily [3/3]}}{63}{subsubsection.4.20.2.3}%
+\contentsline {subsection}{\numberline {4.20.3}Member Function Documentation}{63}{subsection.4.20.3}%
+\contentsline {subsubsection}{\numberline {4.20.3.1}operator$<$()}{63}{subsubsection.4.20.3.1}%
+\contentsline {subsubsection}{\numberline {4.20.3.2}operator=()}{64}{subsubsection.4.20.3.2}%
+\contentsline {subsubsection}{\numberline {4.20.3.3}operator==()}{64}{subsubsection.4.20.3.3}%
+\contentsline {subsubsection}{\numberline {4.20.3.4}operator$>$()}{64}{subsubsection.4.20.3.4}%
+\contentsline {section}{\numberline {4.21}Rectangle Struct Reference}{65}{section.4.21}%
+\contentsline {subsection}{\numberline {4.21.1}Detailed Description}{66}{subsection.4.21.1}%
+\contentsline {subsection}{\numberline {4.21.2}Constructor \& Destructor Documentation}{66}{subsection.4.21.2}%
+\contentsline {subsubsection}{\numberline {4.21.2.1}Rectangle()}{66}{subsubsection.4.21.2.1}%
+\contentsline {subsection}{\numberline {4.21.3}Member Function Documentation}{66}{subsection.4.21.3}%
+\contentsline {subsubsection}{\numberline {4.21.3.1}getPolygon()}{66}{subsubsection.4.21.3.1}%
+\contentsline {subsubsection}{\numberline {4.21.3.2}updateVertices()}{67}{subsubsection.4.21.3.2}%
+\contentsline {section}{\numberline {4.22}Rectangle\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Hitbox Class Reference}{67}{section.4.22}%
+\contentsline {subsection}{\numberline {4.22.1}Detailed Description}{68}{subsection.4.22.1}%
+\contentsline {subsection}{\numberline {4.22.2}Constructor \& Destructor Documentation}{68}{subsection.4.22.2}%
+\contentsline {subsubsection}{\numberline {4.22.2.1}RectangleHitbox()}{68}{subsubsection.4.22.2.1}%
+\contentsline {subsection}{\numberline {4.22.3}Member Function Documentation}{69}{subsection.4.22.3}%
+\contentsline {subsubsection}{\numberline {4.22.3.1}getAngle()}{69}{subsubsection.4.22.3.1}%
+\contentsline {subsubsection}{\numberline {4.22.3.2}getHeight()}{69}{subsubsection.4.22.3.2}%
+\contentsline {subsubsection}{\numberline {4.22.3.3}getPolygon()}{69}{subsubsection.4.22.3.3}%
+\contentsline {subsubsection}{\numberline {4.22.3.4}getVertices()}{69}{subsubsection.4.22.3.4}%
+\contentsline {subsubsection}{\numberline {4.22.3.5}getWidth()}{70}{subsubsection.4.22.3.5}%
+\contentsline {subsubsection}{\numberline {4.22.3.6}rotateHitbox()}{70}{subsubsection.4.22.3.6}%
+\contentsline {subsubsection}{\numberline {4.22.3.7}updatePosition()}{70}{subsubsection.4.22.3.7}%
+\contentsline {section}{\numberline {4.23}RectangleT Struct Reference}{70}{section.4.23}%
+\contentsline {subsection}{\numberline {4.23.1}Detailed Description}{71}{subsection.4.23.1}%
+\contentsline {subsection}{\numberline {4.23.2}Constructor \& Destructor Documentation}{71}{subsection.4.23.2}%
+\contentsline {subsubsection}{\numberline {4.23.2.1}RectangleT()\hspace {0.1cm}{\footnotesize \ttfamily [1/3]}}{71}{subsubsection.4.23.2.1}%
+\contentsline {subsubsection}{\numberline {4.23.2.2}RectangleT()\hspace {0.1cm}{\footnotesize \ttfamily [2/3]}}{71}{subsubsection.4.23.2.2}%
+\contentsline {subsubsection}{\numberline {4.23.2.3}RectangleT()\hspace {0.1cm}{\footnotesize \ttfamily [3/3]}}{72}{subsubsection.4.23.2.3}%
+\contentsline {subsection}{\numberline {4.23.3}Member Function Documentation}{72}{subsection.4.23.3}%
+\contentsline {subsubsection}{\numberline {4.23.3.1}operator=()}{72}{subsubsection.4.23.3.1}%
+\contentsline {section}{\numberline {4.24}Register Class Reference}{72}{section.4.24}%
+\contentsline {subsection}{\numberline {4.24.1}Detailed Description}{74}{subsection.4.24.1}%
+\contentsline {subsection}{\numberline {4.24.2}Constructor \& Destructor Documentation}{74}{subsection.4.24.2}%
+\contentsline {subsubsection}{\numberline {4.24.2.1}Register()\hspace {0.1cm}{\footnotesize \ttfamily [1/3]}}{74}{subsubsection.4.24.2.1}%
+\contentsline {subsubsection}{\numberline {4.24.2.2}Register()\hspace {0.1cm}{\footnotesize \ttfamily [2/3]}}{74}{subsubsection.4.24.2.2}%
+\contentsline {subsubsection}{\numberline {4.24.2.3}Register()\hspace {0.1cm}{\footnotesize \ttfamily [3/3]}}{74}{subsubsection.4.24.2.3}%
+\contentsline {subsection}{\numberline {4.24.3}Member Function Documentation}{75}{subsection.4.24.3}%
+\contentsline {subsubsection}{\numberline {4.24.3.1}cleanBuffer()}{75}{subsubsection.4.24.3.1}%
+\contentsline {subsubsection}{\numberline {4.24.3.2}deleteInBuffer()}{75}{subsubsection.4.24.3.2}%
+\contentsline {subsubsection}{\numberline {4.24.3.3}drawRegister()}{75}{subsubsection.4.24.3.3}%
+\contentsline {subsubsection}{\numberline {4.24.3.4}getBufferContent()}{75}{subsubsection.4.24.3.4}%
+\contentsline {subsubsection}{\numberline {4.24.3.5}getBufferTextColor()}{75}{subsubsection.4.24.3.5}%
+\contentsline {subsubsection}{\numberline {4.24.3.6}getIthCenterX()}{75}{subsubsection.4.24.3.6}%
+\contentsline {subsubsection}{\numberline {4.24.3.7}getIthCenterY()}{76}{subsubsection.4.24.3.7}%
+\contentsline {subsubsection}{\numberline {4.24.3.8}getIthContent()}{76}{subsubsection.4.24.3.8}%
+\contentsline {subsubsection}{\numberline {4.24.3.9}getIthTextColor()}{76}{subsubsection.4.24.3.9}%
+\contentsline {subsubsection}{\numberline {4.24.3.10}getMessageContent()}{77}{subsubsection.4.24.3.10}%
+\contentsline {subsubsection}{\numberline {4.24.3.11}getMessageTextColor()}{77}{subsubsection.4.24.3.11}%
+\contentsline {subsubsection}{\numberline {4.24.3.12}getTittleContent()}{77}{subsubsection.4.24.3.12}%
+\contentsline {subsubsection}{\numberline {4.24.3.13}getTittleTextColor()}{77}{subsubsection.4.24.3.13}%
+\contentsline {subsubsection}{\numberline {4.24.3.14}operator=()}{77}{subsubsection.4.24.3.14}%
+\contentsline {subsubsection}{\numberline {4.24.3.15}setBufferTextColor()}{78}{subsubsection.4.24.3.15}%
+\contentsline {subsubsection}{\numberline {4.24.3.16}setMessageContent()}{78}{subsubsection.4.24.3.16}%
+\contentsline {subsubsection}{\numberline {4.24.3.17}setMessageTextColor()}{78}{subsubsection.4.24.3.17}%
+\contentsline {subsubsection}{\numberline {4.24.3.18}setTittleContent()}{78}{subsubsection.4.24.3.18}%
+\contentsline {subsubsection}{\numberline {4.24.3.19}setTittleTextColor()}{79}{subsubsection.4.24.3.19}%
+\contentsline {subsubsection}{\numberline {4.24.3.20}writeInBuffer()}{79}{subsubsection.4.24.3.20}%
+\contentsline {section}{\numberline {4.25}Regular\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Polygon Struct Reference}{79}{section.4.25}%
+\contentsline {subsection}{\numberline {4.25.1}Detailed Description}{81}{subsection.4.25.1}%
+\contentsline {subsection}{\numberline {4.25.2}Constructor \& Destructor Documentation}{81}{subsection.4.25.2}%
+\contentsline {subsubsection}{\numberline {4.25.2.1}RegularPolygon()}{81}{subsubsection.4.25.2.1}%
+\contentsline {subsection}{\numberline {4.25.3}Member Function Documentation}{81}{subsection.4.25.3}%
+\contentsline {subsubsection}{\numberline {4.25.3.1}getPolygon()}{81}{subsubsection.4.25.3.1}%
+\contentsline {subsubsection}{\numberline {4.25.3.2}updateVertices()}{81}{subsubsection.4.25.3.2}%
+\contentsline {section}{\numberline {4.26}Row Struct Reference}{82}{section.4.26}%
+\contentsline {subsection}{\numberline {4.26.1}Detailed Description}{82}{subsection.4.26.1}%
+\contentsline {subsection}{\numberline {4.26.2}Constructor \& Destructor Documentation}{82}{subsection.4.26.2}%
+\contentsline {subsubsection}{\numberline {4.26.2.1}Row()\hspace {0.1cm}{\footnotesize \ttfamily [1/4]}}{82}{subsubsection.4.26.2.1}%
+\contentsline {subsubsection}{\numberline {4.26.2.2}Row()\hspace {0.1cm}{\footnotesize \ttfamily [2/4]}}{83}{subsubsection.4.26.2.2}%
+\contentsline {subsubsection}{\numberline {4.26.2.3}Row()\hspace {0.1cm}{\footnotesize \ttfamily [3/4]}}{83}{subsubsection.4.26.2.3}%
+\contentsline {subsubsection}{\numberline {4.26.2.4}Row()\hspace {0.1cm}{\footnotesize \ttfamily [4/4]}}{83}{subsubsection.4.26.2.4}%
+\contentsline {subsection}{\numberline {4.26.3}Member Function Documentation}{83}{subsection.4.26.3}%
+\contentsline {subsubsection}{\numberline {4.26.3.1}operator=()}{83}{subsubsection.4.26.3.1}%
+\contentsline {section}{\numberline {4.27}Spritesheet Class Reference}{84}{section.4.27}%
+\contentsline {subsection}{\numberline {4.27.1}Detailed Description}{85}{subsection.4.27.1}%
+\contentsline {subsection}{\numberline {4.27.2}Constructor \& Destructor Documentation}{85}{subsection.4.27.2}%
+\contentsline {subsubsection}{\numberline {4.27.2.1}Spritesheet()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{85}{subsubsection.4.27.2.1}%
+\contentsline {subsubsection}{\numberline {4.27.2.2}Spritesheet()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{85}{subsubsection.4.27.2.2}%
+\contentsline {subsection}{\numberline {4.27.3}Member Function Documentation}{86}{subsection.4.27.3}%
+\contentsline {subsubsection}{\numberline {4.27.3.1}advanceFrame()}{86}{subsubsection.4.27.3.1}%
+\contentsline {subsubsection}{\numberline {4.27.3.2}getCurrentFrame()}{86}{subsubsection.4.27.3.2}%
+\contentsline {subsubsection}{\numberline {4.27.3.3}getCurrentIndex()}{86}{subsubsection.4.27.3.3}%
+\contentsline {subsubsection}{\numberline {4.27.3.4}getFrame()}{86}{subsubsection.4.27.3.4}%
+\contentsline {subsubsection}{\numberline {4.27.3.5}getFrameCount()}{87}{subsubsection.4.27.3.5}%
+\contentsline {subsubsection}{\numberline {4.27.3.6}getFrameHeight()}{87}{subsubsection.4.27.3.6}%
+\contentsline {subsubsection}{\numberline {4.27.3.7}getFrameWidth()}{87}{subsubsection.4.27.3.7}%
+\contentsline {subsubsection}{\numberline {4.27.3.8}getSheet()}{87}{subsubsection.4.27.3.8}%
+\contentsline {subsubsection}{\numberline {4.27.3.9}resetAnimation()}{87}{subsubsection.4.27.3.9}%
+\contentsline {section}{\numberline {4.28}Table Struct Reference}{88}{section.4.28}%
+\contentsline {subsection}{\numberline {4.28.1}Detailed Description}{88}{subsection.4.28.1}%
+\contentsline {subsection}{\numberline {4.28.2}Constructor \& Destructor Documentation}{88}{subsection.4.28.2}%
+\contentsline {subsubsection}{\numberline {4.28.2.1}Table()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{88}{subsubsection.4.28.2.1}%
+\contentsline {subsubsection}{\numberline {4.28.2.2}Table()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{88}{subsubsection.4.28.2.2}%
+\contentsline {subsection}{\numberline {4.28.3}Member Function Documentation}{89}{subsection.4.28.3}%
+\contentsline {subsubsection}{\numberline {4.28.3.1}operator=()}{89}{subsubsection.4.28.3.1}%
+\contentsline {section}{\numberline {4.29}Transition\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Screen Class Reference}{89}{section.4.29}%
+\contentsline {subsection}{\numberline {4.29.1}Detailed Description}{91}{subsection.4.29.1}%
+\contentsline {subsection}{\numberline {4.29.2}Member Function Documentation}{91}{subsection.4.29.2}%
+\contentsline {subsubsection}{\numberline {4.29.2.1}draw()}{91}{subsubsection.4.29.2.1}%
+\contentsline {subsubsection}{\numberline {4.29.2.2}getStage()}{92}{subsubsection.4.29.2.2}%
+\contentsline {subsubsection}{\numberline {4.29.2.3}isActive()}{92}{subsubsection.4.29.2.3}%
+\contentsline {subsubsection}{\numberline {4.29.2.4}updatePosition()}{92}{subsubsection.4.29.2.4}%
+\contentsline {subsubsection}{\numberline {4.29.2.5}updateSpeed()}{92}{subsubsection.4.29.2.5}%
+\contentsline {section}{\numberline {4.30}Trigger\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Spritesheet Class Reference}{93}{section.4.30}%
+\contentsline {subsection}{\numberline {4.30.1}Detailed Description}{94}{subsection.4.30.1}%
+\contentsline {subsection}{\numberline {4.30.2}Constructor \& Destructor Documentation}{94}{subsection.4.30.2}%
+\contentsline {subsubsection}{\numberline {4.30.2.1}TriggerSpritesheet()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{94}{subsubsection.4.30.2.1}%
+\contentsline {subsubsection}{\numberline {4.30.2.2}TriggerSpritesheet()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{94}{subsubsection.4.30.2.2}%
+\contentsline {subsection}{\numberline {4.30.3}Member Function Documentation}{95}{subsection.4.30.3}%
+\contentsline {subsubsection}{\numberline {4.30.3.1}advanceFrame()}{95}{subsubsection.4.30.3.1}%
+\contentsline {subsubsection}{\numberline {4.30.3.2}getCycleCount()}{95}{subsubsection.4.30.3.2}%
+\contentsline {subsubsection}{\numberline {4.30.3.3}isActive()}{95}{subsubsection.4.30.3.3}%
+\contentsline {subsubsection}{\numberline {4.30.3.4}resetAnimation()}{95}{subsubsection.4.30.3.4}%
+\contentsline {subsubsection}{\numberline {4.30.3.5}setCycleCount()}{95}{subsubsection.4.30.3.5}%
+\contentsline {chapter}{\numberline {5}File Documentation}{97}{chapter.5}%
+\contentsline {section}{\numberline {5.1}animation.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{97}{section.5.1}%
+\contentsline {section}{\numberline {5.2}base.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{98}{section.5.2}%
+\contentsline {section}{\numberline {5.3}cooldown.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{99}{section.5.3}%
+\contentsline {section}{\numberline {5.4}entity.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{100}{section.5.4}%
+\contentsline {section}{\numberline {5.5}game\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}object.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{101}{section.5.5}%
+\contentsline {section}{\numberline {5.6}game\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}object\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}handler.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{102}{section.5.6}%
+\contentsline {section}{\numberline {5.7}hitbox.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{102}{section.5.7}%
+\contentsline {section}{\numberline {5.8}initializer\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}allegro.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{103}{section.5.8}%
+\contentsline {section}{\numberline {5.9}interface.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{105}{section.5.9}%
+\contentsline {section}{\numberline {5.10}leaderboard.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{105}{section.5.10}%
+\contentsline {section}{\numberline {5.11}passive.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{106}{section.5.11}%
+\contentsline {section}{\numberline {5.12}polygon.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{107}{section.5.12}%
+\contentsline {section}{\numberline {5.13}register.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{109}{section.5.13}%
+\contentsline {section}{\numberline {5.14}sound.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{111}{section.5.14}%
+\contentsline {section}{\numberline {5.15}table.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{111}{section.5.15}%
+\contentsline {chapter}{Index}{113}{section*.128}%

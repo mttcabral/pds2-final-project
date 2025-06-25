@@ -1,0 +1,225 @@
+\doxysection{Base Class Reference}
+\hypertarget{class_base}{}\label{class_base}\index{Base@{Base}}
+
+
+Classe que representa a base de dados de perfis.  
+
+
+
+
+{\ttfamily \#include $<$base.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_base_a88142cd39d482f053a26aae7e3b3c93d}{Base}} (const \mbox{\hyperlink{class_base}{Base}} \&)
+\begin{DoxyCompactList}\small\item\em Construtor de cópia. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_base_adfdaa5c8bbe308a59f93442a866e3cd3}{Base}} (const vector$<$ \mbox{\hyperlink{class_profile}{Profile}} \texorpdfstring{$\ast$}{*} $>$ \&)
+\begin{DoxyCompactList}\small\item\em Construtor a partir de um vetor de perfis. \end{DoxyCompactList}\item 
+\Hypertarget{class_base_a5ffe0568374d8b9b4c4ec32953fd6453}\label{class_base_a5ffe0568374d8b9b4c4ec32953fd6453} 
+{\bfseries Base} ()
+\begin{DoxyCompactList}\small\item\em Construtor padrão. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_base_a71079e28a6af9047f6e5ccaf716ec3c6}{Base}} (string)
+\begin{DoxyCompactList}\small\item\em Construtor que carrega base de um arquivo. \end{DoxyCompactList}\item 
+\Hypertarget{class_base_a722da881b6c70cfcbde9243abcfbf334}\label{class_base_a722da881b6c70cfcbde9243abcfbf334} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Base} ()
+\begin{DoxyCompactList}\small\item\em Destrutor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_base}{Base}} \mbox{\hyperlink{class_base_a70a04e98461b059993140615f9d3b67e}{operator=}} (const \mbox{\hyperlink{class_base}{Base}} \&)
+\begin{DoxyCompactList}\small\item\em Operador de atribuição. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_base_a333893a144a024d8011b6112212392b8}{in\+Base}} (string)
+\begin{DoxyCompactList}\small\item\em Verifica se um nickname está na base. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_base_a6605927e4153a862ec3c97b42f49e995}{in\+Base}} (\mbox{\hyperlink{class_profile}{Profile}})
+\begin{DoxyCompactList}\small\item\em Verifica se um perfil está na base. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_base_a4ab77dcf7526bdcd9129db8a30191c29}{update\+Profiles}} (\mbox{\hyperlink{class_profile}{Profile}})
+\begin{DoxyCompactList}\small\item\em Atualiza ou adiciona um perfil na base. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_base_a796d539a02bfb8820453fcd6811c6420}{remove\+Profile}} (string)
+\begin{DoxyCompactList}\small\item\em Remove um perfil da base pelo nickname. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_profile}{Profile}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_base_ab01afedc6c7d5f16d0689c23b706be3f}{get\+Best\+Profiles}} ()
+\begin{DoxyCompactList}\small\item\em Retorna os melhores perfis da base. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_base_a1d8bab6ffa8bbe6c6b18286322029ce4}{save\+Base}} (string)
+\begin{DoxyCompactList}\small\item\em Salva a base em um arquivo. \end{DoxyCompactList}\item 
+\Hypertarget{class_base_ae6b4d9fa5d7dfd9954d856d2dc28e12b}\label{class_base_ae6b4d9fa5d7dfd9954d856d2dc28e12b} 
+void {\bfseries display} ()
+\begin{DoxyCompactList}\small\item\em Exibe todos os perfis da base. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe que representa a base de dados de perfis. 
+
+\label{doc-constructors}
+\Hypertarget{class_base_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_base_a88142cd39d482f053a26aae7e3b3c93d}\index{Base@{Base}!Base@{Base}}
+\index{Base@{Base}!Base@{Base}}
+\doxysubsubsection{\texorpdfstring{Base()}{Base()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_base_a88142cd39d482f053a26aae7e3b3c93d} 
+Base\+::\+Base (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_base}{Base}} \&}]{other\+Base}{}\end{DoxyParamCaption})}
+
+
+
+Construtor de cópia. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Outro objeto \doxylink{class_base}{Base}. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_base_adfdaa5c8bbe308a59f93442a866e3cd3}\index{Base@{Base}!Base@{Base}}
+\index{Base@{Base}!Base@{Base}}
+\doxysubsubsection{\texorpdfstring{Base()}{Base()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_base_adfdaa5c8bbe308a59f93442a866e3cd3} 
+Base\+::\+Base (\begin{DoxyParamCaption}\item[{const vector$<$ \mbox{\hyperlink{class_profile}{Profile}} \texorpdfstring{$\ast$}{*} $>$ \&}]{other\+Base\+Vector}{}\end{DoxyParamCaption})}
+
+
+
+Construtor a partir de um vetor de perfis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em profiles} & Vetor de ponteiros para perfis. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_base_a71079e28a6af9047f6e5ccaf716ec3c6}\index{Base@{Base}!Base@{Base}}
+\index{Base@{Base}!Base@{Base}}
+\doxysubsubsection{\texorpdfstring{Base()}{Base()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_base_a71079e28a6af9047f6e5ccaf716ec3c6} 
+Base\+::\+Base (\begin{DoxyParamCaption}\item[{string}]{path}{}\end{DoxyParamCaption})}
+
+
+
+Construtor que carrega base de um arquivo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Nome do arquivo. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_base_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_base_ab01afedc6c7d5f16d0689c23b706be3f}\index{Base@{Base}!getBestProfiles@{getBestProfiles}}
+\index{getBestProfiles@{getBestProfiles}!Base@{Base}}
+\doxysubsubsection{\texorpdfstring{getBestProfiles()}{getBestProfiles()}}
+{\footnotesize\ttfamily \label{class_base_ab01afedc6c7d5f16d0689c23b706be3f} 
+vector$<$ \mbox{\hyperlink{class_profile}{Profile}} \texorpdfstring{$\ast$}{*} $>$ Base\+::get\+Best\+Profiles (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna os melhores perfis da base. 
+
+\begin{DoxyReturn}{Returns}
+vector$<$\+Profile \texorpdfstring{$\ast$}{*}$>$ Vetor dos melhores perfis. 
+\end{DoxyReturn}
+\Hypertarget{class_base_a6605927e4153a862ec3c97b42f49e995}\index{Base@{Base}!inBase@{inBase}}
+\index{inBase@{inBase}!Base@{Base}}
+\doxysubsubsection{\texorpdfstring{inBase()}{inBase()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_base_a6605927e4153a862ec3c97b42f49e995} 
+bool Base\+::in\+Base (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_profile}{Profile}}}]{other\+Profile}{}\end{DoxyParamCaption})}
+
+
+
+Verifica se um perfil está na base. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em profile} & Perfil a ser verificado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se está na base. 
+\end{DoxyReturn}
+\Hypertarget{class_base_a333893a144a024d8011b6112212392b8}\index{Base@{Base}!inBase@{inBase}}
+\index{inBase@{inBase}!Base@{Base}}
+\doxysubsubsection{\texorpdfstring{inBase()}{inBase()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_base_a333893a144a024d8011b6112212392b8} 
+bool Base\+::in\+Base (\begin{DoxyParamCaption}\item[{string}]{nickname}{}\end{DoxyParamCaption})}
+
+
+
+Verifica se um nickname está na base. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nickname} & Nickname a ser verificado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se está na base. 
+\end{DoxyReturn}
+\Hypertarget{class_base_a70a04e98461b059993140615f9d3b67e}\index{Base@{Base}!operator=@{operator=}}
+\index{operator=@{operator=}!Base@{Base}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_base_a70a04e98461b059993140615f9d3b67e} 
+\mbox{\hyperlink{class_base}{Base}} Base\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_base}{Base}} \&}]{other\+Base}{}\end{DoxyParamCaption})}
+
+
+
+Operador de atribuição. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Outro objeto \doxylink{class_base}{Base}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{class_base}{Base}\& Referência para este objeto. 
+\end{DoxyReturn}
+\Hypertarget{class_base_a796d539a02bfb8820453fcd6811c6420}\index{Base@{Base}!removeProfile@{removeProfile}}
+\index{removeProfile@{removeProfile}!Base@{Base}}
+\doxysubsubsection{\texorpdfstring{removeProfile()}{removeProfile()}}
+{\footnotesize\ttfamily \label{class_base_a796d539a02bfb8820453fcd6811c6420} 
+bool Base\+::remove\+Profile (\begin{DoxyParamCaption}\item[{string}]{nickname}{}\end{DoxyParamCaption})}
+
+
+
+Remove um perfil da base pelo nickname. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nickname} & Nickname do perfil a ser removido. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se removido com sucesso. 
+\end{DoxyReturn}
+\Hypertarget{class_base_a1d8bab6ffa8bbe6c6b18286322029ce4}\index{Base@{Base}!saveBase@{saveBase}}
+\index{saveBase@{saveBase}!Base@{Base}}
+\doxysubsubsection{\texorpdfstring{saveBase()}{saveBase()}}
+{\footnotesize\ttfamily \label{class_base_a1d8bab6ffa8bbe6c6b18286322029ce4} 
+void Base\+::save\+Base (\begin{DoxyParamCaption}\item[{string}]{path}{}\end{DoxyParamCaption})}
+
+
+
+Salva a base em um arquivo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Nome do arquivo. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_base_a4ab77dcf7526bdcd9129db8a30191c29}\index{Base@{Base}!updateProfiles@{updateProfiles}}
+\index{updateProfiles@{updateProfiles}!Base@{Base}}
+\doxysubsubsection{\texorpdfstring{updateProfiles()}{updateProfiles()}}
+{\footnotesize\ttfamily \label{class_base_a4ab77dcf7526bdcd9129db8a30191c29} 
+bool Base\+::update\+Profiles (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_profile}{Profile}}}]{new\+Profile}{}\end{DoxyParamCaption})}
+
+
+
+Atualiza ou adiciona um perfil na base. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em profile} & Perfil a ser atualizado/adicionado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se atualizado/adicionado com sucesso. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/base.\+hpp\item 
+src/base.\+cpp\end{DoxyCompactItemize}

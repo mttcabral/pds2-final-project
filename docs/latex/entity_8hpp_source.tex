@@ -1,0 +1,114 @@
+\doxysection{entity.\+hpp}
+\hypertarget{entity_8hpp_source}{}\label{entity_8hpp_source}\index{include/entity.hpp@{include/entity.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ENTITY\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ENTITY\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}game\_object.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}hitbox.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}animation.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}cooldown.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ BASE\_GRAVITY\ =\ 10;}
+\DoxyCodeLine{00013\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ BASE\_X\_MOVEMENT\ =\ 20;}
+\DoxyCodeLine{00015\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ X\_AXIS\ =\ 160;}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_entity_ad185ab442f37a9c672c397ef0e998b66}{Entity}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_drawable_a59a2d9e82a5e9065f9fd5eaa8b7ac273}{Drawable}}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_hitbox}{Hitbox}}\ *\mbox{\hyperlink{class_entity_a1f947684f87db89eb0f34677036d5169}{hb}};\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_entity_ad185ab442f37a9c672c397ef0e998b66}{Entity}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&pos,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&spd);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{class_entity_ad185ab442f37a9c672c397ef0e998b66}{Entity}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&pos);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{class_hitbox}{Hitbox}}\ *\mbox{\hyperlink{class_entity_a10a53e3e42b5a700be7303cdb16e8edd}{getHitbox}}();}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_entity_adf6d3f7cb1b2ba029b6b048a395cc8ae}{\string~Entity}}();}
+\DoxyCodeLine{00048\ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ PLAYER\_SIZE\ =\ 20;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{enum\ class}\ PlayerState}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ NONE,}
+\DoxyCodeLine{00059\ \ \ \ \ DEAD,}
+\DoxyCodeLine{00060\ \ \ \ \ IDLE,}
+\DoxyCodeLine{00061\ \ \ \ \ JUMPING}
+\DoxyCodeLine{00062\ \};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_player_affe0cc3cb714f6deb4e62f0c0d3f1fd8}{Player}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_entity_ad185ab442f37a9c672c397ef0e998b66}{Entity}}}
+\DoxyCodeLine{00068\ \{}
+\DoxyCodeLine{00069\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{class_spritesheet}{Spritesheet}}\ idleSprite;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{class_trigger_spritesheet}{TriggerSpritesheet}}\ jumpSprite;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ PlayerState\ state\ =\ PlayerState::NONE;\ }
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{class_cooldown}{Cooldown}}\ angleCD;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{float}\ angle;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{class_player_affe0cc3cb714f6deb4e62f0c0d3f1fd8}{Player}}();}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_player_ad3d749a1e151c94af17fc0a8b0bd3b2b}{updatePosition}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_player_a8f1d47e54db2164e021ed1785cec0366}{updateSpeed}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_player_a70e21ca98281b7d72f105f2693113d7e}{jump}}();}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_player_a7abe0fbf95b42b9ff4a2c0c7d334bc68}{draw}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{//\ bool\ loadSprite(const\ char*\ dir);}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_player_a7d0e648b1c47350ed2647b92132312f1}{updatePlayerState}}();}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_player_acc35ab7af8f44921ab8122154bdb82c5}{updateAnimation}}();}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_player_a66d9510ae2b80a79f70c84d099dc19e9}{setPlayerState}}(PlayerState\ s);}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00123\ \ \ \ \ \mbox{\hyperlink{class_player_a749d2c00e1fe0f5c2746f7505a58c062}{\string~Player}}();}
+\DoxyCodeLine{00124\ \};}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00127\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ PIPE\_X\_SPEED\ =\ -\/10;}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_pipe_adcdadd9c7dc352f2d00c0989c5f89e9e}{Pipe}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_entity_ad185ab442f37a9c672c397ef0e998b66}{Entity}}}
+\DoxyCodeLine{00133\ \{}
+\DoxyCodeLine{00134\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00135\ \ \ \ \ ALLEGRO\_BITMAP\ *pipeSprite\ =\ \textcolor{keyword}{nullptr};\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{bool}\ isInverted;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00137\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_pipe_aa202704a309c03aa6de9c94d3646c342}{screenSpeed}};\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_pipe_a2ab68de1509c6e982b4e1deaabf6c530}{updateScreenSpeed}}(\textcolor{keywordtype}{float}\ s);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00153\ \ \ \ \ \mbox{\hyperlink{class_pipe_adcdadd9c7dc352f2d00c0989c5f89e9e}{Pipe}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&pos,\ \textcolor{keywordtype}{float}\ w,\ \textcolor{keywordtype}{float}\ h,\ ALLEGRO\_BITMAP\ *image\ =\ \textcolor{keyword}{nullptr},\ \textcolor{keywordtype}{bool}\ inv\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_pipe_acd8a1e8c39576844035a6261a1797993}{updatePosition}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_pipe_a778f02a547fa8a27f8b2577cfb85d5c7}{updateSpeed}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_pipe_a8ff89beb4e2589a9fe18a397ae269ab4}{loadSprite}}();}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_pipe_a0628794f8a04c822434c4a44dc47743d}{draw}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00176\ \};}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00179\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ EEL\_W\ =\ 366;}
+\DoxyCodeLine{00181\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ EEL\_H\ =\ 100;}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00186\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eel_a1640650e80cabbac43ab6dc6a4abbfe7}{Eel}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_pipe_adcdadd9c7dc352f2d00c0989c5f89e9e}{Pipe}}}
+\DoxyCodeLine{00187\ \{}
+\DoxyCodeLine{00188\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00189\ \ \ \ \ \mbox{\hyperlink{class_spritesheet}{Spritesheet}}\ *sprite;\ }
+\DoxyCodeLine{00190\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00196\ \ \ \ \ \mbox{\hyperlink{class_eel_a1640650e80cabbac43ab6dc6a4abbfe7}{Eel}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&pos,\ \mbox{\hyperlink{class_spritesheet}{Spritesheet}}\ *image);}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eel_a1d2c2e728f33a45d56f389ce8f541484}{rotate}}();}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_eel_af8c488ecbac51778fbaaf921533d2350}{updatePosition}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eel_ab3c075bfdce50cbdc47b812090b5a069}{draw}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{comment}{//\string~Eel();}}
+\DoxyCodeLine{00214\ \};}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

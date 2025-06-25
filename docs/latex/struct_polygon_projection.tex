@@ -1,0 +1,80 @@
+\doxysection{Polygon\+Projection Struct Reference}
+\hypertarget{struct_polygon_projection}{}\label{struct_polygon_projection}\index{PolygonProjection@{PolygonProjection}}
+
+
+Estrutura para projeção de polígono em um eixo (usada no SAT).  
+
+
+
+
+{\ttfamily \#include $<$polygon.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_polygon_projection_a5bb4ec21a28b06a090331a65d311c4f6}{Polygon\+Projection}} (const \mbox{\hyperlink{struct_polygon}{Polygon}} \&poly, const \mbox{\hyperlink{struct_point}{Point}} \&proj\+Axis)
+\begin{DoxyCompactList}\small\item\em Construtor que projeta um polígono em um eixo. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{struct_polygon_projection_a381fe3a865c08da59431a0cb947c3e51}{do\+Projection\+Overlap}} (const \mbox{\hyperlink{struct_polygon_projection}{Polygon\+Projection}} \&other)
+\begin{DoxyCompactList}\small\item\em Verifica se há sobreposição entre duas projeções. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_polygon_projection_aa234255fca61b5eb3d78fb1b65ef2e08}\label{struct_polygon_projection_aa234255fca61b5eb3d78fb1b65ef2e08} 
+float {\bfseries min\+Proj}
+\item 
+\Hypertarget{struct_polygon_projection_a8a2324b95f9beccf8ef0fa66a5359f7f}\label{struct_polygon_projection_a8a2324b95f9beccf8ef0fa66a5359f7f} 
+float {\bfseries max\+Proj}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Estrutura para projeção de polígono em um eixo (usada no SAT). 
+
+\label{doc-constructors}
+\Hypertarget{struct_polygon_projection_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{struct_polygon_projection_a5bb4ec21a28b06a090331a65d311c4f6}\index{PolygonProjection@{PolygonProjection}!PolygonProjection@{PolygonProjection}}
+\index{PolygonProjection@{PolygonProjection}!PolygonProjection@{PolygonProjection}}
+\doxysubsubsection{\texorpdfstring{PolygonProjection()}{PolygonProjection()}}
+{\footnotesize\ttfamily \label{struct_polygon_projection_a5bb4ec21a28b06a090331a65d311c4f6} 
+Polygon\+Projection\+::\+Polygon\+Projection (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_polygon}{Polygon}} \&}]{poly}{, }\item[{const \mbox{\hyperlink{struct_point}{Point}} \&}]{proj\+Axis}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construtor que projeta um polígono em um eixo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em poly} & Polígono. \\
+\hline
+{\em proj\+Axis} & Eixo de projeção. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{struct_polygon_projection_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_polygon_projection_a381fe3a865c08da59431a0cb947c3e51}\index{PolygonProjection@{PolygonProjection}!doProjectionOverlap@{doProjectionOverlap}}
+\index{doProjectionOverlap@{doProjectionOverlap}!PolygonProjection@{PolygonProjection}}
+\doxysubsubsection{\texorpdfstring{doProjectionOverlap()}{doProjectionOverlap()}}
+{\footnotesize\ttfamily \label{struct_polygon_projection_a381fe3a865c08da59431a0cb947c3e51} 
+bool Polygon\+Projection\+::do\+Projection\+Overlap (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_polygon_projection}{Polygon\+Projection}} \&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verifica se há sobreposição entre duas projeções. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Outra projeção. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se houver sobreposição. 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/polygon.\+hpp\end{DoxyCompactItemize}

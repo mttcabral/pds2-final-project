@@ -1,0 +1,193 @@
+\doxysection{Game\+Object Class Reference}
+\hypertarget{class_game_object}{}\label{class_game_object}\index{GameObject@{GameObject}}
+
+
+Classe base para todos os objetos do jogo.  
+
+
+
+
+{\ttfamily \#include $<$game\+\_\+object.\+hpp$>$}
+
+Inheritance diagram for Game\+Object\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.827586cm]{class_game_object}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_point}{Point}} \mbox{\hyperlink{class_game_object_a66b5a9a0dc145a0919ac1756ff2c7e1f}{get\+Pos}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a posição do objeto. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_game_object_a988c84e3871b90c92c04ddc9483842db}{get\+PosX}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a coordenada X do objeto. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_game_object_a1aaa68396e509ea7f05e13b942d4e918}{get\+PosY}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a coordenada Y do objeto. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_game_object_acd4811284000c0989b6ffc4d41ddbe9b}{update\+Position}} ()=0
+\begin{DoxyCompactList}\small\item\em Atualiza a posição do objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_object_a9574dd653ec2144567ed3f27a2dca688}{Game\+Object}} (const \mbox{\hyperlink{struct_point}{Point}} \&position)
+\begin{DoxyCompactList}\small\item\em Construtor protegido com posição. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_game_object_a999f37cee25a36f2e5ec27934eda8393}{Game\+Object}} (float pX, float pY)
+\begin{DoxyCompactList}\small\item\em Construtor protegido com coordenadas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_a1059bb5df2b698bab091b6f8a96c357e}{set\+PosX}} (float x)
+\begin{DoxyCompactList}\small\item\em Define a coordenada X do objeto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_ab47dca30df3ab8b7cde8f35c8fb06625}{set\+PosY}} (float y)
+\begin{DoxyCompactList}\small\item\em Define a coordenada Y do objeto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_ab2fc7f77d90d6fb126f4e6ae8cd32855}{set\+Pos}} (const \mbox{\hyperlink{struct_point}{Point}} \&p)
+\begin{DoxyCompactList}\small\item\em Define a posição do objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe base para todos os objetos do jogo. 
+
+\label{doc-constructors}
+\Hypertarget{class_game_object_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_game_object_a9574dd653ec2144567ed3f27a2dca688}\index{GameObject@{GameObject}!GameObject@{GameObject}}
+\index{GameObject@{GameObject}!GameObject@{GameObject}}
+\doxysubsubsection{\texorpdfstring{GameObject()}{GameObject()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_game_object_a9574dd653ec2144567ed3f27a2dca688} 
+Game\+Object\+::\+Game\+Object (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_point}{Point}} \&}]{position}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Construtor protegido com posição. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & Posição inicial do objeto. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_object_a999f37cee25a36f2e5ec27934eda8393}\index{GameObject@{GameObject}!GameObject@{GameObject}}
+\index{GameObject@{GameObject}!GameObject@{GameObject}}
+\doxysubsubsection{\texorpdfstring{GameObject()}{GameObject()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_game_object_a999f37cee25a36f2e5ec27934eda8393} 
+Game\+Object\+::\+Game\+Object (\begin{DoxyParamCaption}\item[{float}]{pX}{, }\item[{float}]{pY}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Construtor protegido com coordenadas. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pX} & Coordenada X. \\
+\hline
+{\em pY} & Coordenada Y. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_game_object_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_game_object_a66b5a9a0dc145a0919ac1756ff2c7e1f}\index{GameObject@{GameObject}!getPos@{getPos}}
+\index{getPos@{getPos}!GameObject@{GameObject}}
+\doxysubsubsection{\texorpdfstring{getPos()}{getPos()}}
+{\footnotesize\ttfamily \label{class_game_object_a66b5a9a0dc145a0919ac1756ff2c7e1f} 
+\mbox{\hyperlink{struct_point}{Point}} Game\+Object\+::get\+Pos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna a posição do objeto. 
+
+\begin{DoxyReturn}{Returns}
+Posição atual. 
+\end{DoxyReturn}
+\Hypertarget{class_game_object_a988c84e3871b90c92c04ddc9483842db}\index{GameObject@{GameObject}!getPosX@{getPosX}}
+\index{getPosX@{getPosX}!GameObject@{GameObject}}
+\doxysubsubsection{\texorpdfstring{getPosX()}{getPosX()}}
+{\footnotesize\ttfamily \label{class_game_object_a988c84e3871b90c92c04ddc9483842db} 
+float Game\+Object\+::get\+PosX (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna a coordenada X do objeto. 
+
+\begin{DoxyReturn}{Returns}
+Coordenada X. 
+\end{DoxyReturn}
+\Hypertarget{class_game_object_a1aaa68396e509ea7f05e13b942d4e918}\index{GameObject@{GameObject}!getPosY@{getPosY}}
+\index{getPosY@{getPosY}!GameObject@{GameObject}}
+\doxysubsubsection{\texorpdfstring{getPosY()}{getPosY()}}
+{\footnotesize\ttfamily \label{class_game_object_a1aaa68396e509ea7f05e13b942d4e918} 
+float Game\+Object\+::get\+PosY (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna a coordenada Y do objeto. 
+
+\begin{DoxyReturn}{Returns}
+Coordenada Y. 
+\end{DoxyReturn}
+\Hypertarget{class_game_object_ab2fc7f77d90d6fb126f4e6ae8cd32855}\index{GameObject@{GameObject}!setPos@{setPos}}
+\index{setPos@{setPos}!GameObject@{GameObject}}
+\doxysubsubsection{\texorpdfstring{setPos()}{setPos()}}
+{\footnotesize\ttfamily \label{class_game_object_ab2fc7f77d90d6fb126f4e6ae8cd32855} 
+void Game\+Object\+::set\+Pos (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_point}{Point}} \&}]{p}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Define a posição do objeto. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Nova posição. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_object_a1059bb5df2b698bab091b6f8a96c357e}\index{GameObject@{GameObject}!setPosX@{setPosX}}
+\index{setPosX@{setPosX}!GameObject@{GameObject}}
+\doxysubsubsection{\texorpdfstring{setPosX()}{setPosX()}}
+{\footnotesize\ttfamily \label{class_game_object_a1059bb5df2b698bab091b6f8a96c357e} 
+void Game\+Object\+::set\+PosX (\begin{DoxyParamCaption}\item[{float}]{x}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Define a coordenada X do objeto. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Nova coordenada X. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_object_ab47dca30df3ab8b7cde8f35c8fb06625}\index{GameObject@{GameObject}!setPosY@{setPosY}}
+\index{setPosY@{setPosY}!GameObject@{GameObject}}
+\doxysubsubsection{\texorpdfstring{setPosY()}{setPosY()}}
+{\footnotesize\ttfamily \label{class_game_object_ab47dca30df3ab8b7cde8f35c8fb06625} 
+void Game\+Object\+::set\+PosY (\begin{DoxyParamCaption}\item[{float}]{y}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Define a coordenada Y do objeto. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em y} & Nova coordenada Y. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_object_acd4811284000c0989b6ffc4d41ddbe9b}\index{GameObject@{GameObject}!updatePosition@{updatePosition}}
+\index{updatePosition@{updatePosition}!GameObject@{GameObject}}
+\doxysubsubsection{\texorpdfstring{updatePosition()}{updatePosition()}}
+{\footnotesize\ttfamily \label{class_game_object_acd4811284000c0989b6ffc4d41ddbe9b} 
+virtual bool Game\+Object\+::update\+Position (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Atualiza a posição do objeto. 
+
+\begin{DoxyReturn}{Returns}
+true se a posição foi atualizada. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_background_a410fa2ac0d71c98e27d24c28a5eb75dd}{Background}}, \mbox{\hyperlink{class_eel_af8c488ecbac51778fbaaf921533d2350}{Eel}}, \mbox{\hyperlink{class_hitbox_a27f71f2fac4a02a14976f5f2346c6ebe}{Hitbox}}, \mbox{\hyperlink{class_pipe_acd8a1e8c39576844035a6261a1797993}{Pipe}}, \mbox{\hyperlink{class_player_ad3d749a1e151c94af17fc0a8b0bd3b2b}{Player}}, \mbox{\hyperlink{class_polygon_hitbox_a528b6c11efe6aa62142452bd4766bfcf}{Polygon\+Hitbox}}, \mbox{\hyperlink{class_rectangle_hitbox_a71234a8119f877dbf988b85bf943c892}{Rectangle\+Hitbox}}, and \mbox{\hyperlink{class_transition_screen_a0e07db77d74e1992e84dfaae7f8a20b1}{Transition\+Screen}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/game\+\_\+object.\+hpp\item 
+src/game\+\_\+object.\+cpp\end{DoxyCompactItemize}

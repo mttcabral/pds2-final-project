@@ -1,0 +1,223 @@
+\doxysection{Pipe Class Reference}
+\hypertarget{class_pipe}{}\label{class_pipe}\index{Pipe@{Pipe}}
+
+
+Classe básica para obstáculos do tipo \doxylink{class_pipe}{Pipe}.  
+
+
+
+
+{\ttfamily \#include $<$entity.\+hpp$>$}
+
+Inheritance diagram for Pipe\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{class_pipe}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_pipe_adcdadd9c7dc352f2d00c0989c5f89e9e}{Pipe}} (const \mbox{\hyperlink{struct_point}{Point}} \&pos, float w, float h, ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}image=nullptr, bool inv=false)
+\begin{DoxyCompactList}\small\item\em Construtor do \doxylink{class_pipe}{Pipe}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_pipe_acd8a1e8c39576844035a6261a1797993}{update\+Position}} () override
+\begin{DoxyCompactList}\small\item\em Atualiza a posição do obstáculo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_pipe_a778f02a547fa8a27f8b2577cfb85d5c7}{update\+Speed}} () override
+\begin{DoxyCompactList}\small\item\em Atualiza a velocidade do obstáculo. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_pipe_a8ff89beb4e2589a9fe18a397ae269ab4}{load\+Sprite}} ()
+\begin{DoxyCompactList}\small\item\em Carrega o sprite do obstáculo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_pipe_a0628794f8a04c822434c4a44dc47743d}{draw}} () override
+\begin{DoxyCompactList}\small\item\em Desenha o obstáculo na tela. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_entity_ad185ab442f37a9c672c397ef0e998b66}{Entity}} (const \mbox{\hyperlink{struct_point}{Point}} \&pos, const \mbox{\hyperlink{struct_point}{Point}} \&spd)
+\begin{DoxyCompactList}\small\item\em Construtor da entidade com posição e velocidade. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_entity_a7ffca71f124858906f8df8b6885f6535}{Entity}} (const \mbox{\hyperlink{struct_point}{Point}} \&pos)
+\begin{DoxyCompactList}\small\item\em Construtor da entidade apenas com posição. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_hitbox}{Hitbox}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_entity_a10a53e3e42b5a700be7303cdb16e8edd}{get\+Hitbox}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a hitbox da entidade. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Entity} ()
+\begin{DoxyCompactList}\small\item\em Destrutor virtual. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_drawable}{Drawable}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_drawable_a9dafc04b0493ca752f6a4cd2ad32eedc}{add\+Speed\+Vector}} (const \mbox{\hyperlink{struct_point}{Point}} \&spd)
+\begin{DoxyCompactList}\small\item\em Adiciona um vetor à velocidade atual. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_drawable_a0dd188182f57a376f063c9b4c21f4325}{add\+SpeedX}} (float x)
+\begin{DoxyCompactList}\small\item\em Adiciona um valor à velocidade X. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_drawable_a1b19845978be055574dfe5f0828b1201}{add\+SpeedY}} (float y)
+\begin{DoxyCompactList}\small\item\em Adiciona um valor à velocidade Y. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_point}{Point}} \mbox{\hyperlink{class_drawable_a02532cbe0c1a97acc722a32bfc94606e}{get\+Speed}} ()
+\begin{DoxyCompactList}\small\item\em Retorna o vetor de velocidade. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_drawable_ac96da92f873e7422d66e1e7bb6188202}{get\+SpeedX}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a velocidade no eixo X. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_drawable_a57afa6b34e3c773f888deadc00040504}{get\+SpeedY}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a velocidade no eixo Y. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_game_object}{Game\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_point}{Point}} \mbox{\hyperlink{class_game_object_a66b5a9a0dc145a0919ac1756ff2c7e1f}{get\+Pos}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a posição do objeto. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_game_object_a988c84e3871b90c92c04ddc9483842db}{get\+PosX}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a coordenada X do objeto. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_game_object_a1aaa68396e509ea7f05e13b942d4e918}{get\+PosY}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a coordenada Y do objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_pipe_a2ab68de1509c6e982b4e1deaabf6c530}{update\+Screen\+Speed}} (float s)
+\begin{DoxyCompactList}\small\item\em Atualiza a velocidade global dos obstáculos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_pipe_aa202704a309c03aa6de9c94d3646c342}\label{class_pipe_aa202704a309c03aa6de9c94d3646c342} 
+static float {\bfseries screen\+Speed} = -\/7
+\begin{DoxyCompactList}\small\item\em Velocidade global dos obstáculos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_drawable}{Drawable}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_drawable_a59a2d9e82a5e9065f9fd5eaa8b7ac273}{Drawable}} (const \mbox{\hyperlink{struct_point}{Point}} \&pos, const \mbox{\hyperlink{struct_point}{Point}} \&spd)
+\begin{DoxyCompactList}\small\item\em Construtor protegido com posição e velocidade. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_drawable_ad7331f158072254cd5fa0c0d03caf1f9}{Drawable}} (const \mbox{\hyperlink{struct_point}{Point}} \&pos)
+\begin{DoxyCompactList}\small\item\em Construtor protegido apenas com posição. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_drawable_adfecd91f96242422c8c06f4472d385de}{set\+SpeedX}} (float x)
+\begin{DoxyCompactList}\small\item\em Define a velocidade no eixo X. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_drawable_a1c561877612a240a357eae98b88ae93d}{set\+SpeedY}} (float y)
+\begin{DoxyCompactList}\small\item\em Define a velocidade no eixo Y. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_drawable_a5fdbfd8ee52bd2d974cf08edd67fd3d6}{set\+Speed}} (const \mbox{\hyperlink{struct_point}{Point}} \&pos)
+\begin{DoxyCompactList}\small\item\em Define o vetor de velocidade. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_game_object}{Game\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_object_a9574dd653ec2144567ed3f27a2dca688}{Game\+Object}} (const \mbox{\hyperlink{struct_point}{Point}} \&position)
+\begin{DoxyCompactList}\small\item\em Construtor protegido com posição. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_game_object_a999f37cee25a36f2e5ec27934eda8393}{Game\+Object}} (float pX, float pY)
+\begin{DoxyCompactList}\small\item\em Construtor protegido com coordenadas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_a1059bb5df2b698bab091b6f8a96c357e}{set\+PosX}} (float x)
+\begin{DoxyCompactList}\small\item\em Define a coordenada X do objeto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_ab47dca30df3ab8b7cde8f35c8fb06625}{set\+PosY}} (float y)
+\begin{DoxyCompactList}\small\item\em Define a coordenada Y do objeto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_ab2fc7f77d90d6fb126f4e6ae8cd32855}{set\+Pos}} (const \mbox{\hyperlink{struct_point}{Point}} \&p)
+\begin{DoxyCompactList}\small\item\em Define a posição do objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_hitbox}{Hitbox}} \texorpdfstring{$\ast$}{*} {\bfseries hb}
+\begin{DoxyCompactList}\small\item\em Ponteiro para a hitbox da entidade. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe básica para obstáculos do tipo \doxylink{class_pipe}{Pipe}. 
+
+\label{doc-constructors}
+\Hypertarget{class_pipe_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_pipe_adcdadd9c7dc352f2d00c0989c5f89e9e}\index{Pipe@{Pipe}!Pipe@{Pipe}}
+\index{Pipe@{Pipe}!Pipe@{Pipe}}
+\doxysubsubsection{\texorpdfstring{Pipe()}{Pipe()}}
+{\footnotesize\ttfamily \label{class_pipe_adcdadd9c7dc352f2d00c0989c5f89e9e} 
+Pipe\+::\+Pipe (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_point}{Point}} \&}]{pos}{, }\item[{float}]{w}{, }\item[{float}]{h}{, }\item[{ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}}]{image}{ = {\ttfamily nullptr}, }\item[{bool}]{inv}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Construtor do \doxylink{class_pipe}{Pipe}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & Posição inicial. \\
+\hline
+{\em w} & Largura. \\
+\hline
+{\em h} & Altura. \\
+\hline
+{\em image} & Bitmap do obstáculo. \\
+\hline
+{\em inv} & Indica se está invertido. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_pipe_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_pipe_a0628794f8a04c822434c4a44dc47743d}\index{Pipe@{Pipe}!draw@{draw}}
+\index{draw@{draw}!Pipe@{Pipe}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{class_pipe_a0628794f8a04c822434c4a44dc47743d} 
+void Pipe\+::draw (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Desenha o obstáculo na tela. 
+
+
+
+Implements \mbox{\hyperlink{class_drawable_aa37d7b328240d343134adcfe5e4dcd38}{Drawable}}.
+
+\Hypertarget{class_pipe_a8ff89beb4e2589a9fe18a397ae269ab4}\index{Pipe@{Pipe}!loadSprite@{loadSprite}}
+\index{loadSprite@{loadSprite}!Pipe@{Pipe}}
+\doxysubsubsection{\texorpdfstring{loadSprite()}{loadSprite()}}
+{\footnotesize\ttfamily \label{class_pipe_a8ff89beb4e2589a9fe18a397ae269ab4} 
+bool Pipe\+::load\+Sprite (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Carrega o sprite do obstáculo. 
+
+\begin{DoxyReturn}{Returns}
+true se carregado com sucesso. 
+\end{DoxyReturn}
+\Hypertarget{class_pipe_acd8a1e8c39576844035a6261a1797993}\index{Pipe@{Pipe}!updatePosition@{updatePosition}}
+\index{updatePosition@{updatePosition}!Pipe@{Pipe}}
+\doxysubsubsection{\texorpdfstring{updatePosition()}{updatePosition()}}
+{\footnotesize\ttfamily \label{class_pipe_acd8a1e8c39576844035a6261a1797993} 
+bool Pipe\+::update\+Position (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Atualiza a posição do obstáculo. 
+
+\begin{DoxyReturn}{Returns}
+true se a posição foi atualizada. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_game_object_acd4811284000c0989b6ffc4d41ddbe9b}{Game\+Object}}.
+
+\Hypertarget{class_pipe_a2ab68de1509c6e982b4e1deaabf6c530}\index{Pipe@{Pipe}!updateScreenSpeed@{updateScreenSpeed}}
+\index{updateScreenSpeed@{updateScreenSpeed}!Pipe@{Pipe}}
+\doxysubsubsection{\texorpdfstring{updateScreenSpeed()}{updateScreenSpeed()}}
+{\footnotesize\ttfamily \label{class_pipe_a2ab68de1509c6e982b4e1deaabf6c530} 
+void Pipe\+::update\+Screen\+Speed (\begin{DoxyParamCaption}\item[{float}]{s}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Atualiza a velocidade global dos obstáculos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Nova velocidade. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_pipe_a778f02a547fa8a27f8b2577cfb85d5c7}\index{Pipe@{Pipe}!updateSpeed@{updateSpeed}}
+\index{updateSpeed@{updateSpeed}!Pipe@{Pipe}}
+\doxysubsubsection{\texorpdfstring{updateSpeed()}{updateSpeed()}}
+{\footnotesize\ttfamily \label{class_pipe_a778f02a547fa8a27f8b2577cfb85d5c7} 
+void Pipe\+::update\+Speed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Atualiza a velocidade do obstáculo. 
+
+
+
+Implements \mbox{\hyperlink{class_drawable_afc1482e540c8a73eaf4d1e7f2f5dd660}{Drawable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/entity.\+hpp\item 
+src/entity.\+cpp\end{DoxyCompactItemize}

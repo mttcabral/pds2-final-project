@@ -1,0 +1,512 @@
+\begin{theindex}
+
+  \item {addAngle}
+    \subitem {Polygon}, \hyperpage{56}
+  \item {addNewProfile}
+    \subitem {LeaderBoard}, \hyperpage{40}
+  \item {addObstacle}
+    \subitem {Handler}, \hyperpage{35}
+  \item {addSpeedVector}
+    \subitem {Drawable}, \hyperpage{21}
+  \item {addSpeedX}
+    \subitem {Drawable}, \hyperpage{22}
+  \item {addSpeedY}
+    \subitem {Drawable}, \hyperpage{22}
+  \item {advanceFrame}
+    \subitem {Spritesheet}, \hyperpage{86}
+    \subitem {TriggerSpritesheet}, \hyperpage{95}
+
+  \indexspace
+
+  \item {Background}, \hyperpage{7}
+    \subitem {Background}, \hyperpage{9}
+    \subitem {draw}, \hyperpage{9}
+    \subitem {updatePosition}, \hyperpage{9}
+    \subitem {updateSpeed}, \hyperpage{10}
+  \item {BackgroundHandler}, \hyperpage{10}
+    \subitem {BackgroundHandler}, \hyperpage{11}
+  \item {Base}, \hyperpage{11}
+    \subitem {Base}, \hyperpage{12}
+    \subitem {getBestProfiles}, \hyperpage{13}
+    \subitem {inBase}, \hyperpage{13}
+    \subitem {operator=}, \hyperpage{13}
+    \subitem {removeProfile}, \hyperpage{14}
+    \subitem {saveBase}, \hyperpage{14}
+    \subitem {updateProfiles}, \hyperpage{14}
+
+  \indexspace
+
+  \item {checkCollisions}
+    \subitem {Handler}, \hyperpage{35}
+  \item {cleanBuffer}
+    \subitem {Register}, \hyperpage{75}
+  \item {Color}, \hyperpage{15}
+    \subitem {Color}, \hyperpage{15}
+    \subitem {operator/}, \hyperpage{16}
+    \subitem {operator=}, \hyperpage{16}
+  \item {Cooldown}, \hyperpage{16}
+    \subitem {Cooldown}, \hyperpage{17}
+    \subitem {getCurrentPorcentage}, \hyperpage{18}
+    \subitem {getCurrentTimeLeft}, \hyperpage{18}
+    \subitem {getRechargeTime}, \hyperpage{18}
+    \subitem {isCooldownUp}, \hyperpage{18}
+    \subitem {setRechargeTime}, \hyperpage{18}
+    \subitem {setUpdateFrequency}, \hyperpage{19}
+
+  \indexspace
+
+  \item {deleteInBuffer}
+    \subitem {Register}, \hyperpage{75}
+  \item {doProjectionOverlap}
+    \subitem {PolygonProjection}, \hyperpage{61}
+  \item {draw}
+    \subitem {Background}, \hyperpage{9}
+    \subitem {Drawable}, \hyperpage{22}
+    \subitem {Eel}, \hyperpage{28}
+    \subitem {Pipe}, \hyperpage{46}
+    \subitem {Player}, \hyperpage{49}
+    \subitem {TransitionScreen}, \hyperpage{91}
+  \item {Drawable}, \hyperpage{19}
+    \subitem {addSpeedVector}, \hyperpage{21}
+    \subitem {addSpeedX}, \hyperpage{22}
+    \subitem {addSpeedY}, \hyperpage{22}
+    \subitem {draw}, \hyperpage{22}
+    \subitem {Drawable}, \hyperpage{21}
+    \subitem {getSpeed}, \hyperpage{22}
+    \subitem {getSpeedX}, \hyperpage{22}
+    \subitem {getSpeedY}, \hyperpage{23}
+    \subitem {setSpeed}, \hyperpage{23}
+    \subitem {setSpeedX}, \hyperpage{23}
+    \subitem {setSpeedY}, \hyperpage{23}
+    \subitem {updateSpeed}, \hyperpage{24}
+  \item {drawLeaderBoard}
+    \subitem {LeaderBoard}, \hyperpage{41}
+  \item {drawRegister}
+    \subitem {Register}, \hyperpage{75}
+
+  \indexspace
+
+  \item {Eel}, \hyperpage{24}
+    \subitem {draw}, \hyperpage{28}
+    \subitem {Eel}, \hyperpage{27}
+    \subitem {updatePosition}, \hyperpage{28}
+  \item {Entity}, \hyperpage{28}
+    \subitem {Entity}, \hyperpage{30}
+    \subitem {getHitbox}, \hyperpage{31}
+
+  \indexspace
+
+  \item {GameObject}, \hyperpage{31}
+    \subitem {GameObject}, \hyperpage{32}
+    \subitem {getPos}, \hyperpage{33}
+    \subitem {getPosX}, \hyperpage{33}
+    \subitem {getPosY}, \hyperpage{33}
+    \subitem {setPos}, \hyperpage{33}
+    \subitem {setPosX}, \hyperpage{33}
+    \subitem {setPosY}, \hyperpage{34}
+    \subitem {updatePosition}, \hyperpage{34}
+  \item {gameOn}
+    \subitem {Handler}, \hyperpage{35}
+  \item {getAngle}
+    \subitem {Hitbox}, \hyperpage{38}
+    \subitem {PolygonHitbox}, \hyperpage{59}
+    \subitem {RectangleHitbox}, \hyperpage{69}
+  \item {getBestProfiles}
+    \subitem {Base}, \hyperpage{13}
+  \item {getBufferContent}
+    \subitem {Register}, \hyperpage{75}
+  \item {getBufferTextColor}
+    \subitem {Register}, \hyperpage{75}
+  \item {getCurrentFrame}
+    \subitem {Spritesheet}, \hyperpage{86}
+  \item {getCurrentIndex}
+    \subitem {Spritesheet}, \hyperpage{86}
+  \item {getCurrentPorcentage}
+    \subitem {Cooldown}, \hyperpage{18}
+  \item {getCurrentTimeLeft}
+    \subitem {Cooldown}, \hyperpage{18}
+  \item {getCycleCount}
+    \subitem {TriggerSpritesheet}, \hyperpage{95}
+  \item {getEdgeLength}
+    \subitem {PolygonHitbox}, \hyperpage{59}
+  \item {getFrame}
+    \subitem {Spritesheet}, \hyperpage{86}
+  \item {getFrameCount}
+    \subitem {Spritesheet}, \hyperpage{86}
+  \item {getFrameHeight}
+    \subitem {Spritesheet}, \hyperpage{87}
+  \item {getFrameWidth}
+    \subitem {Spritesheet}, \hyperpage{87}
+  \item {getHeight}
+    \subitem {RectangleHitbox}, \hyperpage{69}
+  \item {getHitbox}
+    \subitem {Entity}, \hyperpage{31}
+  \item {getIthCenterX}
+    \subitem {Register}, \hyperpage{75}
+  \item {getIthCenterY}
+    \subitem {Register}, \hyperpage{76}
+  \item {getIthContent}
+    \subitem {Register}, \hyperpage{76}
+  \item {getIthTextColor}
+    \subitem {Register}, \hyperpage{76}
+  \item {getMessageContent}
+    \subitem {Register}, \hyperpage{77}
+  \item {getMessageTextColor}
+    \subitem {Register}, \hyperpage{77}
+  \item {getPolygon}
+    \subitem {Hitbox}, \hyperpage{38}
+    \subitem {Polygon}, \hyperpage{56}
+    \subitem {PolygonHitbox}, \hyperpage{59}
+    \subitem {Rectangle}, \hyperpage{66}
+    \subitem {RectangleHitbox}, \hyperpage{69}
+    \subitem {RegularPolygon}, \hyperpage{81}
+  \item {getPos}
+    \subitem {GameObject}, \hyperpage{33}
+  \item {getPosX}
+    \subitem {GameObject}, \hyperpage{33}
+  \item {getPosY}
+    \subitem {GameObject}, \hyperpage{33}
+  \item {getRechargeTime}
+    \subitem {Cooldown}, \hyperpage{18}
+  \item {getRotatedVertices}
+    \subitem {Polygon}, \hyperpage{56}
+  \item {getSheet}
+    \subitem {Spritesheet}, \hyperpage{87}
+  \item {getSideCount}
+    \subitem {PolygonHitbox}, \hyperpage{59}
+  \item {getSpeed}
+    \subitem {Drawable}, \hyperpage{22}
+  \item {getSpeedX}
+    \subitem {Drawable}, \hyperpage{22}
+  \item {getSpeedY}
+    \subitem {Drawable}, \hyperpage{23}
+  \item {getStage}
+    \subitem {TransitionScreen}, \hyperpage{91}
+  \item {getTittleContent}
+    \subitem {Register}, \hyperpage{77}
+  \item {getTittleTextColor}
+    \subitem {Register}, \hyperpage{77}
+  \item {getVertices}
+    \subitem {PolygonHitbox}, \hyperpage{59}
+    \subitem {RectangleHitbox}, \hyperpage{69}
+  \item {getWidth}
+    \subitem {RectangleHitbox}, \hyperpage{69}
+
+  \indexspace
+
+  \item {Handler}, \hyperpage{34}
+    \subitem {addObstacle}, \hyperpage{35}
+    \subitem {checkCollisions}, \hyperpage{35}
+    \subitem {gameOn}, \hyperpage{35}
+    \subitem {outOfBorders}, \hyperpage{35}
+    \subitem {sortBetween}, \hyperpage{36}
+  \item {Hitbox}, \hyperpage{36}
+    \subitem {getAngle}, \hyperpage{38}
+    \subitem {getPolygon}, \hyperpage{38}
+    \subitem {Hitbox}, \hyperpage{37}
+    \subitem {rotateHitbox}, \hyperpage{38}
+    \subitem {setTarget}, \hyperpage{38}
+    \subitem {updatePosition}, \hyperpage{39}
+
+  \indexspace
+
+  \item {inBase}
+    \subitem {Base}, \hyperpage{13}
+  \item {include/animation.hpp}, \hyperpage{97}
+  \item {include/base.hpp}, \hyperpage{98}
+  \item {include/cooldown.hpp}, \hyperpage{99}
+  \item {include/entity.hpp}, \hyperpage{100}
+  \item {include/game\_object.hpp}, \hyperpage{101}
+  \item {include/game\_object\_handler.hpp}, \hyperpage{102}
+  \item {include/hitbox.hpp}, \hyperpage{102}
+  \item {include/initializer\_allegro.hpp}, \hyperpage{103}
+  \item {include/interface.hpp}, \hyperpage{105}
+  \item {include/leaderboard.hpp}, \hyperpage{105}
+  \item {include/passive.hpp}, \hyperpage{106}
+  \item {include/polygon.hpp}, \hyperpage{107}
+  \item {include/register.hpp}, \hyperpage{109}
+  \item {include/sound.hpp}, \hyperpage{111}
+  \item {include/table.hpp}, \hyperpage{111}
+  \item {isActive}
+    \subitem {TransitionScreen}, \hyperpage{92}
+    \subitem {TriggerSpritesheet}, \hyperpage{95}
+  \item {isCooldownUp}
+    \subitem {Cooldown}, \hyperpage{18}
+
+  \indexspace
+
+  \item {LeaderBoard}, \hyperpage{39}
+    \subitem {addNewProfile}, \hyperpage{40}
+    \subitem {drawLeaderBoard}, \hyperpage{41}
+    \subitem {LeaderBoard}, \hyperpage{40}
+    \subitem {save}, \hyperpage{41}
+    \subitem {setFirstRowColor}, \hyperpage{41}
+    \subitem {setFirstRowTextColor}, \hyperpage{41}
+    \subitem {setOthersRowsColor}, \hyperpage{42}
+    \subitem {setOthersRowsTextColor}, \hyperpage{42}
+    \subitem {setSecondRowColor}, \hyperpage{42}
+    \subitem {setSecondRowTextColor}, \hyperpage{42}
+    \subitem {setThirdRowColor}, \hyperpage{43}
+    \subitem {setThirdRowTextColor}, \hyperpage{43}
+  \item {loadSprite}
+    \subitem {Pipe}, \hyperpage{46}
+
+  \indexspace
+
+  \item {operator$<$}
+    \subitem {Profile}, \hyperpage{63}
+  \item {operator$>$}
+    \subitem {Profile}, \hyperpage{64}
+  \item {operator+}
+    \subitem {PointT}, \hyperpage{53}
+  \item {operator-\/}
+    \subitem {PointT}, \hyperpage{54}
+  \item {operator/}
+    \subitem {Color}, \hyperpage{16}
+    \subitem {PointT}, \hyperpage{54}
+  \item {operator=}
+    \subitem {Base}, \hyperpage{13}
+    \subitem {Color}, \hyperpage{16}
+    \subitem {PointT}, \hyperpage{54}
+    \subitem {Profile}, \hyperpage{63}
+    \subitem {RectangleT}, \hyperpage{72}
+    \subitem {Register}, \hyperpage{77}
+    \subitem {Row}, \hyperpage{83}
+    \subitem {Table}, \hyperpage{89}
+  \item {operator==}
+    \subitem {Profile}, \hyperpage{64}
+  \item {operator\texorpdfstring{$\ast$}{*}}
+    \subitem {PointT}, \hyperpage{53}
+  \item {outOfBorders}
+    \subitem {Handler}, \hyperpage{35}
+
+  \indexspace
+
+  \item {Pipe}, \hyperpage{43}
+    \subitem {draw}, \hyperpage{46}
+    \subitem {loadSprite}, \hyperpage{46}
+    \subitem {Pipe}, \hyperpage{46}
+    \subitem {updatePosition}, \hyperpage{46}
+    \subitem {updateScreenSpeed}, \hyperpage{46}
+    \subitem {updateSpeed}, \hyperpage{47}
+  \item {Player}, \hyperpage{47}
+    \subitem {draw}, \hyperpage{49}
+    \subitem {setPlayerState}, \hyperpage{49}
+    \subitem {updatePosition}, \hyperpage{49}
+    \subitem {updateSpeed}, \hyperpage{50}
+  \item {Point}, \hyperpage{50}
+    \subitem {Point}, \hyperpage{51}
+    \subitem {rotatePoint}, \hyperpage{51}
+    \subitem {rotateVector}, \hyperpage{51}
+  \item {PointT}, \hyperpage{52}
+    \subitem {operator+}, \hyperpage{53}
+    \subitem {operator-\/}, \hyperpage{54}
+    \subitem {operator/}, \hyperpage{54}
+    \subitem {operator=}, \hyperpage{54}
+    \subitem {operator\texorpdfstring{$\ast$}{*}}, \hyperpage{53}
+    \subitem {PointT}, \hyperpage{53}
+  \item {Polygon}, \hyperpage{55}
+    \subitem {addAngle}, \hyperpage{56}
+    \subitem {getPolygon}, \hyperpage{56}
+    \subitem {getRotatedVertices}, \hyperpage{56}
+    \subitem {updateVertices}, \hyperpage{57}
+  \item {PolygonHitbox}, \hyperpage{57}
+    \subitem {getAngle}, \hyperpage{59}
+    \subitem {getEdgeLength}, \hyperpage{59}
+    \subitem {getPolygon}, \hyperpage{59}
+    \subitem {getSideCount}, \hyperpage{59}
+    \subitem {getVertices}, \hyperpage{59}
+    \subitem {PolygonHitbox}, \hyperpage{58}
+    \subitem {rotateHitbox}, \hyperpage{60}
+    \subitem {updatePosition}, \hyperpage{60}
+  \item {PolygonProjection}, \hyperpage{60}
+    \subitem {doProjectionOverlap}, \hyperpage{61}
+    \subitem {PolygonProjection}, \hyperpage{61}
+  \item {Profile}, \hyperpage{62}
+    \subitem {operator$<$}, \hyperpage{63}
+    \subitem {operator$>$}, \hyperpage{64}
+    \subitem {operator=}, \hyperpage{63}
+    \subitem {operator==}, \hyperpage{64}
+    \subitem {Profile}, \hyperpage{62, 63}
+
+  \indexspace
+
+  \item {Rectangle}, \hyperpage{65}
+    \subitem {getPolygon}, \hyperpage{66}
+    \subitem {Rectangle}, \hyperpage{66}
+    \subitem {updateVertices}, \hyperpage{66}
+  \item {RectangleHitbox}, \hyperpage{67}
+    \subitem {getAngle}, \hyperpage{69}
+    \subitem {getHeight}, \hyperpage{69}
+    \subitem {getPolygon}, \hyperpage{69}
+    \subitem {getVertices}, \hyperpage{69}
+    \subitem {getWidth}, \hyperpage{69}
+    \subitem {RectangleHitbox}, \hyperpage{68}
+    \subitem {rotateHitbox}, \hyperpage{70}
+    \subitem {updatePosition}, \hyperpage{70}
+  \item {RectangleT}, \hyperpage{70}
+    \subitem {operator=}, \hyperpage{72}
+    \subitem {RectangleT}, \hyperpage{71, 72}
+  \item {Register}, \hyperpage{72}
+    \subitem {cleanBuffer}, \hyperpage{75}
+    \subitem {deleteInBuffer}, \hyperpage{75}
+    \subitem {drawRegister}, \hyperpage{75}
+    \subitem {getBufferContent}, \hyperpage{75}
+    \subitem {getBufferTextColor}, \hyperpage{75}
+    \subitem {getIthCenterX}, \hyperpage{75}
+    \subitem {getIthCenterY}, \hyperpage{76}
+    \subitem {getIthContent}, \hyperpage{76}
+    \subitem {getIthTextColor}, \hyperpage{76}
+    \subitem {getMessageContent}, \hyperpage{77}
+    \subitem {getMessageTextColor}, \hyperpage{77}
+    \subitem {getTittleContent}, \hyperpage{77}
+    \subitem {getTittleTextColor}, \hyperpage{77}
+    \subitem {operator=}, \hyperpage{77}
+    \subitem {Register}, \hyperpage{74}
+    \subitem {setBufferTextColor}, \hyperpage{78}
+    \subitem {setMessageContent}, \hyperpage{78}
+    \subitem {setMessageTextColor}, \hyperpage{78}
+    \subitem {setTittleContent}, \hyperpage{78}
+    \subitem {setTittleTextColor}, \hyperpage{79}
+    \subitem {writeInBuffer}, \hyperpage{79}
+  \item {RegularPolygon}, \hyperpage{79}
+    \subitem {getPolygon}, \hyperpage{81}
+    \subitem {RegularPolygon}, \hyperpage{81}
+    \subitem {updateVertices}, \hyperpage{81}
+  \item {removeProfile}
+    \subitem {Base}, \hyperpage{14}
+  \item {resetAnimation}
+    \subitem {Spritesheet}, \hyperpage{87}
+    \subitem {TriggerSpritesheet}, \hyperpage{95}
+  \item {rotateHitbox}
+    \subitem {Hitbox}, \hyperpage{38}
+    \subitem {PolygonHitbox}, \hyperpage{60}
+    \subitem {RectangleHitbox}, \hyperpage{70}
+  \item {rotatePoint}
+    \subitem {Point}, \hyperpage{51}
+  \item {rotateVector}
+    \subitem {Point}, \hyperpage{51}
+  \item {Row}, \hyperpage{82}
+    \subitem {operator=}, \hyperpage{83}
+    \subitem {Row}, \hyperpage{82, 83}
+
+  \indexspace
+
+  \item {save}
+    \subitem {LeaderBoard}, \hyperpage{41}
+  \item {saveBase}
+    \subitem {Base}, \hyperpage{14}
+  \item {setBufferTextColor}
+    \subitem {Register}, \hyperpage{78}
+  \item {setCycleCount}
+    \subitem {TriggerSpritesheet}, \hyperpage{95}
+  \item {setFirstRowColor}
+    \subitem {LeaderBoard}, \hyperpage{41}
+  \item {setFirstRowTextColor}
+    \subitem {LeaderBoard}, \hyperpage{41}
+  \item {setMessageContent}
+    \subitem {Register}, \hyperpage{78}
+  \item {setMessageTextColor}
+    \subitem {Register}, \hyperpage{78}
+  \item {setOthersRowsColor}
+    \subitem {LeaderBoard}, \hyperpage{42}
+  \item {setOthersRowsTextColor}
+    \subitem {LeaderBoard}, \hyperpage{42}
+  \item {setPlayerState}
+    \subitem {Player}, \hyperpage{49}
+  \item {setPos}
+    \subitem {GameObject}, \hyperpage{33}
+  \item {setPosX}
+    \subitem {GameObject}, \hyperpage{33}
+  \item {setPosY}
+    \subitem {GameObject}, \hyperpage{34}
+  \item {setRechargeTime}
+    \subitem {Cooldown}, \hyperpage{18}
+  \item {setSecondRowColor}
+    \subitem {LeaderBoard}, \hyperpage{42}
+  \item {setSecondRowTextColor}
+    \subitem {LeaderBoard}, \hyperpage{42}
+  \item {setSpeed}
+    \subitem {Drawable}, \hyperpage{23}
+  \item {setSpeedX}
+    \subitem {Drawable}, \hyperpage{23}
+  \item {setSpeedY}
+    \subitem {Drawable}, \hyperpage{23}
+  \item {setTarget}
+    \subitem {Hitbox}, \hyperpage{38}
+  \item {setThirdRowColor}
+    \subitem {LeaderBoard}, \hyperpage{43}
+  \item {setThirdRowTextColor}
+    \subitem {LeaderBoard}, \hyperpage{43}
+  \item {setTittleContent}
+    \subitem {Register}, \hyperpage{78}
+  \item {setTittleTextColor}
+    \subitem {Register}, \hyperpage{79}
+  \item {setUpdateFrequency}
+    \subitem {Cooldown}, \hyperpage{19}
+  \item {sortBetween}
+    \subitem {Handler}, \hyperpage{36}
+  \item {Spritesheet}, \hyperpage{84}
+    \subitem {advanceFrame}, \hyperpage{86}
+    \subitem {getCurrentFrame}, \hyperpage{86}
+    \subitem {getCurrentIndex}, \hyperpage{86}
+    \subitem {getFrame}, \hyperpage{86}
+    \subitem {getFrameCount}, \hyperpage{86}
+    \subitem {getFrameHeight}, \hyperpage{87}
+    \subitem {getFrameWidth}, \hyperpage{87}
+    \subitem {getSheet}, \hyperpage{87}
+    \subitem {resetAnimation}, \hyperpage{87}
+    \subitem {Spritesheet}, \hyperpage{85}
+
+  \indexspace
+
+  \item {Table}, \hyperpage{88}
+    \subitem {operator=}, \hyperpage{89}
+    \subitem {Table}, \hyperpage{88}
+  \item {TransitionScreen}, \hyperpage{89}
+    \subitem {draw}, \hyperpage{91}
+    \subitem {getStage}, \hyperpage{91}
+    \subitem {isActive}, \hyperpage{92}
+    \subitem {updatePosition}, \hyperpage{92}
+    \subitem {updateSpeed}, \hyperpage{92}
+  \item {TriggerSpritesheet}, \hyperpage{93}
+    \subitem {advanceFrame}, \hyperpage{95}
+    \subitem {getCycleCount}, \hyperpage{95}
+    \subitem {isActive}, \hyperpage{95}
+    \subitem {resetAnimation}, \hyperpage{95}
+    \subitem {setCycleCount}, \hyperpage{95}
+    \subitem {TriggerSpritesheet}, \hyperpage{94}
+
+  \indexspace
+
+  \item {updatePosition}
+    \subitem {Background}, \hyperpage{9}
+    \subitem {Eel}, \hyperpage{28}
+    \subitem {GameObject}, \hyperpage{34}
+    \subitem {Hitbox}, \hyperpage{39}
+    \subitem {Pipe}, \hyperpage{46}
+    \subitem {Player}, \hyperpage{49}
+    \subitem {PolygonHitbox}, \hyperpage{60}
+    \subitem {RectangleHitbox}, \hyperpage{70}
+    \subitem {TransitionScreen}, \hyperpage{92}
+  \item {updateProfiles}
+    \subitem {Base}, \hyperpage{14}
+  \item {updateScreenSpeed}
+    \subitem {Pipe}, \hyperpage{46}
+  \item {updateSpeed}
+    \subitem {Background}, \hyperpage{10}
+    \subitem {Drawable}, \hyperpage{24}
+    \subitem {Pipe}, \hyperpage{47}
+    \subitem {Player}, \hyperpage{50}
+    \subitem {TransitionScreen}, \hyperpage{92}
+  \item {updateVertices}
+    \subitem {Polygon}, \hyperpage{57}
+    \subitem {Rectangle}, \hyperpage{66}
+    \subitem {RegularPolygon}, \hyperpage{81}
+
+  \indexspace
+
+  \item {writeInBuffer}
+    \subitem {Register}, \hyperpage{79}
+
+\end{theindex}

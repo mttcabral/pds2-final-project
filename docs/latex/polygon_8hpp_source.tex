@@ -1,0 +1,222 @@
+\doxysection{polygon.\+hpp}
+\hypertarget{polygon_8hpp_source}{}\label{polygon_8hpp_source}\index{include/polygon.hpp@{include/polygon.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ POLYGON\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ POLYGON\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ PI\ =\ acos(-\/1.0);\ \textcolor{comment}{//\ PI\ calculated\ with\ arccos(-\/1)}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ Vector/Point\ struct,\ contains\ a\ pair\ of\ two\ float\ coordinates}}
+\DoxyCodeLine{00017\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_point_a30bc8409287de4f43e160664be834636}{Point}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{float}\ x,\ y;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{struct_point_a30bc8409287de4f43e160664be834636}{Point}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y)\ :\ x(x),\ y(y)\ \{\}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{struct_point_ad92f2337b839a94ce97dcdb439b4325a}{Point}}()\ :\ x(0),\ y(0)\ \{\}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{struct_point_a30bc8409287de4f43e160664be834636}{Point}}\ \mbox{\hyperlink{struct_point_ac2d6398c8c23a298fc321fbca1891fc2}{operator+}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point_a30bc8409287de4f43e160664be834636}{Point}}\ \&p2)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00037\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_point_ad92f2337b839a94ce97dcdb439b4325a}{Point}}(x\ +\ p2.x,\ y\ +\ p2.y);}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{struct_point_a30bc8409287de4f43e160664be834636}{Point}}\ \mbox{\hyperlink{struct_point_a3b2858778026b293ff8920183f0ede45}{operator-\/}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point_a30bc8409287de4f43e160664be834636}{Point}}\ \&p2)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00045\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_point_ad92f2337b839a94ce97dcdb439b4325a}{Point}}(x\ -\/\ p2.x,\ y\ -\/\ p2.y);}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_point_a14a856cec598489294074b72e4f6fad3}{operator<}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point_a30bc8409287de4f43e160664be834636}{Point}}\ \&p2)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00053\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (x\ !=\ p2.x)\ ?\ x\ <\ p2.x\ :\ y\ <\ p2.y;}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{struct_point_a30bc8409287de4f43e160664be834636}{Point}}\ \mbox{\hyperlink{struct_point_a32a100ba2c96f90025b00b4dd2c77ad3}{getEdgeVector}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point_a30bc8409287de4f43e160664be834636}{Point}}\ \&p1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point_a30bc8409287de4f43e160664be834636}{Point}}\ \&p2)}
+\DoxyCodeLine{00061\ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ p2\ -\/\ p1;}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{struct_point_a30bc8409287de4f43e160664be834636}{Point}}\ \mbox{\hyperlink{struct_point_a10a30dbcb7f24360d10245deb1cc8ddc}{getNormalVector}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00069\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_point_ad92f2337b839a94ce97dcdb439b4325a}{Point}}(-\/y,\ x);}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_point_a531b057ce8f97e853c735db897a13800}{dotProduct}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point_a30bc8409287de4f43e160664be834636}{Point}}\ \&p2)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00077\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ x\ *\ p2.x\ +\ y\ *\ p2.y;}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{struct_point_a30bc8409287de4f43e160664be834636}{Point}}\ \mbox{\hyperlink{struct_point_a21074221e0c1830bcd44e8326e51b2bc}{normalizeVector}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00085\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ len\ =\ std::sqrt(x\ *\ x\ +\ y\ *\ y);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (len\ !=\ 0)\ ?\ \mbox{\hyperlink{struct_point_ad92f2337b839a94ce97dcdb439b4325a}{Point}}(x\ /\ len,\ y\ /\ len)\ :\ \mbox{\hyperlink{struct_point_ad92f2337b839a94ce97dcdb439b4325a}{Point}}(0,\ 0);}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{struct_point}{Point}}\ \mbox{\hyperlink{struct_point_a7c6ccf914e4a65d48b1e59571c9dfb95}{rotateVector}}(\textcolor{keywordtype}{float}\ angle)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{struct_point}{Point}}\ \mbox{\hyperlink{struct_point_a7c6ccf914e4a65d48b1e59571c9dfb95}{rotateVector}}(\textcolor{keywordtype}{float}\ cosA,\ \textcolor{keywordtype}{float}\ sinA)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{struct_point}{Point}}\ \mbox{\hyperlink{struct_point_a7a59dada6602ba2423e43d14e845b792}{rotatePoint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&rotationCenter,\ \textcolor{keywordtype}{float}\ angle)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00112\ \ \ \ \ \mbox{\hyperlink{struct_point}{Point}}\ \mbox{\hyperlink{struct_point_a7a59dada6602ba2423e43d14e845b792}{rotatePoint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&rotationCenter,\ \textcolor{keywordtype}{float}\ cosA,\ \textcolor{keywordtype}{float}\ sinA)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00113\ \};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00118\ ostream\ \&operator<<(std::ostream\ \&os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&p);}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{comment}{//\ Polygon\ defined\ by\ a\ set\ of\ vertices\ that\ represent\ it's\ size\ and\ shape}}
+\DoxyCodeLine{00124\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_polygon_a39ee94bcebe021914514137de451eb5a}{Polygon}}}
+\DoxyCodeLine{00125\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ vector<Point>\ vertices;}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordtype}{int}\ vertexCount;}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{float}\ angle\ =\ 0;}
+\DoxyCodeLine{00129\ \ \ \ \ set<Point>\ edgeVectors;}
+\DoxyCodeLine{00130\ \ \ \ \ set<Point>\ edgeNormals;}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{//\ these\ functions\ take\ into\ account\ possible\ polygon\ rotation}}
+\DoxyCodeLine{00137\ \ \ \ \ vector<Point>\ \mbox{\hyperlink{struct_polygon_a5237739e3da5d5847064d277c8c79b6b}{getRotatedVertices}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&center);}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00142\ \ \ \ \ set<Point>\ \mbox{\hyperlink{struct_polygon_abb30a24693fdf66bdc3d436d3afb6329}{getEdgeVectors}}();}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00147\ \ \ \ \ set<Point>\ \mbox{\hyperlink{struct_polygon_a7da79a2fa8991258bd1bf8a5552dcf60}{getEdgeNormals}}();}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{comment}{//\ get\ possibly\ modified\ polygon}}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{struct_polygon_a39ee94bcebe021914514137de451eb5a}{Polygon}}\ \mbox{\hyperlink{struct_polygon_a2ae0f76854de4558f397b6e4a6f7fcc9}{getPolygon}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&center\ =\ \mbox{\hyperlink{struct_point}{Point}}(0,\ 0));}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00159\ \ \ \ \ \mbox{\hyperlink{struct_polygon_a39ee94bcebe021914514137de451eb5a}{Polygon}}(initializer\_list<Point>\ vert)\ :\ vertices(vert)}
+\DoxyCodeLine{00160\ \ \ \ \ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ vertexCount\ =\ vertices.size();}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ vertexCount;\ i++)}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_point}{Point}}\ nextVertex\ =\ vertices[(i\ +\ 1)\ \%\ vertexCount];}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_point}{Point}}\ edge\ =\ \mbox{\hyperlink{struct_point_a32a100ba2c96f90025b00b4dd2c77ad3}{Point::getEdgeVector}}(vertices[i],\ nextVertex);}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ edgeVectors.insert(edge);}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ edgeNormals.insert(edge.getNormalVector().normalizeVector());}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00176\ \ \ \ \ \mbox{\hyperlink{struct_polygon_a927bc003352b8fb41c61dbdb6efa710b}{Polygon}}(\textcolor{keyword}{const}\ std::vector<Point>\ \&vert)\ :\ vertices(vert)}
+\DoxyCodeLine{00177\ \ \ \ \ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ vertexCount\ =\ vertices.size();}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ vertexCount;\ i++)}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_point}{Point}}\ nextVertex\ =\ vertices[(i\ +\ 1)\ \%\ vertexCount];}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_point}{Point}}\ edge\ =\ \mbox{\hyperlink{struct_point_a32a100ba2c96f90025b00b4dd2c77ad3}{Point::getEdgeVector}}(vertices[i],\ nextVertex);}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ edgeVectors.insert(edge);}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ edgeNormals.insert(edge.getNormalVector().normalizeVector());}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00188\ \ \ \ \ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00193\ \ \ \ \ \mbox{\hyperlink{struct_polygon_a14a5bd74ffb595c8615418fb37f98438}{Polygon}}(vector<Point>\ vert,\ \textcolor{keywordtype}{int}\ n,\ set<Point>\ vect,\ set<Point>\ normals)\ :\ vertices(vert),\ vertexCount(n),\ angle(0),\ edgeVectors(vect),\ edgeNormals(normals)\ \{\}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00198\ \ \ \ \ \mbox{\hyperlink{struct_polygon_aa75f65ba4e3627737a5b2ce5d6a2b847}{Polygon}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_polygon_a39ee94bcebe021914514137de451eb5a}{Polygon}}\ \&copy)\ :\ vertices(copy.vertices),\ vertexCount(copy.vertexCount),}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ angle(copy.angle),\ edgeVectors(copy.edgeVectors),}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ edgeNormals(copy.edgeNormals)\ \{\}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_polygon_a601a56146dde57d591c0866056374d0f}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_polygon_a39ee94bcebe021914514137de451eb5a}{Polygon}}\ \&copy)}
+\DoxyCodeLine{00206\ \ \ \ \ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ this-\/>vertices\ =\ copy.vertices;}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ this-\/>vertexCount\ =\ copy.vertexCount;}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ this-\/>angle\ =\ copy.angle;}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ this-\/>edgeVectors\ =\ copy.edgeVectors;}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ this-\/>edgeNormals\ =\ copy.edgeNormals;}
+\DoxyCodeLine{00212\ \ \ \ \ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordtype}{float}\ *\mbox{\hyperlink{struct_polygon_a146d9742716e32f88b4d962be79b1919}{getPointArray}}();}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_polygon_a2f4c346c08f5604fdc024a3f39077e47}{addAngle}}(\textcolor{keywordtype}{float}\ radians);}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_polygon_ab67f88cb644d46df60cfdc1b83b2665f}{updateVertices}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&delta);}
+\DoxyCodeLine{00230\ \};}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00235\ ostream\ \&operator<<(std::ostream\ \&os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_polygon}{Polygon}}\ \&p);}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \textcolor{comment}{//\ for\ rouding\ errors\ in\ calculations}}
+\DoxyCodeLine{00239\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ EPSILON\ =\ 1e-\/5;}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00248\ \textcolor{keywordtype}{bool}\ isAlmostEqual(\textcolor{keywordtype}{float}\ a,\ \textcolor{keywordtype}{float}\ b,\ \textcolor{keywordtype}{float}\ epsilon\ =\ EPSILON);}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \textcolor{comment}{//\ Used\ in\ SAT\ colision\ detection}}
+\DoxyCodeLine{00254\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_polygon_projection_a5bb4ec21a28b06a090331a65d311c4f6}{PolygonProjection}}}
+\DoxyCodeLine{00255\ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \textcolor{keywordtype}{float}\ minProj;}
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keywordtype}{float}\ maxProj;}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00264\ \ \ \ \ \mbox{\hyperlink{struct_polygon_projection_a5bb4ec21a28b06a090331a65d311c4f6}{PolygonProjection}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_polygon}{Polygon}}\ \&poly,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&projAxis)}
+\DoxyCodeLine{00265\ \ \ \ \ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Point\ normAxis\ =\ projAxis.normalizeVector();}}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ minProj\ =\ poly.vertices[0].dotProduct(projAxis);}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ maxProj\ =\ minProj;}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ poly.vertexCount;\ i++)}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ testedProj\ =\ poly.vertices[i].dotProduct(projAxis);}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (testedProj\ <\ minProj)}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ minProj\ =\ testedProj;}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (testedProj\ >\ maxProj)}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxProj\ =\ testedProj;}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00280\ \ \ \ \ \}}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_polygon_projection_a381fe3a865c08da59431a0cb947c3e51}{doProjectionOverlap}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_polygon_projection_a5bb4ec21a28b06a090331a65d311c4f6}{PolygonProjection}}\ \&other)}
+\DoxyCodeLine{00288\ \ \ \ \ \{}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !(maxProj\ <\ other.minProj\ ||\ other.maxProj\ <\ minProj);}
+\DoxyCodeLine{00290\ \ \ \ \ \}}
+\DoxyCodeLine{00291\ \};}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \textcolor{comment}{//\ checks\ if\ two\ polygons\ colides\ using\ Separated\ Axes\ Theorem}}
+\DoxyCodeLine{00294\ \textcolor{comment}{//\ remember\ to\ always\ pass\ as\ parameters\ p.getPolygon()!!!!!!!!!!!!!\ (handles\ rotation\ right)}}
+\DoxyCodeLine{00301\ \textcolor{keywordtype}{bool}\ isColidingSAT(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_polygon}{Polygon}}\ \&a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_polygon}{Polygon}}\ \&b);}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00306\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_rectangle_a6b5ef3f4230ca8ce5b1475b8c302f77b}{Rectangle}}\ :\ \mbox{\hyperlink{struct_polygon_a39ee94bcebe021914514137de451eb5a}{Polygon}}}
+\DoxyCodeLine{00307\ \{}
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keywordtype}{float}\ width,\ height;}
+\DoxyCodeLine{00309\ \ \ \ \ \mbox{\hyperlink{struct_point}{Point}}\ center;}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00317\ \ \ \ \ \mbox{\hyperlink{struct_rectangle_a6b5ef3f4230ca8ce5b1475b8c302f77b}{Rectangle}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&center,\ \textcolor{keywordtype}{float}\ w,\ \textcolor{keywordtype}{float}\ h);}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \ \ \textcolor{comment}{//\ autmatically\ gets\ vertices\ even\ if\ rotated\ in\ some\ way,\ centered\ in\ center}}
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{comment}{//\ Use\ normal\ getRotatedVertices()\ if\ rotation\ center\ !=\ polygon\ center\ of\ mass}}
+\DoxyCodeLine{00324\ \ \ \ \ vector<Point>\ \mbox{\hyperlink{struct_rectangle_a2401af300d4ff6edb8662046e759ea00}{getVertices}}();}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00329\ \ \ \ \ \mbox{\hyperlink{struct_polygon_a39ee94bcebe021914514137de451eb5a}{Polygon}}\ \mbox{\hyperlink{struct_rectangle_aee19d822bb11679d706d8e3577ffcb1a}{getPolygon}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&center\ =\ \mbox{\hyperlink{struct_point}{Point}}(0,\ 0))\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00334\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_rectangle_af08695900e11fb40509ed34d2a1fb423}{updateVertices}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&delta)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00335\ \};}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00340\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_regular_polygon_a8bebdca1e4847a49856a297e0156558b}{RegularPolygon}}\ :\ \mbox{\hyperlink{struct_polygon_a39ee94bcebe021914514137de451eb5a}{Polygon}}}
+\DoxyCodeLine{00341\ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \mbox{\hyperlink{struct_point}{Point}}\ center;}
+\DoxyCodeLine{00343\ \ \ \ \ \textcolor{keywordtype}{int}\ EdgeCount;}
+\DoxyCodeLine{00344\ \ \ \ \ \textcolor{keywordtype}{float}\ edgeLength;}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00352\ \ \ \ \ \mbox{\hyperlink{struct_regular_polygon_a8bebdca1e4847a49856a297e0156558b}{RegularPolygon}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&center,\ \textcolor{keywordtype}{int}\ n,\ \textcolor{keywordtype}{float}\ length);}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \ \ \ \ \textcolor{comment}{//\ see\ notes\ in\ Rectangle\ struct}}
+\DoxyCodeLine{00358\ \ \ \ \ vector<Point>\ \mbox{\hyperlink{struct_regular_polygon_a47e84855515aa198c73d681ad85502f6}{getVertices}}();}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00363\ \ \ \ \ \mbox{\hyperlink{struct_polygon_a39ee94bcebe021914514137de451eb5a}{Polygon}}\ \mbox{\hyperlink{struct_regular_polygon_abf119fc2bc6999bfbee1cc42b0cac98b}{getPolygon}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&center\ =\ \mbox{\hyperlink{struct_point}{Point}}(0,\ 0))\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00368\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_regular_polygon_aa5950a51e7bfbcef41ef96cfd4749b7b}{updateVertices}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&delta)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00369\ \};}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00378\ std::vector<Point>\ calculateRectangle(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&center,\ \textcolor{keywordtype}{float}\ w,\ \textcolor{keywordtype}{float}\ h);}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00387\ std::vector<Point>\ calculateRegularPolygon(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_point}{Point}}\ \&center,\ \textcolor{keywordtype}{int}\ n,\ \textcolor{keywordtype}{float}\ edge);}
+\DoxyCodeLine{00388\ }
+\DoxyCodeLine{00394\ \textcolor{keywordtype}{float}\ *vectorToFloatArray(\textcolor{keyword}{const}\ std::vector<Point>\ \&points);}
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00396\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

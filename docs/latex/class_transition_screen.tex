@@ -1,0 +1,191 @@
+\doxysection{Transition\+Screen Class Reference}
+\hypertarget{class_transition_screen}{}\label{class_transition_screen}\index{TransitionScreen@{TransitionScreen}}
+
+
+Classe que representa a tela de transição do jogo.  
+
+
+
+
+{\ttfamily \#include $<$passive.\+hpp$>$}
+
+Inheritance diagram for Transition\+Screen\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_transition_screen}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_transition_screen_afaca2cbf25d64e738d49bbe734285dd4}\label{class_transition_screen_afaca2cbf25d64e738d49bbe734285dd4} 
+{\bfseries Transition\+Screen} ()
+\begin{DoxyCompactList}\small\item\em Construtor da tela de transição. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_transition_screen_a919d8fd894a557695a2690cea157f56b}{update\+Speed}} () override
+\begin{DoxyCompactList}\small\item\em Atualiza a velocidade da transição. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_transition_screen_a0e07db77d74e1992e84dfaae7f8a20b1}{update\+Position}} () override
+\begin{DoxyCompactList}\small\item\em Atualiza a posição da transição. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_transition_screen_a09300f2bc3b49c3af764aa2f8527b027}{draw}} () override
+\begin{DoxyCompactList}\small\item\em Desenha a tela de transição. \end{DoxyCompactList}\item 
+\Hypertarget{class_transition_screen_aaba80f0071f787bc140a1a7aa853db65}\label{class_transition_screen_aaba80f0071f787bc140a1a7aa853db65} 
+void {\bfseries update\+Stage} ()
+\begin{DoxyCompactList}\small\item\em Atualiza o estágio da transição. \end{DoxyCompactList}\item 
+\Hypertarget{class_transition_screen_a0933232ed5964a8d4ce37df2a26795b3}\label{class_transition_screen_a0933232ed5964a8d4ce37df2a26795b3} 
+void {\bfseries start\+Transition} ()
+\begin{DoxyCompactList}\small\item\em Inicia a transição. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_transition_screen_a60ba65173dd4ef1a2b2f8a73f7655a47}{is\+Active}} ()
+\begin{DoxyCompactList}\small\item\em Verifica se a transição está ativa. \end{DoxyCompactList}\item 
+t\+Stage \mbox{\hyperlink{class_transition_screen_ac373f463a8bc219c6ac8f03aa190e14c}{get\+Stage}} ()
+\begin{DoxyCompactList}\small\item\em Retorna o estágio atual da transição. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_background}{Background}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_background_a94965042a2b6b7af45bdd9d3de008b48}{Background}} (const char \texorpdfstring{$\ast$}{*}dir, const \mbox{\hyperlink{struct_point}{Point}} \&pos, float w, float h, float speedX)
+\begin{DoxyCompactList}\small\item\em Construtor do plano de fundo. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Background} ()
+\begin{DoxyCompactList}\small\item\em Destrutor virtual do plano de fundo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_drawable}{Drawable}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_drawable_a9dafc04b0493ca752f6a4cd2ad32eedc}{add\+Speed\+Vector}} (const \mbox{\hyperlink{struct_point}{Point}} \&spd)
+\begin{DoxyCompactList}\small\item\em Adiciona um vetor à velocidade atual. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_drawable_a0dd188182f57a376f063c9b4c21f4325}{add\+SpeedX}} (float x)
+\begin{DoxyCompactList}\small\item\em Adiciona um valor à velocidade X. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_drawable_a1b19845978be055574dfe5f0828b1201}{add\+SpeedY}} (float y)
+\begin{DoxyCompactList}\small\item\em Adiciona um valor à velocidade Y. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_point}{Point}} \mbox{\hyperlink{class_drawable_a02532cbe0c1a97acc722a32bfc94606e}{get\+Speed}} ()
+\begin{DoxyCompactList}\small\item\em Retorna o vetor de velocidade. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_drawable_ac96da92f873e7422d66e1e7bb6188202}{get\+SpeedX}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a velocidade no eixo X. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_drawable_a57afa6b34e3c773f888deadc00040504}{get\+SpeedY}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a velocidade no eixo Y. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_game_object}{Game\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_point}{Point}} \mbox{\hyperlink{class_game_object_a66b5a9a0dc145a0919ac1756ff2c7e1f}{get\+Pos}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a posição do objeto. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_game_object_a988c84e3871b90c92c04ddc9483842db}{get\+PosX}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a coordenada X do objeto. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_game_object_a1aaa68396e509ea7f05e13b942d4e918}{get\+PosY}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a coordenada Y do objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_drawable}{Drawable}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_drawable_a59a2d9e82a5e9065f9fd5eaa8b7ac273}{Drawable}} (const \mbox{\hyperlink{struct_point}{Point}} \&pos, const \mbox{\hyperlink{struct_point}{Point}} \&spd)
+\begin{DoxyCompactList}\small\item\em Construtor protegido com posição e velocidade. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_drawable_ad7331f158072254cd5fa0c0d03caf1f9}{Drawable}} (const \mbox{\hyperlink{struct_point}{Point}} \&pos)
+\begin{DoxyCompactList}\small\item\em Construtor protegido apenas com posição. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_drawable_adfecd91f96242422c8c06f4472d385de}{set\+SpeedX}} (float x)
+\begin{DoxyCompactList}\small\item\em Define a velocidade no eixo X. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_drawable_a1c561877612a240a357eae98b88ae93d}{set\+SpeedY}} (float y)
+\begin{DoxyCompactList}\small\item\em Define a velocidade no eixo Y. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_drawable_a5fdbfd8ee52bd2d974cf08edd67fd3d6}{set\+Speed}} (const \mbox{\hyperlink{struct_point}{Point}} \&pos)
+\begin{DoxyCompactList}\small\item\em Define o vetor de velocidade. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_game_object}{Game\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_object_a9574dd653ec2144567ed3f27a2dca688}{Game\+Object}} (const \mbox{\hyperlink{struct_point}{Point}} \&position)
+\begin{DoxyCompactList}\small\item\em Construtor protegido com posição. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_game_object_a999f37cee25a36f2e5ec27934eda8393}{Game\+Object}} (float pX, float pY)
+\begin{DoxyCompactList}\small\item\em Construtor protegido com coordenadas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_a1059bb5df2b698bab091b6f8a96c357e}{set\+PosX}} (float x)
+\begin{DoxyCompactList}\small\item\em Define a coordenada X do objeto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_ab47dca30df3ab8b7cde8f35c8fb06625}{set\+PosY}} (float y)
+\begin{DoxyCompactList}\small\item\em Define a coordenada Y do objeto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_ab2fc7f77d90d6fb126f4e6ae8cd32855}{set\+Pos}} (const \mbox{\hyperlink{struct_point}{Point}} \&p)
+\begin{DoxyCompactList}\small\item\em Define a posição do objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_background}{Background}}}
+\begin{DoxyCompactItemize}
+\item 
+ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*} {\bfseries image} = nullptr
+\begin{DoxyCompactList}\small\item\em Bitmap do plano de fundo. \end{DoxyCompactList}\item 
+float {\bfseries width}
+\begin{DoxyCompactList}\small\item\em Largura do plano de fundo. \end{DoxyCompactList}\item 
+float {\bfseries height}
+\begin{DoxyCompactList}\small\item\em Altura do plano de fundo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe que representa a tela de transição do jogo. 
+
+\label{doc-func-members}
+\Hypertarget{class_transition_screen_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_transition_screen_a09300f2bc3b49c3af764aa2f8527b027}\index{TransitionScreen@{TransitionScreen}!draw@{draw}}
+\index{draw@{draw}!TransitionScreen@{TransitionScreen}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{class_transition_screen_a09300f2bc3b49c3af764aa2f8527b027} 
+void Transition\+Screen\+::draw (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Desenha a tela de transição. 
+
+
+
+Reimplemented from \mbox{\hyperlink{class_background_aade0d4cd2c2f152f0e65a1b2d4d4bdc6}{Background}}.
+
+\Hypertarget{class_transition_screen_ac373f463a8bc219c6ac8f03aa190e14c}\index{TransitionScreen@{TransitionScreen}!getStage@{getStage}}
+\index{getStage@{getStage}!TransitionScreen@{TransitionScreen}}
+\doxysubsubsection{\texorpdfstring{getStage()}{getStage()}}
+{\footnotesize\ttfamily \label{class_transition_screen_ac373f463a8bc219c6ac8f03aa190e14c} 
+t\+Stage Transition\+Screen\+::get\+Stage (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna o estágio atual da transição. 
+
+\begin{DoxyReturn}{Returns}
+Estágio da transição. 
+\end{DoxyReturn}
+\Hypertarget{class_transition_screen_a60ba65173dd4ef1a2b2f8a73f7655a47}\index{TransitionScreen@{TransitionScreen}!isActive@{isActive}}
+\index{isActive@{isActive}!TransitionScreen@{TransitionScreen}}
+\doxysubsubsection{\texorpdfstring{isActive()}{isActive()}}
+{\footnotesize\ttfamily \label{class_transition_screen_a60ba65173dd4ef1a2b2f8a73f7655a47} 
+bool Transition\+Screen\+::is\+Active (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Verifica se a transição está ativa. 
+
+\begin{DoxyReturn}{Returns}
+true se ativa. 
+\end{DoxyReturn}
+\Hypertarget{class_transition_screen_a0e07db77d74e1992e84dfaae7f8a20b1}\index{TransitionScreen@{TransitionScreen}!updatePosition@{updatePosition}}
+\index{updatePosition@{updatePosition}!TransitionScreen@{TransitionScreen}}
+\doxysubsubsection{\texorpdfstring{updatePosition()}{updatePosition()}}
+{\footnotesize\ttfamily \label{class_transition_screen_a0e07db77d74e1992e84dfaae7f8a20b1} 
+bool Transition\+Screen\+::update\+Position (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Atualiza a posição da transição. 
+
+\begin{DoxyReturn}{Returns}
+true se a posição foi atualizada. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_background_a410fa2ac0d71c98e27d24c28a5eb75dd}{Background}}.
+
+\Hypertarget{class_transition_screen_a919d8fd894a557695a2690cea157f56b}\index{TransitionScreen@{TransitionScreen}!updateSpeed@{updateSpeed}}
+\index{updateSpeed@{updateSpeed}!TransitionScreen@{TransitionScreen}}
+\doxysubsubsection{\texorpdfstring{updateSpeed()}{updateSpeed()}}
+{\footnotesize\ttfamily \label{class_transition_screen_a919d8fd894a557695a2690cea157f56b} 
+void Transition\+Screen\+::update\+Speed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Atualiza a velocidade da transição. 
+
+
+
+Reimplemented from \mbox{\hyperlink{class_background_a744e25b3f483c7d966625bc9d2588e5b}{Background}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/passive.\+hpp\item 
+src/passive.\+cpp\end{DoxyCompactItemize}

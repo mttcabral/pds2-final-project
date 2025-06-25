@@ -1,0 +1,184 @@
+\doxysection{PointT Struct Reference}
+\hypertarget{struct_point_t}{}\label{struct_point_t}\index{PointT@{PointT}}
+
+
+Estrutura que representa um ponto 2D para tabelas.  
+
+
+
+
+{\ttfamily \#include $<$table.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_point_t_ae86988d29bf3338c58c5b4432b68bee9}\label{struct_point_t_ae86988d29bf3338c58c5b4432b68bee9} 
+{\bfseries PointT} ()
+\begin{DoxyCompactList}\small\item\em Construtor padrão. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_point_t_aeadd2cbcb8fc12ef0aa162a6093f6b15}{PointT}} (float x, float \mbox{\hyperlink{struct_point_t_acdc2fa016190f3d142a0cc68d2e2595d}{y}})
+\begin{DoxyCompactList}\small\item\em Construtor com coordenadas. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_point_t_a9eb4e2397ab84edc6b50cb38045d0aa0}{PointT}} (const \mbox{\hyperlink{struct_point_t}{PointT}} \&other)
+\begin{DoxyCompactList}\small\item\em Construtor de cópia. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_point_t}{PointT}} \& \mbox{\hyperlink{struct_point_t_a388530b533db3317601cc2e0cffc55cd}{operator=}} (const \mbox{\hyperlink{struct_point_t}{PointT}} \&other)
+\begin{DoxyCompactList}\small\item\em Operador de atribuição. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_point_t}{PointT}} \mbox{\hyperlink{struct_point_t_af55f6f36450433aace9882b5384f72cb}{operator-\/}} (const \mbox{\hyperlink{struct_point_t}{PointT}} \&other) const
+\begin{DoxyCompactList}\small\item\em Subtrai dois pontos. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_point_t}{PointT}} \mbox{\hyperlink{struct_point_t_a78b6ea903e6a15514c1ae0be1ff6da3d}{operator+}} (const \mbox{\hyperlink{struct_point_t}{PointT}} \&other) const
+\begin{DoxyCompactList}\small\item\em Soma dois pontos. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_point_t}{PointT}} \mbox{\hyperlink{struct_point_t_a5b00532d7f11bf8fcd8211305474e100}{operator/}} (float f) const
+\begin{DoxyCompactList}\small\item\em Divide ponto por escalar. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_point_t}{PointT}} \mbox{\hyperlink{struct_point_t_a7f01a9e3750c0457933f01ef16e15c44}{operator\texorpdfstring{$\ast$}{*}}} (float f)
+\begin{DoxyCompactList}\small\item\em Multiplica ponto por escalar. \end{DoxyCompactList}\item 
+\Hypertarget{struct_point_t_af55e1b00be8028e9d6989c61734b189b}\label{struct_point_t_af55e1b00be8028e9d6989c61734b189b} 
+void {\bfseries display} ()
+\begin{DoxyCompactList}\small\item\em Exibe o ponto no console. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_point_t_ac4186ad2f842f63a13c16a326fd8ff27}\label{struct_point_t_ac4186ad2f842f63a13c16a326fd8ff27} 
+float {\bfseries x}
+\item 
+\Hypertarget{struct_point_t_acdc2fa016190f3d142a0cc68d2e2595d}\label{struct_point_t_acdc2fa016190f3d142a0cc68d2e2595d} 
+float {\bfseries y}
+\begin{DoxyCompactList}\small\item\em Coordenadas do ponto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Estrutura que representa um ponto 2D para tabelas. 
+
+\label{doc-constructors}
+\Hypertarget{struct_point_t_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{struct_point_t_aeadd2cbcb8fc12ef0aa162a6093f6b15}\index{PointT@{PointT}!PointT@{PointT}}
+\index{PointT@{PointT}!PointT@{PointT}}
+\doxysubsubsection{\texorpdfstring{PointT()}{PointT()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{struct_point_t_aeadd2cbcb8fc12ef0aa162a6093f6b15} 
+Point\+T\+::\+PointT (\begin{DoxyParamCaption}\item[{float}]{x}{, }\item[{float}]{y}{}\end{DoxyParamCaption})}
+
+
+
+Construtor com coordenadas. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Coordenada X. \\
+\hline
+{\em y} & Coordenada Y. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{struct_point_t_a9eb4e2397ab84edc6b50cb38045d0aa0}\index{PointT@{PointT}!PointT@{PointT}}
+\index{PointT@{PointT}!PointT@{PointT}}
+\doxysubsubsection{\texorpdfstring{PointT()}{PointT()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{struct_point_t_a9eb4e2397ab84edc6b50cb38045d0aa0} 
+Point\+T\+::\+PointT (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_point_t}{PointT}} \&}]{other}{}\end{DoxyParamCaption})}
+
+
+
+Construtor de cópia. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Outro ponto. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{struct_point_t_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_point_t_a7f01a9e3750c0457933f01ef16e15c44}\index{PointT@{PointT}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!PointT@{PointT}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}}
+{\footnotesize\ttfamily \label{struct_point_t_a7f01a9e3750c0457933f01ef16e15c44} 
+\mbox{\hyperlink{struct_point_t}{PointT}} Point\+T\+::operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}\item[{float}]{f}{}\end{DoxyParamCaption})}
+
+
+
+Multiplica ponto por escalar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Escalar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Resultado da multiplicação. 
+\end{DoxyReturn}
+\Hypertarget{struct_point_t_a78b6ea903e6a15514c1ae0be1ff6da3d}\index{PointT@{PointT}!operator+@{operator+}}
+\index{operator+@{operator+}!PointT@{PointT}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily \label{struct_point_t_a78b6ea903e6a15514c1ae0be1ff6da3d} 
+\mbox{\hyperlink{struct_point_t}{PointT}} Point\+T\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_point_t}{PointT}} \&}]{other}{}\end{DoxyParamCaption}) const}
+
+
+
+Soma dois pontos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Outro ponto. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Resultado da soma. 
+\end{DoxyReturn}
+\Hypertarget{struct_point_t_af55f6f36450433aace9882b5384f72cb}\index{PointT@{PointT}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!PointT@{PointT}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily \label{struct_point_t_af55f6f36450433aace9882b5384f72cb} 
+\mbox{\hyperlink{struct_point_t}{PointT}} Point\+T\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_point_t}{PointT}} \&}]{other}{}\end{DoxyParamCaption}) const}
+
+
+
+Subtrai dois pontos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Outro ponto. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Resultado da subtração. 
+\end{DoxyReturn}
+\Hypertarget{struct_point_t_a5b00532d7f11bf8fcd8211305474e100}\index{PointT@{PointT}!operator/@{operator/}}
+\index{operator/@{operator/}!PointT@{PointT}}
+\doxysubsubsection{\texorpdfstring{operator/()}{operator/()}}
+{\footnotesize\ttfamily \label{struct_point_t_a5b00532d7f11bf8fcd8211305474e100} 
+\mbox{\hyperlink{struct_point_t}{PointT}} Point\+T\+::operator/ (\begin{DoxyParamCaption}\item[{float}]{f}{}\end{DoxyParamCaption}) const}
+
+
+
+Divide ponto por escalar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Escalar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Resultado da divisão. 
+\end{DoxyReturn}
+\Hypertarget{struct_point_t_a388530b533db3317601cc2e0cffc55cd}\index{PointT@{PointT}!operator=@{operator=}}
+\index{operator=@{operator=}!PointT@{PointT}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{struct_point_t_a388530b533db3317601cc2e0cffc55cd} 
+\mbox{\hyperlink{struct_point_t}{PointT}} \& Point\+T\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_point_t}{PointT}} \&}]{other}{}\end{DoxyParamCaption})}
+
+
+
+Operador de atribuição. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Outro ponto. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Referência para este ponto. 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/table.\+hpp\item 
+src/table.\+cpp\end{DoxyCompactItemize}

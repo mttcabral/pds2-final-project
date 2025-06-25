@@ -1,0 +1,102 @@
+\doxysection{Table Struct Reference}
+\hypertarget{struct_table}{}\label{struct_table}\index{Table@{Table}}
+
+
+Estrutura que representa uma tabela.  
+
+
+
+
+{\ttfamily \#include $<$table.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_table_a049f2e06391781ae255c6698869c4ad1}\label{struct_table_a049f2e06391781ae255c6698869c4ad1} 
+{\bfseries Table} ()
+\begin{DoxyCompactList}\small\item\em Construtor padrão. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_table_aacb9c6e3cc9bbeec2057de707f71f990}{Table}} (\mbox{\hyperlink{struct_rectangle_t}{RectangleT}} \mbox{\hyperlink{struct_table_abfd1d09f1f6606aedf3d001eddb58e4c}{table\+Rectangle}})
+\begin{DoxyCompactList}\small\item\em Construtor com retângulo. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_table_ab7053d5834f03b959e345cd20be190a7}{Table}} (const \mbox{\hyperlink{struct_table}{Table}} \&other)
+\begin{DoxyCompactList}\small\item\em Construtor de cópia. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_table}{Table}} \& \mbox{\hyperlink{struct_table_a4147a080a37863de7ceb6a210300dcdf}{operator=}} (const \mbox{\hyperlink{struct_table}{Table}} \&other)
+\begin{DoxyCompactList}\small\item\em Operador de atribuição. \end{DoxyCompactList}\item 
+\Hypertarget{struct_table_a7c4093941fa1e32bb77baa62ed5824ad}\label{struct_table_a7c4093941fa1e32bb77baa62ed5824ad} 
+void {\bfseries display} ()
+\begin{DoxyCompactList}\small\item\em Exibe a tabela no console. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_table_abfd1d09f1f6606aedf3d001eddb58e4c}\label{struct_table_abfd1d09f1f6606aedf3d001eddb58e4c} 
+\mbox{\hyperlink{struct_rectangle_t}{RectangleT}} {\bfseries table\+Rectangle}
+\begin{DoxyCompactList}\small\item\em Retângulo da tabela. \end{DoxyCompactList}\item 
+\Hypertarget{struct_table_aab72e46ae365bc501db20cef1a6e7613}\label{struct_table_aab72e46ae365bc501db20cef1a6e7613} 
+vector$<$ \mbox{\hyperlink{struct_row}{Row}} $>$ {\bfseries row}
+\begin{DoxyCompactList}\small\item\em Linhas da tabela. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Estrutura que representa uma tabela. 
+
+\label{doc-constructors}
+\Hypertarget{struct_table_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{struct_table_aacb9c6e3cc9bbeec2057de707f71f990}\index{Table@{Table}!Table@{Table}}
+\index{Table@{Table}!Table@{Table}}
+\doxysubsubsection{\texorpdfstring{Table()}{Table()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{struct_table_aacb9c6e3cc9bbeec2057de707f71f990} 
+Table\+::\+Table (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_rectangle_t}{RectangleT}}}]{table\+Rectangle}{}\end{DoxyParamCaption})}
+
+
+
+Construtor com retângulo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em table\+Rectangle} & Retângulo da tabela. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{struct_table_ab7053d5834f03b959e345cd20be190a7}\index{Table@{Table}!Table@{Table}}
+\index{Table@{Table}!Table@{Table}}
+\doxysubsubsection{\texorpdfstring{Table()}{Table()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{struct_table_ab7053d5834f03b959e345cd20be190a7} 
+Table\+::\+Table (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_table}{Table}} \&}]{other}{}\end{DoxyParamCaption})}
+
+
+
+Construtor de cópia. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Outra tabela. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{struct_table_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_table_a4147a080a37863de7ceb6a210300dcdf}\index{Table@{Table}!operator=@{operator=}}
+\index{operator=@{operator=}!Table@{Table}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{struct_table_a4147a080a37863de7ceb6a210300dcdf} 
+\mbox{\hyperlink{struct_table}{Table}} \& Table\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_table}{Table}} \&}]{other}{}\end{DoxyParamCaption})}
+
+
+
+Operador de atribuição. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Outra tabela. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Referência para esta tabela. 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/table.\+hpp\item 
+src/table.\+cpp\end{DoxyCompactItemize}

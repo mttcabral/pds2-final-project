@@ -1,0 +1,215 @@
+\doxysection{Polygon\+Hitbox Class Reference}
+\hypertarget{class_polygon_hitbox}{}\label{class_polygon_hitbox}\index{PolygonHitbox@{PolygonHitbox}}
+
+
+\doxylink{class_hitbox}{Hitbox} com formato de polígono regular.  
+
+
+
+
+{\ttfamily \#include $<$hitbox.\+hpp$>$}
+
+Inheritance diagram for Polygon\+Hitbox\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_polygon_hitbox}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_polygon_hitbox_abc36cde8fd38e1d84d4336fd727641c5}{Polygon\+Hitbox}} (const \mbox{\hyperlink{struct_point}{Point}} \&center, int n, float Edge\+Length)
+\begin{DoxyCompactList}\small\item\em Construtor da hitbox poligonal. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_polygon_hitbox_af063c491e182d8371f1d6d8bcb3ef6f9}{get\+Side\+Count}} ()
+\begin{DoxyCompactList}\small\item\em Retorna o número de lados do polígono. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_polygon_hitbox_ae9f817786c21b09c01bde180a7aeec9f}{get\+Edge\+Length}} ()
+\begin{DoxyCompactList}\small\item\em Retorna o tamanho da aresta. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_polygon}{Polygon}} \mbox{\hyperlink{class_polygon_hitbox_afcf9c5e6ffdaef54a20e02622385831c}{get\+Polygon}} () override
+\begin{DoxyCompactList}\small\item\em Retorna o polígono da hitbox. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_polygon_hitbox_afa61a68e0f7d80a161b6f47c2ee39a15}{get\+Angle}} () override
+\begin{DoxyCompactList}\small\item\em Retorna o ângulo da hitbox. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_polygon_hitbox_a528b6c11efe6aa62142452bd4766bfcf}{update\+Position}} () override
+\begin{DoxyCompactList}\small\item\em Atualiza a posição da hitbox. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_polygon_hitbox_ade39f184411eb6c872f94e062cecc415}{rotate\+Hitbox}} (float radians) override
+\begin{DoxyCompactList}\small\item\em Rotaciona a hitbox. \end{DoxyCompactList}\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_polygon_hitbox_af3b502d5e3596a4cf421f8a94c10effa}{get\+Vertices}} ()
+\begin{DoxyCompactList}\small\item\em Retorna os vértices do polígono. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_hitbox}{Hitbox}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_hitbox_ad2f514202e5fed3971ead61f7b6102b9}{Hitbox}} (const \mbox{\hyperlink{struct_point}{Point}} \&center)
+\begin{DoxyCompactList}\small\item\em Construtor da hitbox. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_hitbox_a15b038cf0f3393f039bd13c2bdffaf22}{set\+Target}} (\mbox{\hyperlink{class_drawable}{Drawable}} \texorpdfstring{$\ast$}{*}target)
+\begin{DoxyCompactList}\small\item\em Define o objeto alvo associado à hitbox. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Hitbox} ()
+\begin{DoxyCompactList}\small\item\em Destrutor virtual da hitbox. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_game_object}{Game\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_point}{Point}} \mbox{\hyperlink{class_game_object_a66b5a9a0dc145a0919ac1756ff2c7e1f}{get\+Pos}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a posição do objeto. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_game_object_a988c84e3871b90c92c04ddc9483842db}{get\+PosX}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a coordenada X do objeto. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_game_object_a1aaa68396e509ea7f05e13b942d4e918}{get\+PosY}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a coordenada Y do objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_game_object}{Game\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_object_a9574dd653ec2144567ed3f27a2dca688}{Game\+Object}} (const \mbox{\hyperlink{struct_point}{Point}} \&position)
+\begin{DoxyCompactList}\small\item\em Construtor protegido com posição. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_game_object_a999f37cee25a36f2e5ec27934eda8393}{Game\+Object}} (float pX, float pY)
+\begin{DoxyCompactList}\small\item\em Construtor protegido com coordenadas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_a1059bb5df2b698bab091b6f8a96c357e}{set\+PosX}} (float x)
+\begin{DoxyCompactList}\small\item\em Define a coordenada X do objeto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_ab47dca30df3ab8b7cde8f35c8fb06625}{set\+PosY}} (float y)
+\begin{DoxyCompactList}\small\item\em Define a coordenada Y do objeto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_ab2fc7f77d90d6fb126f4e6ae8cd32855}{set\+Pos}} (const \mbox{\hyperlink{struct_point}{Point}} \&p)
+\begin{DoxyCompactList}\small\item\em Define a posição do objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_hitbox}{Hitbox} com formato de polígono regular. 
+
+\label{doc-constructors}
+\Hypertarget{class_polygon_hitbox_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_polygon_hitbox_abc36cde8fd38e1d84d4336fd727641c5}\index{PolygonHitbox@{PolygonHitbox}!PolygonHitbox@{PolygonHitbox}}
+\index{PolygonHitbox@{PolygonHitbox}!PolygonHitbox@{PolygonHitbox}}
+\doxysubsubsection{\texorpdfstring{PolygonHitbox()}{PolygonHitbox()}}
+{\footnotesize\ttfamily \label{class_polygon_hitbox_abc36cde8fd38e1d84d4336fd727641c5} 
+Polygon\+Hitbox\+::\+Polygon\+Hitbox (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_point}{Point}} \&}]{center}{, }\item[{int}]{n}{, }\item[{float}]{Edge\+Length}{}\end{DoxyParamCaption})}
+
+
+
+Construtor da hitbox poligonal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em center} & Centro da hitbox. \\
+\hline
+{\em n} & Número de lados. \\
+\hline
+{\em Edge\+Length} & Tamanho da aresta. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_polygon_hitbox_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_polygon_hitbox_afa61a68e0f7d80a161b6f47c2ee39a15}\index{PolygonHitbox@{PolygonHitbox}!getAngle@{getAngle}}
+\index{getAngle@{getAngle}!PolygonHitbox@{PolygonHitbox}}
+\doxysubsubsection{\texorpdfstring{getAngle()}{getAngle()}}
+{\footnotesize\ttfamily \label{class_polygon_hitbox_afa61a68e0f7d80a161b6f47c2ee39a15} 
+float Polygon\+Hitbox\+::get\+Angle (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Retorna o ângulo da hitbox. 
+
+\begin{DoxyReturn}{Returns}
+Ângulo em radianos. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_hitbox_a8530e1f0b6da8835101db75bb3ca91a9}{Hitbox}}.
+
+\Hypertarget{class_polygon_hitbox_ae9f817786c21b09c01bde180a7aeec9f}\index{PolygonHitbox@{PolygonHitbox}!getEdgeLength@{getEdgeLength}}
+\index{getEdgeLength@{getEdgeLength}!PolygonHitbox@{PolygonHitbox}}
+\doxysubsubsection{\texorpdfstring{getEdgeLength()}{getEdgeLength()}}
+{\footnotesize\ttfamily \label{class_polygon_hitbox_ae9f817786c21b09c01bde180a7aeec9f} 
+float Polygon\+Hitbox\+::get\+Edge\+Length (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna o tamanho da aresta. 
+
+\begin{DoxyReturn}{Returns}
+Tamanho da aresta. 
+\end{DoxyReturn}
+\Hypertarget{class_polygon_hitbox_afcf9c5e6ffdaef54a20e02622385831c}\index{PolygonHitbox@{PolygonHitbox}!getPolygon@{getPolygon}}
+\index{getPolygon@{getPolygon}!PolygonHitbox@{PolygonHitbox}}
+\doxysubsubsection{\texorpdfstring{getPolygon()}{getPolygon()}}
+{\footnotesize\ttfamily \label{class_polygon_hitbox_afcf9c5e6ffdaef54a20e02622385831c} 
+\mbox{\hyperlink{struct_polygon}{Polygon}} Polygon\+Hitbox\+::get\+Polygon (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Retorna o polígono da hitbox. 
+
+\begin{DoxyReturn}{Returns}
+Polígono. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_hitbox_a2fb1c95461937b937b92eef8bb844975}{Hitbox}}.
+
+\Hypertarget{class_polygon_hitbox_af063c491e182d8371f1d6d8bcb3ef6f9}\index{PolygonHitbox@{PolygonHitbox}!getSideCount@{getSideCount}}
+\index{getSideCount@{getSideCount}!PolygonHitbox@{PolygonHitbox}}
+\doxysubsubsection{\texorpdfstring{getSideCount()}{getSideCount()}}
+{\footnotesize\ttfamily \label{class_polygon_hitbox_af063c491e182d8371f1d6d8bcb3ef6f9} 
+int Polygon\+Hitbox\+::get\+Side\+Count (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna o número de lados do polígono. 
+
+\begin{DoxyReturn}{Returns}
+Número de lados. 
+\end{DoxyReturn}
+\Hypertarget{class_polygon_hitbox_af3b502d5e3596a4cf421f8a94c10effa}\index{PolygonHitbox@{PolygonHitbox}!getVertices@{getVertices}}
+\index{getVertices@{getVertices}!PolygonHitbox@{PolygonHitbox}}
+\doxysubsubsection{\texorpdfstring{getVertices()}{getVertices()}}
+{\footnotesize\ttfamily \label{class_polygon_hitbox_af3b502d5e3596a4cf421f8a94c10effa} 
+float \texorpdfstring{$\ast$}{*} Polygon\+Hitbox\+::get\+Vertices (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna os vértices do polígono. 
+
+\begin{DoxyReturn}{Returns}
+Ponteiro para array de vértices. 
+\end{DoxyReturn}
+\Hypertarget{class_polygon_hitbox_ade39f184411eb6c872f94e062cecc415}\index{PolygonHitbox@{PolygonHitbox}!rotateHitbox@{rotateHitbox}}
+\index{rotateHitbox@{rotateHitbox}!PolygonHitbox@{PolygonHitbox}}
+\doxysubsubsection{\texorpdfstring{rotateHitbox()}{rotateHitbox()}}
+{\footnotesize\ttfamily \label{class_polygon_hitbox_ade39f184411eb6c872f94e062cecc415} 
+void Polygon\+Hitbox\+::rotate\+Hitbox (\begin{DoxyParamCaption}\item[{float}]{radians}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Rotaciona a hitbox. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em radians} & Ângulo em radianos. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_hitbox_a9c92639e8bd6204d624feb64468ecdfb}{Hitbox}}.
+
+\Hypertarget{class_polygon_hitbox_a528b6c11efe6aa62142452bd4766bfcf}\index{PolygonHitbox@{PolygonHitbox}!updatePosition@{updatePosition}}
+\index{updatePosition@{updatePosition}!PolygonHitbox@{PolygonHitbox}}
+\doxysubsubsection{\texorpdfstring{updatePosition()}{updatePosition()}}
+{\footnotesize\ttfamily \label{class_polygon_hitbox_a528b6c11efe6aa62142452bd4766bfcf} 
+bool Polygon\+Hitbox\+::update\+Position (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Atualiza a posição da hitbox. 
+
+\begin{DoxyReturn}{Returns}
+true se a posição foi atualizada. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_hitbox_a27f71f2fac4a02a14976f5f2346c6ebe}{Hitbox}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/hitbox.\+hpp\item 
+src/hitbox.\+cpp\end{DoxyCompactItemize}

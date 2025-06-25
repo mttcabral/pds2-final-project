@@ -1,0 +1,48 @@
+\doxysection{cooldown.\+hpp}
+\hypertarget{cooldown_8hpp_source}{}\label{cooldown_8hpp_source}\index{include/cooldown.hpp@{include/cooldown.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ COOLDOWN\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ COOLDOWN\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ FPS\ =\ 30;}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_cooldown_a527e43943a5ed330658a4d1a832774f5}{Cooldown}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{float}\ timeLeft\ =\ 0;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{float}\ rechargeTime;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{float}\ updateFrequency\ =\ 1;\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{bool}\ frozen\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{class_cooldown_a754536aa6be6204a9c86984017132ad5}{Cooldown}}(\textcolor{keywordtype}{float}\ wuTime);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{class_cooldown_a754536aa6be6204a9c86984017132ad5}{Cooldown}}();}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_cooldown_aa8c5c7a55d467b37594ff8fe2d073364}{updateCooldown}}();}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_cooldown_a05f677a90d18bb70011c01098a19630d}{restartCooldown}}();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_cooldown_a687506c09f71196fe8ebb2cbc3a95eea}{refreshCooldown}}();}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_cooldown_a8a376b2f7492d224a9f632590321f054}{isCooldownUp}}();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_cooldown_a058717c876fa53fcd60ddf4d5ff9d0c9}{setRechargeTime}}(\textcolor{keywordtype}{float}\ wuTime);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_cooldown_a16d6ece5ef8f16a9d23f5f3303ef177f}{setUpdateFrequency}}(\textcolor{keywordtype}{float}\ f);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_cooldown_aa15990283d9a66263984e81c0b1f6abe}{getCurrentTimeLeft}}();}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_cooldown_ac9ff532969258ed459bb10c1da986a62}{getCurrentPorcentage}}();}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_cooldown_a5d6d54d1e82f8aa6076464b42002c720}{getRechargeTime}}();}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_cooldown_a2b45214b4790c533e522f40215b545f2}{freezeCooldown}}();}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_cooldown_a74061e50de03ac6fead65f183aabd9f6}{unfreezeCooldown}}();}
+\DoxyCodeLine{00091\ \};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

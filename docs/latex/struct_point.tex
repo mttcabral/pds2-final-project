@@ -1,0 +1,133 @@
+\doxysection{Point Struct Reference}
+\hypertarget{struct_point}{}\label{struct_point}\index{Point@{Point}}
+
+
+Estrutura que representa um ponto ou vetor 2D.  
+
+
+
+
+{\ttfamily \#include $<$polygon.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_point_a30bc8409287de4f43e160664be834636}{Point}} (float x, float y)
+\begin{DoxyCompactList}\small\item\em Construtor que inicializa as coordenadas. \end{DoxyCompactList}\item 
+\Hypertarget{struct_point_ad92f2337b839a94ce97dcdb439b4325a}\label{struct_point_ad92f2337b839a94ce97dcdb439b4325a} 
+{\bfseries Point} ()
+\begin{DoxyCompactList}\small\item\em Construtor padrão (x=0, y=0). \end{DoxyCompactList}\item 
+\Hypertarget{struct_point_ac2d6398c8c23a298fc321fbca1891fc2}\label{struct_point_ac2d6398c8c23a298fc321fbca1891fc2} 
+\mbox{\hyperlink{struct_point}{Point}} {\bfseries operator+} (const \mbox{\hyperlink{struct_point}{Point}} \&p2) const
+\begin{DoxyCompactList}\small\item\em Soma de pontos/vetores. \end{DoxyCompactList}\item 
+\Hypertarget{struct_point_a3b2858778026b293ff8920183f0ede45}\label{struct_point_a3b2858778026b293ff8920183f0ede45} 
+\mbox{\hyperlink{struct_point}{Point}} {\bfseries operator-\/} (const \mbox{\hyperlink{struct_point}{Point}} \&p2) const
+\begin{DoxyCompactList}\small\item\em Subtração de pontos/vetores. \end{DoxyCompactList}\item 
+\Hypertarget{struct_point_a14a856cec598489294074b72e4f6fad3}\label{struct_point_a14a856cec598489294074b72e4f6fad3} 
+bool {\bfseries operator$<$} (const \mbox{\hyperlink{struct_point}{Point}} \&p2) const
+\begin{DoxyCompactList}\small\item\em Operador de comparação para ordenação. \end{DoxyCompactList}\item 
+\Hypertarget{struct_point_a10a30dbcb7f24360d10245deb1cc8ddc}\label{struct_point_a10a30dbcb7f24360d10245deb1cc8ddc} 
+\mbox{\hyperlink{struct_point}{Point}} {\bfseries get\+Normal\+Vector} () const
+\begin{DoxyCompactList}\small\item\em Retorna o vetor normal ao vetor atual. \end{DoxyCompactList}\item 
+\Hypertarget{struct_point_a531b057ce8f97e853c735db897a13800}\label{struct_point_a531b057ce8f97e853c735db897a13800} 
+float {\bfseries dot\+Product} (const \mbox{\hyperlink{struct_point}{Point}} \&p2) const
+\begin{DoxyCompactList}\small\item\em Produto escalar entre dois vetores. \end{DoxyCompactList}\item 
+\Hypertarget{struct_point_a21074221e0c1830bcd44e8326e51b2bc}\label{struct_point_a21074221e0c1830bcd44e8326e51b2bc} 
+\mbox{\hyperlink{struct_point}{Point}} {\bfseries normalize\+Vector} () const
+\begin{DoxyCompactList}\small\item\em Normaliza o vetor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_point}{Point}} \mbox{\hyperlink{struct_point_a7c6ccf914e4a65d48b1e59571c9dfb95}{rotate\+Vector}} (float angle) const
+\begin{DoxyCompactList}\small\item\em Rotaciona o vetor por um ângulo. \end{DoxyCompactList}\item 
+\Hypertarget{struct_point_aaed1ab9a133cd3c3a003aebe43360a30}\label{struct_point_aaed1ab9a133cd3c3a003aebe43360a30} 
+\mbox{\hyperlink{struct_point}{Point}} {\bfseries rotate\+Vector} (float cosA, float sinA) const
+\begin{DoxyCompactList}\small\item\em Rotaciona o vetor usando cosseno e seno. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_point}{Point}} \mbox{\hyperlink{struct_point_a7a59dada6602ba2423e43d14e845b792}{rotate\+Point}} (const \mbox{\hyperlink{struct_point}{Point}} \&rotation\+Center, float angle) const
+\begin{DoxyCompactList}\small\item\em Rotaciona o ponto em torno de um centro. \end{DoxyCompactList}\item 
+\Hypertarget{struct_point_ae8310a5e0ad2e71840f422172c1f2d05}\label{struct_point_ae8310a5e0ad2e71840f422172c1f2d05} 
+\mbox{\hyperlink{struct_point}{Point}} {\bfseries rotate\+Point} (const \mbox{\hyperlink{struct_point}{Point}} \&rotation\+Center, float cosA, float sinA) const
+\begin{DoxyCompactList}\small\item\em Rotaciona o ponto em torno de um centro usando cosseno e seno. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_point_a32a100ba2c96f90025b00b4dd2c77ad3}\label{struct_point_a32a100ba2c96f90025b00b4dd2c77ad3} 
+static \mbox{\hyperlink{struct_point}{Point}} {\bfseries get\+Edge\+Vector} (const \mbox{\hyperlink{struct_point}{Point}} \&p1, const \mbox{\hyperlink{struct_point}{Point}} \&p2)
+\begin{DoxyCompactList}\small\item\em Retorna o vetor aresta entre dois pontos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_point_a05dfe2dfbde813ad234b514f30e662f1}\label{struct_point_a05dfe2dfbde813ad234b514f30e662f1} 
+float {\bfseries x}
+\item 
+\Hypertarget{struct_point_a6101960c8d2d4e8ea1d32c9234bbeb8d}\label{struct_point_a6101960c8d2d4e8ea1d32c9234bbeb8d} 
+float {\bfseries y}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Estrutura que representa um ponto ou vetor 2D. 
+
+\label{doc-constructors}
+\Hypertarget{struct_point_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{struct_point_a30bc8409287de4f43e160664be834636}\index{Point@{Point}!Point@{Point}}
+\index{Point@{Point}!Point@{Point}}
+\doxysubsubsection{\texorpdfstring{Point()}{Point()}}
+{\footnotesize\ttfamily \label{struct_point_a30bc8409287de4f43e160664be834636} 
+Point\+::\+Point (\begin{DoxyParamCaption}\item[{float}]{x}{, }\item[{float}]{y}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construtor que inicializa as coordenadas. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Coordenada X. \\
+\hline
+{\em y} & Coordenada Y. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{struct_point_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_point_a7a59dada6602ba2423e43d14e845b792}\index{Point@{Point}!rotatePoint@{rotatePoint}}
+\index{rotatePoint@{rotatePoint}!Point@{Point}}
+\doxysubsubsection{\texorpdfstring{rotatePoint()}{rotatePoint()}}
+{\footnotesize\ttfamily \label{struct_point_a7a59dada6602ba2423e43d14e845b792} 
+\mbox{\hyperlink{struct_point}{Point}} Point\+::rotate\+Point (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_point}{Point}} \&}]{rotation\+Center}{, }\item[{float}]{angle}{}\end{DoxyParamCaption}) const}
+
+
+
+Rotaciona o ponto em torno de um centro. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rotation\+Center} & Centro de rotação. \\
+\hline
+{\em angle} & Ângulo em radianos. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{struct_point_a7c6ccf914e4a65d48b1e59571c9dfb95}\index{Point@{Point}!rotateVector@{rotateVector}}
+\index{rotateVector@{rotateVector}!Point@{Point}}
+\doxysubsubsection{\texorpdfstring{rotateVector()}{rotateVector()}}
+{\footnotesize\ttfamily \label{struct_point_a7c6ccf914e4a65d48b1e59571c9dfb95} 
+\mbox{\hyperlink{struct_point}{Point}} Point\+::rotate\+Vector (\begin{DoxyParamCaption}\item[{float}]{angle}{}\end{DoxyParamCaption}) const}
+
+
+
+Rotaciona o vetor por um ângulo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em angle} & Ângulo em radianos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vetor rotacionado. 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/polygon.\+hpp\item 
+src/polygon.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,110 @@
+\doxysection{register.\+hpp}
+\hypertarget{register_8hpp_source}{}\label{register_8hpp_source}\index{include/register.hpp@{include/register.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ REGISTER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ REGISTER\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}table.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <allegro5/allegro.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_primitives.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_image.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_font.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_ttf.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_audio.h>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_acodec.h>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ MINPROFILENAMESIZE\ =\ 4;}
+\DoxyCodeLine{00022\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ MAXPROFILENAMESIZE\ =\ 20;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ MINPROFILENICKNAMESIZE\ =\ 4;}
+\DoxyCodeLine{00027\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ MAXPROFILENICKNAMESIZE\ =\ 12;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00030\ \textcolor{keywordtype}{int}\ \textcolor{keyword}{const}\ NUMREGISTERROWS\ =\ 3;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_register_a2931674c45328a0fb5080f95dae0092d}{Register}}}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{int}\ bufferSize;\ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{char}\ *buffer;\ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{int}\ index;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{string}\ tittle;\ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{string}\ message;\ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{struct_rectangle_t}{RectangleT}}\ plan;\ \ }
+\DoxyCodeLine{00044\ \ \ \ \ vector<Row>\ rows;\ }
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_register_a2931674c45328a0fb5080f95dae0092d}{Register}}(\textcolor{keywordtype}{int}\ bufferSize,\ \mbox{\hyperlink{struct_rectangle_t}{RectangleT}}\ plan);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{class_register_a2931674c45328a0fb5080f95dae0092d}{Register}}(\textcolor{keywordtype}{string}\ tittle,\ \textcolor{keywordtype}{int}\ bufferSize,\ \mbox{\hyperlink{struct_rectangle_t}{RectangleT}}\ plan);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{class_register_a27490bda19cd4bd6ca09b48a795fc060}{\string~Register}}();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{class_register_a2931674c45328a0fb5080f95dae0092d}{Register}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_register_a2931674c45328a0fb5080f95dae0092d}{Register}}\ \&other);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{class_register_a2931674c45328a0fb5080f95dae0092d}{Register}}\ \&\mbox{\hyperlink{class_register_a8e00bc9a6bad3a8fded4ca1fcdf80435}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_register_a2931674c45328a0fb5080f95dae0092d}{Register}}\ \&other);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_register_aba95efa66e9c2335155691f9298c4046}{writeInBuffer}}(\textcolor{keywordtype}{char}\ c);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_register_abbc372f2cf0e362c85ddd74456730c9e}{deleteInBuffer}}();}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_register_ad447be46115bc0f9ebad3ed3b2a074b1}{cleanBuffer}}();}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_register_a1f930e503694ee95c36f7af5c6a6d130}{getTittleContent}}();}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_register_a169caff49b72e9692742e17e188b2697}{getMessageContent}}();}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_register_a807852e2e695c4e57988a9957222e03e}{getBufferContent}}();}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_register_a4d9fe9b61bbfdda8ab1cd30bfc4c97bb}{getIthContent}}(\textcolor{keywordtype}{int}\ i);}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00128\ \ \ \ \ \mbox{\hyperlink{struct_color}{Color}}\ \mbox{\hyperlink{class_register_acbdd0675632b18d9e947557c547eec89}{getTittleTextColor}}();}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00134\ \ \ \ \ \mbox{\hyperlink{struct_color}{Color}}\ \mbox{\hyperlink{class_register_aada50cd85c4b8824fef0feab7956a07a}{getMessageTextColor}}();}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00140\ \ \ \ \ \mbox{\hyperlink{struct_color}{Color}}\ \mbox{\hyperlink{class_register_a3ff9c7a5a37f19994864691e75aab0e1}{getBufferTextColor}}();}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00147\ \ \ \ \ \mbox{\hyperlink{struct_color}{Color}}\ \mbox{\hyperlink{class_register_ae54c499e3d5c799339bf14ac6fc89421}{getIthTextColor}}(\textcolor{keywordtype}{int}\ i);}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_register_aa3b9fb293d01fef82e999d10162d3aea}{getIthCenterX}}(\textcolor{keywordtype}{int}\ i);}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_register_aef06997ef4465e4999a9a049e1fe9f48}{getIthCenterY}}(\textcolor{keywordtype}{int}\ i);}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_register_a5cccfde07303bccd62cd308cf3815ffd}{setTittleContent}}(\textcolor{keywordtype}{string}\ tittle);}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_register_a3896372cf4a2a114e70f86d639968647}{setMessageContent}}(\textcolor{keywordtype}{string}\ message);}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_register_a06494fdc165ee03d6f27b1f92e7d7cd5}{setTittleTextColor}}(\mbox{\hyperlink{struct_color}{Color}}\ color);}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_register_a7ec2611e0a30ceeff7227b29cf9ec33e}{setMessageTextColor}}(\mbox{\hyperlink{struct_color}{Color}}\ color);}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_register_a03c398b1f854afc25e5cacb4dde42ec2}{setBufferTextColor}}(\mbox{\hyperlink{struct_color}{Color}}\ color);}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_register_a1ec862d12f2350e4fc80b16e91dfa50f}{drawRegister}}(ALLEGRO\_FONT\ *font1,\ ALLEGRO\_FONT\ *font2);}
+\DoxyCodeLine{00199\ \};}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00206\ \textcolor{keywordtype}{bool}\ validateNameChars(\textcolor{keywordtype}{string}\ name);}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00213\ \textcolor{keywordtype}{bool}\ validateNicknameChars(\textcolor{keywordtype}{string}\ nickname);}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00220\ \textcolor{keywordtype}{bool}\ validateNameSize(\textcolor{keywordtype}{string}\ name);}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00227\ \textcolor{keywordtype}{bool}\ validateNicknameSize(\textcolor{keywordtype}{string}\ nickname);}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00234\ \textcolor{keywordtype}{bool}\ validateName(\textcolor{keywordtype}{string}\ name);}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00241\ \textcolor{keywordtype}{bool}\ validateNickname(\textcolor{keywordtype}{string}\ nickname);}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00249\ \textcolor{keywordtype}{bool}\ checkName(\textcolor{keywordtype}{string}\ name,\ \textcolor{keywordtype}{string}\ \&msg);}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00257\ \textcolor{keywordtype}{bool}\ checkNickname(\textcolor{keywordtype}{string}\ nickname,\ \textcolor{keywordtype}{string}\ \&msg);}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,28 @@
+\doxysection{interface.\+hpp}
+\hypertarget{interface_8hpp_source}{}\label{interface_8hpp_source}\index{include/interface.hpp@{include/interface.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <allegro5/allegro.h>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_primitives.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_image.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_font.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_ttf.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_audio.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_acodec.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{bool}\ hover\_bool(ALLEGRO\_EVENT\ event,\ ALLEGRO\_BITMAP\ *any,\ \textcolor{keywordtype}{int}\ xcord,\ \textcolor{keywordtype}{int}\ ycord)}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{int}\ mousex\ =\ -\/1,\ mousey\ =\ -\/1;}
+\DoxyCodeLine{00025\ \ \ \ \ mousex\ =\ \textcolor{keyword}{event}.mouse.x;}
+\DoxyCodeLine{00026\ \ \ \ \ mousey\ =\ \textcolor{keyword}{event}.mouse.y;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{int}\ any\_w\ =\ al\_get\_bitmap\_width(any);}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{int}\ any\_h\ =\ al\_get\_bitmap\_height(any);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{return}\ (mousex\ >=\ xcord\ \&\&\ mousex\ <=\ xcord\ +\ any\_w\ \&\&\ mousey\ >=\ ycord\ \&\&\ mousey\ <=\ ycord\ +\ any\_h);}
+\DoxyCodeLine{00032\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,78 @@
+\doxysection{animation.\+hpp}
+\hypertarget{animation_8hpp_source}{}\label{animation_8hpp_source}\index{include/animation.hpp@{include/animation.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ANIMATION\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ANIMATION\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <allegro5/allegro.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ ANIM\_FPS\ =\ 24;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_spritesheet_ab877eee6b3df7adf4b9294ac6d2e64e7}{Spritesheet}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00020\ \ \ \ \ ALLEGRO\_BITMAP\ *sheet\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{int}\ frameCount,\ frameWidth,\ frameHeight,\ frameGap;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{int}\ currentIndex\ =\ 0;}
+\DoxyCodeLine{00023\ \ \ \ \ vector<ALLEGRO\_BITMAP\ *>\ frames;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_spritesheet_ab877eee6b3df7adf4b9294ac6d2e64e7}{Spritesheet}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *dir,\ \textcolor{keywordtype}{int}\ count,\ \textcolor{keywordtype}{int}\ frameW,\ \textcolor{keywordtype}{int}\ frameH,\ \textcolor{keywordtype}{int}\ gap);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{class_spritesheet_ab877eee6b3df7adf4b9294ac6d2e64e7}{Spritesheet}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *dir,\ \textcolor{keywordtype}{int}\ count,\ \textcolor{keywordtype}{int}\ frameW,\ \textcolor{keywordtype}{int}\ gap);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ void\ loadBitmap(const\ char*\ dir);}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00051\ \ \ \ \ ALLEGRO\_BITMAP\ *\mbox{\hyperlink{class_spritesheet_a65e770b3a364b06a345a67cb32293ba4}{getSheet}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_spritesheet_abcedb3cea621ea7026cb85a18fcf4dbd}{getFrameCount}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_spritesheet_a3b3cb11539c6ab8b6fd93d2ee8b506bb}{getFrameWidth}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_spritesheet_ac1ea8b40ace9ea71e3c574f1180fa320}{getFrameHeight}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_spritesheet_aca203aefdcdc062e8166a6924d4f28ce}{getCurrentIndex}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00082\ \ \ \ \ ALLEGRO\_BITMAP\ *\mbox{\hyperlink{class_spritesheet_a2398b6acc332afc246f4e775fc00fcfd}{getFrame}}(\textcolor{keywordtype}{int}\ i)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00088\ \ \ \ \ ALLEGRO\_BITMAP\ *\mbox{\hyperlink{class_spritesheet_a98dd42bff4782d82a11c2cfa6d10b7b4}{getCurrentFrame}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_spritesheet_af32a20b612c95e5526f93a73786b52e5}{resetAnimation}}();}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_spritesheet_aad307837837ce9845cdbfc6118ebc1d6}{advanceFrame}}();}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{class_spritesheet_a7037870efa64d9fedb8fa2d7072bf28c}{\string~Spritesheet}}();}
+\DoxyCodeLine{00104\ \};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00109\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_trigger_spritesheet_abe91f8b1a4c9d0f5f6acf6318233b022}{TriggerSpritesheet}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_spritesheet_ab877eee6b3df7adf4b9294ac6d2e64e7}{Spritesheet}}}
+\DoxyCodeLine{00110\ \{}
+\DoxyCodeLine{00111\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{bool}\ active\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{int}\ cycles\ =\ 1;}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{int}\ currentCycle\ =\ 0;}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{class_trigger_spritesheet_abe91f8b1a4c9d0f5f6acf6318233b022}{TriggerSpritesheet}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *dir,\ \textcolor{keywordtype}{int}\ count,\ \textcolor{keywordtype}{int}\ frameW,\ \textcolor{keywordtype}{int}\ frameH,\ \textcolor{keywordtype}{int}\ gap);}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00134\ \ \ \ \ \mbox{\hyperlink{class_trigger_spritesheet_abe91f8b1a4c9d0f5f6acf6318233b022}{TriggerSpritesheet}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *dir,\ \textcolor{keywordtype}{int}\ count,\ \textcolor{keywordtype}{int}\ frameW,\ \textcolor{keywordtype}{int}\ gap);}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_trigger_spritesheet_aa5cd158ab3b11008662d97d032197317}{setCycleCount}}(\textcolor{keywordtype}{int}\ n);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_trigger_spritesheet_ae8a5343b5af8804a098a9e1c5e64c984}{getCycleCount}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_trigger_spritesheet_a70dacd0e6b74d4955b1b2958af0534a0}{resetAnimation}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_trigger_spritesheet_ac74c58bd297ce617b8ce9b16c88f1d1d}{advanceFrame}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_trigger_spritesheet_a9a12833f65ff49c36d827f9cbcee5d31}{isActive}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00164\ \};}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

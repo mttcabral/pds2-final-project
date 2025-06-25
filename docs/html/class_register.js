@@ -1,0 +1,27 @@
+var class_register =
+[
+    [ "Register", "class_register.html#a2931674c45328a0fb5080f95dae0092d", null ],
+    [ "Register", "class_register.html#aa45c4375033c59fd629f324e98fb8c19", null ],
+    [ "~Register", "class_register.html#a27490bda19cd4bd6ca09b48a795fc060", null ],
+    [ "Register", "class_register.html#a0e5b35cf6135cd0399ce5b5d74450b5c", null ],
+    [ "cleanBuffer", "class_register.html#ad447be46115bc0f9ebad3ed3b2a074b1", null ],
+    [ "deleteInBuffer", "class_register.html#abbc372f2cf0e362c85ddd74456730c9e", null ],
+    [ "drawRegister", "class_register.html#a1ec862d12f2350e4fc80b16e91dfa50f", null ],
+    [ "getBufferContent", "class_register.html#a807852e2e695c4e57988a9957222e03e", null ],
+    [ "getBufferTextColor", "class_register.html#a3ff9c7a5a37f19994864691e75aab0e1", null ],
+    [ "getIthCenterX", "class_register.html#aa3b9fb293d01fef82e999d10162d3aea", null ],
+    [ "getIthCenterY", "class_register.html#aef06997ef4465e4999a9a049e1fe9f48", null ],
+    [ "getIthContent", "class_register.html#a4d9fe9b61bbfdda8ab1cd30bfc4c97bb", null ],
+    [ "getIthTextColor", "class_register.html#ae54c499e3d5c799339bf14ac6fc89421", null ],
+    [ "getMessageContent", "class_register.html#a169caff49b72e9692742e17e188b2697", null ],
+    [ "getMessageTextColor", "class_register.html#aada50cd85c4b8824fef0feab7956a07a", null ],
+    [ "getTittleContent", "class_register.html#a1f930e503694ee95c36f7af5c6a6d130", null ],
+    [ "getTittleTextColor", "class_register.html#acbdd0675632b18d9e947557c547eec89", null ],
+    [ "operator=", "class_register.html#a8e00bc9a6bad3a8fded4ca1fcdf80435", null ],
+    [ "setBufferTextColor", "class_register.html#a03c398b1f854afc25e5cacb4dde42ec2", null ],
+    [ "setMessageContent", "class_register.html#a3896372cf4a2a114e70f86d639968647", null ],
+    [ "setMessageTextColor", "class_register.html#a7ec2611e0a30ceeff7227b29cf9ec33e", null ],
+    [ "setTittleContent", "class_register.html#a5cccfde07303bccd62cd308cf3815ffd", null ],
+    [ "setTittleTextColor", "class_register.html#a06494fdc165ee03d6f27b1f92e7d7cd5", null ],
+    [ "writeInBuffer", "class_register.html#aba95efa66e9c2335155691f9298c4046", null ]
+];
