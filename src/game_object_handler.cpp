@@ -133,8 +133,8 @@ void Handler::addObstacle(ALLEGRO_BITMAP * image, Spritesheet * eelImage)
         case NONE:
             break;
         case FLAPPY:
-            obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 900-x), 45, 470, image)));
-            obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 230-x), 145, 470, image, true)));        
+            obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 910-x), 45, 470, image)));
+            obstacles.push_back(unique_ptr<Pipe>(new Pipe(Point(1000, 190-x), 145, 470, image, true)));        
             break;
         case EELS:
             obstacles.push_back(unique_ptr<Pipe>(new Eel(Point(1000,50+x),eelImage)));
