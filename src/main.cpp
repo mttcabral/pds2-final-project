@@ -99,6 +99,7 @@ int main(int argc, char *argv[]){
     ALLEGRO_BITMAP* yes_button = al_load_bitmap("assets/menu/yes_button.png");
     ALLEGRO_BITMAP* hover_yes = al_load_bitmap("assets/menu/yes_hover_button.png");
     ALLEGRO_BITMAP* register_background = al_load_bitmap("assets/menu/register_background.png");
+    ALLEGRO_BITMAP* game_over_sign = al_load_bitmap("assets/menu/game_over_sign.png");
     ALLEGRO_FONT* normalFont = al_load_font("assets/PressStart2P-Regular.ttf", 12, 0);
     ALLEGRO_FONT* registerFont = al_load_font("assets/PressStart2P-Regular.ttf", 18, 0);
     
@@ -400,6 +401,7 @@ int main(int argc, char *argv[]){
 
             if(redraw && al_is_event_queue_empty(eventQueue)) {
                 al_draw_bitmap(game_over_background, 0, 0, 0);
+                al_draw_bitmap(game_over_sign, 130, 25, 0); 
 
                     if(Hretry) {
                     al_draw_bitmap(hover_retry, xretry, yretry, 0);
