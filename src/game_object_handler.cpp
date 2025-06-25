@@ -16,16 +16,6 @@
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
 
-/**
- * @brief Executa o loop principal do jogo.
- *
- * @param timer Timer principal do jogo.
- * @param animation_timer Timer para animações.
- * @param eventQueue Fila de eventos do Allegro.
- * @param SCREEN_H Altura da tela.
- * @param SCREEN_W Largura da tela.
- * @return int Pontuação final (tempo de sobrevivência).
- */
 int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGRO_EVENT_QUEUE &eventQueue, const int SCREEN_H, const int SCREEN_W)
 {
 
@@ -157,12 +147,6 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
     return time;
 }
 
-/**
- * @brief Adiciona um novo obstáculo ao jogo.
- *
- * @param image Bitmap do obstáculo tipo Pipe.
- * @param eelImage Spritesheet do obstáculo tipo Eel.
- */
 void Handler::addObstacle(ALLEGRO_BITMAP *image, Spritesheet *eelImage)
 {
     int x = sortBetween(80, 430);
@@ -180,12 +164,6 @@ void Handler::addObstacle(ALLEGRO_BITMAP *image, Spritesheet *eelImage)
     }
 }
 
-/**
- * @brief Verifica se o jogador saiu dos limites da tela.
- *
- * @return true Se saiu dos limites.
- * @return false Caso contrário.
- */
 bool Handler::outOfBorders()
 {
     if (guy.getPosY() > 600 || guy.getPosY() < 0)
@@ -196,12 +174,6 @@ bool Handler::outOfBorders()
     return false;
 }
 
-/**
- * @brief Verifica colisões entre o jogador e os obstáculos.
- *
- * @return true Se houve colisão.
- * @return false Caso contrário.
- */
 bool Handler::checkCollisions()
 {
     for (auto &obj : obstacles)
@@ -216,9 +188,6 @@ bool Handler::checkCollisions()
     return false;
 }
 
-/**
- * @brief Desenha todos os objetos do jogo na tela.
- */
 void Handler::drawAll()
 {
     guy.draw();
@@ -228,22 +197,12 @@ void Handler::drawAll()
     }
 }
 
-/**
- * @brief Executa procedimentos de morte do jogador.
- */
 void Handler::death()
 {
     obstacles.clear();
     playing = false;
 }
 
-/**
- * @brief Sorteia um número inteiro entre min e max.
- *
- * @param min Valor mínimo.
- * @param max Valor máximo.
- * @return int Número sorteado.
- */
 int Handler::sortBetween(int min, int max)
 {
     static std::mt19937 motor(std::random_device{}());
@@ -251,9 +210,6 @@ int Handler::sortBetween(int min, int max)
     return distribuicao(motor);
 }
 
-/**
- * @brief Atualiza o ambiente do jogo, mudando dinâmicas e velocidade.
- */
 void Handler::updateAmbient()
 {
     int mark = this->time / 200;
