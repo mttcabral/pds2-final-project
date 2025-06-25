@@ -10,68 +10,55 @@ using namespace std;
 
 const float ANIM_FPS = 24;
 
-class Spritesheet {
-    protected:
-        ALLEGRO_BITMAP * sheet = nullptr;
-        int frameCount, frameWidth, frameHeight, frameGap;
-        int currentIndex = 0;
-        vector<ALLEGRO_BITMAP*> frames;
-    public:
+class Spritesheet
+{
+protected:
+    ALLEGRO_BITMAP *sheet = nullptr;
+    int frameCount, frameWidth, frameHeight, frameGap;
+    int currentIndex = 0;
+    vector<ALLEGRO_BITMAP *> frames;
 
-        Spritesheet(const char* dir, int count, int frameW, int frameH, int gap);
-        Spritesheet(const char* dir, int count, int frameW, int gap);
+public:
+    Spritesheet(const char *dir, int count, int frameW, int frameH, int gap);
+    Spritesheet(const char *dir, int count, int frameW, int gap);
 
-        //void loadBitmap(const char* dir);
+    // void loadBitmap(const char* dir);
 
-        ALLEGRO_BITMAP * getSheet() const;
-        int getFrameCount() const;
-        int getFrameWidth() const;
-        int getFrameHeight() const;
-        int getCurrentIndex() const;
-        ALLEGRO_BITMAP * getFrame(int i) const;
+    ALLEGRO_BITMAP *getSheet() const;
+    int getFrameCount() const;
+    int getFrameWidth() const;
+    int getFrameHeight() const;
+    int getCurrentIndex() const;
+    ALLEGRO_BITMAP *getFrame(int i) const;
 
-        ALLEGRO_BITMAP * getCurrentFrame() const;
+    ALLEGRO_BITMAP *getCurrentFrame() const;
 
-        virtual void resetAnimation();
+    virtual void resetAnimation();
 
-        virtual void advanceFrame();
+    virtual void advanceFrame();
 
-        ~Spritesheet();
-
-
+    ~Spritesheet();
 };
 
-class TriggerSpritesheet : public Spritesheet {
-    private:
-        bool active = false;
-        int cycles = 1;
-        int currentCycle = 0;
-    public:
-        TriggerSpritesheet(const char* dir, int count, int frameW, int frameH, int gap);
-        TriggerSpritesheet(const char* dir, int count, int frameW, int gap);
+class TriggerSpritesheet : public Spritesheet
+{
+private:
+    bool active = false;
+    int cycles = 1;
+    int currentCycle = 0;
 
-        void setCycleCount(int n);
-        int getCycleCount() const;
+public:
+    TriggerSpritesheet(const char *dir, int count, int frameW, int frameH, int gap);
+    TriggerSpritesheet(const char *dir, int count, int frameW, int gap);
 
-        void resetAnimation() override;
+    void setCycleCount(int n);
+    int getCycleCount() const;
 
-        void advanceFrame() override;
+    void resetAnimation() override;
 
-        bool isActive() const;
+    void advanceFrame() override;
 
+    bool isActive() const;
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #endif
