@@ -14,69 +14,71 @@ const int NUMPROFILES = 7;
 
 using namespace std;
 
-class Profile {
-    private:
-        string name;
-        string nickname;
-        int maxDistance;
-        int plays;
+class Profile
+{
+private:
+    string name;
+    string nickname;
+    int maxDistance;
+    int plays;
 
-    public:
-        // constructors
-        Profile(); // default
-        Profile(string, string); // novo jogador registrado, nao jogou ainda
-        Profile(string, string, int, int); // inicializar lista de jogadores
-        Profile(const Profile&);
+public:
+    // constructors
+    Profile();                         // default
+    Profile(string, string);           // novo jogador registrado, nao jogou ainda
+    Profile(string, string, int, int); // inicializar lista de jogadores
+    Profile(const Profile &);
 
-        // operators
-        bool operator > (const Profile&) const;
-        bool operator < (const Profile&) const;
-        bool operator == (const Profile&) const;
-        Profile operator = (const Profile&);
+    // operators
+    bool operator>(const Profile &) const;
+    bool operator<(const Profile &) const;
+    bool operator==(const Profile &) const;
+    Profile operator=(const Profile &);
 
-        // getters
-        string getName();
-        string getNickname();
-        int getPlays();
-        int getMaxDistance();
+    // getters
+    string getName();
+    string getNickname();
+    int getPlays();
+    int getMaxDistance();
 
-        // setters
-        void setPlays(int);
-        void setMaxDistance(int);
+    // setters
+    void setPlays(int);
+    void setMaxDistance(int);
 
-        void display();
+    void display();
 };
 
-class Base {
-    private:
-        vector<Profile*> profiles; // too many Profiles in the file can cause segmentation fault
+class Base
+{
+private:
+    vector<Profile *> profiles; // too many Profiles in the file can cause segmentation fault
 
-        void clearProfiles();
-        void copyProfiles(const vector<Profile*>&);
+    void clearProfiles();
+    void copyProfiles(const vector<Profile *> &);
 
-    public:
-        // constructors
-        Base(const Base&);
-        Base(const vector<Profile*>&);
-        Base();
-        Base(string);
+public:
+    // constructors
+    Base(const Base &);
+    Base(const vector<Profile *> &);
+    Base();
+    Base(string);
 
-        // destructor
-        ~Base();
+    // destructor
+    ~Base();
 
-        // operator
-        Base operator = (const Base&);
+    // operator
+    Base operator=(const Base &);
 
-        bool inBase (string);
-        bool inBase (Profile);
+    bool inBase(string);
+    bool inBase(Profile);
 
-        // add and remove methods
-        bool updateProfiles(Profile);
-        bool removeProfile(string);
+    // add and remove methods
+    bool updateProfiles(Profile);
+    bool removeProfile(string);
 
-        vector<Profile*> getBestProfiles();
-        void saveBase(string);
-        void display();
+    vector<Profile *> getBestProfiles();
+    void saveBase(string);
+    void display();
 };
 
 // validate functions
