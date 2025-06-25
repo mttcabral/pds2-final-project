@@ -64,6 +64,9 @@ class Pipe: public Entity {
         ALLEGRO_BITMAP * pipeSprite = nullptr;
         bool isInverted;
     public:
+        static float screenSpeed;
+        static void updateScreenSpeed(float s);
+
         Pipe(const Point&pos,float w, float h, ALLEGRO_BITMAP * image = nullptr, bool inv = false);
 
         bool updatePosition() override;
@@ -73,7 +76,6 @@ class Pipe: public Entity {
 
         void draw() override;
 
-        ~Pipe(); //will be replaced
 };
 
 const float EEL_W = 366;

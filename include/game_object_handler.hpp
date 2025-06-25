@@ -17,6 +17,7 @@ private:
     std::list<std::unique_ptr<Pipe>> obstacles;
     int time = 0;
     Ambient dynamic = NONE;
+    float gameSpeed = 1;
 public:
     int gameOn(ALLEGRO_TIMER& timer, ALLEGRO_TIMER& animation_timer, ALLEGRO_EVENT_QUEUE& eventQueue, const int SCREEN_H, const int SCREEN_W);
     void addObstacle(ALLEGRO_BITMAP * image, Spritesheet * eelImage);

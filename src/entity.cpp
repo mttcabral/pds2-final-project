@@ -119,20 +119,14 @@ Player::~Player() {
 }
 
 Pipe::Pipe(const Point&pos,float w, float h, ALLEGRO_BITMAP * image, bool inv):
-     Entity(pos,Point(PIPE_X_SPEED,0)), pipeSprite(image), isInverted(inv) { //(-2,0)
+     Entity(pos,Point(Pipe::screenSpeed,0)), pipeSprite(image), isInverted(inv) { //(-2,0)
     //loadSprite();
     this->hb = new RectangleHitbox(pos,w,h);
     this->hb->setTarget(this);
 }
+float Pipe::screenSpeed = -7;
 
-Pipe::~Pipe() {
-    /*
-    if (pipeSprite != nullptr) {
-        al_destroy_bitmap(pipeSprite);
-        pipeSprite = nullptr;
-    }
-    */
-}
+void Pipe::updateScreenSpeed(float s) {Pipe::screenSpeed = s;}
 
 bool Pipe::updatePosition() {
 

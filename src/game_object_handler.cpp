@@ -37,6 +37,9 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
 
     Spritesheet eelSprite("assets/eel.png",24,366,0);
 
+    this->gameSpeed = 1;
+    Pipe::updateScreenSpeed(-7);
+
     while (playing)
     {
         ALLEGRO_EVENT event;
@@ -45,8 +48,11 @@ int Handler::gameOn(ALLEGRO_TIMER &timer, ALLEGRO_TIMER &animation_timer, ALLEGR
         {
         case ALLEGRO_EVENT_TIMER:
             if (!playing) break;
-            time++;
+            
             if (event.timer.source == &timer) {
+                time++;
+                if (this->gameSpeed >= 1) this->time = this->time + this->gameSpeed;
+                else time++;
 
                 this->updateAmbient();
 
@@ -180,6 +186,14 @@ int Handler::sortBetween(int min, int max) {
 
 void Handler::updateAmbient() {
     int mark = this->time/200;
+
+    if (this->time > 600 && this->gameSpeed < 1.5) {
+            this->gameSpeed = 1.5;
+            Pipe::updateScreenSpeed(-7 * this->gameSpeed);
+    } else if (this->time > 1200 && this->gameSpeed < 3) {
+            this->gameSpeed = 3;
+            Pipe::updateScreenSpeed(-7 * this->gameSpeed);
+    }
     switch (this->dynamic) {
         case NONE:
             //cout << "none" << '\n';
