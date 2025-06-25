@@ -1,48 +1,92 @@
 #ifndef COOLDOWN_H
 #define COOLDOWN_H
 
-// class for handling time events, such as obstacle spawning or action cooldowns
-
-// keep this synced with 'main' FPS
+/// @brief Classe para controle de eventos temporais, como cooldowns de ações ou geração de obstáculos.
+/// @details Mantenha sincronizado com o FPS principal do jogo.
 const float FPS = 30;
 
+/**
+ * @brief Classe que gerencia cooldowns temporais.
+ */
 class Cooldown
 {
 private:
-    // Frames left to finish cooldown
-    float timeLeft = 0;
-    // how much time it takes to finish cooldown each time
-    float rechargeTime;
-    // how fast it counts down, 1 is normal time and X is X times faster
-    float updateFrequency = 1;
-    bool frozen = false;
+    float timeLeft = 0;        ///< Frames restantes para finalizar o cooldown.
+    float rechargeTime;        ///< Tempo necessário para recarregar o cooldown.
+    float updateFrequency = 1; ///< Fator de velocidade da contagem do cooldown.
+    bool frozen = false;       ///< Indica se o cooldown está congelado.
 
 public:
-    // always input time IN SECONDS units
+    /**
+     * @brief Construtor que define o tempo de recarga em segundos.
+     * @param wuTime Tempo de recarga em segundos.
+     */
     Cooldown(float wuTime);
+
+    /**
+     * @brief Construtor padrão.
+     */
     Cooldown();
 
-    // count timeLeft down until it finishes
+    /**
+     * @brief Atualiza o cooldown, reduzindo o tempo restante.
+     */
     void updateCooldown();
 
-    // resets timeLeft to rechargeTime
+    /**
+     * @brief Reinicia o cooldown para o tempo de recarga.
+     */
     void restartCooldown();
-    // sets timeLeft to 0
+
+    /**
+     * @brief Define o cooldown como pronto imediatamente.
+     */
     void refreshCooldown();
 
-    // outputs rather the cooldown is finished or not
+    /**
+     * @brief Verifica se o cooldown terminou.
+     * @return true se terminou, false caso contrário.
+     */
     bool isCooldownUp();
 
-    // sets new wind up time, remember to input time IN SECONDS units
+    /**
+     * @brief Define um novo tempo de recarga (em segundos).
+     * @param wuTime Novo tempo de recarga.
+     */
     void setRechargeTime(float wuTime);
-    // new update frequency factor, 1 is normal and 2 is twice as fast, for example
+
+    /**
+     * @brief Define um novo fator de velocidade de atualização.
+     * @param f Novo fator de atualização.
+     */
     void setUpdateFrequency(float f);
 
+    /**
+     * @brief Retorna o tempo restante atual do cooldown.
+     * @return Tempo restante.
+     */
     float getCurrentTimeLeft();
+
+    /**
+     * @brief Retorna a porcentagem do cooldown já decorrido.
+     * @return Porcentagem (0 a 1).
+     */
     float getCurrentPorcentage();
+
+    /**
+     * @brief Retorna o tempo total de recarga.
+     * @return Tempo de recarga.
+     */
     float getRechargeTime();
 
+    /**
+     * @brief Congela o cooldown (pausa a contagem).
+     */
     void freezeCooldown();
+
+    /**
+     * @brief Descongela o cooldown (retoma a contagem).
+     */
     void unfreezeCooldown();
 };
 
