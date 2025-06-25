@@ -5,7 +5,7 @@
 #include "game_object_handler.hpp"
 #include "cooldown.hpp"
 #include "animation.hpp"
-#include "passive.hpp" 
+#include "passive.hpp"
 #include "sound.hpp"
 #include "leaderboard.hpp"
 #include "table.hpp"
@@ -14,628 +14,747 @@
 #include <string>
 #include "register.hpp"
 
-
 using namespace std;
 
-enum GameState {MENU, TRANSITION, PLAYING, LEADERBOARD, DEATH, QUIT, CHECKIN}; // Use for in game logic
-enum RegisterState {PRE, NAME, NICKNAME, SAVE};
+enum GameState
+{
+    MENU,
+    TRANSITION,
+    PLAYING,
+    LEADERBOARD,
+    DEATH,
+    QUIT,
+    CHECKIN
+}; // Use for in game logic
+enum RegisterState
+{
+    PRE,
+    NAME,
+    NICKNAME,
+    SAVE
+};
 
 // Game constants:
 // const float FPS = 30;                                      // Frames per second (in cooldown.hpp)
 // const float ANIM_FPS = 12;                                 // Frames per second for animation
-const int SCREEN_W = 800;                                     // Screen width in pixels
-const int SCREEN_H = 600;                                     // Screen height in pixels
-const ALLEGRO_COLOR BACKGROUND_COLOR = al_map_rgb(0, 0, 0);   // Background color (black)
+const int SCREEN_W = 800;                                   // Screen width in pixels
+const int SCREEN_H = 600;                                   // Screen height in pixels
+const ALLEGRO_COLOR BACKGROUND_COLOR = al_map_rgb(0, 0, 0); // Background color (black)
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[])
+{
+    try
+    {
+        // Basic Allegro pointers:
+        ALLEGRO_DISPLAY *display = nullptr;
+        ALLEGRO_EVENT_QUEUE *eventQueue = nullptr;
+        ALLEGRO_TIMER *timer = nullptr;
+        ALLEGRO_TIMER *animation_timer = nullptr;
 
-    // Basic Allegro pointers:
-    ALLEGRO_DISPLAY *display = nullptr;
-    ALLEGRO_EVENT_QUEUE *eventQueue = nullptr;
-    ALLEGRO_TIMER *timer = nullptr;
-    ALLEGRO_TIMER *animation_timer = nullptr;
-    
-    // Initializations:
+        // Initializations:
 
-    //V-Sync:
-    //tries to solve frame-skipping bug, still not solved !!!
-    al_set_new_display_option(ALLEGRO_VSYNC, 1, ALLEGRO_SUGGEST);
+        // V-Sync:
+        // tries to solve frame-skipping bug, still not solved !!!
+        al_set_new_display_option(ALLEGRO_VSYNC, 1, ALLEGRO_SUGGEST);
 
-    if(!initialize_allegro()) return 1;
+        if (!initialize_allegro())
+            return 1;
 
-    if(!initialize_event_queue(eventQueue)) return 1;
+        if (!initialize_event_queue(eventQueue))
+            return 1;
 
-    if(!initialize_display_and_timer(display,SCREEN_W,SCREEN_H,timer,FPS)) return 1;
-    
-    if(!al_is_mouse_installed()) return 1;
-    //if(!initialize_display(display,SCREEN_W,SCREEN_H)) return 1;
+        if (!initialize_display_and_timer(display, SCREEN_W, SCREEN_H, timer, FPS))
+            return 1;
 
-    if(!initialize_timer(timer,FPS)) return 1;
-    if(!initialize_timer(animation_timer,ANIM_FPS)) return 1;
+        if (!al_is_mouse_installed())
+            return 1;
+        // if(!initialize_display(display,SCREEN_W,SCREEN_H)) return 1;
 
-    // Register event sources for the event queue
-    al_register_event_source(eventQueue, al_get_display_event_source(display));
-    al_register_event_source(eventQueue, al_get_mouse_event_source());
-    al_register_event_source(eventQueue, al_get_timer_event_source(timer));
-    al_register_event_source(eventQueue, al_get_timer_event_source(animation_timer));
-    al_register_event_source(eventQueue, al_get_keyboard_event_source());
+        if (!initialize_timer(timer, FPS))
+            return 1;
+        if (!initialize_timer(animation_timer, ANIM_FPS))
+            return 1;
 
-    // Start the timer to control game speed
-    al_start_timer(timer);
-    al_start_timer(animation_timer);
+        // Register event sources for the event queue
+        al_register_event_source(eventQueue, al_get_display_event_source(display));
+        al_register_event_source(eventQueue, al_get_mouse_event_source());
+        al_register_event_source(eventQueue, al_get_timer_event_source(timer));
+        al_register_event_source(eventQueue, al_get_timer_event_source(animation_timer));
+        al_register_event_source(eventQueue, al_get_keyboard_event_source());
 
+        // Start the timer to control game speed
+        al_start_timer(timer);
+        al_start_timer(animation_timer);
 
-    // Start the sample queue
-    al_reserve_samples(10);
-    
-    //Redraw condition, so that the game is rendered separately from other events in queue
-    bool redraw = false;
-    bool mousenow = false;
-    bool mousebefore = false;
+        // Start the sample queue
+        al_reserve_samples(10);
 
-    TransitionScreen curtain;
+        // Redraw condition, so that the game is rendered separately from other events in queue
+        bool redraw = false;
+        bool mousenow = false;
+        bool mousebefore = false;
 
-    // loading images and font
-    ALLEGRO_BITMAP* menu_background = al_load_bitmap("assets/menu/menu_background.png"); 
-    ALLEGRO_BITMAP* play_button = al_load_bitmap("assets/menu/menu_play_button.png");
-    ALLEGRO_BITMAP* quit_button = al_load_bitmap("assets/menu/menu_quit_button.png");
-    ALLEGRO_BITMAP* hover_play = al_load_bitmap("assets/menu/menu_hover_play_button.png");
-    ALLEGRO_BITMAP* hover_quit = al_load_bitmap("assets/menu/menu__hover_quit_button.png");
-    ALLEGRO_BITMAP* leaderboard_button = al_load_bitmap("assets/menu/menu_leaderboard_button.png");
-    ALLEGRO_BITMAP* hover_leaderboard = al_load_bitmap("assets/menu/menu_hover_leaderboard_button.png");
-    ALLEGRO_BITMAP* menu_image = al_load_bitmap("assets/menu/title_image.png");
-    ALLEGRO_BITMAP* back_button = al_load_bitmap("assets/menu/back_button.png");
-    ALLEGRO_BITMAP* hover_back = al_load_bitmap("assets/menu/menu_hover_back_button.png");
-    ALLEGRO_BITMAP* leaderboard_background = al_load_bitmap("assets/menu/leaderboard_background.jpeg");
-    ALLEGRO_BITMAP* home_button = al_load_bitmap("assets/menu/home_button.png");
-    ALLEGRO_BITMAP* hover_home = al_load_bitmap("assets/menu/home__hover_button.png");
-    ALLEGRO_BITMAP* retry_button = al_load_bitmap("assets/menu/retry_button.png");
-    ALLEGRO_BITMAP* hover_retry = al_load_bitmap("assets/menu/retry_hover_button.png");
-    ALLEGRO_BITMAP* game_over_background = al_load_bitmap("assets/menu/game_over_background.png");
-    ALLEGRO_BITMAP* register_button = al_load_bitmap("assets/menu/register_button.png");
-    ALLEGRO_BITMAP* hover_register = al_load_bitmap("assets/menu/register_hover_button.png");
-    ALLEGRO_BITMAP* no_button = al_load_bitmap("assets/menu/no_button.png");
-    ALLEGRO_BITMAP* hover_no = al_load_bitmap("assets/menu/no_hover_button.png");
-    ALLEGRO_BITMAP* yes_button = al_load_bitmap("assets/menu/yes_button.png");
-    ALLEGRO_BITMAP* hover_yes = al_load_bitmap("assets/menu/yes_hover_button.png");
-    ALLEGRO_BITMAP* register_background = al_load_bitmap("assets/menu/register_background.png");
-    ALLEGRO_BITMAP* game_over_sign = al_load_bitmap("assets/menu/game_over_sign.png");
-    ALLEGRO_BITMAP* testekk = al_load_bitmap("assets/bg/transition.png");
-    ALLEGRO_FONT* normalFont = al_load_font("assets/PressStart2P-Regular.ttf", 12, 0);
-    ALLEGRO_FONT* registerFont = al_load_font("assets/PressStart2P-Regular.ttf", 18, 0);
-    
+        TransitionScreen curtain;
 
-    // loading music (.wav please) 
-    ALLEGRO_SAMPLE* menu_music = al_load_sample("assets/music/DDDmario.wav");
-    if(!menu_music) std::cerr << "Erro: música menu_music não foi carregada\n";
-    ALLEGRO_SAMPLE* playing_music = al_load_sample("assets/music/Escape_Persona5.wav");
-    if(!playing_music) std::cerr << "Erro: música playing_music não foi carregada\n";
-    ALLEGRO_SAMPLE* leaderboard_music = al_load_sample("assets/music/leaderboard_music.wav");
-    if(!leaderboard_music) std::cerr << "Erro: música da leaderboard não carregada\n";
-    if (!normalFont) std::cerr << "Erro: fonte normalFont não foi carregada\n";
-    if (!registerFont) std::cerr << "Erro: fonte normalFont não foi carregada\n";
+        // loading images and font
+        ALLEGRO_BITMAP *menu_background = al_load_bitmap("assets/menu/menu_background.png");
+        ALLEGRO_BITMAP *play_button = al_load_bitmap("assets/menu/menu_play_button.png");
+        ALLEGRO_BITMAP *quit_button = al_load_bitmap("assets/menu/menu_quit_button.png");
+        ALLEGRO_BITMAP *hover_play = al_load_bitmap("assets/menu/menu_hover_play_button.png");
+        ALLEGRO_BITMAP *hover_quit = al_load_bitmap("assets/menu/menu__hover_quit_button.png");
+        ALLEGRO_BITMAP *leaderboard_button = al_load_bitmap("assets/menu/menu_leaderboard_button.png");
+        ALLEGRO_BITMAP *hover_leaderboard = al_load_bitmap("assets/menu/menu_hover_leaderboard_button.png");
+        ALLEGRO_BITMAP *menu_image = al_load_bitmap("assets/menu/title_image.png");
+        ALLEGRO_BITMAP *back_button = al_load_bitmap("assets/menu/back_button.png");
+        ALLEGRO_BITMAP *hover_back = al_load_bitmap("assets/menu/menu_hover_back_button.png");
+        ALLEGRO_BITMAP *leaderboard_background = al_load_bitmap("assets/menu/leaderboard_background.jpeg");
+        ALLEGRO_BITMAP *home_button = al_load_bitmap("assets/menu/home_button.png");
+        ALLEGRO_BITMAP *hover_home = al_load_bitmap("assets/menu/home__hover_button.png");
+        ALLEGRO_BITMAP *retry_button = al_load_bitmap("assets/menu/retry_button.png");
+        ALLEGRO_BITMAP *hover_retry = al_load_bitmap("assets/menu/retry_hover_button.png");
+        ALLEGRO_BITMAP *game_over_background = al_load_bitmap("assets/menu/game_over_background.png");
+        ALLEGRO_BITMAP *register_button = al_load_bitmap("assets/menu/register_button.png");
+        ALLEGRO_BITMAP *hover_register = al_load_bitmap("assets/menu/register_hover_button.png");
+        ALLEGRO_BITMAP *no_button = al_load_bitmap("assets/menu/no_button.png");
+        ALLEGRO_BITMAP *hover_no = al_load_bitmap("assets/menu/no_hover_button.png");
+        ALLEGRO_BITMAP *yes_button = al_load_bitmap("assets/menu/yes_button.png");
+        ALLEGRO_BITMAP *hover_yes = al_load_bitmap("assets/menu/yes_hover_button.png");
+        ALLEGRO_BITMAP *register_background = al_load_bitmap("assets/menu/register_background.png");
+        ALLEGRO_BITMAP *game_over_sign = al_load_bitmap("assets/menu/game_over_sign.png");
+        ALLEGRO_BITMAP *testekk = al_load_bitmap("assets/bg/transition.png");
+        ALLEGRO_FONT *normalFont = al_load_font("assets/PressStart2P-Regular.ttf", 12, 0);
+        ALLEGRO_FONT *registerFont = al_load_font("assets/PressStart2P-Regular.ttf", 18, 0);
 
+        // loading music (.wav please)
+        ALLEGRO_SAMPLE *menu_music = al_load_sample("assets/music/DDDmario.wav");
+        if (!menu_music)
+            std::cerr << "Erro: música menu_music não foi carregada\n";
+        ALLEGRO_SAMPLE *playing_music = al_load_sample("assets/music/Escape_Persona5.wav");
+        if (!playing_music)
+            std::cerr << "Erro: música playing_music não foi carregada\n";
+        ALLEGRO_SAMPLE *leaderboard_music = al_load_sample("assets/music/leaderboard_music.wav");
+        if (!leaderboard_music)
+            std::cerr << "Erro: música da leaderboard não carregada\n";
+        if (!normalFont)
+            std::cerr << "Erro: fonte normalFont não foi carregada\n";
+        if (!registerFont)
+            std::cerr << "Erro: fonte normalFont não foi carregada\n";
 
-    ALLEGRO_SAMPLE* error_soundeffect = al_load_sample("assets/music/soundeffect/error_soundeffect.wav");
-    ALLEGRO_SAMPLE* gaming_start = al_load_sample("assets/music/soundeffect/gaming_start.ogg");
-    ALLEGRO_SAMPLE* hover_soundeffect = al_load_sample("assets/music/soundeffect/hover_soundeffect.wav");
-    ALLEGRO_SAMPLE* register_soundeffect = al_load_sample("assets/music/soundeffect/register_soundeffect.wav");
-    ALLEGRO_SAMPLE* select_soundeffect = al_load_sample("assets/music/soundeffect/select_soundeffect.wav");
-    ALLEGRO_SAMPLE* death_music = al_load_sample("assets/music/death_soundtrack.wav");
-    ALLEGRO_SAMPLE* register_music = al_load_sample("assets/music/register_soundtrack.wav");
-    
+        ALLEGRO_SAMPLE *error_soundeffect = al_load_sample("assets/music/soundeffect/error_soundeffect.wav");
+        ALLEGRO_SAMPLE *gaming_start = al_load_sample("assets/music/soundeffect/gaming_start.ogg");
+        ALLEGRO_SAMPLE *hover_soundeffect = al_load_sample("assets/music/soundeffect/hover_soundeffect.wav");
+        ALLEGRO_SAMPLE *register_soundeffect = al_load_sample("assets/music/soundeffect/register_soundeffect.wav");
+        ALLEGRO_SAMPLE *select_soundeffect = al_load_sample("assets/music/soundeffect/select_soundeffect.wav");
+        ALLEGRO_SAMPLE *death_music = al_load_sample("assets/music/death_soundtrack.wav");
+        ALLEGRO_SAMPLE *register_music = al_load_sample("assets/music/register_soundtrack.wav");
 
-    //treating music
-    ALLEGRO_SAMPLE_INSTANCE* menu_music_inst  = al_create_sample_instance(menu_music);
-    ALLEGRO_SAMPLE_INSTANCE* playing_music_inst = al_create_sample_instance(playing_music);
-    ALLEGRO_SAMPLE_INSTANCE* leaderboard_music_inst = al_create_sample_instance(leaderboard_music);
-    ALLEGRO_SAMPLE_INSTANCE* death_music_inst = al_create_sample_instance(death_music);
-    ALLEGRO_SAMPLE_INSTANCE* register_music_int = al_create_sample_instance(register_music);
-    // menu music
+        // treating music
+        ALLEGRO_SAMPLE_INSTANCE *menu_music_inst = al_create_sample_instance(menu_music);
+        ALLEGRO_SAMPLE_INSTANCE *playing_music_inst = al_create_sample_instance(playing_music);
+        ALLEGRO_SAMPLE_INSTANCE *leaderboard_music_inst = al_create_sample_instance(leaderboard_music);
+        ALLEGRO_SAMPLE_INSTANCE *death_music_inst = al_create_sample_instance(death_music);
+        ALLEGRO_SAMPLE_INSTANCE *register_music_int = al_create_sample_instance(register_music);
+        // menu music
 
-    startmusic(menu_music_inst, 0.5);
-    // playing music
-    startmusic(playing_music_inst, 0.5);
-    startmusic(leaderboard_music_inst, 0.8);
-    startmusic(death_music_inst, 0.5);
-    startmusic(register_music_int, 0.5);
+        startmusic(menu_music_inst, 0.5);
+        // playing music
+        startmusic(playing_music_inst, 0.5);
+        startmusic(leaderboard_music_inst, 0.8);
+        startmusic(death_music_inst, 0.5);
+        startmusic(register_music_int, 0.5);
 
+        if (!menu_background)
+            std::cerr << "Erro: imagem menu_background não foi carregada!\n";
+        if (!play_button)
+            std::cerr << "Erro: imagem play_button não foi carregada!\n";
+        if (!hover_play)
+            std::cerr << "Erro: imagem hover_play não foi carregada \n";
+        if (!quit_button)
+            std::cerr << "Erro: imagem quit_button não foi carregada!\n";
+        if (!hover_quit)
+            std::cerr << "Erro: imagem hover_quit não foi carregada\n";
+        if (!back_button)
+            std::cerr << "Erro: imagem back_button não foi carregada\n";
+        if (!hover_back)
+            std::cerr << "Erro: imagem hover_back não foi carregada\n";
 
+        // seeing if everything is alright
+        if (!menu_background || !play_button || !quit_button)
+        {
+            return 1;
+        }
 
-    if (!menu_background) std::cerr << "Erro: imagem menu_background não foi carregada!\n";
-    if (!play_button)     std::cerr << "Erro: imagem play_button não foi carregada!\n";
-    if(!hover_play) std::cerr << "Erro: imagem hover_play não foi carregada \n";
-    if (!quit_button)     std::cerr << "Erro: imagem quit_button não foi carregada!\n";
-    if(!hover_quit) std::cerr << "Erro: imagem hover_quit não foi carregada\n";
-    if(!back_button) std::cerr << "Erro: imagem back_button não foi carregada\n";
-    if(!hover_back) std::cerr << "Erro: imagem hover_back não foi carregada\n";
-    
+        // coordinates of play, quit and leaderboard in MENU
+        int xplay = 150, yplay = 400;
+        int xquit = 490, yquit = 400;
+        int xleader = 320, yleader = 400;
 
-    // seeing if everything is alright
-    if(!menu_background || !play_button || !quit_button){
-        return 1;
-    }
-    
- 
-    //coordinates of play, quit and leaderboard in MENU
-    int xplay = 150, yplay = 400;
-    int xquit = 490, yquit = 400;
-    int xleader = 320, yleader = 400;
+        int xhome = 600, yhome = 450;
+        int xretry = 100, yretry = 450;
+        int xreg = 350, yreg = 450;
 
-    int xhome = 600, yhome = 450;
-    int xretry = 100, yretry = 450;
-    int xreg = 350, yreg = 450;
+        // coordinates of back in LEADERBOARD
+        int xback = 20, yback = 450;
 
-    //coordinates of back in LEADERBOARD
-    int xback = 20, yback = 450;
+        string path = "assets/base.csv";
+        RectangleT plan(PointT(430, 312), 440, 420);
+        LeaderBoard gameLeaderBoard(path, plan);
 
-    string path = "assets/base.csv";
-    RectangleT plan(PointT(430, 312), 440, 420);
-    LeaderBoard gameLeaderBoard(path, plan);
+        gameLeaderBoard.setFirstRowTextColor(Color(255, 215, 0));
+        gameLeaderBoard.setSecondRowTextColor(Color(192, 192, 192));
+        gameLeaderBoard.setThirdRowTextColor(Color(205, 127, 50));
+        gameLeaderBoard.setOthersRowsTextColor(Color(255, 255, 255));
 
-    gameLeaderBoard.setFirstRowTextColor(Color(255, 215, 0));
-    gameLeaderBoard.setSecondRowTextColor(Color(192, 192, 192));
-    gameLeaderBoard.setThirdRowTextColor(Color(205, 127, 50));
-    gameLeaderBoard.setOthersRowsTextColor(Color(255, 255, 255));
+        Register nameRegister("PLEASE, ENTER YOUR NAME:", 20, RectangleT(PointT(400, 300), 200, 150));
+        nameRegister.setTittleTextColor(Color(255, 255, 255));
+        nameRegister.setMessageTextColor(Color(255, 255, 255));
+        nameRegister.setBufferTextColor(Color(255, 255, 255));
 
-    Register nameRegister("PLEASE, ENTER YOUR NAME:", 20, RectangleT(PointT(400, 300), 200, 150));
-    nameRegister.setTittleTextColor(Color(255, 255, 255));
-    nameRegister.setMessageTextColor(Color(255, 255, 255));
-    nameRegister.setBufferTextColor(Color(255, 255, 255));
+        Register nicknameRegister("ENTER YOUR NICKNAME:", 12, RectangleT(PointT(400, 300), 200, 150));
+        nicknameRegister.setTittleTextColor(Color(255, 255, 255));
+        nicknameRegister.setMessageTextColor(Color(255, 255, 255));
+        nicknameRegister.setBufferTextColor(Color(255, 255, 255));
 
-    Register nicknameRegister("ENTER YOUR NICKNAME:", 12, RectangleT(PointT(400, 300), 200, 150));
-    nicknameRegister.setTittleTextColor(Color(255, 255, 255));
-    nicknameRegister.setMessageTextColor(Color(255, 255, 255));
-    nicknameRegister.setBufferTextColor(Color(255, 255, 255));
-    
-    //testing sub bitmaps
-    //TriggerSpritesheet sheetTest("assets/kirby.png",8,26,0);
-    
-    //testing background
-    //the timing is not perfet at all, fix this later
-    BackgroundHandler bgLayer3("assets/bg/sea.png",900,600,-1,SCREEN_W, SCREEN_H);
-    BackgroundHandler bgLayer2("assets/bg/clouds.png",900,600,-4,SCREEN_W, SCREEN_H);
-    BackgroundHandler bgLayer1("assets/bg/rocks.png",2700,600,-10,SCREEN_W, SCREEN_H);
+        // testing sub bitmaps
+        // TriggerSpritesheet sheetTest("assets/kirby.png",8,26,0);
 
-    //testing cooldown
-    Cooldown jumpCD(0);
+        // testing background
+        // the timing is not perfet at all, fix this later
+        BackgroundHandler bgLayer3("assets/bg/sea.png", 900, 600, -1, SCREEN_W, SCREEN_H);
+        BackgroundHandler bgLayer2("assets/bg/clouds.png", 900, 600, -4, SCREEN_W, SCREEN_H);
+        BackgroundHandler bgLayer1("assets/bg/rocks.png", 2700, 600, -10, SCREEN_W, SCREEN_H);
 
-    //Menu condition
-    GameState state = MENU;
-    GameState nextState = MENU;
-    bool gameActive = true;
+        // testing cooldown
+        Cooldown jumpCD(0);
 
-    // Register condition
-    RegisterState operation = PRE;
-    string tryName = "";
-    string tryNickname = "";
-    bool yetRegistered = false;
-    bool enterBuf = false;
-    int gameScore = 0;
+        // Menu condition
+        GameState state = MENU;
+        GameState nextState = MENU;
+        bool gameActive = true;
 
-    bool Hplay = false, Hquit = false, Hleader = false, Hback = false, Hretry = false, Hmenu = false, Hregister = false; //variables that detect if the hover effect is playing
-    
+        // Register condition
+        RegisterState operation = PRE;
+        string tryName = "";
+        string tryNickname = "";
+        bool yetRegistered = false;
+        bool enterBuf = false;
+        int gameScore = 0;
 
-    while(gameActive){
-        if(state == MENU){
-            al_play_sample_instance(menu_music_inst);
-            al_stop_sample_instance(playing_music_inst);
-            al_stop_sample_instance(leaderboard_music_inst);
-            al_stop_sample_instance(death_music_inst);
-            al_stop_sample_instance(register_music_int);
-        }   
+        bool Hplay = false, Hquit = false, Hleader = false, Hback = false, Hretry = false, Hmenu = false, Hregister = false; // variables that detect if the hover effect is playing
 
-        while(state == MENU){
-            ALLEGRO_EVENT event;
-
-            al_wait_for_event(eventQueue, &event);
-
-            if(event.type == ALLEGRO_EVENT_TIMER){
-                curtain.updateStage();
-                curtain.updateSpeed();
-                curtain.updatePosition();
-                redraw = true;
+        while (gameActive)
+        {
+            if (state == MENU)
+            {
+                al_play_sample_instance(menu_music_inst);
+                al_stop_sample_instance(playing_music_inst);
+                al_stop_sample_instance(leaderboard_music_inst);
+                al_stop_sample_instance(death_music_inst);
+                al_stop_sample_instance(register_music_int);
             }
 
-            if(event.type == ALLEGRO_EVENT_MOUSE_AXES || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
-               Hplay = hover_bool(event, play_button, xplay, yplay);
-               Hquit = hover_bool(event, quit_button, xquit, yquit);
-               Hleader = hover_bool(event,leaderboard_button, xleader, yleader);
-               
-            }
-            mousebefore = mousenow;
-            mousenow = (Hplay || Hquit || Hleader);
-            if(mousenow && !mousebefore){
-                al_play_sample(hover_soundeffect, 0.4, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-            }
+            while (state == MENU)
+            {
+                ALLEGRO_EVENT event;
 
+                al_wait_for_event(eventQueue, &event);
 
-            if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
-                if(Hplay) {
-                    al_play_sample(gaming_start, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);;
-                    state = PLAYING;
+                if (event.type == ALLEGRO_EVENT_TIMER)
+                {
+                    curtain.updateStage();
+                    curtain.updateSpeed();
+                    curtain.updatePosition();
+                    redraw = true;
+                }
+
+                if (event.type == ALLEGRO_EVENT_MOUSE_AXES || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY)
+                {
+                    Hplay = hover_bool(event, play_button, xplay, yplay);
+                    Hquit = hover_bool(event, quit_button, xquit, yquit);
+                    Hleader = hover_bool(event, leaderboard_button, xleader, yleader);
+                }
+                mousebefore = mousenow;
+                mousenow = (Hplay || Hquit || Hleader);
+                if (mousenow && !mousebefore)
+                {
+                    al_play_sample(hover_soundeffect, 0.4, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                }
+
+                if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN)
+                {
+                    if (Hplay)
+                    {
+                        al_play_sample(gaming_start, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                        ;
+                        state = PLAYING;
                     }
-                if(Hquit) {
+                    if (Hquit)
+                    {
+                        state = QUIT;
+                        gameActive = false;
+                    }
+                    if (Hleader)
+                    {
+                        al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+
+                        nextState = LEADERBOARD;
+                        curtain.startTransition();
+                    }
+                }
+
+                if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
+                {
                     state = QUIT;
                     gameActive = false;
-                    } 
-                if(Hleader) {
-                    al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                }
+                if (curtain.getStage() == tStage::SECOND_HALF)
+                    state = nextState;
 
-                    nextState = LEADERBOARD;
-                    curtain.startTransition();
+                if (redraw && al_is_event_queue_empty(eventQueue))
+                {
+                    al_clear_to_color(al_map_rgb(0, 0, 0));
+                    al_draw_bitmap(menu_background, 0, 0, 0);
+                    al_draw_bitmap(menu_image, 110, 30, 0);
+
+                    // implementation of the hover effect
+                    if (Hplay)
+                    {
+                        al_draw_bitmap(hover_play, xplay, yplay, 0);
                     }
-            }
-
-            if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
-                state = QUIT;
-                gameActive = false;
-            }
-            if (curtain.getStage() == tStage::SECOND_HALF) state = nextState;
-
-            if(redraw && al_is_event_queue_empty(eventQueue)){
-                al_clear_to_color(al_map_rgb(0,0,0)); 
-                al_draw_bitmap(menu_background, 0, 0, 0);
-                al_draw_bitmap(menu_image, 110, 30, 0);
-
-
-
-                //implementation of the hover effect
-                if(Hplay) {
-                    al_draw_bitmap(hover_play, xplay, yplay, 0);
-                } else {
-                    al_draw_bitmap(play_button, xplay, yplay, 0);
-                }
-
-                if(Hquit) {
-                    al_draw_bitmap(hover_quit, xquit, yquit, 0);
-                } else {
-                    al_draw_bitmap(quit_button, xquit, yquit, 0);
-                }
-                if(Hleader) {
-                    al_draw_bitmap(hover_leaderboard, xleader, yleader, 0);
-                } else {
-                    al_draw_bitmap(leaderboard_button, xleader, yleader, 0);
-                }
-                
-                if (curtain.isActive()) curtain.draw();
-
-                al_flip_display();
-
-
-                redraw = false;
-            }
-            
-        }
-        if(state == PLAYING){
-            al_stop_sample_instance(menu_music_inst);
-            al_stop_sample_instance(leaderboard_music_inst);
-            al_play_sample_instance(playing_music_inst);
-            al_stop_sample_instance(death_music_inst);
-        }
-        if(state == LEADERBOARD) {
-            al_stop_sample_instance(menu_music_inst);
-            al_stop_sample_instance(playing_music_inst);
-            al_play_sample_instance(leaderboard_music_inst);
-        }
-
-        while(state == LEADERBOARD){
-            //if (states == LE)
-            ALLEGRO_EVENT event;
-
-            al_wait_for_event(eventQueue, &event);
-
-            if(event.type == ALLEGRO_EVENT_TIMER){
-                curtain.updateStage();
-                curtain.updateSpeed();
-                curtain.updatePosition();
-                redraw = true;
-            }
-
-            if(event.type == ALLEGRO_EVENT_MOUSE_AXES || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
-                Hback = hover_bool(event, back_button, xback, yback);
-            }
-
-            if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-                if(Hback){ 
-                    al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-                    nextState = MENU;
-                    curtain.startTransition();
-                }
-            }
-            
-            if (curtain.getStage() == tStage::SECOND_HALF) state = nextState;
-
-            if(redraw && al_is_event_queue_empty(eventQueue)) {
-                al_clear_to_color(al_map_rgb(0,0,0)); 
-                al_draw_bitmap(leaderboard_background, 0, 0, 0);
-
-                if(Hback) {
-                    al_draw_bitmap(hover_back, xback, yback, 0);
-                } else {
-                    al_draw_bitmap(back_button, xback, yback, 0);
-                }
-                gameLeaderBoard.drawLeaderBoard(normalFont);  // NEW METHOD TO DRAW THE LEADERBOARD
-
-                if (curtain.isActive()) curtain.draw();
-                al_flip_display();
-            //
-            }
-            
-            if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-                gameActive = false;
-                state = QUIT;
-            }
-
-
-        }   
-
-        while (state == PLAYING) {
-            Handler handler;
-            gameScore = handler.gameOn(*timer, *animation_timer, *eventQueue, SCREEN_H, SCREEN_W); 
-            if(gameScore){
-                state = DEATH; // por enquanto só para permitir retry fácil
-                al_stop_sample_instance(playing_music_inst);
-                al_play_sample_instance(death_music_inst);
-            }
-            al_flip_display(); //updates the display with the new frame 
-            redraw = false;
-        }
-
-        // death logic
-        while (state == DEATH){
-            ALLEGRO_EVENT event; 
-
-            al_wait_for_event(eventQueue, &event);
-
-            if(event.type == ALLEGRO_EVENT_TIMER){
-                curtain.updateStage();
-                curtain.updateSpeed();
-                curtain.updatePosition();
-                redraw = true;
-            }
-
-            if(event.type == ALLEGRO_EVENT_MOUSE_AXES || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
-                Hretry = hover_bool(event, retry_button, xretry, yretry);
-                Hmenu = hover_bool(event, home_button, xhome, yhome);
-                Hregister = hover_bool(event, register_button, xreg, yreg);
-
-            }
-
-            mousebefore = mousenow;
-            mousenow = (Hretry || Hmenu || Hregister);
-            if(mousenow && !mousebefore){
-                al_play_sample(hover_soundeffect, 0.4, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-            }
-
-            if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-                if(Hretry) {
-                    al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-                    state = PLAYING;
-                    }
-                if(Hmenu) {
-                    al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-                    nextState = MENU;
-                    curtain.startTransition();
-                    }
-                if(Hregister) {
-                    al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-                    nextState = CHECKIN;
-                    curtain.startTransition();
-                }
-            }
-
-            if (curtain.getStage() == tStage::SECOND_HALF) state = nextState;
-
-            if(redraw && al_is_event_queue_empty(eventQueue)) {
-                al_draw_bitmap(game_over_background, 0, 0, 0);
-                al_draw_bitmap(game_over_sign, 130, 25, 0); 
-
-                    if(Hretry) {
-                    al_draw_bitmap(hover_retry, xretry, yretry, 0);
-                    } else {
-                    al_draw_bitmap(retry_button, xretry, yretry, 0);
+                    else
+                    {
+                        al_draw_bitmap(play_button, xplay, yplay, 0);
                     }
 
-                    if(Hmenu) {
-                    al_draw_bitmap(hover_home, xhome, yhome, 0);
-                    } else {
-                    al_draw_bitmap(home_button, xhome, yhome, 0);
+                    if (Hquit)
+                    {
+                        al_draw_bitmap(hover_quit, xquit, yquit, 0);
                     }
-                    if(Hregister) {
-                        al_draw_bitmap(hover_register, xreg, yreg, 0);
-                    } else {
-                        al_draw_bitmap(register_button, xreg, yreg, 0);
+                    else
+                    {
+                        al_draw_bitmap(quit_button, xquit, yquit, 0);
                     }
-                    if (curtain.isActive()) curtain.draw();
+                    if (Hleader)
+                    {
+                        al_draw_bitmap(hover_leaderboard, xleader, yleader, 0);
+                    }
+                    else
+                    {
+                        al_draw_bitmap(leaderboard_button, xleader, yleader, 0);
+                    }
+
+                    if (curtain.isActive())
+                        curtain.draw();
 
                     al_flip_display();
-            //
+
+                    redraw = false;
+                }
             }
-            
-            if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-                gameActive = false;
-                state = QUIT;
+            if (state == PLAYING)
+            {
+                al_stop_sample_instance(menu_music_inst);
+                al_stop_sample_instance(leaderboard_music_inst);
+                al_play_sample_instance(playing_music_inst);
+                al_stop_sample_instance(death_music_inst);
             }
-
-        if(state == CHECKIN) {
-            al_stop_sample_instance (death_music_inst);
-            al_play_sample_instance(register_music_int);
-        }
-
-        }
-
-        while (state == CHECKIN){
-            ALLEGRO_EVENT event; 
-
-            al_wait_for_event(eventQueue, &event);
-
-            if(event.type == ALLEGRO_EVENT_TIMER){
-                curtain.updateStage();
-                curtain.updateSpeed();
-                curtain.updatePosition();
-                redraw = true;
+            if (state == LEADERBOARD)
+            {
+                al_stop_sample_instance(menu_music_inst);
+                al_stop_sample_instance(playing_music_inst);
+                al_play_sample_instance(leaderboard_music_inst);
             }
 
-            if (yetRegistered) {
-                if (operation == PRE) {
-                    if(event.type == ALLEGRO_EVENT_MOUSE_AXES || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
-                        Hretry = hover_bool(event, yes_button, xretry, yretry);
-                        Hmenu = hover_bool(event, no_button, xhome, yhome);
+            while (state == LEADERBOARD)
+            {
+                // if (states == LE)
+                ALLEGRO_EVENT event;
+
+                al_wait_for_event(eventQueue, &event);
+
+                if (event.type == ALLEGRO_EVENT_TIMER)
+                {
+                    curtain.updateStage();
+                    curtain.updateSpeed();
+                    curtain.updatePosition();
+                    redraw = true;
+                }
+
+                if (event.type == ALLEGRO_EVENT_MOUSE_AXES || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY)
+                {
+                    Hback = hover_bool(event, back_button, xback, yback);
+                }
+
+                if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN)
+                {
+                    if (Hback)
+                    {
+                        al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                        nextState = MENU;
+                        curtain.startTransition();
                     }
-                    if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-                        if(Hretry){
-                            al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-                            operation = NAME;
+                }
+
+                if (curtain.getStage() == tStage::SECOND_HALF)
+                    state = nextState;
+
+                if (redraw && al_is_event_queue_empty(eventQueue))
+                {
+                    al_clear_to_color(al_map_rgb(0, 0, 0));
+                    al_draw_bitmap(leaderboard_background, 0, 0, 0);
+
+                    if (Hback)
+                    {
+                        al_draw_bitmap(hover_back, xback, yback, 0);
+                    }
+                    else
+                    {
+                        al_draw_bitmap(back_button, xback, yback, 0);
+                    }
+                    gameLeaderBoard.drawLeaderBoard(normalFont); // NEW METHOD TO DRAW THE LEADERBOARD
+
+                    if (curtain.isActive())
+                        curtain.draw();
+                    al_flip_display();
+                    //
+                }
+
+                if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
+                {
+                    gameActive = false;
+                    state = QUIT;
+                }
+            }
+
+            while (state == PLAYING)
+            {
+                Handler handler;
+                gameScore = handler.gameOn(*timer, *animation_timer, *eventQueue, SCREEN_H, SCREEN_W);
+                if (gameScore)
+                {
+                    state = DEATH; // por enquanto só para permitir retry fácil
+                    al_stop_sample_instance(playing_music_inst);
+                    al_play_sample_instance(death_music_inst);
+                }
+                al_flip_display(); // updates the display with the new frame
+                redraw = false;
+            }
+
+            // death logic
+            while (state == DEATH)
+            {
+                ALLEGRO_EVENT event;
+
+                al_wait_for_event(eventQueue, &event);
+
+                if (event.type == ALLEGRO_EVENT_TIMER)
+                {
+                    curtain.updateStage();
+                    curtain.updateSpeed();
+                    curtain.updatePosition();
+                    redraw = true;
+                }
+
+                if (event.type == ALLEGRO_EVENT_MOUSE_AXES || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY)
+                {
+                    Hretry = hover_bool(event, retry_button, xretry, yretry);
+                    Hmenu = hover_bool(event, home_button, xhome, yhome);
+                    Hregister = hover_bool(event, register_button, xreg, yreg);
+                }
+
+                mousebefore = mousenow;
+                mousenow = (Hretry || Hmenu || Hregister);
+                if (mousenow && !mousebefore)
+                {
+                    al_play_sample(hover_soundeffect, 0.4, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                }
+
+                if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN)
+                {
+                    if (Hretry)
+                    {
+                        al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                        state = PLAYING;
+                    }
+                    if (Hmenu)
+                    {
+                        al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                        nextState = MENU;
+                        curtain.startTransition();
+                    }
+                    if (Hregister)
+                    {
+                        al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                        nextState = CHECKIN;
+                        curtain.startTransition();
+                    }
+                }
+
+                if (curtain.getStage() == tStage::SECOND_HALF)
+                    state = nextState;
+
+                if (redraw && al_is_event_queue_empty(eventQueue))
+                {
+                    al_draw_bitmap(game_over_background, 0, 0, 0);
+                    al_draw_bitmap(game_over_sign, 130, 25, 0);
+
+                    if (Hretry)
+                    {
+                        al_draw_bitmap(hover_retry, xretry, yretry, 0);
+                    }
+                    else
+                    {
+                        al_draw_bitmap(retry_button, xretry, yretry, 0);
+                    }
+
+                    if (Hmenu)
+                    {
+                        al_draw_bitmap(hover_home, xhome, yhome, 0);
+                    }
+                    else
+                    {
+                        al_draw_bitmap(home_button, xhome, yhome, 0);
+                    }
+                    if (Hregister)
+                    {
+                        al_draw_bitmap(hover_register, xreg, yreg, 0);
+                    }
+                    else
+                    {
+                        al_draw_bitmap(register_button, xreg, yreg, 0);
+                    }
+                    if (curtain.isActive())
+                        curtain.draw();
+
+                    al_flip_display();
+                    //
+                }
+
+                if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
+                {
+                    gameActive = false;
+                    state = QUIT;
+                }
+
+                if (state == CHECKIN)
+                {
+                    al_stop_sample_instance(death_music_inst);
+                    al_play_sample_instance(register_music_int);
+                }
+            }
+
+            while (state == CHECKIN)
+            {
+                ALLEGRO_EVENT event;
+
+                al_wait_for_event(eventQueue, &event);
+
+                if (event.type == ALLEGRO_EVENT_TIMER)
+                {
+                    curtain.updateStage();
+                    curtain.updateSpeed();
+                    curtain.updatePosition();
+                    redraw = true;
+                }
+
+                if (yetRegistered)
+                {
+                    if (operation == PRE)
+                    {
+                        if (event.type == ALLEGRO_EVENT_MOUSE_AXES || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY)
+                        {
+                            Hretry = hover_bool(event, yes_button, xretry, yretry);
+                            Hmenu = hover_bool(event, no_button, xhome, yhome);
                         }
-                        if(Hmenu){
-                            al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-                            operation = SAVE;
+                        if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN)
+                        {
+                            if (Hretry)
+                            {
+                                al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                                operation = NAME;
+                            }
+                            if (Hmenu)
+                            {
+                                al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                                operation = SAVE;
+                            }
                         }
                     }
                 }
-            }
-            else {
-                if (operation == PRE)
-                    operation = NAME;
-            }
+                else
+                {
+                    if (operation == PRE)
+                        operation = NAME;
+                }
 
-            mousebefore = mousenow;
-            mousenow = (Hretry || Hmenu);
-            if(mousenow && !mousebefore){
-                al_play_sample(hover_soundeffect, 0.4, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-            }
+                mousebefore = mousenow;
+                mousenow = (Hretry || Hmenu);
+                if (mousenow && !mousebefore)
+                {
+                    al_play_sample(hover_soundeffect, 0.4, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                }
 
-            if(redraw && al_is_event_queue_empty(eventQueue)) {
-                al_draw_bitmap(register_background, 0, 0, 0);
+                if (redraw && al_is_event_queue_empty(eventQueue))
+                {
+                    al_draw_bitmap(register_background, 0, 0, 0);
 
-                if(operation == PRE) {
-                    if(Hretry) {
-                    al_draw_bitmap(hover_yes, xretry, yretry, 0);
-                    } else {
-                    al_draw_bitmap(yes_button, xretry, yretry, 0);
+                    if (operation == PRE)
+                    {
+                        if (Hretry)
+                        {
+                            al_draw_bitmap(hover_yes, xretry, yretry, 0);
+                        }
+                        else
+                        {
+                            al_draw_bitmap(yes_button, xretry, yretry, 0);
+                        }
+
+                        if (Hmenu)
+                        {
+                            al_draw_bitmap(hover_no, xhome, yhome, 0);
+                        }
+                        else
+                        {
+                            al_draw_bitmap(no_button, xhome, yhome, 0);
+                        }
                     }
 
-                    if(Hmenu) {
-                    al_draw_bitmap(hover_no, xhome, yhome, 0);
-                    } else {
-                    al_draw_bitmap(no_button, xhome, yhome, 0);
+                    if (operation == PRE)
+                    {
+                        al_draw_text(registerFont, al_map_rgb(255, 255, 255), 400, 300, ALLEGRO_ALIGN_CENTRE, "REGISTER A NEW PROFILE?");
                     }
+
+                    if (operation == NAME)
+                    {
+                        nameRegister.drawRegister(registerFont, normalFont); // NEW METHOD AND CLASS TO DRAW THE REGISTER
+                    }
+                    else if (operation == NICKNAME)
+                    {
+                        nicknameRegister.drawRegister(registerFont, normalFont);
+                    }
+                    al_flip_display();
                 }
 
-                if (operation == PRE) {
-                    al_draw_text(registerFont, al_map_rgb(255, 255, 255), 400, 300, ALLEGRO_ALIGN_CENTRE, "REGISTER A NEW PROFILE?");
-                }
-                    
-                if (operation == NAME){
-                    nameRegister.drawRegister(registerFont, normalFont);  // NEW METHOD AND CLASS TO DRAW THE REGISTER
-                }
-                else if (operation == NICKNAME) {
-                    nicknameRegister.drawRegister(registerFont, normalFont);
-                }
-                al_flip_display();
-            }
+                if (operation == NAME)
+                {
+                    tryName = "";
+                    if (event.type == ALLEGRO_EVENT_KEY_CHAR)
+                    {
+                        if (event.keyboard.unichar >= 32 && event.keyboard.unichar < 127)
+                            nameRegister.writeInBuffer((char)event.keyboard.unichar);
 
-            if(operation == NAME){
-                tryName = "";
-                if (event.type == ALLEGRO_EVENT_KEY_CHAR) {
-                    if (event.keyboard.unichar >= 32 && event.keyboard.unichar < 127)
-                        nameRegister.writeInBuffer((char)event.keyboard.unichar);
+                        else if (event.keyboard.keycode == ALLEGRO_KEY_BACKSPACE)
+                            nameRegister.deleteInBuffer();
 
-                    else if (event.keyboard.keycode == ALLEGRO_KEY_BACKSPACE)
-                        nameRegister.deleteInBuffer();
-                
-                    else if (event.keyboard.keycode == ALLEGRO_KEY_ENTER) {
-                        string warning = "";
-                        tryName = nameRegister.getBufferContent();
-                        bool nameRegistered = checkName(tryName, warning);
-                        if(!nameRegistered) al_play_sample(error_soundeffect, 0.5, 0.0 , 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-                        nameRegister.setMessageContent(warning);
-                        nameRegister.cleanBuffer();
-                        enterBuf = false;
-
-                        if (nameRegistered) {
-                            operation = NICKNAME;
-                            al_play_sample(register_soundeffect, 0.5, 0.0 , 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                        else if (event.keyboard.keycode == ALLEGRO_KEY_ENTER)
+                        {
+                            string warning = "";
+                            tryName = nameRegister.getBufferContent();
+                            bool nameRegistered = checkName(tryName, warning);
+                            if (!nameRegistered)
+                                al_play_sample(error_soundeffect, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                            nameRegister.setMessageContent(warning);
                             nameRegister.cleanBuffer();
+                            enterBuf = false;
+
+                            if (nameRegistered)
+                            {
+                                operation = NICKNAME;
+                                al_play_sample(register_soundeffect, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                                nameRegister.cleanBuffer();
+                            }
                         }
                     }
                 }
-            }
 
-            if(operation == NICKNAME){
-                tryNickname = "";
-                if (event.type == ALLEGRO_EVENT_KEY_CHAR) {
-                    if (event.keyboard.unichar >= 32 && event.keyboard.unichar < 127) {
-                        nicknameRegister.writeInBuffer((char)event.keyboard.unichar);
-                    }
-                    else if (event.keyboard.keycode == ALLEGRO_KEY_BACKSPACE)
-                        nicknameRegister.deleteInBuffer();
-                
-                    else if (event.keyboard.keycode == ALLEGRO_KEY_ENTER) {
-                        string warning = "";
-                        tryNickname = nicknameRegister.getBufferContent();
-                        bool nicknameRegistered = false;
-                        nicknameRegistered = checkNickname(tryNickname, warning);
-                        if(enterBuf) {
-                            if(!nicknameRegistered) al_play_sample(error_soundeffect, 0.5, 0.0 , 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-                            nicknameRegister.setMessageContent(warning);
+                if (operation == NICKNAME)
+                {
+                    tryNickname = "";
+                    if (event.type == ALLEGRO_EVENT_KEY_CHAR)
+                    {
+                        if (event.keyboard.unichar >= 32 && event.keyboard.unichar < 127)
+                        {
+                            nicknameRegister.writeInBuffer((char)event.keyboard.unichar);
                         }
-                        nicknameRegister.cleanBuffer();
-                        enterBuf = true;
+                        else if (event.keyboard.keycode == ALLEGRO_KEY_BACKSPACE)
+                            nicknameRegister.deleteInBuffer();
 
-                        if (nicknameRegistered) 
-                            operation = SAVE;
+                        else if (event.keyboard.keycode == ALLEGRO_KEY_ENTER)
+                        {
+                            string warning = "";
+                            tryNickname = nicknameRegister.getBufferContent();
+                            bool nicknameRegistered = false;
+                            nicknameRegistered = checkNickname(tryNickname, warning);
+                            if (enterBuf)
+                            {
+                                if (!nicknameRegistered)
+                                    al_play_sample(error_soundeffect, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                                nicknameRegister.setMessageContent(warning);
+                            }
+                            nicknameRegister.cleanBuffer();
+                            enterBuf = true;
+
+                            if (nicknameRegistered)
+                                operation = SAVE;
+                        }
                     }
-                    
                 }
-            }
 
-            if(operation == SAVE){
-                bool profileRegistered = gameLeaderBoard.addNewProfile(Profile(tryName, tryNickname, gameScore, 1));
-                operation = PRE;
-                if (profileRegistered) {
-                    state = MENU;
-                    gameLeaderBoard.updateLeaderBoard();
-                    gameLeaderBoard.save(path);
-                    yetRegistered = true;
-                    al_play_sample(register_soundeffect, 0.5, 0.0 , 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                if (operation == SAVE)
+                {
+                    bool profileRegistered = gameLeaderBoard.addNewProfile(Profile(tryName, tryNickname, gameScore, 1));
+                    operation = PRE;
+                    if (profileRegistered)
+                    {
+                        state = MENU;
+                        gameLeaderBoard.updateLeaderBoard();
+                        gameLeaderBoard.save(path);
+                        yetRegistered = true;
+                        al_play_sample(register_soundeffect, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                    }
+                    else
+                    {
+                        al_play_sample(error_soundeffect, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                        nicknameRegister.setMessageContent("Nickname already in use. Try another one.");
+                        operation = NICKNAME;
+                    }
                 }
-                else {
-                    al_play_sample(error_soundeffect, 0.5, 0.0 , 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-                    nicknameRegister.setMessageContent("Nickname already in use. Try another one.");
-                    operation = NICKNAME;
+
+                if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
+                {
+                    gameActive = false;
+                    state = QUIT;
                 }
-                
-            }
-            
-            if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-                gameActive = false;
-                state = QUIT;
             }
         }
+        al_destroy_bitmap(menu_image);
+        al_destroy_bitmap(menu_background);
+        al_destroy_bitmap(play_button);
+        al_destroy_bitmap(quit_button);
+        al_destroy_bitmap(hover_play);
+        al_destroy_bitmap(hover_quit);
+        al_destroy_display(display);
 
+        al_destroy_event_queue(eventQueue);
+        al_destroy_timer(timer);
+        al_destroy_timer(animation_timer);
+        al_destroy_sample(menu_music);
+        al_destroy_sample_instance(menu_music_inst);
+        al_destroy_sample(playing_music);
+        al_destroy_sample_instance(playing_music_inst);
+        al_destroy_font(normalFont);
+        al_destroy_font(registerFont);
     }
-    al_destroy_bitmap(menu_image);
-    al_destroy_bitmap(menu_background);
-    al_destroy_bitmap(play_button);
-    al_destroy_bitmap(quit_button);
-    al_destroy_bitmap(hover_play);
-    al_destroy_bitmap(hover_quit);
-    al_destroy_display(display);
-
-    al_destroy_event_queue(eventQueue);
-    al_destroy_timer(timer);
-    al_destroy_timer(animation_timer);
-    al_destroy_sample(menu_music);
-    al_destroy_sample_instance(menu_music_inst);
-    al_destroy_sample(playing_music);
-    al_destroy_sample_instance(playing_music_inst);
-    al_destroy_font(normalFont);
-    al_destroy_font(registerFont);
-    
-
-
+    catch (const std::exception &e)
+    {
+        std::cerr << "Erro fatal: " << e.what() << std::endl;
+        return 1;
+    }
+    catch (...)
+    {
+        std::cerr << "Erro desconhecido ocorreu!" << std::endl;
+        return 1;
+    }
 
     return 0;
 }
