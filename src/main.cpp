@@ -100,6 +100,7 @@ int main(int argc, char *argv[]){
     ALLEGRO_BITMAP* hover_yes = al_load_bitmap("assets/menu/yes_hover_button.png");
     ALLEGRO_BITMAP* register_background = al_load_bitmap("assets/menu/register_background.png");
     ALLEGRO_BITMAP* game_over_sign = al_load_bitmap("assets/menu/game_over_sign.png");
+    ALLEGRO_BITMAP* testekk = al_load_bitmap("assets/bg/transition.png");
     ALLEGRO_FONT* normalFont = al_load_font("assets/PressStart2P-Regular.ttf", 12, 0);
     ALLEGRO_FONT* registerFont = al_load_font("assets/PressStart2P-Regular.ttf", 18, 0);
     
@@ -201,7 +202,7 @@ int main(int argc, char *argv[]){
 
     //Menu condition
     GameState state = MENU;
-    GameState next = MENU;
+    GameState nextState = MENU;
     bool gameActive = true;
 
     // Register condition
@@ -230,6 +231,9 @@ int main(int argc, char *argv[]){
             al_wait_for_event(eventQueue, &event);
 
             if(event.type == ALLEGRO_EVENT_TIMER){
+                curtain.updateStage();
+                curtain.updateSpeed();
+                curtain.updatePosition();
                 redraw = true;
             }
 
@@ -256,8 +260,10 @@ int main(int argc, char *argv[]){
                     gameActive = false;
                     } 
                 if(Hleader) {
-                    al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);;
-                   state = LEADERBOARD;
+                    al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+
+                    nextState = LEADERBOARD;
+                    curtain.startTransition();
                     }
             }
 
@@ -265,12 +271,13 @@ int main(int argc, char *argv[]){
                 state = QUIT;
                 gameActive = false;
             }
-
+            if (curtain.getStage() == tStage::SECOND_HALF) state = nextState;
 
             if(redraw && al_is_event_queue_empty(eventQueue)){
                 al_clear_to_color(al_map_rgb(0,0,0)); 
                 al_draw_bitmap(menu_background, 0, 0, 0);
                 al_draw_bitmap(menu_image, 110, 30, 0);
+
 
 
                 //implementation of the hover effect
@@ -291,10 +298,14 @@ int main(int argc, char *argv[]){
                     al_draw_bitmap(leaderboard_button, xleader, yleader, 0);
                 }
                 
+                if (curtain.isActive()) curtain.draw();
+
                 al_flip_display();
+
 
                 redraw = false;
             }
+            
         }
         if(state == PLAYING){
             al_stop_sample_instance(menu_music_inst);
@@ -315,6 +326,9 @@ int main(int argc, char *argv[]){
             al_wait_for_event(eventQueue, &event);
 
             if(event.type == ALLEGRO_EVENT_TIMER){
+                curtain.updateStage();
+                curtain.updateSpeed();
+                curtain.updatePosition();
                 redraw = true;
             }
 
@@ -323,8 +337,14 @@ int main(int argc, char *argv[]){
             }
 
             if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-                if(Hback) state = MENU;
+                if(Hback){ 
+                    al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                    nextState = MENU;
+                    curtain.startTransition();
+                }
             }
+            
+            if (curtain.getStage() == tStage::SECOND_HALF) state = nextState;
 
             if(redraw && al_is_event_queue_empty(eventQueue)) {
                 al_clear_to_color(al_map_rgb(0,0,0)); 
@@ -335,8 +355,9 @@ int main(int argc, char *argv[]){
                 } else {
                     al_draw_bitmap(back_button, xback, yback, 0);
                 }
-
                 gameLeaderBoard.drawLeaderBoard(normalFont);  // NEW METHOD TO DRAW THE LEADERBOARD
+
+                if (curtain.isActive()) curtain.draw();
                 al_flip_display();
             //
             }
@@ -368,6 +389,9 @@ int main(int argc, char *argv[]){
             al_wait_for_event(eventQueue, &event);
 
             if(event.type == ALLEGRO_EVENT_TIMER){
+                curtain.updateStage();
+                curtain.updateSpeed();
+                curtain.updatePosition();
                 redraw = true;
             }
 
@@ -391,13 +415,17 @@ int main(int argc, char *argv[]){
                     }
                 if(Hmenu) {
                     al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-                    state = MENU;
+                    nextState = MENU;
+                    curtain.startTransition();
                     }
                 if(Hregister) {
                     al_play_sample(select_soundeffect, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-                    state = CHECKIN;
+                    nextState = CHECKIN;
+                    curtain.startTransition();
                 }
             }
+
+            if (curtain.getStage() == tStage::SECOND_HALF) state = nextState;
 
             if(redraw && al_is_event_queue_empty(eventQueue)) {
                 al_draw_bitmap(game_over_background, 0, 0, 0);
@@ -419,7 +447,7 @@ int main(int argc, char *argv[]){
                     } else {
                         al_draw_bitmap(register_button, xreg, yreg, 0);
                     }
-                    
+                    if (curtain.isActive()) curtain.draw();
 
                     al_flip_display();
             //
@@ -443,6 +471,9 @@ int main(int argc, char *argv[]){
             al_wait_for_event(eventQueue, &event);
 
             if(event.type == ALLEGRO_EVENT_TIMER){
+                curtain.updateStage();
+                curtain.updateSpeed();
+                curtain.updatePosition();
                 redraw = true;
             }
 

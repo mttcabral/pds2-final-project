@@ -7,7 +7,7 @@ GameObject::GameObject(float pX, float pY):
 
 void GameObject::setPosX(float x) {this->pos.x = x;}
 void GameObject::setPosY(float y) {this->pos.y = y;}
-void GameObject::setPos(const Point& p) {this->pos = this->pos + p;}
+void GameObject::setPos(const Point& p) {this->pos = p;}
 
 Point GameObject::getPos() {return this->pos;}
 float GameObject::getPosX() {return this->pos.x;}

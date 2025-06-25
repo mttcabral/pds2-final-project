@@ -116,7 +116,6 @@ bool TransitionScreen::updatePosition() {
             break;
         case tStage::FIRST_HALF: case tStage::SECOND_HALF:
             this->setPosY(this->getPosY() + this->getSpeedY());
-            //cout << this->getPos() << '\n';
             break;
     }
     return true;
