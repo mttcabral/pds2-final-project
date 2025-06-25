@@ -9,83 +9,227 @@
 #include <sstream>
 #include <algorithm>
 
-// pressupoe-se que name e nickname sao validos (foram tratados no main)
+/// @brief Número máximo de perfis permitidos.
 const int NUMPROFILES = 7;
 
 using namespace std;
 
+/**
+ * @brief Classe que representa o perfil de um jogador.
+ */
 class Profile
 {
 private:
-    string name;
-    string nickname;
-    int maxDistance;
-    int plays;
+    string name;     ///< Nome do jogador.
+    string nickname; ///< Apelido do jogador.
+    int maxDistance; ///< Maior distância alcançada.
+    int plays;       ///< Número de partidas jogadas.
 
 public:
-    // constructors
-    Profile();                         // default
-    Profile(string, string);           // novo jogador registrado, nao jogou ainda
-    Profile(string, string, int, int); // inicializar lista de jogadores
+    /**
+     * @brief Construtor padrão.
+     */
+    Profile();
+
+    /**
+     * @brief Construtor para novo jogador registrado.
+     * @param name Nome do jogador.
+     * @param nickname Apelido do jogador.
+     */
+    Profile(string, string);
+
+    /**
+     * @brief Construtor para inicializar lista de jogadores.
+     * @param name Nome do jogador.
+     * @param nickname Apelido do jogador.
+     * @param maxDistance Maior distância.
+     * @param plays Número de partidas.
+     */
+    Profile(string, string, int, int);
+
+    /**
+     * @brief Construtor de cópia.
+     * @param other Outro objeto Profile.
+     */
     Profile(const Profile &);
 
-    // operators
+    /**
+     * @brief Operador de comparação maior.
+     * @param other Outro objeto Profile.
+     * @return true se este perfil for maior.
+     */
     bool operator>(const Profile &) const;
+
+    /**
+     * @brief Operador de comparação menor.
+     * @param other Outro objeto Profile.
+     * @return true se este perfil for menor.
+     */
     bool operator<(const Profile &) const;
+
+    /**
+     * @brief Operador de igualdade.
+     * @param other Outro objeto Profile.
+     * @return true se os perfis forem iguais.
+     */
     bool operator==(const Profile &) const;
+
+    /**
+     * @brief Operador de atribuição.
+     * @param other Outro objeto Profile.
+     * @return Profile& Referência para este objeto.
+     */
     Profile operator=(const Profile &);
 
-    // getters
+    /// @brief Retorna o nome do jogador.
     string getName();
+
+    /// @brief Retorna o nickname do jogador.
     string getNickname();
+
+    /// @brief Retorna o número de partidas jogadas.
     int getPlays();
+
+    /// @brief Retorna a maior distância alcançada.
     int getMaxDistance();
 
-    // setters
+    /// @brief Define o número de partidas jogadas.
     void setPlays(int);
+
+    /// @brief Define a maior distância alcançada.
     void setMaxDistance(int);
 
+    /// @brief Exibe as informações do perfil.
     void display();
 };
 
+/**
+ * @brief Classe que representa a base de dados de perfis.
+ */
 class Base
 {
 private:
-    vector<Profile *> profiles; // too many Profiles in the file can cause segmentation fault
+    vector<Profile *> profiles; ///< Vetor de ponteiros para perfis.
 
+    /**
+     * @brief Limpa todos os perfis da base.
+     */
     void clearProfiles();
+
+    /**
+     * @brief Copia perfis de outro vetor.
+     * @param profiles Vetor de perfis a ser copiado.
+     */
     void copyProfiles(const vector<Profile *> &);
 
 public:
-    // constructors
+    /**
+     * @brief Construtor de cópia.
+     * @param other Outro objeto Base.
+     */
     Base(const Base &);
+
+    /**
+     * @brief Construtor a partir de um vetor de perfis.
+     * @param profiles Vetor de ponteiros para perfis.
+     */
     Base(const vector<Profile *> &);
+
+    /**
+     * @brief Construtor padrão.
+     */
     Base();
+
+    /**
+     * @brief Construtor que carrega base de um arquivo.
+     * @param filename Nome do arquivo.
+     */
     Base(string);
 
-    // destructor
+    /**
+     * @brief Destrutor.
+     */
     ~Base();
 
-    // operator
+    /**
+     * @brief Operador de atribuição.
+     * @param other Outro objeto Base.
+     * @return Base& Referência para este objeto.
+     */
     Base operator=(const Base &);
 
+    /**
+     * @brief Verifica se um nickname está na base.
+     * @param nickname Nickname a ser verificado.
+     * @return true se está na base.
+     */
     bool inBase(string);
+
+    /**
+     * @brief Verifica se um perfil está na base.
+     * @param profile Perfil a ser verificado.
+     * @return true se está na base.
+     */
     bool inBase(Profile);
 
-    // add and remove methods
+    /**
+     * @brief Atualiza ou adiciona um perfil na base.
+     * @param profile Perfil a ser atualizado/adicionado.
+     * @return true se atualizado/adicionado com sucesso.
+     */
     bool updateProfiles(Profile);
+
+    /**
+     * @brief Remove um perfil da base pelo nickname.
+     * @param nickname Nickname do perfil a ser removido.
+     * @return true se removido com sucesso.
+     */
     bool removeProfile(string);
 
+    /**
+     * @brief Retorna os melhores perfis da base.
+     * @return vector<Profile *> Vetor dos melhores perfis.
+     */
     vector<Profile *> getBestProfiles();
+
+    /**
+     * @brief Salva a base em um arquivo.
+     * @param filename Nome do arquivo.
+     */
     void saveBase(string);
+
+    /**
+     * @brief Exibe todos os perfis da base.
+     */
     void display();
 };
 
-// validate functions
+/**
+ * @brief Valida os caracteres do nickname.
+ * @param nickname Nickname a ser validado.
+ * @return true se válido.
+ */
 bool validateNicknameChars(string);
+
+/**
+ * @brief Valida os caracteres do nome.
+ * @param name Nome a ser validado.
+ * @return true se válido.
+ */
 bool validateNameChars(string);
 
+/**
+ * @brief Valida o tamanho do nickname.
+ * @param nickname Nickname a ser validado.
+ * @return true se válido.
+ */
 bool validateNicknameSize(string);
+
+/**
+ * @brief Valida o tamanho do nome.
+ * @param name Nome a ser validado.
+ * @return true se válido.
+ */
 bool validateNameSize(string);
 
 #endif
